@@ -69,11 +69,14 @@ class AWEA {
         'awesome-contact-info',
         'awesome-team',
         'awesome-business-hours',
-        'awesome-price-list',
+        'awesome-price-grid',
         'awesome-price-menu',
         'awesome-buttons',
         'awesome-countdown',
-
+        'awesome-counter',
+        'awesome-icon-box',
+        'awesome-product-grid',
+        'awesome-product-category-grid',
     ];
 
     public static function instance() {
