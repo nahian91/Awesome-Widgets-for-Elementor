@@ -63,20 +63,11 @@ class AWEA {
         'awesome-list-group',
         'awesome-number-box',
         'awesome-price',
-        'awesome-process',
-        'awesome-post-grid',
         'awesome-testimonials',
         'awesome-contact-info',
         'awesome-team',
         'awesome-business-hours',
-        'awesome-price-list',
-        'awesome-price-menu',
-        'awesome-buttons',
-        'awesome-countdown',
-        'awesome-counter',
         'awesome-icon-box',
-        'awesome-product-grid',
-        'awesome-product-category-grid',
     ];
 
     public static function instance() {

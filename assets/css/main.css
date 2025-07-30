@@ -662,3 +662,28 @@ p{
 .awea-business-hours-content ul li:last-child {
   margin-bottom: 0;
 }
+
+
+
+.awea-price-features ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.awea-price-features ul li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid transparent;
+}
+.awea-price-features ul li:last-child {
+  border-bottom: 0;
+}
+
+.awea-price-btn {
+  margin-top: 24px;
+}
+.awea-price-btn a {
+  text-decoration: none;
+  display: inline-block;
+  transition: .3s;
+}
