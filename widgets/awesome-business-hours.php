@@ -1,6 +1,6 @@
 <?php
 /**
- * Awesome CTA Widget.
+ * Awesome Business Hours Widget.
  *
  * Elementor widget that inserts a cta into the page
  *
@@ -83,19 +83,19 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		    ]
 	    );
 
-		// CTA Title
+		// Business Hours Title
 		$this->add_control(
 			'awea_business_hours_title',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( 'We Are Awesome CTA!', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( 'We Are Awesome Business Hours!', 'awesome-widgets-elementor' ),
 			]
 		);
 
 		$this->add_control(
-			'text_align',
+			'awea_business_hours_title_align',
 			[
 				'label' => esc_html__( 'Alignment', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -116,7 +116,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'default' => 'center',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .your-class' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .awea-business-hours-title h4' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -124,7 +124,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_hours',
+			'awea_business_hours_section_hours',
 			[
 				'label' => esc_html__('Hours List', 'awesome-widgets-elementor'),
 			]
@@ -133,7 +133,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		$repeater = new Repeater();
 
 		$repeater->add_control(
-			'day',
+			'awea_business_hours_day',
 			[
 				'label' => esc_html__('Day', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
@@ -143,7 +143,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		);
 
 		$repeater->add_control(
-			'hours',
+			'awea_business_hours_hour',
 			[
 				'label' => esc_html__('Hours', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
@@ -153,7 +153,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		);
 
 		$this->add_control(
-			'business_hours_list',
+			'awea_business_hours_list',
 			[
 				'label' => esc_html__('Add Hours', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::REPEATER,
@@ -163,7 +163,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 					['day' => 'Tuesday', 'hours' => '09:00 - 19:00'],
 					['day' => 'Wednesday', 'hours' => '09:00 - 19:00'],
 				],
-				'title_field' => '{{{ day }}}',
+				'title_field' => '{{{ awea_business_hours_day }}}',
 			]
 		);
 
@@ -178,7 +178,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Title Color
+		// Business Hours Title Color
 		$this->add_control(
 			'awea_business_hours_title_color',
 			[
@@ -193,7 +193,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Title Typography
+		// Business Hours Title Typography
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
@@ -205,7 +205,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Background Color
+		// Business Hours Background Color
 		$this->add_control(
 			'awea_business_hours_title_background',
 			[
@@ -220,7 +220,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Border Radius
+		// Business Hours Border Radius
 		$this->add_control(
 			'awea_business_hours_border_radius',
 			[
@@ -233,7 +233,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Padding
+		// Business Hours Padding
 		$this->add_control(
 			'awea_business_hours_padding',
 			[
@@ -257,7 +257,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Background Color
+		// Business Hours Background Color
 		$this->add_control(
 			'awea_business_hours_background_color',
 			[
@@ -272,7 +272,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Border Radius
+		// Business Hours Border Radius
 		$this->add_control(
 			'awea_business_hours_border_radius',
 			[
@@ -285,7 +285,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Padding
+		// Business Hours Padding
 		$this->add_control(
 			'awea_business_hours_content_padding',
 			[
@@ -307,7 +307,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Title Color
+		// Business Hours Title Color
 		$this->add_control(
 			'awea_business_hours_days_color',
 			[
@@ -322,7 +322,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Title Typography
+		// Business Hours Title Typography
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
@@ -343,7 +343,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Title Color
+		// Business Hours Title Color
 		$this->add_control(
 			'awea_business_hours_hour_color',
 			[
@@ -358,7 +358,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// CTA Title Typography
+		// Business Hours Title Typography
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
@@ -385,25 +385,22 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 	protected function render() {
 		// get our input from the widget settings.
 		$settings = $this->get_settings_for_display();
-		// $awea_business_hours_sub_title = $settings['awea_business_hours_sub_title'];
-		// $awea_business_hours_title = $settings['awea_business_hours_title'];
-		// $awea_business_hours_desc = $settings['awea_business_hours_desc'];
-		// $awea_business_hours_button1 = $settings['awea_business_hours_button1'];
-		// $awea_business_hours_button2 = $settings['awea_business_hours_button2'];
+		$awea_business_hours_title = $settings['awea_business_hours_title'];
+		$awea_business_hours_list = $settings['awea_business_hours_list'];
        ?>
 		<div class="awea-business-hours">
 			<div class="awea-business-hours-title">
-				<h4>Business Hours</h4>
+				<h4><?php echo $awea_business_hours_title;?></h4>
 			</div>
 			<div class="awea-business-hours-content">
 				<ul>
-					<li>Monday<span>09:00 - 19:00</span></li>
-					<li>Monday<span>09:00 - 19:00</span></li>
-					<li>Monday<span>09:00 - 19:00</span></li>
-					<li>Monday<span>09:00 - 19:00</span></li>
-					<li>Monday<span>09:00 - 19:00</span></li>
-					<li>Monday<span>09:00 - 19:00</span></li>
-					<li>Monday<span>09:00 - 19:00</span></li>
+					<?php 
+						foreach($awea_business_hours_list as $hour) {
+							?>
+								<li><?php echo $hour['awea_business_hours_day'];?><span><?php echo $hour['awea_business_hours_hour'];?></span></li>
+							<?php 
+						}
+					?>
 				</ul>
 			</div>
 		</div>

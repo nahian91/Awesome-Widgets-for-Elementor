@@ -657,30 +657,31 @@ class Widget_Awesome_Price extends Widget_Base {
 		// $awea_price_box_button_text = $settings['awea_price_box_button_text'];
 		// $awea_price_box_button_link = $settings['awea_price_box_button_link']['url'];
        ?>
-			<div class="single-price">
-				<div class="price-top">
-					<img decoding="async" src="https://royal-elementor-addons.com/wp-content/uploads/2020/02/Asset-2-2.png">
-					<div class="price-heading">
-						<h4>Premium <span>For small business</span></h4>					
-					</div>
-					<div class="price-amount">
-						<p><span>$</span>299 <small>month</small></p>
-					</div>
+			<div class="awea-price">
+				<div class="awea-price-header">
+					<h4>standard</h4>
+					<p>Lorem ipsum dolor sit amet.</p>
 				</div>
-
-				<div class="price-content">
-					<ul>
-						<li>20 GB Disk Space</li>
-						<li>25 GB Monthly Bandwidth</li>
-						<li>Unlimited Users</li>
-						<li>5 Domains</li>
+				<div class="awea-price-amount">
+					<span>$</span>5<sub>/month</sub>
+				</div>
+				<div class="awea-price-features">
+					<ul class="features">
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
+						<li><i class="fa-solid fa-check"></i> Unlimited domain name</li>						
 					</ul>
 				</div>
-				
-				<div class="price-btn">
-					<a href="">Sign Up</a>
+				<div class="awea-price-btn">
+					<a href="">Purchase Now</a>
 				</div>
-
+			</div>
        <?php
 	}
 }

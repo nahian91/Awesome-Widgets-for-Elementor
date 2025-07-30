@@ -325,23 +325,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
-		);
-
-		$this->add_control(
-			'awea_testimonials_author_image_width',
-			[
-				'label' => __('Width', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%', 'em', 'vw'],
-				'default' => [
-					'unit' => '%',
-					'size' => 100,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .single-testimonial-author img' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);		
+		);	
 
 		// Testimonials Border
 		$this->add_group_control(
@@ -464,7 +448,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 					<i class="<?php echo esc_attr($awea_testimonials_icon);?>"></i>
 				</div>
 			   	<div class="single-testimonial-content">
-				   <?php echo esc_html($awea_testimonials_speech);?>
+				   <?php echo $awea_testimonials_speech;?>
 				</div>
 				<div class="single-testimonial-author">
 					<img src="<?php echo esc_url($awea_testimonials_author_image);?>" alt="">
