@@ -267,6 +267,34 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 			]
 		);	
 
+		// Image Box Padding
+		$this->add_control(
+			'awea_image_box_content_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-image-box-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Title Color
+		$this->add_control(
+			'awea_image_box_content_bg',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-image-box-content' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+				]
+			]
+		);
+
 		$this->add_control(
 			'awea_image_box_title_options',
 			[
@@ -446,15 +474,17 @@ class Widget_Awesome_Image_Box extends Widget_Base {
        ?>
 			<div class="single-image-box">
 				<img src="<?php echo esc_url($awea_image_box_image);?>">
-				<h4><?php echo esc_html($awea_image_box_title);?></h4>
-				<p><?php echo esc_html($awea_image_box_des);?></p>
-				<?php 
-					if($awea_image_box_btn_link) {
-						?>
-							<a href="<?php echo esc_url($awea_image_box_btn_link);?>"><?php echo esc_html($awea_image_box_btn_title);?></a>
-						<?php
-					}
-				?>
+				<div class="single-image-box-content">
+					<h4><?php echo esc_html($awea_image_box_title);?></h4>
+					<p><?php echo esc_html($awea_image_box_des);?></p>
+					<?php 
+						if($awea_image_box_btn_link) {
+							?>
+								<a href="<?php echo esc_url($awea_image_box_btn_link);?>"><?php echo esc_html($awea_image_box_btn_title);?></a>
+							<?php
+						}
+					?>
+				</div>
 			</div>
        <?php
 	}

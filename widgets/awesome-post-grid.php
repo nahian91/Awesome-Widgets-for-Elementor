@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 namespace Elementor;
-class Widget_Awesome_Post_List extends Widget_Base {
+class Widget_Awesome_Post_Grid extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -20,7 +20,7 @@ class Widget_Awesome_Post_List extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesome-post-list';
+		return 'awesome-post-grid';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Widget_Awesome_Post_List extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post List', 'awesome-widgets-elementor' );
+		return esc_html__( 'Post Grid', 'awesome-widgets-elementor' );
 	}
 
 	/**

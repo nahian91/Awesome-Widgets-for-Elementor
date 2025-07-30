@@ -241,7 +241,7 @@ class Widget_Awesome_team extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-team' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-team' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
@@ -254,7 +254,7 @@ class Widget_Awesome_team extends Widget_Base {
 			\Elementor\Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_team_border',
-				'selector' => '{{WRAPPER}} .single-team',
+				'selector' => '{{WRAPPER}} .awea-team',
 			]
 		);	
 
@@ -266,7 +266,34 @@ class Widget_Awesome_team extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-team' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-team' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_team_align',
+			[
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -308,7 +335,7 @@ class Widget_Awesome_team extends Widget_Base {
 					'size' => 100,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .single-team img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .awea-team img' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -318,7 +345,7 @@ class Widget_Awesome_team extends Widget_Base {
 			\Elementor\Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_image_box_border',
-				'selector' => '{{WRAPPER}} .single-team img',
+				'selector' => '{{WRAPPER}} .awea-team img',
 			]
 		);	
 		
@@ -330,7 +357,7 @@ class Widget_Awesome_team extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-team img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-team img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -348,7 +375,43 @@ class Widget_Awesome_team extends Widget_Base {
 		);
 
 		$this->add_control(
-			'awea_team_contents_designation_options',
+			'awea_team_contents_name_options',
+			[
+				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Team Title Color
+		$this->add_control(
+			'awea_team_contents_name_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-content h4' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		// Team Title Typography
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_team_contents_name_typography',
+				'selector' => '{{WRAPPER}} .awea-team-content h4',
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_team_contents_desg_options',
 			[
 				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::HEADING,
@@ -358,12 +421,12 @@ class Widget_Awesome_team extends Widget_Base {
 
 		// Team Title Color
 		$this->add_control(
-			'awea_team_contents_designation_color',
+			'awea_team_contents_desg_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-team h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-team-content h4 span' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
@@ -375,44 +438,8 @@ class Widget_Awesome_team extends Widget_Base {
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_team_contents_designation_typography',
-				'selector' => '{{WRAPPER}} .single-team h4',
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_team_contents_title_options',
-			[
-				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// Team Title Color
-		$this->add_control(
-			'awea_team_contents_title_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .single-team h4 span' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// Team Title Typography
-		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_team_contents_title_typography',
-				'selector' => '{{WRAPPER}} .single-team h4 span',
+				'name' => 'awea_team_contents_desg_typography',
+				'selector' => '{{WRAPPER}} .awea-team-content h4 span',
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
@@ -448,7 +475,7 @@ class Widget_Awesome_team extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .team-social a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-team-social a' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -469,7 +496,7 @@ class Widget_Awesome_team extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .team-social a:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-team-social a:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -494,30 +521,29 @@ class Widget_Awesome_team extends Widget_Base {
 	protected function render() {
 		// get our input from the widget settings.
 		$settings = $this->get_settings_for_display();
-		// $awea_team_image_upload = $settings['awea_team_image_upload'];
-		// $awea_team_image_upload_url = $awea_team_image_upload['url'];
-		// $awea_team_image_upload_alt = $awea_team_image_upload['alt'];
-		// $awea_team_designation = $settings['awea_team_designation'];
-		// $awea_team_name = $settings['awea_team_name'];
-		// $awea_team_socials_list = $settings['awea_team_socials_list'];
+		$awea_team_image_upload = $settings['awea_team_image_upload'];
+		$awea_team_image_upload_url = $awea_team_image_upload['url'];
+		$awea_team_image_upload_alt = $awea_team_image_upload['alt'];
+		$awea_team_name = $settings['awea_team_name'];
+		$awea_team_designation = $settings['awea_team_designation'];
+		$awea_team_socials_list = $settings['awea_team_socials_list'];
         ?>
-			<div class="team-card wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1000ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 500ms; animation-name: fadeInUp;">
-                  <!-- Team Image -->
-                  <div class="team-img">
-                     <img src="https://bisni-html.vercel.app/assets/11-Yeue2M7-.png" alt="">
-                     <!-- Team Social -->
-                     <div class="team-social">
-                        <a href="#"><i class="ti ti-brand-facebook"></i></a>
-                        <a href="#"><i class="ti ti-brand-x"></i></a>
-                        <a href="#"><i class="ti ti-brand-linkedin"></i></a>
-                     </div>
-                  </div>
-                  <!-- Team Content -->
-                  <div class="team-content text-center my-4">
-                     <h4><a class="member-title" href="team-details.html">Reece bronson</a></h4>
-                     <p class="mb-0">Marketing</p>
-                  </div>
-               </div>
+			<div class="awea-team">
+				<img src="<?php echo $awea_team_image_upload_url;?>" alt="<?php echo $awea_team_image_upload_alt;?>">
+				<div class="awea-team-content">
+					<h4><?php echo $awea_team_name;?> <span><?php echo $awea_team_designation;?></span></h4>
+					<div class="awea-team-social">
+						<?php foreach($awea_team_socials_list as $social) {
+							$link = $social['awea_team_socials_link']['url'];
+							$icon = $social['awea_team_socials_icon']['value'];
+						?>
+							<a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener noreferrer">
+								<i class="<?php echo esc_attr($icon); ?>"></i>
+							</a>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
        <?php
 	}
 }

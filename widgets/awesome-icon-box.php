@@ -1,8 +1,8 @@
-<?php
+<?php 
 /**
- * Awesome CTA Widget.
+ * Awesome Icon Box Widget.
  *
- * Elementor widget that inserts a cta into the page
+ * Elementor widget that inserts a icon box into the page
  *
  * @since 1.0.0
  */
@@ -12,7 +12,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	/**
 	 * Get widget name.
 	 *
-	 * Retrieve heading widget name.
+	 * Retrieve Icon Box widget name.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -26,7 +26,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	/**
 	 * Get widget title.
 	 *
-	 * Retrieve affiliate products widget title.
+	 * Retrieve icon box widget title.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -40,7 +40,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	/**
 	 * Get widget icon.
 	 *
-	 * Retrieve affiliate products widget icon.
+	 * Retrieve icon box widget icon.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -48,13 +48,13 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-icon-box';
 	}
 
 	/**
 	 * Get widget categories.
 	 *
-	 * Retrieve the list of categories the heading widget belongs to.
+	 * Retrieve the list of categories the Icon Box widget belongs to.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -74,101 +74,147 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	protected function _register_controls() {
 		
 		// start of the Content tab section
-	   	$this->start_controls_section(
-	       'awea_cta_contents',
+	    $this->start_controls_section(
+	       'awea_icon_box_contents',
 		    [
 		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-		   
 		    ]
 	    );
-		
-		// CTA Sub Title
+
+		// Icon Box Icon
 		$this->add_control(
-			'awea_cta_sub_title',
+			'awea_icon_box_icon',
 			[
-				'label' => esc_html__( 'Sub Title', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
+				'label' => esc_html__( 'Choose Icon', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-circle',
+					'library' => 'fa-solid',
+				],
 				'label_block' => true,
-				'default' => esc_html__( 'are you ready?', 'awesome-widgets-elementor' ),
 			]
 		);
 
-		// CTA Title
+		// Icon Box Title
 		$this->add_control(
-			'awea_cta_title',
+			'awea_icon_box_title',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
+				'type' => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( 'We Are Awesome CTA!', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( 'Awesome Heading', 'awesome-widgets-elementor' ),
 			]
 		);
 
-		// CTA Description
+		// Icon Box Description
 		$this->add_control(
-			'awea_cta_desc',
+			'awea_icon_box_des',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXTAREA,
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'label_block' => true,
-				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ', 'awesome-widgets-elementor' ),
 			]
 		);
-		
-		$this->end_controls_section();
 
-		// start of the Button tab section
-		$this->start_controls_section(
-			'awea_cta_btns',
-			 [
-				 'label' => esc_html__('Buttons', 'awesome-widgets-elementor'),
-				 'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-			
-			 ]
-		 );
-
-		 // CTA Button 1
+		// Icon Box Show Button?
 		$this->add_control(
-			'awea_cta_button1',
+			'awea_icon_box_show_btn',
 			[
-				'label' => esc_html__( 'Button 1', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__( '+8801686195607', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Show Button?', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+				'separator' => 'before'
 			]
 		);
 
-		// CTA Button 2
+		// Icon Box Button Title
 		$this->add_control(
-			'awea_cta_button2',
+		    'awea_icon_box_btn_title',
 			[
-				'label' => esc_html__( 'Button 2', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
+			    'label' => esc_html__('Button Text', 'awesome-widgets-elementor'),
+				'type' => \Elementor\Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( 'nahiansylhet@gmail.com', 'awesome-widgets-elementor' ),
+				'default' => esc_html__('Read More', 'awesome-widgets-elementor'),
+				'separator' => 'before',
+				'condition' => [
+					'awea_icon_box_show_btn' => 'yes'
+				],
 			]
 		);
+
+		// Icon Box Button Link
+		$this->add_control(
+		    'awea_icon_box_btn_link',
+			[
+			    'label' => esc_html__( 'Button Link', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'default' => [
+					'url' => 'https://anahian.com/',
+					'is_external' => true,
+					'nofollow' => false,
+					'custom_attributes' => '',
+				],
+				'condition' => [
+					'awea_icon_box_show_btn' => 'yes'
+				]
+			]
+		);
+
+		// Icon Box Alignment
+		$this->add_control(
+			'awea_icon_box_alignment',
+			[
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'separator' => 'before',
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
 
 		$this->end_controls_section();
+		// end of the Content tab section
 		
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_cta_layout_style',
+			'awea_icon_box_layout_style',
 			[
-				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Layout', 'awesome-widgets-elementor' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
-		);
+		);	
 
-		// CTA Background Color
+		// Icon Box Background
 		$this->add_control(
-			'awea_cta_background_color',
+			'awea_icon_box_bg_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .single-icon-box' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
@@ -176,38 +222,243 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			]
 		);
 
-		// CTA Border
-		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'awea_cta_border',
-				'selector' => '{{WRAPPER}} .cta-box',
-			]
-		);	
-
-		// CTA Border Radius
+		// Icon Box Padding
 		$this->add_control(
-			'awea_cta_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		// CTA Padding
-		$this->add_control(
-			'awea_cta_padding',
+			'awea_icon_box_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .single-icon-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		// Icon Box Border
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_icon_box_border',
+				'selector' => '{{WRAPPER}} .single-icon-box',
+			]
+		);	
+
+		// Icon Box Border Radius
+		$this->add_control(
+			'awea_icon_box_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_icon_box_icon_style',
+			[
+				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);	
+
+		$this->add_control(
+			'awea_icon_box_icon_size',
+			[
+				'label' => esc_html__( 'Size', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Icon Box Color
+		$this->add_control(
+			'awea_icon_box_icon_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box i' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		// Icon Box Color
+		$this->add_control(
+			'awea_icon_box_icon_bg',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box i' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		// Icon Box Padding
+		$this->add_control(
+			'awea_icon_box_icon_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);	
+
+		// Icon Box Border Radius
+		$this->add_control(
+			'awea_icon_box_icon_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_icon_box_contents_style',
+			[
+				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);	
+
+		// Icon Box Padding
+		$this->add_control(
+			'awea_icon_box_content_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Title Color
+		$this->add_control(
+			'awea_icon_box_content_bg',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box-content' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_icon_box_title_options',
+			[
+				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Title Color
+		$this->add_control(
+			'awea_icon_box_title_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box h4' => 'color: {{VALUE}} !important',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+				]
+			]
+		);
+
+		// Title Typography
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_icon_box_title_typography',
+				'selector' => '{{WRAPPER}} .single-icon-box h4',
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_icon_box_desc_options',
+			[
+				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Description Color
+		$this->add_control(
+			'awea_icon_box_desc_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-icon-box p' => 'color: {{VALUE}} !important',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+				]
+			]
+		);
+
+		// Description Typography
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_icon_box_desc_typography',
+				'selector' => '{{WRAPPER}} .single-icon-box p',
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+				]
 			]
 		);
 
@@ -216,223 +467,76 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_cta_subtitle_style',
+			'awea_icon_box_btn_style',
 			[
-				'label' => esc_html__( 'Sub Title', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Button', 'awesome-widgets-elementor' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'awea_icon_box_show_btn' => 'yes'
+				],
+			]
+		);	
+
+		$this->start_controls_tabs(
+			'awea_icon_box_btn_style_tabs'
+		);
+
+		// Icon Box Button Normal Tab
+		$this->start_controls_tab(
+			'awea_icon_box_btn_normal_tab',
+			[
+				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
 			]
 		);
-		
-		// CTA Sub Heading Color
+
+		// Icon Box Button Color
 		$this->add_control(
-			'awea_cta_subtitle_color',
+			'awea_icon_box_btn_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .single-icon-box a' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
-				],
+				]
 			]
 		);
 
-		// CTA Sub Heading Typography
+		// Icon Box Button Typoghraphy
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_cta_subtitle_typography',
-				'selector' => '{{WRAPPER}} .cta-box span',
+				'name' => 'awea_icon_box_btn_typography',
+				'selector' => '{{WRAPPER}} .single-icon-box a',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_cta_title_style',
-			[
-				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_cta_title_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box h4' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Typography
-		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_cta_title_typography',
-				'selector' => '{{WRAPPER}} .cta-box h4',
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_cta_desc_style',
-			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_cta_desc_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box p' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Typography
-		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_cta_desc_typography',
-				'selector' => '{{WRAPPER}} .cta-box p',
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_cta_btns_style',
-			[
-				'label' => esc_html__( 'Buttons', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'awea_cta_contents_btn1_options',
-			[
-				'label' => esc_html__( 'Buttons', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// Start of Tabs
-		$this->start_controls_tabs('cta_button1_tabs');
-
-		// Normal Tab
-		$this->start_controls_tab(
-			'cta_button_tab_normal',
-			[
-				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_cta_btn_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_cta_btn_bgcolor',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Typography
-		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_cta_btn_typography',
-				'selector' => '{{WRAPPER}} .cta-box span.cta-button',
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
 				]
 			]
 		);
 
 		$this->end_controls_tab();
 
-		// Hover Tab
+		// Icon Box Button Hover Tab
 		$this->start_controls_tab(
-			'cta_button_tab_hover',
+			'awea_icon_box_btn_hover_tab',
 			[
-				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
+				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
+		// Icon Box Button Color
 		$this->add_control(
-			'awea_cta_btn_hovercolor',
+			'awea_icon_box_btn_hover_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .single-icon-box a:hover' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_cta_btn_hoverbg',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
 				]
 			]
 		);
@@ -453,22 +557,29 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 */ 
+	 */
 	protected function render() {
 		// get our input from the widget settings.
 		$settings = $this->get_settings_for_display();
-		$awea_cta_sub_title = $settings['awea_cta_sub_title'];
-		$awea_cta_title = $settings['awea_cta_title'];
-		$awea_cta_desc = $settings['awea_cta_desc'];
-		$awea_cta_button1 = $settings['awea_cta_button1'];
-		$awea_cta_button2 = $settings['awea_cta_button2'];
+		$awea_icon_box_icon = $settings['awea_icon_box_icon']['value'];
+		$awea_icon_box_title = $settings['awea_icon_box_title'];
+		$awea_icon_box_des = $settings['awea_icon_box_des'];
+		$awea_icon_box_btn_title = $settings['awea_icon_box_btn_title'];
+		$awea_icon_box_btn_link = $settings['awea_icon_box_btn_link']['url'];
        ?>
-			<div class="cta-box">
-				<span><?php echo esc_html($awea_cta_sub_title);?></span>
-				<h4><?php echo esc_html($awea_cta_title);?></h4>
-				<p><?php echo esc_html($awea_cta_desc);?></p>
-				<span class="cta-button"><?php echo esc_html($awea_cta_button1);?></span>
-				<span class="cta-button"><?php echo esc_html($awea_cta_button2);?></span>
+			<div class="single-icon-box">
+				<i class="<?php echo $awea_icon_box_icon;?>"></i>
+				<div class="single-icon-box-content">
+					<h4><?php echo esc_html($awea_icon_box_title);?></h4>
+					<p><?php echo esc_html($awea_icon_box_des);?></p>
+					<?php 
+						if($awea_icon_box_btn_link) {
+							?>
+								<a href="<?php echo esc_url($awea_icon_box_btn_link);?>"><?php echo esc_html($awea_icon_box_btn_title);?></a>
+							<?php
+						}
+					?>
+				</div>
 			</div>
        <?php
 	}

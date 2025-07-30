@@ -110,7 +110,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 			'awea_cta_desc',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXTAREA,
+				'type' => Controls_Manager::WYSIWYG,
 				'label_block' => true,
 				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters', 'awesome-widgets-elementor' ),
 			]
@@ -211,8 +211,35 @@ class Widget_Awesome_CTA extends Widget_Base {
 			]
 		);
 
+		// CTA Alignment
+		$this->add_control(
+			'awea_cta_alignment',
+			[
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'separator' => 'before',
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .cta-box' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
 		$this->end_controls_section();
-		// end of the Style tab section
 
 		// start of the Style tab section
 		$this->start_controls_section(
@@ -466,9 +493,11 @@ class Widget_Awesome_CTA extends Widget_Base {
 			<div class="cta-box">
 				<span><?php echo esc_html($awea_cta_sub_title);?></span>
 				<h4><?php echo esc_html($awea_cta_title);?></h4>
-				<p><?php echo esc_html($awea_cta_desc);?></p>
-				<span class="cta-button"><?php echo esc_html($awea_cta_button1);?></span>
-				<span class="cta-button"><?php echo esc_html($awea_cta_button2);?></span>
+				<p><?php echo $awea_cta_desc;?></p>
+				<div class="cta-box-btn">
+					<span class="cta-button"><?php echo esc_html($awea_cta_button1);?></span>
+					<span class="cta-button"><?php echo esc_html($awea_cta_button2);?></span>
+				</div>				
 			</div>
        <?php
 	}
