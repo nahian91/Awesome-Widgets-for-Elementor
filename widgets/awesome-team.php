@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 namespace Elementor;
-class Widget_Awesome_team extends Widget_Base {
+class Widget_Awesome_Team extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -393,7 +393,7 @@ class Widget_Awesome_team extends Widget_Base {
 					'{{WRAPPER}} .awea-team-content h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -405,7 +405,7 @@ class Widget_Awesome_team extends Widget_Base {
 				'name' => 'awea_team_contents_name_typography',
 				'selector' => '{{WRAPPER}} .awea-team-content h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -429,7 +429,7 @@ class Widget_Awesome_team extends Widget_Base {
 					'{{WRAPPER}} .awea-team-content h4 span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -441,7 +441,7 @@ class Widget_Awesome_team extends Widget_Base {
 				'name' => 'awea_team_contents_desg_typography',
 				'selector' => '{{WRAPPER}} .awea-team-content h4 span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -466,6 +466,33 @@ class Widget_Awesome_team extends Widget_Base {
 			'awea_team_social_tabs_normal',
 			[
 				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_team_social_size',
+			[
+				'label' => esc_html__( 'Size', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 25,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-social a i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -523,13 +550,12 @@ class Widget_Awesome_team extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$awea_team_image_upload = $settings['awea_team_image_upload'];
 		$awea_team_image_upload_url = $awea_team_image_upload['url'];
-		$awea_team_image_upload_alt = $awea_team_image_upload['alt'];
 		$awea_team_name = $settings['awea_team_name'];
 		$awea_team_designation = $settings['awea_team_designation'];
 		$awea_team_socials_list = $settings['awea_team_socials_list'];
         ?>
 			<div class="awea-team">
-				<img src="<?php echo $awea_team_image_upload_url;?>" alt="<?php echo $awea_team_image_upload_alt;?>">
+				<img src="<?php echo $awea_team_image_upload_url;?>" alt="<?php echo $awea_team_name;?>">
 				<div class="awea-team-content">
 					<h4><?php echo $awea_team_name;?> <span><?php echo $awea_team_designation;?></span></h4>
 					<div class="awea-team-social">

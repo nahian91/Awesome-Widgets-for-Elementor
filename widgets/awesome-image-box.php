@@ -153,7 +153,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 			    'label' => esc_html__( 'Button Link', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::URL,
 				'default' => [
-					'url' => 'https://anahian.com/',
+					'url' => 'https://devnahian.com/',
 					'is_external' => true,
 					'nofollow' => false,
 					'custom_attributes' => '',
@@ -216,7 +216,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 					'{{WRAPPER}} .single-image-box' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
 				]
 			]
 		);
@@ -255,6 +255,50 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 				],
 			]
 		);
+		$this->end_controls_section();
+		
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_image_box_image_style',
+			[
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);	
+
+		// Image Box Padding
+		$this->add_control(
+			'awea_image_box_image_width',
+			[
+				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-image-box img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_image_box_image_border',
+				'selector' => '{{WRAPPER}} .single-image-box img',
+			]
+		);
+
+		// Image Box Padding
+		$this->add_control(
+			'awea_image_box_image_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-image-box img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
 		$this->end_controls_section();
 
@@ -290,7 +334,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 					'{{WRAPPER}} .single-image-box-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
 				]
 			]
 		);
@@ -314,7 +358,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 					'{{WRAPPER}} .single-image-box h4' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -326,7 +370,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 				'name' => 'awea_image_box_title_typography',
 				'selector' => '{{WRAPPER}} .single-image-box h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);
@@ -350,7 +394,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 					'{{WRAPPER}} .single-image-box p' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -362,7 +406,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 				'name' => 'awea_image_box_desc_typography',
 				'selector' => '{{WRAPPER}} .single-image-box p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -404,7 +448,7 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 					'{{WRAPPER}} .single-image-box a' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
 				]
 			]
 		);

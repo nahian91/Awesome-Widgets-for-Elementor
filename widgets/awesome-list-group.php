@@ -258,7 +258,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .list-item h4' => 'color: {{VALUE}}',
@@ -273,7 +273,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 				'name' => 'awea_list_group_title_typography',
 				'selector' => '{{WRAPPER}} .list-item h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);	

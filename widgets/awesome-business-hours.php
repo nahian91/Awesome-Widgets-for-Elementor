@@ -159,9 +159,13 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
+					['day' => 'Sunday', 'hours' => '09:00 - 19:00'],
 					['day' => 'Monday', 'hours' => '09:00 - 19:00'],
 					['day' => 'Tuesday', 'hours' => '09:00 - 19:00'],
 					['day' => 'Wednesday', 'hours' => '09:00 - 19:00'],
+					['day' => 'Thursday', 'hours' => '09:00 - 19:00'],
+					['day' => 'Friday', 'hours' => '09:00 - 19:00'],
+					['day' => 'Satrday', 'hours' => '09:00 - 19:00'],
 				],
 				'title_field' => '{{{ awea_business_hours_day }}}',
 			]
@@ -188,7 +192,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 					'{{WRAPPER}} .awea-business-hours-title h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -200,7 +204,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'name' => 'awea_business_hours_title_typography',
 				'selector' => '{{WRAPPER}} .awea-business-hours-title h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -317,7 +321,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 					'{{WRAPPER}} .awea-business-hours-content ul li' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -329,7 +333,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'name' => 'awea_business_hours_days_typography',
 				'selector' => '{{WRAPPER}} .awea-business-hours-content ul li',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -353,7 +357,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 					'{{WRAPPER}} .awea-business-hours-content ul li span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -365,7 +369,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'name' => 'awea_business_hours_hour_typography',
 				'selector' => '{{WRAPPER}} .awea-business-hours-content ul li span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);

@@ -111,7 +111,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'label_block' => true,
-				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' ),
 			]
 		);
 
@@ -241,6 +241,30 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
+			]
+		);
+
+		// Number Box Number Background
+		$this->add_control(
+			'awea_number_box_number_background',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-number-box span' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		// Number Box Number Border
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_number_box_number_border',
+				'selector' => '{{WRAPPER}} .single-number-box span',
 			]
 		);
 

@@ -110,7 +110,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			'awea_heading_desc',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
 				'label_block' => true,
 				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page.', 'awesome-widgets-elementor' ),
 			]
@@ -250,7 +250,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 					'{{WRAPPER}} .section-title p' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -262,7 +262,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'name' => 'awea_desc_typography',
 				'selector' => '{{WRAPPER}} .section-title p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -329,7 +329,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			<div class="section-title">
 				<span><?php echo esc_html($awea_sub_heading);?></span>
 				<h4><?php echo esc_html($awea_heading);?></h4>
-				<p><?php echo esc_html($awea_heading_desc);?></p>
+				<p><?php echo $awea_heading_desc;?></p>
 			</div>
        <?php
 	}

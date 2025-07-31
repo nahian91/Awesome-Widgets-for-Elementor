@@ -154,7 +154,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			    'label' => esc_html__( 'Button Link', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::URL,
 				'default' => [
-					'url' => 'https://anahian.com/',
+					'url' => 'https://devnahian.com/',
 					'is_external' => true,
 					'nofollow' => false,
 					'custom_attributes' => '',
@@ -305,7 +305,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 					'{{WRAPPER}} .single-icon-box i' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -409,7 +409,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 					'{{WRAPPER}} .single-icon-box h4' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -421,7 +421,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 				'name' => 'awea_icon_box_title_typography',
 				'selector' => '{{WRAPPER}} .single-icon-box h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -445,7 +445,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 					'{{WRAPPER}} .single-icon-box p' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -457,7 +457,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 				'name' => 'awea_icon_box_desc_typography',
 				'selector' => '{{WRAPPER}} .single-icon-box p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);

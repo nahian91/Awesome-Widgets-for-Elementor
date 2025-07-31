@@ -289,7 +289,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 					'{{WRAPPER}} .single-testimonial-content p' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -301,7 +301,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'name' => 'awea_testimonials_speech_typography',
 				'selector' => '{{WRAPPER}} .single-testimonial-content p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
