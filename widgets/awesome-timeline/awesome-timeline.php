@@ -48,7 +48,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-time-line';
 	}
 
 	/**

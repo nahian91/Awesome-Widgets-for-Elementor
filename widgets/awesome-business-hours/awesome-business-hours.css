@@ -1,0 +1,20 @@
+.awea-business-hours-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.awea-business-hours-content ul li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.awea-business-hours-content ul li {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.awea-business-hours-content ul li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}

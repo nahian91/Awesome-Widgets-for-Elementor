@@ -1,13 +1,13 @@
 <?php
 /**
- * Awesome Price Menu Widget.
+ * Awesome CTA Widget.
  *
  * Elementor widget that inserts a cta into the page
  *
  * @since 1.0.0
  */
 namespace Elementor;
-class Widget_Awesome_Price_Menu extends Widget_Base {
+class Widget_Awesome_CTA extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -20,7 +20,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesome-price-menu';
+		return 'awesome-cta';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Price Menu', 'awesome-widgets-elementor' );
+		return esc_html__( 'CTA', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -135,7 +135,23 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Button 1', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( '+8801686195607', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( '+880 168 6195 607', 'awesome-widgets-elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'awea_cta_button1_url',
+			[
+				'label' => esc_html__( 'Link', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'options' => [ 'url', 'is_external', 'nofollow' ],
+				'default' => [
+					'url' => '',
+					'is_external' => true,
+					'nofollow' => true,
+					// 'custom_attributes' => '',
+				],
+				'label_block' => true,
 			]
 		);
 
@@ -150,6 +166,22 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'awea_cta_button2_url',
+			[
+				'label' => esc_html__( 'Link', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'options' => [ 'url', 'is_external', 'nofollow' ],
+				'default' => [
+					'url' => '',
+					'is_external' => true,
+					'nofollow' => true,
+					// 'custom_attributes' => '',
+				],
+				'label_block' => true,
+			]
+		);
+
 		$this->end_controls_section();
 		
 		// start of the Style tab section
@@ -161,17 +193,19 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			]
 		);
 
-		// CTA Background Color
-		$this->add_control(
-			'awea_cta_background_color',
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
 			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				'name' => 'awea_cta_background_color',
+				'types' => [ 'classic', 'gradient', 'video' ],
+				'selector' => '{{WRAPPER}} .awea-cta-box',
+				'fields_options' => [
+					'background' => [
+						'default' => 'classic',
+					],
+					'background_color' => [
+						'default' => 'primary'
+					],
 				]
 			]
 		);
@@ -181,7 +215,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			\Elementor\Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_cta_border',
-				'selector' => '{{WRAPPER}} .cta-box',
+				'selector' => '{{WRAPPER}} .awea-cta-box',
 			]
 		);	
 
@@ -193,7 +227,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-cta-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -206,7 +240,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-cta-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -235,7 +269,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'default' => 'center',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .awea-cta-box' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -257,10 +291,10 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				],
 			]
 		);
@@ -270,10 +304,33 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_cta_subtitle_typography',
-				'selector' => '{{WRAPPER}} .cta-box span',
+				'selector' => '{{WRAPPER}} .awea-cta-box span',
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
+			]
+		);
+
+		$this->add_control(
+			'awea_cta_subtitle_margin',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-cta-box span' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -295,10 +352,10 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -308,10 +365,33 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_cta_title_typography',
-				'selector' => '{{WRAPPER}} .cta-box h4',
+				'selector' => '{{WRAPPER}} .awea-cta-box h4',
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
+			]
+		);
+
+		$this->add_control(
+			'awea_cta_title_margin',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-cta-box h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -333,10 +413,10 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box-content p' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -346,10 +426,33 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_cta_desc_typography',
-				'selector' => '{{WRAPPER}} .cta-box p',
+				'selector' => '{{WRAPPER}} .awea-cta-box-content p',
 				'global' => [
 					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
+			]
+		);
+
+		$this->add_control(
+			'awea_cta_desc_margin',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-cta-box-content' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -391,10 +494,10 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box-btn a' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
 				]
 			]
 		);
@@ -406,10 +509,10 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box-btn a' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -419,10 +522,36 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_cta_btn_typography',
-				'selector' => '{{WRAPPER}} .cta-box span.cta-button',
+				'selector' => '{{WRAPPER}} .awea-cta-box-btn a',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
 				]
+			]
+		);
+
+		// CTA Border Radius
+		$this->add_control(
+			'awea_cta_btn_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-cta-box-btn a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// CTA Border Radius
+		$this->add_control(
+			'awea_cta_btn_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-cta-box-btn a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -442,24 +571,24 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box-btn a:hover' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
 				]
 			]
 		);
 
 		$this->add_control(
-			'awea_cta_btn_hoverbg',
+			'awea_cta_btn_hover_bg',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-cta-box-btn a:hover' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -484,13 +613,23 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 	protected function render() {
 		// get our input from the widget settings.
 		$settings = $this->get_settings_for_display();
-		// $awea_cta_sub_title = $settings['awea_cta_sub_title'];
-		// $awea_cta_title = $settings['awea_cta_title'];
-		// $awea_cta_desc = $settings['awea_cta_desc'];
-		// $awea_cta_button1 = $settings['awea_cta_button1'];
-		// $awea_cta_button2 = $settings['awea_cta_button2'];
+		$awea_cta_sub_title = $settings['awea_cta_sub_title'];
+		$awea_cta_title = $settings['awea_cta_title'];
+		$awea_cta_desc = $settings['awea_cta_desc'];
+		$awea_cta_button1 = $settings['awea_cta_button1'];
+		$awea_cta_button1_url = $settings['awea_cta_button1_url']['url'];
+		$awea_cta_button2 = $settings['awea_cta_button2'];
+		$awea_cta_button2_url = $settings['awea_cta_button2_url']['url'];
        ?>
-			
+			<div class="awea-cta-box">
+				<span><?php echo esc_html($awea_cta_sub_title);?></span>
+				<h4><?php echo esc_html($awea_cta_title);?></h4>
+				<div class="awea-cta-box-content"><?php echo $awea_cta_desc;?></div>
+				<div class="awea-cta-box-btn">
+					<a class="awea-cta-button" href="<?php echo esc_url($awea_cta_button1_url);?>"><?php echo esc_html($awea_cta_button1);?></a>
+					<a class="awea-cta-button" href="<?php echo esc_url($awea_cta_button2_url);?>"><?php echo esc_html($awea_cta_button2);?></a>
+				</div>				
+			</div>
        <?php
 	}
 }

@@ -1,3 +1,71 @@
+/* 0. Reset Code */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img{
+  vertical-align: middle;
+}
+
+
+h1{
+  color: var(--e-global-color-primary);
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-size: 57px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-primary-font-weight );
+  line-height: 150%;
+}
+h2{
+  color: var(--e-global-color-primary);
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-size: 43px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-primary-font-weight );
+  line-height: 150%;
+}
+h3{
+  color: var(--e-global-color-primary);
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-primary-font-weight );
+  line-height: 150%;
+}
+h4{
+  color: var(--e-global-color-primary);
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-primary-font-weight );
+  line-height: 150%;
+}
+h5{
+  color: var(--e-global-color-primary);
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-primary-font-weight );
+  line-height: 145%;
+}
+h6{
+  color: var(--e-global-color-primary);
+  font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-primary-font-weight );
+  line-height: 145%;
+}
+p, span, div{
+  color: var(--e-global-color-text);
+  font-family: var( --e-global-typography-text-font-family ), Sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: var( --e-global-typography-text-font-weight );
+  line-height: 150%; /* 27px */
+}
+
 /* Common CSS */
 a{
   transition: .3s;
@@ -11,21 +79,6 @@ p{
     padding:0;
 }
 /* Image Box */
-
-.single-icon-box-content{
-	margin-top: 25px;
-}
-.single-image-box img{
- vertical-align: middle;
-}
-.single-image-box-content p , .single-icon-box-content p{
-	margin-top: 10px;
-}
-  .single-image-box-content a, .single-icon-box-content a{
-    display: block;
-    margin-top: 30px;
-    text-decoration: none;
-  }
 
 /* Number Box */
 
@@ -86,34 +139,6 @@ p{
   color: #333;
 }
 
-/* CTA Css */
-
-.cta-box{
-  padding: 30px 40px;
-}
-.cta-box span {
-  display: block;
-}
-.cta-box h4 {
-	margin: 25px 0;
-}
-.cta-box p {
-  margin-top: 10px;
-}
-.cta-box-btn {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  margin-top: 40px;
-}
-.cta-box-btn a {
-  display: inline-block;
-  padding: 10px 25px;
-  border-radius: 3px;
-  transition: .3s;
-  background-color: #123;
-  color: #fff;
-}
 
 /* 2. Section Title */
 
@@ -368,36 +393,6 @@ p{
   width: 100%;
 }
 
-
-.single-awesome-widget-contact-info {
-  display: flex;
-  align-items: center;
-  padding: 30px 0;
-  border-bottom: 1px solid #e7e7e7;
-}
-.single-awesome-widget-contact-info .icon {
-  border-radius: 5px;
-  background-color: #e42032;
-  color: #ffff;
-  margin-right: 15px;
-  padding: 12px 15px;
-  display: block;
-}
-.single-awesome-widget-contact-info .icon i {
-  font-size: 20px;
-}
-.single-awesome-widget-contact-info h4 {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 27px;
-}
-.single-awesome-widget-contact-info h4 span {
-  display: block;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 25px;
-}
-
 .awea-team-content{
   margin-top: 15px;
 }
@@ -650,31 +645,6 @@ p{
 .awea-single-post-list-meta a:last-child:after {
   display: none;
 }
-
-
-.awea-business-hours-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.awea-business-hours-content ul li {
-  display: flex;
-  justify-content: space-between;
-}
-
-.awea-business-hours-content ul li {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-.awea-business-hours-content ul li:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-
-
 
 .awea-price-features ul {
   list-style: none;

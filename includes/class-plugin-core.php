@@ -25,6 +25,7 @@ class AWEA {
         'awesome-counter',
         'awesome-accordion',
         'awesome-filter-gallery',
+        'awesome-step-flow',
     ];
 
     public static function instance() {

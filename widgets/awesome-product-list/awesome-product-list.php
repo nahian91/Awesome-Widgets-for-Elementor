@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 namespace Elementor;
-class Widget_Awesome_Step_Flow extends Widget_Base {
+class Widget_Awesome_Product_List extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -20,7 +20,7 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesome-step-flow';
+		return 'awesome-product-list';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Step Flow', 'awesome-widgets-elementor' );
+		return esc_html__( 'Product List', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-price-list';
 	}
 
 	/**
@@ -482,15 +482,50 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 	 * @access protected
 	 */ 
 	protected function render() {
-		// get our input from the widget settings.
-		$settings = $this->get_settings_for_display();
-		// $awea_cta_sub_title = $settings['awea_cta_sub_title'];
-		// $awea_cta_title = $settings['awea_cta_title'];
-		// $awea_cta_desc = $settings['awea_cta_desc'];
-		// $awea_cta_button1 = $settings['awea_cta_button1'];
-		// $awea_cta_button2 = $settings['awea_cta_button2'];
-       ?>
-			
-       <?php
+    $settings = $this->get_settings_for_display();
+
+    // Example: get 6 latest products
+    $args = [
+        'post_type' => 'product',
+        'posts_per_page' => 6,
+        'post_status' => 'publish',
+    ];
+
+    $products = new \WP_Query($args);
+
+    if ($products->have_posts()) {
+        echo '<div class="awea-product-grid">';
+        while ($products->have_posts()) {
+            $products->the_post();
+            global $product;
+
+            $product_id = get_the_ID();
+            $product_link = get_permalink($product_id);
+            $product_title = get_the_title();
+            $product_price = $product->get_price_html();
+            $product_image = get_the_post_thumbnail_url($product_id, 'medium');
+
+            ?>
+            <div class="single-awea-product-grid">
+                <a href="<?php echo esc_url($product_link); ?>">
+                    <img src="<?php echo esc_url($product_image); ?>" alt="<?php echo esc_attr($product_title); ?>">
+                </a>
+                <div class="single-awea-product-grid-content">
+                    <h4><a href="<?php echo esc_url($product_link); ?>"><?php echo esc_html($product_title); ?></a></h4>
+                    <div class="single-awea-product-grid-meta">
+                        <span><?php echo $product_price; ?></span>
+                        <?php
+                        echo do_shortcode('[add_to_cart id="' . $product_id . '"]');
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        echo '</div>';
+        wp_reset_postdata();
+    } else {
+        echo '<p>' . esc_html__('No products found.', 'awesome-widgets-elementor') . '</p>';
+    }
 	}
 }

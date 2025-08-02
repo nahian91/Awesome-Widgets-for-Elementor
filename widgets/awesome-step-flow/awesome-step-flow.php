@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 namespace Elementor;
-class Widget_Awesome_CTA extends Widget_Base {
+class Widget_Awesome_Step_Flow extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -20,7 +20,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesome-cta';
+		return 'awesome-step-flow';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'CTA', 'awesome-widgets-elementor' );
+		return esc_html__( 'Step Flow', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-slider-push';
 	}
 
 	/**
@@ -135,23 +135,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 				'label' => esc_html__( 'Button 1', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( '+880 168 6195 607', 'awesome-widgets-elementor' ),
-			]
-		);
-
-		$this->add_control(
-			'awea_cta_button1_url',
-			[
-				'label' => esc_html__( 'Link', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::URL,
-				'options' => [ 'url', 'is_external', 'nofollow' ],
-				'default' => [
-					'url' => '',
-					'is_external' => true,
-					'nofollow' => true,
-					// 'custom_attributes' => '',
-				],
-				'label_block' => true,
+				'default' => esc_html__( '+8801686195607', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -166,22 +150,6 @@ class Widget_Awesome_CTA extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'awea_cta_button2_url',
-			[
-				'label' => esc_html__( 'Link', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::URL,
-				'options' => [ 'url', 'is_external', 'nofollow' ],
-				'default' => [
-					'url' => '',
-					'is_external' => true,
-					'nofollow' => true,
-					// 'custom_attributes' => '',
-				],
-				'label_block' => true,
-			]
-		);
-
 		$this->end_controls_section();
 		
 		// start of the Style tab section
@@ -193,19 +161,17 @@ class Widget_Awesome_CTA extends Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
+		// CTA Background Color
+		$this->add_control(
+			'awea_cta_background_color',
 			[
-				'name' => 'awea_cta_background_color',
-				'types' => [ 'classic', 'gradient', 'video' ],
-				'selector' => '{{WRAPPER}} .cta-box',
-				'fields_options' => [
-					'background' => [
-						'default' => 'classic',
-					],
-					'background_color' => [
-						'default' => 'primary'
-					],
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .cta-box' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -294,7 +260,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 					'{{WRAPPER}} .cta-box span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
@@ -332,7 +298,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 					'{{WRAPPER}} .cta-box h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -370,7 +336,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 					'{{WRAPPER}} .cta-box p' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -425,10 +391,10 @@ class Widget_Awesome_CTA extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box-btn a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .cta-box span.cta-button' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -440,10 +406,10 @@ class Widget_Awesome_CTA extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box-btn a' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .cta-box span.cta-button' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -453,36 +419,10 @@ class Widget_Awesome_CTA extends Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_cta_btn_typography',
-				'selector' => '{{WRAPPER}} .cta-box-btn a',
+				'selector' => '{{WRAPPER}} .cta-box span.cta-button',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
-			]
-		);
-
-		// CTA Border Radius
-		$this->add_control(
-			'awea_cta_btn_padding',
-			[
-				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .cta-box-btn a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		// CTA Border Radius
-		$this->add_control(
-			'awea_cta_btn_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .cta-box-btn a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
 			]
 		);
 
@@ -502,24 +442,24 @@ class Widget_Awesome_CTA extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box-btn a:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		$this->add_control(
-			'awea_cta_btn_hover_bg',
+			'awea_cta_btn_hoverbg',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box-btn a:hover' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -544,23 +484,13 @@ class Widget_Awesome_CTA extends Widget_Base {
 	protected function render() {
 		// get our input from the widget settings.
 		$settings = $this->get_settings_for_display();
-		$awea_cta_sub_title = $settings['awea_cta_sub_title'];
-		$awea_cta_title = $settings['awea_cta_title'];
-		$awea_cta_desc = $settings['awea_cta_desc'];
-		$awea_cta_button1 = $settings['awea_cta_button1'];
-		$awea_cta_button1_url = $settings['awea_cta_button1_url']['url'];
-		$awea_cta_button2 = $settings['awea_cta_button2'];
-		$awea_cta_button2_url = $settings['awea_cta_button2_url']['url'];
+		// $awea_cta_sub_title = $settings['awea_cta_sub_title'];
+		// $awea_cta_title = $settings['awea_cta_title'];
+		// $awea_cta_desc = $settings['awea_cta_desc'];
+		// $awea_cta_button1 = $settings['awea_cta_button1'];
+		// $awea_cta_button2 = $settings['awea_cta_button2'];
        ?>
-			<div class="cta-box">
-				<span><?php echo esc_html($awea_cta_sub_title);?></span>
-				<h4><?php echo esc_html($awea_cta_title);?></h4>
-				<p><?php echo $awea_cta_desc;?></p>
-				<div class="cta-box-btn">
-					<a class="cta-button" href="<?php echo esc_url($awea_cta_button1_url);?>"><?php echo esc_html($awea_cta_button1);?></a>
-					<a class="cta-button" href="<?php echo esc_url($awea_cta_button2_url);?>"><?php echo esc_html($awea_cta_button2);?></a>
-				</div>				
-			</div>
+			
        <?php
 	}
 }

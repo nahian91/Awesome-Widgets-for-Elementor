@@ -12,7 +12,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-grid';
+		return 'eicon-product-categories';
 	}
 
 	public function get_categories() {

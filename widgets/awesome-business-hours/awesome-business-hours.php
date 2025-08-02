@@ -48,7 +48,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-clock-o';
 	}
 
 	/**
@@ -90,7 +90,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( 'We Are Awesome Business Hours!', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( 'Business Hours!', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -159,13 +159,13 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
-					['day' => 'Sunday', 'hours' => '09:00 - 19:00'],
-					['day' => 'Monday', 'hours' => '09:00 - 19:00'],
-					['day' => 'Tuesday', 'hours' => '09:00 - 19:00'],
-					['day' => 'Wednesday', 'hours' => '09:00 - 19:00'],
-					['day' => 'Thursday', 'hours' => '09:00 - 19:00'],
-					['day' => 'Friday', 'hours' => '09:00 - 19:00'],
-					['day' => 'Satrday', 'hours' => '09:00 - 19:00'],
+					['awea_business_hours_day' => 'Sunday', 'awea_business_hours_hour' => '09:00 - 19:00'],
+					['awea_business_hours_day' => 'Monday', 'awea_business_hours_hour' => '09:00 - 19:00'],
+					['awea_business_hours_day' => 'Tuesday', 'awea_business_hours_hour' => '09:00 - 19:00'],
+					['awea_business_hours_day' => 'Wednesday', 'awea_business_hours_hour' => '09:00 - 19:00'],
+					['awea_business_hours_day' => 'Thursday', 'awea_business_hours_hour' => '09:00 - 19:00'],
+					['awea_business_hours_day' => 'Friday', 'awea_business_hours_hour' => 'Closed!'],
+					['awea_business_hours_day' => 'Satrday', 'awea_business_hours_hour' => '09:00 - 19:00'],
 				],
 				'title_field' => '{{{ awea_business_hours_day }}}',
 			]
@@ -299,6 +299,21 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		// Business Hours Background Color
+		$this->add_control(
+			'awea_business_hours_border_color',
+			[
+				'label' => esc_html__( 'Boder Color', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-business-hours-content ul li' => 'border-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+				]
 			]
 		);
 
