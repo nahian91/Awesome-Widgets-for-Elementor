@@ -8,7 +8,7 @@ class AWEA_Scripts {
     }
 
     public function enqueue_frontend_assets() {
-        $styles = ['custom-grid.css', 'main.css', 'responsive.css'];
+        $styles = ['owl.carousel.min.css', 'custom-grid.css', 'main.css', 'responsive.css'];
         foreach ($styles as $style) {
             wp_enqueue_style(
                 "awesome-widgets-$style",
@@ -18,7 +18,7 @@ class AWEA_Scripts {
             );
         }
 
-        $scripts = ['isotope.min.js', 'imageloaded.min.js', 'waypoints.min.js', 'counterup.min.js', 'jquery.counterup.min.js', 'main.js'];
+        $scripts = ['owl.carousel.min.js', 'main.js'];
         foreach ($scripts as $script) {
             wp_enqueue_script(
                 "awesome-widgets-" . str_replace('.js', '', $script),

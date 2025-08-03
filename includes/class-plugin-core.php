@@ -26,6 +26,11 @@ class AWEA {
         'awesome-accordion',
         'awesome-filter-gallery',
         'awesome-step-flow',
+        'awesome-blog-carousel',
+        'awesome-product-carousel',
+        'awesome-product-category-carousel',
+        'awesome-team-carousel',
+        'awesome-testimonials-carousel',
     ];
 
     public static function instance() {
