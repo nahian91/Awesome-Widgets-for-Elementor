@@ -7,6 +7,16 @@
  * @since 1.0.0
  */
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
+
 class Widget_Awesome_Icon_Box extends Widget_Base {
 
 	/**
@@ -65,6 +75,10 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 		return [ 'awesome-widgets-elementor' ];
 	}
 
+	public function get_keywords() {
+		return [ 'icon', 'box', 'awesome'];
+	}
+
 	/**
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
@@ -78,7 +92,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 	       'awea_icon_box_contents',
 		    [
 		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 		    ]
 	    );
 
@@ -87,7 +101,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon',
 			[
 				'label' => esc_html__( 'Choose Icon', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::ICONS,
+				'type' => Controls_Manager::ICONS,
 				'default' => [
 					'value' => 'fas fa-circle',
 					'library' => 'fa-solid',
@@ -101,7 +115,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_title',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default' => esc_html__( 'Awesome Heading', 'awesome-widgets-elementor' ),
 			]
@@ -112,7 +126,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_des',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'type' => Controls_Manager::TEXTAREA,
 				'label_block' => true,
 				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ', 'awesome-widgets-elementor' ),
 			]
@@ -123,7 +137,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_show_btn',
 			[
 				'label' => esc_html__( 'Show Button?', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'type' => Controls_Manager::SWITCHER,
 				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
 				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
@@ -137,7 +151,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 		    'awea_icon_box_btn_title',
 			[
 			    'label' => esc_html__('Button Text', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default' => esc_html__('Read More', 'awesome-widgets-elementor'),
 				'separator' => 'before',
@@ -152,7 +166,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 		    'awea_icon_box_btn_link',
 			[
 			    'label' => esc_html__( 'Button Link', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::URL,
+				'type' => Controls_Manager::URL,
 				'default' => [
 					'url' => 'https://devnahian.com/',
 					'is_external' => true,
@@ -170,7 +184,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_alignment',
 			[
 				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::CHOOSE,
 				'separator' => 'before',
 				'options' => [
 					'left' => [
@@ -197,13 +211,36 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 
 		$this->end_controls_section();
 		// end of the Content tab section
+
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_icon_box_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_icon_box_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
+		$this->end_controls_section();
 		
 		// start of the Style tab section
 		$this->start_controls_section(
 			'awea_icon_box_layout_style',
 			[
 				'label' => esc_html__( 'Layout', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);	
 
@@ -212,12 +249,12 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_bg_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -227,7 +264,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -237,7 +274,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 
 		// Icon Box Border
 		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_icon_box_border',
 				'selector' => '{{WRAPPER}} .awea-single-icon-box',
@@ -249,7 +286,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -264,7 +301,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon_style',
 			[
 				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);	
 
@@ -272,7 +309,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon_size',
 			[
 				'label' => esc_html__( 'Size', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
+				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'range' => [
 					'px' => [
@@ -300,12 +337,12 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box i' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -315,12 +352,12 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon_bg',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box i' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -330,7 +367,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -343,7 +380,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_icon_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -358,7 +395,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_contents_style',
 			[
 				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);	
 
@@ -367,7 +404,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_content_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -380,12 +417,12 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_content_bg',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_ACCENT,
+					'default' => Global_Colors::COLOR_ACCENT,
 				]
 			]
 		);
@@ -394,7 +431,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_title_options',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -404,24 +441,24 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box h4' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
 
 		// Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_icon_box_title_typography',
 				'selector' => '{{WRAPPER}} .awea-single-icon-box h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -430,7 +467,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_title_margin',
 			[
 				'label' => esc_html__( 'Spacing', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
+				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
@@ -453,7 +490,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_desc_options',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -463,24 +500,24 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_desc_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box p' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
 
 		// Description Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_icon_box_desc_typography',
 				'selector' => '{{WRAPPER}} .awea-single-icon-box p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -489,7 +526,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_image_box_desc_margin',
 			[
 				'label' => esc_html__( 'Spacing', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
+				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
@@ -516,7 +553,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_btn_style',
 			[
 				'label' => esc_html__( 'Button', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'awea_icon_box_show_btn' => 'yes'
 				],
@@ -540,24 +577,24 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_btn_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box a' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				]
 			]
 		);
 
 		// Icon Box Button Typoghraphy
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_icon_box_btn_typography',
 				'selector' => '{{WRAPPER}} .awea-single-icon-box a',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_ACCENT,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				]
 			]
 		);
@@ -577,12 +614,12 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			'awea_icon_box_btn_hover_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-icon-box a:hover' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				]
 			]
 		);

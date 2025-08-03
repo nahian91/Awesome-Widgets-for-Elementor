@@ -18,7 +18,7 @@ class AWEA_Scripts {
             );
         }
 
-        $scripts = ['main.js', 'countdown.js'];
+        $scripts = ['isotope.min.js', 'imageloaded.min.js', 'waypoints.min.js', 'counterup.min.js', 'jquery.counterup.min.js', 'main.js'];
         foreach ($scripts as $script) {
             wp_enqueue_script(
                 "awesome-widgets-" . str_replace('.js', '', $script),

@@ -734,52 +734,6 @@ p{
 }
 
 
-.timeline-list {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-.timeline-list:after {
-	content: "";
-	position: absolute;
-	width: 2px;
-	height: 100%;
-	left: 50%;
-	top: 0;
-	transform: translateX(-50%);
-}
-.timeline-list li .timeline-content {
-	width: 45%;
-	text-align: right;
-}
-.timeline-list li .timeline-content span {
-	display: block;
-}
-.timeline-list li .timeline-content h4 {
-	margin: 10px 0;
-}
-.timeline-list li {
-	clear: both;
-	display: table;
-	position: relative;
-  width: 100%;
-}
-.timeline-list li:nth-child(even) .timeline-content {
-	float: right;
-	text-align: left;
-}
-.timeline-list li:after {
-	content: "";
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
 		.awesa-product-categories-grid {
 	display: flex;
 	flex-wrap: wrap;

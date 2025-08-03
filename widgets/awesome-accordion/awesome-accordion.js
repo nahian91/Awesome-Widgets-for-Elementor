@@ -1,43 +1,41 @@
-(function($) {
-    // Wait until Elementor frontend is ready
-    $(window).on('elementor/frontend/init', function() {
+(function ($) {
+    'use strict';
 
-        const initAccordion = function($scope, $) {
-            const accordion = $scope.find('.awea-accordion').get(0);
-            if (!accordion) return;
+    $(window).on('elementor/frontend/init', function () {
 
-            const headers = accordion.querySelectorAll('.awea-accordion-header');
+        // FAQ Widget
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/awesome-accordion.default',
+            function ($scope) {
 
-            headers.forEach(header => {
-                header.addEventListener('click', () => {
-                    const allItems = accordion.querySelectorAll('.awea-accordion-item');
+                var $faq = $scope.find('.awea-faq');
 
-                    allItems.forEach(item => {
-                        const content = item.querySelector('.awea-accordion-content');
-                        const icon = item.querySelector('.awea-icon');
-                        if (item.querySelector('.awea-accordion-header') === header) {
-                            const isActive = item.classList.contains('active');
-                            if (isActive) {
-                                item.classList.remove('active');
-                                content.style.display = 'none';
-                                if (icon) icon.className = 'awea-icon ' + icon.dataset.iconDefault;
-                            } else {
-                                item.classList.add('active');
-                                content.style.display = 'block';
-                                if (icon) icon.className = 'awea-icon ' + icon.dataset.iconActive;
-                            }
-                        } else {
-                            item.classList.remove('active');
-                            content.style.display = 'none';
-                            const icon = item.querySelector('.awea-icon');
-                            if (icon) icon.className = 'awea-icon ' + icon.dataset.iconDefault;
-                        }
-                    });
+                if (!$faq.length) return;
+
+                // Open first FAQ item
+                $faq.find('> li:eq(0) span').addClass('active').next().slideDown();
+
+                // Handle click
+                $faq.find('span').on('click', function (e) {
+                    var $this = $(this);
+                    var dropDown = $this.closest('li').find('p');
+
+                    // Close others
+                    $faq.find('p').not(dropDown).slideUp();
+
+                    if ($this.hasClass('active')) {
+                        $this.removeClass('active');
+                    } else {
+                        $faq.find('span.active').removeClass('active');
+                        $this.addClass('active');
+                    }
+
+                    dropDown.stop(true, true).slideToggle();
+                    e.preventDefault();
                 });
-            });
-        };
+            }
+        );
 
-        // Hook the function to your widget
-        elementorFrontend.hooks.addAction('frontend/element_ready/awesome-accordion.default', initAccordion);
     });
+
 })(jQuery);

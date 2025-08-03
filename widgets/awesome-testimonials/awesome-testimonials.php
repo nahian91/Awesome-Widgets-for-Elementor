@@ -7,6 +7,15 @@
  * @since 1.0.0
  */
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
 class Widget_Awesome_Testimonials extends Widget_Base {
 
 	/**
@@ -65,6 +74,10 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 		return [ 'awesome-widgets-elementor' ];
 	}
 
+	public function get_keywords() {
+		return [ 'testimonial', 'review', 'awesome'];
+	}
+
 	/**
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
@@ -78,7 +91,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 	       'awea_testimonials_contents',
 		    [
 		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 		   
 		    ]
 	    );
@@ -113,9 +126,9 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_image',
 			[
 				'label' => __('Author Image', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::MEDIA,
+				'type' => Controls_Manager::MEDIA,
 				'default' => [
-					'url' => \Elementor\Utils::get_placeholder_image_src(),
+					'url' => Utils::get_placeholder_image_src(),
 				],
 			]
 		);
@@ -125,7 +138,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_name',
 			[
 				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'default' => esc_html__( 'John Doe', 'awesome-widgets-elementor' ),
 				'label_block' => true
 			]
@@ -136,12 +149,35 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_desg',
 			[
 				'label' => esc_html__( 'Designatiion', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'default' => esc_html__( 'Web Developer', 'awesome-widgets-elementor' ),
 				'label_block' => true
 			]
 		);
 		
+		$this->end_controls_section();
+
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_testimonials_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_testimonials_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
 		$this->end_controls_section();
 		
 		// start of the Style tab section
@@ -149,7 +185,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_layout_style',
 			[
 				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -157,7 +193,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'content_alignment',
 			[
 				'label' => __('Alignment', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
 						'title' => __('Left', 'awesome-widgets-elementor'),
@@ -189,19 +225,19 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_background_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// Testimonials Border
 		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_testimonials_border',
 				'selector' => '{{WRAPPER}} .single-testimonial',
@@ -213,7 +249,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -226,7 +262,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -242,7 +278,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_contents_style',
 			[
 				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -250,7 +286,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_contents_icon_options',
 			[
 				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -260,12 +296,12 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_contents_icon_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial-icon i' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
@@ -274,7 +310,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_contents_speech_options',
 			[
 				'label' => esc_html__( 'Speech', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -284,24 +320,24 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_speech_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial-content p' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
 
 		// Testimonials Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_testimonials_speech_typography',
 				'selector' => '{{WRAPPER}} .single-testimonial-content p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -314,7 +350,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_style',
 			[
 				'label' => esc_html__( 'Author', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -322,14 +358,14 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_image_options',
 			[
 				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);	
 
 		// Testimonials Border
 		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_testimonials_author_image_border',
 				'selector' => '{{WRAPPER}} .single-testimonial-author img',
@@ -341,7 +377,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_border_author_image_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial-author img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -353,7 +389,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_name_options',
 			[
 				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -363,24 +399,24 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_name_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial-author h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
 
 		// Testimonials Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_testimonials_author_name_typography',
 				'selector' => '{{WRAPPER}} .single-testimonial-author h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);
@@ -389,7 +425,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_designation_options',
 			[
 				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -399,24 +435,24 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			'awea_testimonials_author_designation_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-testimonial-author span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// Testimonials Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_testimonials_author_designation_typography',
 				'selector' => '{{WRAPPER}} .single-testimonial-author span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);

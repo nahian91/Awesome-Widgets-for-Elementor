@@ -1,5 +1,15 @@
 <?php
+
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
 
 class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 
@@ -19,6 +29,10 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 		return [ 'awesome-widgets-elementor' ];
 	}
 
+	public function get_keywords() {
+		return [ 'product', 'category', 'awesome'];
+	}
+
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'awea_product_category_section_categories',
@@ -31,7 +45,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_show_count',
 			[
 				'label' => esc_html__( 'Show Product Count?', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'type' => Controls_Manager::SWITCHER,
 				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
 				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'default' => 'yes',
@@ -42,7 +56,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_show_thumbnail',
 			[
 				'label' => esc_html__( 'Show Category Thumbnail?', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'type' => Controls_Manager::SWITCHER,
 				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
 				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'default' => 'yes',
@@ -53,7 +67,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_columns',
 			[
 				'label' => esc_html__( 'Columns', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
+				'type' => Controls_Manager::SELECT,
 				'default' => '3',
 				'options' => [
 					'1' => '1',
@@ -70,7 +84,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_orderby',
 			[
 				'label' => esc_html__( 'Order By', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
+				'type' => Controls_Manager::SELECT,
 				'default' => 'name',
 				'options' => [
 					'name' => esc_html__('Name', 'awesome-widgets-elementor'),
@@ -85,7 +99,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_order',
 			[
 				'label' => esc_html__( 'Order', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
+				'type' => Controls_Manager::SELECT,
 				'default' => 'ASC',
 				'options' => [
 					'ASC' => esc_html__('Ascending', 'awesome-widgets-elementor'),
@@ -96,12 +110,35 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 
 		$this->end_controls_section();
 
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_product_category_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_product_category_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
+		$this->end_controls_section();
+
 		// start of the Style tab section
 		$this->start_controls_section(
 			'awea_product_category_content_style',
 			[
 				'label' => esc_html__( 'Content', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -110,12 +147,12 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-product-category-content a, .awea-product-category-content span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -125,24 +162,24 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_bg_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-product-category-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// CTA Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_product_category_typography',
 				'selector' => '{{WRAPPER}} .awea-product-category-content a, .awea-product-category-content span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);

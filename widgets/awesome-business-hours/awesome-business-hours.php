@@ -7,6 +7,16 @@
  * @since 1.0.0
  */
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
+
 class Widget_Awesome_Business_Hours extends Widget_Base {
 
 	/**
@@ -51,6 +61,10 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		return 'eicon-clock-o';
 	}
 
+	public function get_keywords() {
+		return [ 'business', 'hours', 'awesome'];
+	}
+
 	/**
 	 * Get widget categories.
 	 *
@@ -78,7 +92,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 	       'awea_business_hours_content_title',
 		    [
 		        'label' => esc_html__('Title', 'awesome-widgets-elementor'),
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 		   
 		    ]
 	    );
@@ -98,7 +112,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_title_align',
 			[
 				'label' => esc_html__( 'Alignment', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
 						'title' => esc_html__( 'Left', 'textdomain' ),
@@ -173,12 +187,35 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 
 		$this->end_controls_section();
 
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_faq_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_business_hours_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
+		$this->end_controls_section();
+
 		// start of the Style tab section
 		$this->start_controls_section(
 			'awea_business_hours_title_style',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -187,24 +224,24 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-title h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
 
 		// Business Hours Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_business_hours_title_typography',
 				'selector' => '{{WRAPPER}} .awea-business-hours-title h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -214,12 +251,12 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_title_background',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-title' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -229,7 +266,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -242,7 +279,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -257,7 +294,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_items_style',
 			[
 				'label' => esc_html__( 'Items', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -266,12 +303,12 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_background_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -281,7 +318,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -294,7 +331,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_content_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -307,12 +344,12 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_border_color',
 			[
 				'label' => esc_html__( 'Boder Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content ul li' => 'border-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -321,7 +358,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_days_options',
 			[
 				'label' => esc_html__( 'Days', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -331,24 +368,24 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_days_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content ul li' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
 
 		// Business Hours Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_business_hours_days_typography',
 				'selector' => '{{WRAPPER}} .awea-business-hours-content ul li',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -357,7 +394,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_hour_options',
 			[
 				'label' => esc_html__( 'Hours', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -367,24 +404,24 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			'awea_business_hours_hour_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-business-hours-content ul li span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
 
 		// Business Hours Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_business_hours_hour_typography',
 				'selector' => '{{WRAPPER}} .awea-business-hours-content ul li span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_TEXT,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);

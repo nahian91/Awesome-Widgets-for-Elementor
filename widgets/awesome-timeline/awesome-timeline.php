@@ -7,6 +7,16 @@
  * @since 1.0.0
  */
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
+
 class Widget_Awesome_Timeline extends Widget_Base {
 
 	/**
@@ -66,19 +76,32 @@ class Widget_Awesome_Timeline extends Widget_Base {
 	}
 
 	/**
+	 * Get widget keywords.
+	 *
+	 * Retrieve the list of keywords the list widget belongs to.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @return array Widget keywords.
+	 */
+	public function get_keywords() {
+		return [ 'timeline', 'awesome'];
+	}
+
+	/**
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		
 		// start of the Content tab section
 	   	$this->start_controls_section(
 	       'awea_timeline_contents',
 		    [
 		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab'   => Controls_Manager::TAB_CONTENT,
 		   
 		    ]
 	    );
@@ -137,13 +160,36 @@ class Widget_Awesome_Timeline extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_timeline_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_timeline_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
+		$this->end_controls_section();
 		
 		// start of the Style tab section
 		$this->start_controls_section(
 			'awea_timeline_layout_style',
 			[
 				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -152,22 +198,22 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_background_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li .timeline-content' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// Timeline Border
 		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_timeline_border',
-				'selector' => '{{WRAPPER}} .timeline-list li .timeline-content',
+				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content',
 			]
 		);	
 
@@ -176,10 +222,10 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li .timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -189,10 +235,10 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li .timeline-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -204,7 +250,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_content_style',
 			[
 				'label' => esc_html__( 'Content', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -213,7 +259,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_year_heading',
 			[
 				'label' => esc_html__( 'Year', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -223,24 +269,24 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_year_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li .timeline-content span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
 
 		// Timeline Year Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_timeline_year_typography',
-				'selector' => '{{WRAPPER}} .timeline-list li .timeline-content span',
+				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);
@@ -249,7 +295,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_title_heading',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -259,24 +305,24 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li .timeline-content h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
 
 		// CTA Sub Heading Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_timeline_title_typography',
-				'selector' => '{{WRAPPER}} .timeline-list li .timeline-content h4',
+				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);
@@ -285,7 +331,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_desc_heading',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -295,24 +341,24 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_desc_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li .timeline-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content p' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
 
 		// CTA Sub Heading Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_timeline_desc_typography',
-				'selector' => '{{WRAPPER}} .timeline-list li .timeline-content p',
+				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content p',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);
@@ -324,7 +370,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep_style',
 			[
 				'label' => esc_html__( 'Separator', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -332,7 +378,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep1_heading',
 			[
 				'label' => esc_html__( 'Separator 1', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -342,12 +388,12 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep1_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list::after' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-timeline-list::after' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -356,7 +402,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep1_width',
 			[
 				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
+				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
@@ -370,7 +416,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list::after' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .awea-timeline-list::after' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -379,7 +425,7 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep2_heading',
 			[
 				'label' => esc_html__( 'Separator 2', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
@@ -388,12 +434,12 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep2_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li::after' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-timeline-list li::after' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -402,49 +448,11 @@ class Widget_Awesome_Timeline extends Widget_Base {
 			'awea_timeline_sep2_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} .timeline-list li::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-timeline-list li::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-			]
-		);
-
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_timeline_desc_style',
-			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_timeline_desc_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box p' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Typography
-		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_timeline_desc_typography',
-				'selector' => '{{WRAPPER}} .cta-box p',
-				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
-				]
 			]
 		);
 
@@ -465,12 +473,12 @@ class Widget_Awesome_Timeline extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$awea_timeline_items = $settings['awea_timeline_items'];
        ?>
-			<ul class="timeline-list">
+			<ul class="awea-timeline-list">
 				<?php 
 					foreach($awea_timeline_items as $item) {
 						?>
 						<li>
-                            <div class="timeline-content">
+                            <div class="awea-timeline-content">
                                 <span><?php echo $item['awea_timeline_year'];?></span>
                                 <h4><?php echo $item['awea_timeline_title'];?></h4>
                                 <p><?php echo $item['awea_timeline_desc'];?></p>

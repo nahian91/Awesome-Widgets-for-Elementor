@@ -7,6 +7,16 @@
  * @since 1.0.0
  */
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
+
 class Widget_Awesome_List_Group extends Widget_Base {
 
 	/**
@@ -65,6 +75,10 @@ class Widget_Awesome_List_Group extends Widget_Base {
 		return [ 'awesome-widgets-elementor' ];
 	}
 
+	public function get_keywords() {
+		return [ 'list', 'item', 'awesome'];
+	}
+
 	/**
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
@@ -78,19 +92,19 @@ class Widget_Awesome_List_Group extends Widget_Base {
 	       'awea_list_group_contents',
 		    [
 		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,		   
+				'tab'   => Controls_Manager::TAB_CONTENT,		   
 		    ]
 	    );
 		
 		// List Group Repeater 
-		$repeater = new \Elementor\Repeater();
+		$repeater = new Repeater();
 
 		// List Group Title 
 		$repeater->add_control(
 			'awea_list_group_title',
 			[
 				'label' => esc_html__( 'List Title', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default' => esc_html__('List Item', 'awesome-widgets-elementor')
 			]
@@ -101,7 +115,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
         	'awea_list_group_icon',
 			[
 				'label'         => esc_html__('List Icon', 'awesome-widgets-elementor'),
-				'type'          => \Elementor\Controls_Manager::ICON,
+				'type'          => Controls_Manager::ICON,
 				'label_block'   => true,
 				'default' => 'fa fa-star',
 			]
@@ -112,7 +126,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group',
 			[
 				'label' => esc_html__( 'List Group List', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
+				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
@@ -131,13 +145,36 @@ class Widget_Awesome_List_Group extends Widget_Base {
 		
 		$this->end_controls_section();
 		// end of the Content tab section
+
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_list_group_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_list_group_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
+		$this->end_controls_section();
 		
 		// start of the Style tab section
 		$this->start_controls_section(
 			'awea_list_group_style',
 			[
 				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);	
 
@@ -146,7 +183,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'wb_brand_sep_options',
 			[
 				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
 		);
@@ -156,19 +193,19 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_background_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .list-item' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// List Group Border
 		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_list_group_border',
 				'selector' => '{{WRAPPER}} .list-item',
@@ -180,7 +217,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -193,7 +230,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -206,7 +243,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_icon_options',
 			[
 				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
 		);
@@ -216,9 +253,9 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_icon_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .list-item i' => 'color: {{VALUE}}',
@@ -231,9 +268,9 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_icon_border_color',
 			[
 				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .list-item i' => 'border-color: {{VALUE}}',
@@ -246,7 +283,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_title_options',
 			[
 				'label' => esc_html__( 'Heading', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
 		);
@@ -256,9 +293,9 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			'awea_list_group_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .list-item h4' => 'color: {{VALUE}}',
@@ -268,12 +305,12 @@ class Widget_Awesome_List_Group extends Widget_Base {
 
 		// List Group Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_list_group_title_typography',
 				'selector' => '{{WRAPPER}} .list-item h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);	

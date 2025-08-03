@@ -7,6 +7,16 @@
  * @since 1.0.0
  */
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
+
 class Widget_Awesome_Contact_Info extends Widget_Base {
 
 	/**
@@ -65,6 +75,10 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 		return [ 'awesome-widgets-elementor' ];
 	}
 
+	public function get_keywords() {
+		return [ 'contact', 'list', 'awesome'];
+	}
+
 	/**
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
@@ -78,18 +92,18 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 	       'awea_contact_info_contents',
 		    [
 		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,	   
+				'tab'   => Controls_Manager::TAB_CONTENT,	   
 		    ]
 	    );
 
-		$repeater = new \Elementor\Repeater();
+		$repeater = new Repeater();
 
 		// Icon Field
 		$repeater->add_control(
 			'awea_contact_info_icon',
 			[
 				'label' => esc_html__('Icon', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::ICONS,
+				'type' => Controls_Manager::ICONS,
 				'default' => [
 					'value' => 'fas fa-envelope',
 					'library' => 'fa-solid',
@@ -103,7 +117,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_title',
 			[
 				'label' => esc_html__('Title', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'type' => Controls_Manager::TEXT,
 				'default' => esc_html__('Title', 'awesome-widgets-elementor'),
 				'show_label' => true,
 				'label_block' => true
@@ -115,7 +129,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_description',
 			[
 				'label' => esc_html__('Description', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'type' => Controls_Manager::TEXTAREA,
 				'default' => esc_html__('Description text', 'awesome-widgets-elementor'),
 				'show_label' => true,
 				'label_block' => true
@@ -127,7 +141,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_list',
 			[
 				'label' => esc_html__('Contact Info List', 'awesome-widgets-elementor'),
-				'type' => \Elementor\Controls_Manager::REPEATER,
+				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
@@ -160,19 +174,42 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_faq_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_faq_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
+		$this->end_controls_section();
 		
 		// start of the Style tab section
 		$this->start_controls_section(
 			'awea_contact_info_layout_style',
 			[
 				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		// Contact Info Border
 		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
+			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_contact_info_border',
 				'selector' => '{{WRAPPER}} .single-awesome-widget-contact-info',
@@ -184,7 +221,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .single-awesome-widget-contact-info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -200,7 +237,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_icon_style',
 			[
 				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -209,12 +246,12 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_icon_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-awesome-widget-contact-info .icon i' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -224,12 +261,12 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_icon_background',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-awesome-widget-contact-info .icon' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -239,7 +276,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_icon_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
 					'{{WRAPPER}} .single-awesome-widget-contact-info .icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -254,7 +291,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_title_style',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -263,24 +300,24 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-awesome-widget-contact-info h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// Contact Info Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_contact_info_title_typography',
 				'selector' => '{{WRAPPER}} .single-awesome-widget-contact-info h4',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);
@@ -292,7 +329,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_desc_style',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -301,24 +338,24 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			'awea_contact_info_desc_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .single-awesome-widget-contact-info h4 span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
 		// Contact Info Title Typography
 		$this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_contact_info_desc_typography',
 				'selector' => '{{WRAPPER}} .single-awesome-widget-contact-info h4 span',
 				'global' => [
-					'default' => \Elementor\Core\Kits\Documents\Tabs\Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);

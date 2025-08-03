@@ -1,3 +1,45 @@
-.timeline{
-    color: #000;
+.awea-timeline-list {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.awea-timeline-list:after {
+	content: "";
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+}
+.awea-timeline-list li .awea-timeline-content {
+	width: 45%;
+	text-align: right;
+}
+.awea-timeline-list li .awea-timeline-content span {
+	display: block;
+}
+.awea-timeline-list li .awea-timeline-content h4 {
+	margin: 10px 0;
+}
+.awea-timeline-list li {
+	clear: both;
+	display: table;
+	position: relative;
+  width: 100%;
+}
+.awea-timeline-list li:nth-child(even) .awea-timeline-content {
+	float: right;
+	text-align: left;
+}
+.awea-timeline-list li:after {
+	content: "";
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+  z-index: 2;
 }

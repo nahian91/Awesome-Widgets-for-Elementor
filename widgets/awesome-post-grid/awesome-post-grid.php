@@ -1,5 +1,15 @@
 <?php
+
 namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Border;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use \Elementor\Widget_Base;
 
 class Widget_Awesome_Post_Grid extends Widget_Base {
 
@@ -17,6 +27,10 @@ class Widget_Awesome_Post_Grid extends Widget_Base {
 
 	public function get_categories() {
 		return [ 'awesome-widgets-elementor' ];
+	}
+
+	public function get_keywords() {
+		return [ 'post', 'grid', 'awesome'];
 	}
 
 	protected function _register_controls() {
@@ -60,6 +74,29 @@ class Widget_Awesome_Post_Grid extends Widget_Base {
 			]
 		);
 
+		$this->end_controls_section();
+
+		// start of the Content tab section
+		$this->start_controls_section(
+			'awea_post_grid_pro_message',
+			[
+				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'tab'   => Controls_Manager::TAB_CONTENT		
+			]
+		);
+
+		$this->add_control( 
+			'awea_post_grid_pro_message_notice', 
+			[
+				'type'      => Controls_Manager::RAW_HTML,
+				'raw'       => sprintf(
+					'<div style="text-align:center;line-height:1.6;">
+						<p style="margin-bottom:10px">%s</p>
+					</div>',
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+				)
+			]  
+		);
 		$this->end_controls_section();
 	}
 
