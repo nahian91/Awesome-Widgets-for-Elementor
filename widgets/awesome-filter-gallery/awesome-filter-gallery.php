@@ -22,7 +22,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'fa fa-th-large';
+		return 'eicon-gallery-grid';
 	}
 
 	public function get_categories() {

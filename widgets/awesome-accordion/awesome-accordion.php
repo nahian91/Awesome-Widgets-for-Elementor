@@ -18,11 +18,11 @@ class Widget_Awesome_Accordion extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__('Awesome Accordion', 'awesome-widgets-elementor');
+		return esc_html__('Accordion', 'awesome-widgets-elementor');
 	}
 
 	public function get_icon() {
-		return 'fa fa-list';
+		return 'eicon-accordion';
 	}
 
 	public function get_categories() {

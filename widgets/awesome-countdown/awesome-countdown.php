@@ -18,11 +18,11 @@ class Widget_Awesome_Countdown extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__('Awesome Countdown', 'awesome-widgets');
+		return esc_html__('Countdown', 'awesome-widgets');
 	}
 
 	public function get_icon() {
-		return 'fa fa-clock-o'; // Font Awesome 4
+		return 'eicon-countdown';
 	}
 
 	public function get_categories() {
