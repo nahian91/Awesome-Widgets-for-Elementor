@@ -1,0 +1,25 @@
+.awea-counter-box {
+  border: 2px solid var(--e-global-color-primary);
+  border-radius: 24px;
+  padding: 37px 48px;
+  display: flex;
+  align-items: center;
+}
+.awea-counter-box i {
+  margin-right: 32px;
+}
+.awea-counter-content p {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+.awea-counter-content p span{
+  margin-right: 5px;
+  font-size: 2rem;
+  line-height: 2.6rem;
+}
+.awea-counter-content .awea-counter-title {
+  color: var(--e-global-color-text);
+  font-family: var(--e-global-typography-text-font-family);
+  font-weight: var(--e-global-typography-text-font-weight);
+}

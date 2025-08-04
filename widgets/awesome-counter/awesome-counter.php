@@ -37,7 +37,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		
 		// start of the Content tab section
 	   $this->start_controls_section(
-	       'wbea_counter_contents',
+	       'awea_counter_contents',
 		    [
 		        'label' => esc_html__('Content', 'webbricks-addons'),
 				'tab'   => Controls_Manager::TAB_CONTENT,		   
@@ -45,7 +45,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 	    );
 
 		$this->add_control(
-			'wbea_custom_panel_notice',
+			'awea_custom_panel_notice',
 			[
 				'type' => Controls_Manager::NOTICE,
 				'notice_type' => 'warning',
@@ -57,7 +57,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Icon
 		$this->add_control(
-			'wbea_counter_icon',
+			'awea_counter_icon',
 			[
 				'label' => esc_html__( 'Icon', 'webbricks-addons' ),
 				'type' => Controls_Manager::ICONS,
@@ -70,7 +70,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Number
 		$this->add_control(
-			'wbea_counter_number',
+			'awea_counter_number',
 			[
 				'label' => esc_html__( 'Number', 'webbricks-addons' ),
 				'type' => Controls_Manager::NUMBER,
@@ -80,7 +80,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Number Suffix
 		$this->add_control(
-			'wbea_counter_number_suffix',
+			'awea_counter_number_suffix',
 			[
 				'label' => esc_html__( 'Number Suffix', 'webbricks-addons' ),
 				'type' => Controls_Manager::TEXT,
@@ -91,7 +91,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		
 		// Counter Tite
 		$this->add_control(
-		    'wbea_counter_title',
+		    'awea_counter_title',
 			[
 			    'label' => esc_html__('Title', 'webbricks-addons'),
 				'type' => Controls_Manager::TEXT,
@@ -105,7 +105,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// start of the Content tab section
 		$this->start_controls_section(
-			'wbea_counter_pro_message',
+			'awea_counter_pro_message',
 			[
 				'label' => esc_html__('Premium', 'webbricks-addons'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
@@ -113,7 +113,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		 );
 
 		 $this->add_control( 
-			'wbea_counter_pro_message_notice', 
+			'awea_counter_pro_message_notice', 
 			[
 				'type'      => Controls_Manager::RAW_HTML,
 				'raw'       => sprintf(
@@ -128,7 +128,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		
 		// start of the Style tab section
 		$this->start_controls_section(
-			'wbea_counter_layout_style',
+			'awea_counter_layout_style',
 			[
 				'label' => esc_html__( 'Layout', 'webbricks-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -137,7 +137,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Background
 		$this->add_control(
-			'wbea_counter_background',
+			'awea_counter_background',
 			[
 				'label' => esc_html__( 'Background', 'webbricks-addons' ),
 				'type' => Controls_Manager::COLOR,
@@ -154,14 +154,14 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
-				'name' => 'wbea_counter_border',
+				'name' => 'awea_counter_border',
 				'selector' => '{{WRAPPER}} .awea-counter-box',
 			]
 		);
 
 		// Counter Border Radius
 		$this->add_control(
-			'wbea_counter_border_radius',
+			'awea_counter_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
@@ -174,7 +174,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		
 		// Counter Padding
 		$this->add_control(
-			'wbea_counter_padding',
+			'awea_counter_padding',
 			[
 				'label' => esc_html__( 'Padding', 'webbricks-addons' ),
 				'type' => Controls_Manager::DIMENSIONS,
@@ -189,7 +189,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'wbea_counter_icon_style',
+			'awea_counter_icon_style',
 			[
 				'label' => esc_html__( 'Icon', 'webbricks-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -198,7 +198,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Icon Color
 		$this->add_control(
-			'wbea_counter_icon_color',
+			'awea_counter_icon_color',
 			[
 				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
 				'type' => Controls_Manager::COLOR,
@@ -213,7 +213,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Icon Size
 		$this->add_control(
-			'wbea_counter_icon_size',
+			'awea_counter_icon_size',
 			[
 				'label' => esc_html__( 'Icon Size', 'webbricks-addons' ),
 				'type' => Controls_Manager::SLIDER,
@@ -244,7 +244,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'wbea_counter_number_style',
+			'awea_counter_number_style',
 			[
 				'label' => esc_html__( 'Number', 'webbricks-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -253,7 +253,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Number Color
 		$this->add_control(
-			'wbea_counter_number_color',
+			'awea_counter_number_color',
 			[
 				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
 				'type' => Controls_Manager::COLOR,
@@ -270,7 +270,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'wbea_counter_number_typography',
+				'name' => 'awea_counter_number_typography',
 				'selector' => '{{WRAPPER}} .awea-counter-content p span',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
@@ -280,7 +280,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Number Suffix Color
 		$this->add_control(
-			'wbea_counter_number_suffix_color',
+			'awea_counter_number_suffix_color',
 			[
 				'label' => esc_html__( 'Suffix Color', 'webbricks-addons' ),
 				'type' => Controls_Manager::COLOR,
@@ -298,7 +298,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'wbea_counter_title_style',
+			'awea_counter_title_style',
 			[
 				'label' => esc_html__( 'Title', 'webbricks-addons' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -307,7 +307,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Counter Title Color
 		$this->add_control(
-			'wbea_counter_title_color',
+			'awea_counter_title_color',
 			[
 				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
 				'type' => Controls_Manager::COLOR,
@@ -324,7 +324,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'wbea_counter_title_typography',
+				'name' => 'awea_counter_title_typography',
 				'selector' => '{{WRAPPER}} .awea-counter-content .awea-counter-title',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
@@ -334,7 +334,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 
 		// Section Heading Separator Style
 		$this->add_control(
-			'wbea_counter_title_tag',
+			'awea_counter_title_tag',
 			[
 				'label' => __( 'Html Tag', 'webbricks-addons' ),
 				'type' => Controls_Manager::SELECT,
@@ -361,36 +361,36 @@ class Widget_Awesome_Counter extends Widget_Base {
 	protected function render() {
 		// Get our input from the widget settings.
 		$settings = $this->get_settings_for_display();		
-		$wbea_counter_icon = isset($settings['wbea_counter_icon']['value']) ? $settings['wbea_counter_icon'] : '';
-		$wbea_counter_number = isset($settings['wbea_counter_number']) ? intval($settings['wbea_counter_number']) : 0;
-		$wbea_counter_number_suffix = isset($settings['wbea_counter_number_suffix']) ? $settings['wbea_counter_number_suffix'] : '';
-		$wbea_counter_title = isset($settings['wbea_counter_title']) ? $settings['wbea_counter_title'] : '';
-		$wbea_counter_title_tag = isset($settings['wbea_counter_title_tag']) ? $settings['wbea_counter_title_tag'] : 'h2';
+		$awea_counter_icon = isset($settings['awea_counter_icon']['value']) ? $settings['awea_counter_icon'] : '';
+		$awea_counter_number = isset($settings['awea_counter_number']) ? intval($settings['awea_counter_number']) : 0;
+		$awea_counter_number_suffix = isset($settings['awea_counter_number_suffix']) ? $settings['awea_counter_number_suffix'] : '';
+		$awea_counter_title = isset($settings['awea_counter_title']) ? $settings['awea_counter_title'] : '';
+		$awea_counter_title_tag = isset($settings['awea_counter_title_tag']) ? $settings['awea_counter_title_tag'] : 'h2';
 	
 		// Sanitize the counter number to ensure it's a valid number
-		$wbea_counter_number = intval($wbea_counter_number);
+		$awea_counter_number = intval($awea_counter_number);
 		
 		// Valid HTML tags for the counter title
 		$valid_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span'];
-		if (!in_array($wbea_counter_title_tag, $valid_tags)) {
-			$wbea_counter_title_tag = 'h2'; // Default to h2 if invalid tag
+		if (!in_array($awea_counter_title_tag, $valid_tags)) {
+			$awea_counter_title_tag = 'h2'; // Default to h2 if invalid tag
 		}
 		?>
 		<!-- Counter Start Here -->			
 		<div class="awea-counter-box">
 			<div class="awea-counter-number">				
-				<?php if (!empty($wbea_counter_icon)): ?>
-					<i class="<?php echo esc_attr($wbea_counter_icon['value']); ?>"></i>
+				<?php if (!empty($awea_counter_icon)): ?>
+					<i class="<?php echo esc_attr($awea_counter_icon['value']); ?>"></i>
 				<?php endif; ?>
 			</div>
 			<div class="awea-counter-content">
 				<p>
-					<span class="awea-counter" aria-live="polite"><?php echo esc_html($wbea_counter_number); ?></span>
-					<?php echo esc_html($wbea_counter_number_suffix); ?>
+					<span class="awea-counter" aria-live="polite"><?php echo esc_html($awea_counter_number); ?></span>
+					<?php echo esc_html($awea_counter_number_suffix); ?>
 				</p>
-				<<?php echo esc_attr($wbea_counter_title_tag); ?> class="awea-counter-title">
-					<?php echo esc_html($wbea_counter_title); ?>
-				</<?php echo esc_attr($wbea_counter_title_tag); ?>>
+				<<?php echo esc_attr($awea_counter_title_tag); ?> class="awea-counter-title">
+					<?php echo esc_html($awea_counter_title); ?>
+				</<?php echo esc_attr($awea_counter_title_tag); ?>>
 			</div>
 		</div>			
 		<!-- Counter End Here -->

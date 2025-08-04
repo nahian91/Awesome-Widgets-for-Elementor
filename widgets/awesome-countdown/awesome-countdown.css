@@ -1,2 +1,27 @@
-
-
+.awea-countdown-timer-init {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.awea-single-countdown-digits {
+  font-size: 5.5rem;
+  display: block;
+  line-height: 6.05rem;
+}
+.awea-single-countdown {
+  width: 160px;
+  text-align: center;
+  margin-right: 0;
+}
+.awea-single-countdown-label {
+  border-top: 1px solid var(--e-global-color-secondary);
+  display: block;
+  padding-top: 8px;
+  font-size: 1.5rem;
+  line-height: 2.1rem;
+  margin-top: 5px;
+}
+.awea-finished-message {
+  margin-top: 30px;
+	text-align: center;
+}
