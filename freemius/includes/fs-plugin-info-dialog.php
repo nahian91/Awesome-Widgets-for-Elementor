@@ -719,8 +719,8 @@
             ) {
                 if ( is_numeric( $blog_id ) ) {
                     /**
-                     * Replace the network status URL with a blog admin–based status URL if the `Add-Ons` page is loaded
-                     * from a specific blog admin page (when `fs_blog_id` is valid) in order for plugin installation/update
+                     * Replace the network status URL with a post admin–based status URL if the `Add-Ons` page is loaded
+                     * from a specific post admin page (when `fs_blog_id` is valid) in order for plugin installation/update
                      * to work.
                      *
                      * @author Leo Fajardo (@leorw)

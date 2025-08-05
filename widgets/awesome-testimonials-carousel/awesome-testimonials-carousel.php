@@ -38,7 +38,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Testimonial Carousel', 'webbricks-addons' );
+		return esc_html__( 'Testimonial Carousel', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'wb-icon eicon-testimonial-carousel';
+		return 'awea-icon eicon-testimonial-carousel';
 	}
 
 	/**
@@ -79,7 +79,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'wb', 'reviews', 'testimonials', 'carousel' ];
+		return [ 'awea', 'reviews', 'testimonials', 'carousel' ];
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 	   $this->start_controls_section(
 	       'testimonial_content',
 		    [
-		        'label' => esc_html__('Content', 'webbricks-addons'),
+		        'label' => esc_html__('Content', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		   
 		    ]
 	    );
@@ -105,7 +105,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_testimonial_image',
 			[
-				'label' => esc_html__( 'Client Image', 'webbricks-addons' ),
+				'label' => esc_html__( 'Client Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-1-web-bricks.webp',
@@ -117,9 +117,9 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_testimonial_name',
 			[
-				'label' => esc_html__( 'Client Name', 'webbricks-addons' ),
+				'label' => esc_html__( 'Client Name', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Esther Howard', 'webbricks-addons' ),
+				'default' => esc_html__( 'Esther Howard', 'awesome-widgets-elementor' ),
 				'label_block' => true
 			]
 		);
@@ -128,9 +128,9 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_testimonial_desg',
 			[
-				'label' => esc_html__( 'Client Designation', 'webbricks-addons' ),
+				'label' => esc_html__( 'Client Designation', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Businessman', 'webbricks-addons' ),
+				'default' => esc_html__( 'Businessman', 'awesome-widgets-elementor' ),
 				'label_block' => true
 			]
 		);
@@ -139,9 +139,9 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_testimonial_speech',
 			[
-				'label' => esc_html__( 'Client Speech', 'webbricks-addons' ),
+				'label' => esc_html__( 'Client Speech', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'webbricks-addons' ),
+				'default' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -149,7 +149,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_testimonial_rating',
 			[
-				'label' => esc_html__( 'Rating (Fraction)', 'webbricks-addons' ),
+				'label' => esc_html__( 'Rating (Fraction)', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 5,
 				'min' => 0,
@@ -162,7 +162,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials',
 			[
-				'label' => esc_html__( 'Testimonials', 'webbricks-addons' ),
+				'label' => esc_html__( 'Testimonials', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'title_field' => '{{{ awea_testimonial_name }}}',
@@ -174,10 +174,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-1-web-bricks.webp',
 							]
 						],
-						'awea_testimonial_name' => esc_html__( 'Esther Howard', 'webbricks-addons' ),
-						'awea_testimonial_desg' => esc_html__( 'Businessman', 'webbricks-addons' ),
-						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'webbricks-addons' ),
-						'awea_testimonial_rating' => esc_html__('5', 'webbricks-addons')
+						'awea_testimonial_name' => esc_html__( 'Esther Howard', 'awesome-widgets-elementor' ),
+						'awea_testimonial_desg' => esc_html__( 'Businessman', 'awesome-widgets-elementor' ),
+						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'awesome-widgets-elementor' ),
+						'awea_testimonial_rating' => esc_html__('5', 'awesome-widgets-elementor')
 					],
 					[
 						'awea_testimonial_image' => [
@@ -185,10 +185,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-2-web-bricks.webp',
 							]
 						],
-						'awea_testimonial_name' => esc_html__( 'Maria Sauks', 'webbricks-addons' ),
-						'awea_testimonial_desg' => esc_html__( 'Web Developer', 'webbricks-addons' ),
-						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'webbricks-addons' ),
-						'awea_testimonial_rating' => esc_html__('5', 'webbricks-addons')
+						'awea_testimonial_name' => esc_html__( 'Maria Sauks', 'awesome-widgets-elementor' ),
+						'awea_testimonial_desg' => esc_html__( 'Web Developer', 'awesome-widgets-elementor' ),
+						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'awesome-widgets-elementor' ),
+						'awea_testimonial_rating' => esc_html__('5', 'awesome-widgets-elementor')
 					],
 					[
 						'awea_testimonial_image' => [
@@ -196,10 +196,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-3-web-bricks.webp',
 							]
 						],
-						'awea_testimonial_name' => esc_html__( 'Sarah Heinsed', 'webbricks-addons' ),
-						'awea_testimonial_desg' => esc_html__( 'Blogger', 'webbricks-addons' ),
-						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'webbricks-addons' ),
-						'awea_testimonial_rating' => esc_html__('5', 'webbricks-addons')
+						'awea_testimonial_name' => esc_html__( 'Sarah Heinsed', 'awesome-widgets-elementor' ),
+						'awea_testimonial_desg' => esc_html__( 'Blogger', 'awesome-widgets-elementor' ),
+						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'awesome-widgets-elementor' ),
+						'awea_testimonial_rating' => esc_html__('5', 'awesome-widgets-elementor')
 					],
 					[
 						'awea_testimonial_image' => [
@@ -207,10 +207,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-4-web-bricks.webp',
 							]
 						],
-						'awea_testimonial_name' => esc_html__( 'Mithc Hodge', 'webbricks-addons' ),
-						'awea_testimonial_desg' => esc_html__( 'Photographer', 'webbricks-addons' ),
-						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'webbricks-addons' ),
-						'awea_testimonial_rating' => esc_html__('5', 'webbricks-addons')
+						'awea_testimonial_name' => esc_html__( 'Mithc Hodge', 'awesome-widgets-elementor' ),
+						'awea_testimonial_desg' => esc_html__( 'Photographer', 'awesome-widgets-elementor' ),
+						'awea_testimonial_speech' => esc_html__( 'Its impressed me on multiple levels. Thank you for making it painless, pleasant and most of all hassle free! Id be lost without It.', 'awesome-widgets-elementor' ),
+						'awea_testimonial_rating' => esc_html__('5', 'awesome-widgets-elementor')
 					]
 				]
 			]
@@ -222,7 +222,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		 $this->start_controls_section(
 			'awea_testimonials_settings',
 			[
-				'label' => esc_html__('Settings', 'webbricks-addons'),
+				'label' => esc_html__('Settings', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT
 			]
 		 );
@@ -231,10 +231,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_dots',
 			[
-				'label' => esc_html__( 'Dots', 'webbricks-addons' ),
+				'label' => esc_html__( 'Dots', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -244,10 +244,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_loops',
 			[
-				'label' => esc_html__( 'Loops', 'webbricks-addons' ),
+				'label' => esc_html__( 'Loops', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -257,10 +257,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_autoplay',
 			[
-				'label' => esc_html__( 'Autoplay', 'webbricks-addons' ),
+				'label' => esc_html__( 'Autoplay', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -270,10 +270,10 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_pause',
 			[
-				'label' => esc_html__( 'Pause on hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Pause on hover', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -283,20 +283,20 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_autoplay_speed',
 			[
-				'label' => esc_html__( 'Speed', 'webbricks-addons' ),
+				'label' => esc_html__( 'Speed', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '5000',
 				'options' => [
-					'1000' => esc_html__( '1 Seconds', 'webbricks-addons' ),
-					'2000' => esc_html__( '2 Seconds', 'webbricks-addons' ),
-					'3000' => esc_html__( '3 Seconds', 'webbricks-addons' ),
-					'4000' => esc_html__( '4 Seconds', 'webbricks-addons' ),
-					'5000' => esc_html__( '5 Seconds', 'webbricks-addons' ),
-					'6000' => esc_html__( '6 Seconds', 'webbricks-addons' ),
-					'7000' => esc_html__( '7 Seconds', 'webbricks-addons' ),
-					'8000' => esc_html__( '8 Seconds', 'webbricks-addons' ),
-					'9000' => esc_html__( '9 Seconds', 'webbricks-addons' ),
-					'10000' => esc_html__( '10 Seconds', 'webbricks-addons' ),
+					'1000' => esc_html__( '1 Seconds', 'awesome-widgets-elementor' ),
+					'2000' => esc_html__( '2 Seconds', 'awesome-widgets-elementor' ),
+					'3000' => esc_html__( '3 Seconds', 'awesome-widgets-elementor' ),
+					'4000' => esc_html__( '4 Seconds', 'awesome-widgets-elementor' ),
+					'5000' => esc_html__( '5 Seconds', 'awesome-widgets-elementor' ),
+					'6000' => esc_html__( '6 Seconds', 'awesome-widgets-elementor' ),
+					'7000' => esc_html__( '7 Seconds', 'awesome-widgets-elementor' ),
+					'8000' => esc_html__( '8 Seconds', 'awesome-widgets-elementor' ),
+					'9000' => esc_html__( '9 Seconds', 'awesome-widgets-elementor' ),
+					'10000' => esc_html__( '10 Seconds', 'awesome-widgets-elementor' ),
 				],
 			]
 		);
@@ -305,20 +305,20 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_autoplay_animation',
 			[
-				'label' => esc_html__( 'Timeout', 'webbricks-addons' ),
+				'label' => esc_html__( 'Timeout', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '5000',
 				'options' => [
-					'1000' => esc_html__( '1 Seconds', 'webbricks-addons' ),
-					'2000' => esc_html__( '2 Seconds', 'webbricks-addons' ),
-					'3000' => esc_html__( '3 Seconds', 'webbricks-addons' ),
-					'4000' => esc_html__( '4 Seconds', 'webbricks-addons' ),
-					'5000' => esc_html__( '5 Seconds', 'webbricks-addons' ),
-					'6000' => esc_html__( '6 Seconds', 'webbricks-addons' ),
-					'7000' => esc_html__( '7 Seconds', 'webbricks-addons' ),
-					'8000' => esc_html__( '8 Seconds', 'webbricks-addons' ),
-					'9000' => esc_html__( '9 Seconds', 'webbricks-addons' ),
-					'10000' => esc_html__( '10 Seconds', 'webbricks-addons' ),
+					'1000' => esc_html__( '1 Seconds', 'awesome-widgets-elementor' ),
+					'2000' => esc_html__( '2 Seconds', 'awesome-widgets-elementor' ),
+					'3000' => esc_html__( '3 Seconds', 'awesome-widgets-elementor' ),
+					'4000' => esc_html__( '4 Seconds', 'awesome-widgets-elementor' ),
+					'5000' => esc_html__( '5 Seconds', 'awesome-widgets-elementor' ),
+					'6000' => esc_html__( '6 Seconds', 'awesome-widgets-elementor' ),
+					'7000' => esc_html__( '7 Seconds', 'awesome-widgets-elementor' ),
+					'8000' => esc_html__( '8 Seconds', 'awesome-widgets-elementor' ),
+					'9000' => esc_html__( '9 Seconds', 'awesome-widgets-elementor' ),
+					'10000' => esc_html__( '10 Seconds', 'awesome-widgets-elementor' ),
 				],
 			]
 		);
@@ -330,7 +330,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonials_pro_message',
 			[
-				'label' => esc_html__('Premium', 'webbricks-addons'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -343,7 +343,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Web Bricks Premium is coming soon with more widgets, features, and customization options.', 'webbricks-addons')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -353,7 +353,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonial_image_style',
 			[
-				'label' => esc_html__( 'Image', 'webbricks-addons' ),
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -371,7 +371,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_image_round',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -384,7 +384,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_image_width',
 			[
-				'label' => esc_html__( 'Width', 'webbricks-addons' ),
+				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
@@ -403,7 +403,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_image_height',
 			[
-				'label' => esc_html__( 'Height', 'webbricks-addons' ),
+				'label' => esc_html__( 'Height', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
@@ -425,7 +425,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'testimonial_name_style',
 			[
-				'label' => esc_html__( 'Name', 'webbricks-addons' ),
+				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -434,7 +434,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_name_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-author-top .awea-author-name' => 'color: {{VALUE}}',
@@ -461,18 +461,18 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_name_tag',
 			[
-				'label' => __( 'Html Tag', 'webbricks-addons' ),
+				'label' => __( 'Html Tag', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'h1' => __( 'H1', 'webbricks-addons' ),
-					'h2' => __( 'H2', 'webbricks-addons' ),
-					'h3' => __( 'H3', 'webbricks-addons' ),
-					'h4' => __( 'H4', 'webbricks-addons' ),
-					'h5' => __( 'H5', 'webbricks-addons' ),
-					'h6' => __( 'H6', 'webbricks-addons' ),
-					'p' => __( 'P', 'webbricks-addons' ),
-					'span' => __( 'Span', 'webbricks-addons' ),
-					'div' => __( 'Div', 'webbricks-addons' ),
+					'h1' => __( 'H1', 'awesome-widgets-elementor' ),
+					'h2' => __( 'H2', 'awesome-widgets-elementor' ),
+					'h3' => __( 'H3', 'awesome-widgets-elementor' ),
+					'h4' => __( 'H4', 'awesome-widgets-elementor' ),
+					'h5' => __( 'H5', 'awesome-widgets-elementor' ),
+					'h6' => __( 'H6', 'awesome-widgets-elementor' ),
+					'p' => __( 'P', 'awesome-widgets-elementor' ),
+					'span' => __( 'Span', 'awesome-widgets-elementor' ),
+					'div' => __( 'Div', 'awesome-widgets-elementor' ),
 				],
 				'default' => 'h4',
 			]
@@ -485,7 +485,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonial_desg_style',
 			[
-				'label' => esc_html__( 'Desingnation', 'webbricks-addons' ),
+				'label' => esc_html__( 'Desingnation', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -494,7 +494,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_desg_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-author-top .awea-author-name span' => 'color: {{VALUE}}',
@@ -524,7 +524,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonial_speech_style',
 			[
-				'label' => esc_html__( 'Speech', 'webbricks-addons' ),
+				'label' => esc_html__( 'Speech', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -533,7 +533,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_speech_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-author-content p' => 'color: {{VALUE}}',
@@ -563,7 +563,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonial_ratings_style',
 			[
-				'label' => esc_html__( 'Ratings', 'webbricks-addons' ),
+				'label' => esc_html__( 'Ratings', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -572,7 +572,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_rating_icon_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-author-rating p i' => 'color: {{VALUE}}',
@@ -587,7 +587,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_rating_color',
 			[
-				'label' => esc_html__( 'Rating Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Rating Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-author-rating span' => 'color: {{VALUE}}',
@@ -616,7 +616,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonial_dots_style',
 			[
-				'label' => esc_html__( 'Dots', 'webbricks-addons' ),
+				'label' => esc_html__( 'Dots', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -625,7 +625,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_dots_color',
 			[
-				'label' => esc_html__( 'Inactive Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Inactive Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonials .owl-dots button' => 'background-color: {{VALUE}}',
@@ -640,7 +640,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonial_dots_active_color',
 			[
-				'label' => esc_html__( 'Active Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Active Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonials .owl-dots button.active' => 'background-color: {{VALUE}}',
@@ -657,7 +657,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_testimonial_arrows_style',
 			[
-				'label' => esc_html__( 'Arrows', 'webbricks-addons' ),
+				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -670,7 +670,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'awea_testimonials_arrows_normal_tab',
 			[
-				'label' => esc_html__( 'Normal', 'webbricks-addons' ),
+				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -678,7 +678,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_arrows_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonial-arrow svg path' => 'fill: {{VALUE}}',
@@ -693,7 +693,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_arrows_border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonial-arrow' => 'border-color: {{VALUE}}',
@@ -708,7 +708,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_arrows_border_round',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -723,7 +723,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'awea_testimonials_arrows_hover_tab',
 			[
-				'label' => esc_html__( 'Hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -731,7 +731,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_arrows_hover_icon_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonial-arrow:hover svg path' => 'fill: {{VALUE}}',
@@ -746,7 +746,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_arrows_hover_icon_border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonial-arrow:hover' => 'border-color: {{VALUE}}',
@@ -761,7 +761,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_testimonials_arrows_hover_color',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-testimonial-arrow:after' => 'background-color: {{VALUE}}',

@@ -9,12 +9,12 @@ use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use \Elementor\Widget_Base;
 
-class Widget_Awesome_Blog_Carousel extends Widget_Base {
+class Widget_Awesome_Post_Carousel extends Widget_Base {
 
 	/**
 	 * Get widget name.
 	 *
-	 * Retrieve blog widget name.
+	 * Retrieve post widget name.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -22,7 +22,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesome-blog-carousel';
+		return 'awesome-post-carousel';
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Blog Carousel', 'awesome-widgets-elementor' );
+		return esc_html__( 'Post Carousel', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -50,7 +50,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'wb-icon eicon-posts-carousel';
+		return 'awea-icon eicon-posts-carousel';
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'blog', 'carousel', 'wb', 'post' ];
+		return [ 'post', 'carousel', 'awea', 'post' ];
 	}
 
 	/**
@@ -90,26 +90,26 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Content tab section
 	    $this->start_controls_section(
-			'awea_blog_carousel_contents',
+			'awea_post_carousel_contents',
 			[
 				'label' => esc_html__('Query', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,		
 			]
 		);
 
-		// Blogs Number
+		// posts Number
 		$this->add_control(
-			'awea_blog_carousel_number',
+			'awea_post_carousel_number',
 			[
-				'label' 		=> __('Number of Blogs', 'awesome-widgets-elementor'),
+				'label' 		=> __('Number of posts', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::NUMBER,
 				'default' 		=> '4',
 			]
 		);
  
-		// Blog Order
+		// post Order
 		$this->add_control(
-			'awea_blog_carousel_order',
+			'awea_post_carousel_order',
 			[
 				'label' 		=> __('Order', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SELECT,
@@ -122,9 +122,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
  
-		// Blog Orderby
+		// post Orderby
 		$this->add_control(
-			'awea_blog_carousel_orderby',
+			'awea_post_carousel_orderby',
 			[
 				'label' 		=> __('Order By', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SELECT,
@@ -156,9 +156,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			}
 		}
  
-		// Blog Categories
+		// post Categories
 		$this->add_control(
-			'awea_blog_carousel_include_categories',
+			'awea_post_carousel_include_categories',
 			[
 				'label' => __( 'Post Filter', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT2,
@@ -170,16 +170,16 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'awea_blog_carousel_option_section',
+			'awea_post_carousel_option_section',
 			[
 				'label' => esc_html__('Meta Info', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT			
 			]
 		);
 
-		// Blog Category Show
+		// post Category Show
 		$this->add_control(
-			'awea_blog_carousel_cat_visibility',
+			'awea_post_carousel_cat_visibility',
 			[
 				'label' 		=> __('Show Category', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SWITCHER,
@@ -189,9 +189,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Date Show
+		// post Date Show
 		$this->add_control(
-			'awea_blog_carousel_date_visibility',
+			'awea_post_carousel_date_visibility',
 			[
 				'label' 		=> __('Show Date', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SWITCHER,
@@ -201,11 +201,23 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Excerpt Show
+		// post Excerpt Show
 		$this->add_control(
-			'awea_blog_carousel_excerpt_visibility',
+			'awea_post_carousel_excerpt_visibility',
 			[
 				'label' 		=> __('Show Excerpt', 'awesome-widgets-elementor'),
+				'type' 			=> Controls_Manager::SWITCHER,
+				'default' 		=> 'yes',
+				'label_on' 		=> __('Show', 'awesome-widgets-elementor'),
+				'label_off' 	=> __('Hide', 'awesome-widgets-elementor'),
+			]
+		);
+
+		// Blog Button Show
+		$this->add_control(
+			'awea_post_carousel_btn_visibility',
+			[
+				'label' 		=> __('Show Button', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SWITCHER,
 				'default' 		=> 'yes',
 				'label_on' 		=> __('Show', 'awesome-widgets-elementor'),
@@ -216,9 +228,33 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		$this->end_controls_section();
 		// end of the Content tab section
 
+		$this->start_controls_section(
+			'awea_post_carousel_btn_option_section',
+			 [
+				'label' => esc_html__('Button', 'awesome-widgets-elementor'),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+				'condition' => [
+					'awea_post_carousel_btn_visibility' => 'yes'
+				],		
+			]
+		);
+
+		$this->add_control(
+			'awea_post_carousel_btn_text',
+			[
+				'label' => esc_html__( 'Text', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default' => esc_html__( 'Read More', 'awesome-widgets-elementor' ),
+			]
+		);
+
+		$this->end_controls_section();
+		// end of the Content tab section
+
 		// start of the Content tab section
 		$this->start_controls_section(
-		'awea_blog_carousel_settings',
+		'awea_post_carousel_settings',
 			[
 				'label' => esc_html__('Settings', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
@@ -227,7 +263,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// Number
 		$this->add_control(
-			'awea_blog_carousel_slide_number',
+			'awea_post_carousel_slide_number',
 			[
                 'label'     => esc_html__( 'No. of items per slide', 'awesome-widgets-elementor' ),
                 'type'      => Controls_Manager::SELECT,
@@ -244,9 +280,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
             ]
 		);
 
-		// Blogs Carousel Arrows
+		// posts Carousel Arrows
 		$this->add_control(
-			'awea_blog_carousel_arrows',
+			'awea_post_carousel_arrows',
 			[
 				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
@@ -257,9 +293,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blogs Carousel Loops
+		// posts Carousel Loops
 		$this->add_control(
-			'awea_blog_carousel_loop',
+			'awea_post_carousel_loop',
 			[
 				'label' => esc_html__( 'Loops', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
@@ -270,9 +306,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blogs Carousel Pause
+		// posts Carousel Pause
 		$this->add_control(
-			'awea_blog_carousel_pause',
+			'awea_post_carousel_pause',
 			[
 				'label' => esc_html__( 'Pause on hover', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
@@ -283,9 +319,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blogs Carousel Autoplay
+		// posts Carousel Autoplay
 		$this->add_control(
-			'awea_blog_carousel_autoplay',
+			'awea_post_carousel_autoplay',
 			[
 				'label' => esc_html__( 'Autoplay', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
@@ -296,9 +332,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blogs Carousel Autoplay Speed
+		// posts Carousel Autoplay Speed
 		$this->add_control(
-			'awea_blog_carousel_autoplay_speed',
+			'awea_post_carousel_autoplay_speed',
 			[
 				'label' => esc_html__( 'Speed', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
@@ -318,9 +354,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blogs Carousel Animation Speed
+		// posts Carousel Animation Speed
 		$this->add_control(
-			'awea_blog_carousel_autoplay_animation',
+			'awea_post_carousel_autoplay_animation',
 			[
 				'label' => esc_html__( 'Timeout', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
@@ -345,7 +381,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Content tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_pro_message',
+			'awea_post_carousel_pro_message',
 			[
 				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
@@ -353,14 +389,14 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		);
 
 		$this->add_control( 
-			'awea_blog_carousel_pro_message_notice', 
+			'awea_post_carousel_pro_message_notice', 
 			[
 				'type'      => Controls_Manager::RAW_HTML,
 				'raw'       => sprintf(
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Web Bricks Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -368,21 +404,21 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_layout_style',
+			'awea_post_carousel_layout_style',
 			[
 				'label' => esc_html__( 'Layout', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE
 			]
 		);	
 
-		// Blog Background
+		// post Background
 		$this->add_control(
-			'awea_blog_carousel_bg_color',
+			'awea_post_carousel_bg_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-content' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -390,28 +426,28 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Padding
+		// post Padding
 		$this->add_control(
-			'awea_blog_carousel_padding',
+			'awea_post_carousel_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-		// Blog Border Radius
+		// post Border Radius
 		$this->add_control(
-			'awea_blog_carousel_border_radius',
+			'awea_post_carousel_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -420,7 +456,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_meta_style',
+			'awea_post_carousel_meta_style',
 			[
 				'label' => esc_html__( 'Meta', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE
@@ -429,12 +465,12 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// Meta Color
 		$this->add_control(
-			'awea_blog_carousel_meta_color',
+			'awea_post_carousel_meta_color',
 			[
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-carousel-meta, .awea-blog-carousel-meta a' => 'color: {{VALUE}} !important',
+					'{{WRAPPER}} .awea-post-carousel-meta, .awea-post-carousel-meta a' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -446,8 +482,8 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_blog_carousel_meta_typography',
-				'selector' => '{{WRAPPER}} .awea-blog-carousel-meta, .awea-blog-carousel-meta a',
+				'name' => 'awea_post_carousel_meta_typography',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-meta, .awea-post-carousel-meta a',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -459,7 +495,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_title_style',
+			'awea_post_carousel_title_style',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -468,12 +504,12 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// Title Color
 		$this->add_control(
-			'awea_blog_carousel_title_color',
+			'awea_post_carousel_title_color',
 			[
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-title .awea-blog-post-title a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-title .awea-post-post-title a' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -485,8 +521,8 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_blog_carousel_title_typography',
-				'selector' => '{{WRAPPER}} .awea-blog-title .awea-blog-post-title a',
+				'name' => 'awea_post_carousel_title_typography',
+				'selector' => '{{WRAPPER}} .awea-post-title .awea-post-post-title a',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -495,7 +531,7 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// Section Heading Separator Style
 		$this->add_control(
-			'awea_blog_carousel_title_tag',
+			'awea_post_carousel_title_tag',
 			[
 				'label' => __( 'Html Tag', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
@@ -519,24 +555,24 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_excerpt_style',
+			'awea_post_carousel_excerpt_style',
 			[
 				'label' => esc_html__( 'Excerpt', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
-					'awea_blog_carousel_excerpt_visibility' => 'yes', 
+					'awea_post_carousel_excerpt_visibility' => 'yes', 
 				],
 			]
 		);	
 
 		// Excerpt Color
 		$this->add_control(
-			'awea_blog_carousel_excerpt_color',
+			'awea_post_carousel_excerpt_color',
 			[
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-excerpt' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-excerpt' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -548,8 +584,8 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_blog_carousel_excerpt_typography',
-				'selector' => '{{WRAPPER}} .awea-blog-excerpt',
+				'name' => 'awea_post_carousel_excerpt_typography',
+				'selector' => '{{WRAPPER}} .awea-post-excerpt',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -561,16 +597,16 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_image_style',
+			'awea_post_carousel_image_style',
 			[
 				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);	
 
-		// Blog Image Width
+		// post Image Width
 		$this->add_control(
-			'awea_blog_image_width',
+			'awea_post_image_width',
 			[
 				'type' => Controls_Manager::SLIDER,
 				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
@@ -582,14 +618,14 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-img' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
-		// Blog Image Height
+		// post Image Height
 		$this->add_control(
-			'awea_blog_image_image_height',
+			'awea_post_image_image_height',
 			[
 				'type' => Controls_Manager::SLIDER,
 				'label' => esc_html__( 'Height', 'awesome-widgets-elementor' ),
@@ -601,14 +637,14 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-img' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
 
-		// Blog Image Display Size
+		// post Image Display Size
 		$this->add_control(
-			'awea_blog_image_display',
+			'awea_post_image_display',
 			[
 				'label' 		=> __('Display Size', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SELECT,
@@ -622,15 +658,15 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Image Radius
+		// post Image Radius
 		$this->add_control(
-			'awea_blog_carousel_image_radius',
+			'awea_post_carousel_image_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-blog-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -640,15 +676,18 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_blog_carousel_button_style',
+			'awea_post_carousel_button_style',
 			[
 				'label' => esc_html__( 'Button', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'awea_post_carousel_btn_visibility' => 'yes'
+				],	
 			]
 		);	
 
 		$this->start_controls_tabs(
-			'awea_blogs_button_style_tabs'
+			'awea_post_carousel_button_style_tabs'
 		);
 
 		// Blog Button Normal Tab
@@ -661,43 +700,27 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// Blog Button Color
 		$this->add_control(
-			'awea_blog_carousel_btn_color',
+			'awea_post_carousel_btn_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-icon-border svg path' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-content .awea-btn-line' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_ACCENT,
 				]
 			]
 		);
 
-		// Blog Button Background
-		$this->add_control(
-			'awea_blog_carousel_btn_bg',
+		// Excerpt Typography
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
 			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-icon-border' => 'background-color: {{VALUE}}',
-				],
-				'default' => '#fff',
-			]
-		);
-
-		// Blog Button Border Color
-		$this->add_control(
-			'awea_blog_carousel_btn_border_color',
-			[
-				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-icon-border' => 'border-color: {{VALUE}}',
-				],
+				'name' => 'awea_post_carousel_btn_typography',
+				'selector' => '{{WRAPPER}} .awea-post-content .awea-btn-line',
 				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				]
 			]
 		);
@@ -706,53 +729,23 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		// Blog Button Hover Tab
 		$this->start_controls_tab(
-			'awea_blog_carousel_button_hover_tab',
+			'awea_post_carousel_button_hover_tab',
 			[
 				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
-		// Blog Button Hover Icon Color
+		// Blog Button Hover Color
 		$this->add_control(
-			'awea_blog_carousel_btn_bg_hover_color',
+			'awea_post_carousel_btn_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-icon-border:hover svg path' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-content .awea-btn-line:hover' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Blog Button Border Color
-		$this->add_control(
-			'awea_blog_carousel_btn_border_hover_color',
-			[
-				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-icon-border:hover' => 'border-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// Blog Button Hover Background Color
-		$this->add_control(
-			'awea_blog_carousel_btn_bg_hover_bg',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-icon-border:hover:after' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
@@ -764,9 +757,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		$this->end_controls_section();
 		// end of the Style tab section
 
-		// Blog Arrow Style
+		// post Arrow Style
 		$this->start_controls_section(
-			'awea_blog_carousel_arrow_style',
+			'awea_post_carousel_arrow_style',
 			[
 				'label' => esc_html__( 'Arrow Buttons', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
@@ -774,20 +767,20 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 		);
 
 		$this->start_controls_tabs(
-			'awea_blog_carousel_arrow_style_tabs'
+			'awea_post_carousel_arrow_style_tabs'
 		);
 
-		// Blog Arrow Normal Tab
+		// post Arrow Normal Tab
 		$this->start_controls_tab(
-			'awea_blog_carousel_arrow_normal_tab',
+			'awea_post_carousel_arrow_normal_tab',
 			[
 				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
 			]
 		);
 
-		// Blog Arrow Color
+		// post Arrow Color
 		$this->add_control(
-			'awea_blog_carousel_arrow_color',
+			'awea_post_carousel_arrow_color',
 			[
 				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
@@ -800,9 +793,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Arrow Border Color
+		// post Arrow Border Color
 		$this->add_control(
-			'awea_blog_carousel_arrow_border_color',
+			'awea_post_carousel_arrow_border_color',
 			[
 				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
@@ -815,9 +808,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Background Color
+		// post Background Color
 		$this->add_control(
-			'awea_blog_carousel_arrow_bg_color',
+			'awea_post_carousel_arrow_bg_color',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
@@ -828,9 +821,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Padding
+		// post Padding
 		$this->add_control(
-			'awea_blog_carousel_arrow_padding',
+			'awea_post_carousel_arrow_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
@@ -841,9 +834,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Round
+		// post Round
 		$this->add_control(
-			'awea_blog_carousel_arrow_round',
+			'awea_post_carousel_arrow_round',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
@@ -856,17 +849,17 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 
 		$this->end_controls_tab();
 
-		// Blog Arrow Hover Tab
+		// post Arrow Hover Tab
 		$this->start_controls_tab(
-			'awea_blog_carousel_arrow_hover_tab',
+			'awea_post_carousel_arrow_hover_tab',
 			[
 				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
-		// Blog Arrow Hover Icon Color
+		// post Arrow Hover Icon Color
 		$this->add_control(
-			'awea_blog_carousel_arrow_hover_color',
+			'awea_post_carousel_arrow_hover_color',
 			[
 				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
@@ -879,9 +872,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Arrow Border Color
+		// post Arrow Border Color
 		$this->add_control(
-			'awea_blog_carousel_arrow_hover_border_color',
+			'awea_post_carousel_arrow_hover_border_color',
 			[
 				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
@@ -894,9 +887,9 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 			]
 		);
 
-		// Blog Arrow Round
+		// post Arrow Round
 		$this->add_control(
-			'awea_blog_carousel_arrow_hover_bg',
+			'awea_post_carousel_arrow_hover_bg',
 			[
 				'label' => esc_html__( 'Background Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
@@ -926,93 +919,100 @@ class Widget_Awesome_Blog_Carousel extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		// Get the widget settings
-		$settings = $this->get_settings_for_display();
-		$awea_blog_carousel_number = $settings['awea_blog_carousel_number'] ?? 5;
-		$awea_blog_carousel_order = $settings['awea_blog_carousel_order'] ?? 'DESC';
-		$awea_blog_carousel_orderby = $settings['awea_blog_carousel_orderby'] ?? 'date';
-		$awea_blog_carousel_include_categories = $settings['awea_blog_carousel_include_categories'] ?? '';
-		$awea_blog_carousel_cat_visibility = $settings['awea_blog_carousel_cat_visibility'] ?? 'no';
-		$awea_blog_carousel_date_visibility = $settings['awea_blog_carousel_date_visibility'] ?? 'no';
-		$awea_blog_carousel_excerpt_visibility = $settings['awea_blog_carousel_excerpt_visibility'] ?? 'no';
-		$awea_blog_carousel_slide_number = $settings['awea_blog_carousel_slide_number'] ?? 3;
-		$awea_blog_carousel_arrows = $settings['awea_blog_carousel_arrows'] ?? 'no';
-		$awea_blog_carousel_loop = $settings['awea_blog_carousel_loop'] ?? 'no';
-		$awea_blog_carousel_pause = $settings['awea_blog_carousel_pause'] ?? 'no';
-		$awea_blog_carousel_autoplay = $settings['awea_blog_carousel_autoplay'] ?? 'no';
-		$awea_blog_carousel_autoplay_speed = $settings['awea_blog_carousel_autoplay_speed'] ?? 5000;
-		$awea_blog_carousel_autoplay_animation = $settings['awea_blog_carousel_autoplay_animation'] ?? 'linear';
-		$awea_blog_image_display = $settings['awea_blog_image_display'] ?? 'cover';
-	
-		// Inline styles for background image display
-		echo '<style>
-			.awea-blog-img {
-				background-size: ' . esc_attr($awea_blog_image_display) . ';
-			}
-		</style>';
-	
-		// WP_Query Arguments
-		$args = [
-			'posts_per_page' => $awea_blog_carousel_number,
-			'post_type' => 'post',
-			'post_status' => 'publish',
-			'order' => $awea_blog_carousel_order,
-			'orderby' => $awea_blog_carousel_orderby,
-			'cat' => $awea_blog_carousel_include_categories,
-			'ignore_sticky_posts' => 1,
-		];
-	
-		$query = new \WP_Query($args);
-	
-		// Blog carousel container
-		$carousel_classes = [
-			$awea_blog_carousel_arrows === 'yes' ? 'carousel-top-arrows' : '',
-		];
-		?>
-		<div class="awea-blog-carousel awea-carousel-top-arrows owl-carousel <?php echo esc_attr(implode(' ', $carousel_classes)); ?>"
-			awea-blog-items="<?php echo esc_attr($awea_blog_carousel_slide_number); ?>" 
-			awea-blog-arrows="<?php echo esc_attr($awea_blog_carousel_arrows); ?>" 
-			awea-blog-loops="<?php echo esc_attr($awea_blog_carousel_loop); ?>" 
-			awea-blog-pause="<?php echo esc_attr($awea_blog_carousel_pause); ?>" 
-			awea-blog-autoplay="<?php echo esc_attr($awea_blog_carousel_autoplay); ?>" 
-			awea-blog-autoplay-speed="<?php echo esc_attr($awea_blog_carousel_autoplay_speed); ?>" 
-			awea-blog-autoplay-animation="<?php echo esc_attr($awea_blog_carousel_autoplay_animation); ?>">
-			<?php 
-			if ($query->have_posts()) :
-				while ($query->have_posts()) : $query->the_post(); ?>
-					<div class="awea-single-blog">
-						<div class="awea-blog-content">
-							<div class="awea-blog-carousel-meta">
-								<?php if ($awea_blog_carousel_cat_visibility === 'yes') {
-									the_category(', ');
-								}
-								if ($awea_blog_carousel_date_visibility === 'yes') { ?>
-									<a class="awea-blog-date" href="<?php echo esc_url(get_the_permalink()); ?>">
-										<?php echo esc_html(get_the_date('j M, y')); ?>
-									</a>
-								<?php } ?>
-							</div>
-							<div class="awea-blog-title">
-								<h4 class="awea-blog-post-title">
-									<a href="<?php echo esc_url(get_the_permalink()); ?>"><?php the_title(); ?></a>
-								</h4>
-							</div>
-							<?php if ($awea_blog_carousel_excerpt_visibility === 'yes') { ?>
-								<div class="awea-blog-excerpt">
-									<?php echo esc_html(wp_trim_words(get_the_excerpt(), 20, '...')); ?>
-								</div>
-							<?php } ?>
-						</div>
-						<div class="awea-blog-img" style="background-image: url('<?php echo esc_url(get_the_post_thumbnail_url()); ?>');">
-							<a href="<?php echo esc_url(get_the_permalink()); ?>" class="awea-icon-border">
+    $settings = $this->get_settings_for_display();
 
-							</a>
-						</div>
-					</div>
-				<?php endwhile;
-			endif;
-			wp_reset_postdata(); ?>
-		</div>
-		<?php
-	}	
+    // Set variables with default fallback values
+    $awea_post_carousel_number = !empty($settings['awea_post_carousel_number']) ? (int) $settings['awea_post_carousel_number'] : 5;
+    $awea_post_carousel_order = !empty($settings['awea_post_carousel_order']) ? $settings['awea_post_carousel_order'] : 'DESC';
+    $awea_post_carousel_orderby = !empty($settings['awea_post_carousel_orderby']) ? $settings['awea_post_carousel_orderby'] : 'date';
+    $awea_post_carousel_include_categories = $settings['awea_post_carousel_include_categories'] ?? [];
+    $awea_post_carousel_cat_visibility = isset($settings['awea_post_carousel_cat_visibility']) && $settings['awea_post_carousel_cat_visibility'] === 'yes';
+    $awea_post_carousel_date_visibility = isset($settings['awea_post_carousel_date_visibility']) && $settings['awea_post_carousel_date_visibility'] === 'yes';
+    $awea_post_carousel_excerpt_visibility = isset($settings['awea_post_carousel_excerpt_visibility']) && $settings['awea_post_carousel_excerpt_visibility'] === 'yes';
+    $awea_post_carousel_slide_number = !empty($settings['awea_post_carousel_slide_number']) ? $settings['awea_post_carousel_slide_number'] : 3;
+    $awea_post_carousel_arrows = isset($settings['awea_post_carousel_arrows']) && $settings['awea_post_carousel_arrows'] === 'yes' ? 'yes' : 'no';
+    $awea_post_carousel_loop = isset($settings['awea_post_carousel_loop']) && $settings['awea_post_carousel_loop'] === 'yes' ? 'yes' : 'no';
+    $awea_post_carousel_pause = isset($settings['awea_post_carousel_pause']) && $settings['awea_post_carousel_pause'] === 'yes' ? 'yes' : 'no';
+    $awea_post_carousel_autoplay = isset($settings['awea_post_carousel_autoplay']) && $settings['awea_post_carousel_autoplay'] === 'yes' ? 'yes' : 'no';
+    $awea_post_carousel_autoplay_speed = !empty($settings['awea_post_carousel_autoplay_speed']) ? $settings['awea_post_carousel_autoplay_speed'] : 5000;
+    $awea_post_carousel_autoplay_animation = !empty($settings['awea_post_carousel_autoplay_animation']) ? $settings['awea_post_carousel_autoplay_animation'] : 'linear';
+    $awea_post_carousel_btn_text = !empty($settings['awea_post_carousel_btn_text']) ? $settings['awea_post_carousel_btn_text'] : esc_html__('Read More', 'awesome-widgets-elementor');
+    $awea_post_carousel_btn_visibility = isset($settings['awea_post_carousel_btn_visibility']) && $settings['awea_post_carousel_btn_visibility'] === 'yes';
+    $awea_post_carousel_title_tag = !empty($settings['awea_post_carousel_title_tag']) ? $settings['awea_post_carousel_title_tag'] : 'h3';
+
+    // Prepare categories argument for WP_Query
+    if (!empty($awea_post_carousel_include_categories) && is_array($awea_post_carousel_include_categories)) {
+        // WP_Query 'cat' expects comma-separated list of IDs (string), so convert array to string
+        $cat_arg = implode(',', array_map('intval', $awea_post_carousel_include_categories));
+    } else {
+        $cat_arg = '';
+    }
+
+    // WP_Query Arguments
+    $args = [
+        'posts_per_page' => $awea_post_carousel_number,
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'order' => $awea_post_carousel_order,
+        'orderby' => $awea_post_carousel_orderby,
+        'ignore_sticky_posts' => 1,
+    ];
+
+    if ($cat_arg !== '') {
+        $args['cat'] = $cat_arg;
+    }
+
+    $query = new \WP_Query($args);
+    ?>
+    <div class="awea-post-carousel owl-carousel"
+        awea-post-items="<?php echo esc_attr($awea_post_carousel_slide_number); ?>"
+        awea-post-arrows="<?php echo esc_attr($awea_post_carousel_arrows); ?>"
+        awea-post-loops="<?php echo esc_attr($awea_post_carousel_loop); ?>"
+        awea-post-pause="<?php echo esc_attr($awea_post_carousel_pause); ?>"
+        awea-post-autoplay="<?php echo esc_attr($awea_post_carousel_autoplay); ?>"
+        awea-post-autoplay-speed="<?php echo esc_attr($awea_post_carousel_autoplay_speed); ?>"
+        awea-post-autoplay-animation="<?php echo esc_attr($awea_post_carousel_autoplay_animation); ?>"
+    >
+        <?php if ($query->have_posts()) : ?>
+            <?php while ($query->have_posts()) : $query->the_post(); ?>
+                <div class="awea-single-post">
+                    <?php
+                    $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: get_template_directory_uri() . '/assets/images/default-image.jpg';
+                    ?>
+                    <div class="awea-post-img" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
+                    <div class="awea-post-content">
+                        <div class="awea-post-meta">
+                            <?php if ($awea_post_carousel_cat_visibility) : ?>
+                                <?php the_category(', '); ?>
+                            <?php endif; ?>
+                            <?php if ($awea_post_carousel_date_visibility) : ?>
+                                <a class="awea-post-date" href="<?php echo esc_url(get_the_permalink()); ?>"><?php echo esc_html(get_the_date('j M, Y')); ?></a>
+                            <?php endif; ?>
+                        </div>
+                        <div class="awea-post-title">
+                            <<?php echo esc_attr($awea_post_carousel_title_tag); ?> class="awea-post-post-title">
+                                <a href="<?php echo esc_url(get_the_permalink()); ?>"><?php the_title(); ?></a>
+                            </<?php echo esc_attr($awea_post_carousel_title_tag); ?>>
+                        </div>
+                        <?php if ($awea_post_carousel_excerpt_visibility) : ?>
+                            <div class="awea-post-excerpt">
+                                <?php echo wp_kses_post(wp_trim_words(get_the_excerpt(), 20, '...')); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($awea_post_carousel_btn_visibility) : ?>
+                            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="awea-btn-line" aria-label="<?php the_title_attribute(); ?>">
+                                <?php echo esc_html($awea_post_carousel_btn_text); ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+            <?php wp_reset_postdata(); ?>
+        <?php else : ?>
+            <p><?php esc_html_e('No posts found.', 'awesome-widgets-elementor'); ?></p>
+        <?php endif; ?>
+    </div>
+    <?php
+	}
 }

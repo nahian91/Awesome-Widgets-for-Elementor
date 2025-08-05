@@ -34,18 +34,18 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 	}
 
 	public function get_grid_classes($settings, $columns_field = 'awea_filter_gallery_column') {        
-		$grid_classes = 'wb-grid-desktop-';
+		$grid_classes = 'awea-grid-desktop-';
 		$grid_classes .= $settings[$columns_field];
-		// $grid_classes .= ' wb-grid-tablet-';
+		// $grid_classes .= ' awea-grid-tablet-';
 		// $grid_classes .= $settings[$columns_field . '_tablet'];
 	
 		// // Check if mobile size is set, otherwise use a default value
 		// if (isset($settings[$columns_field . '_mobile'])) {
-		// 	$grid_classes .= ' wb-grid-mobile-';
+		// 	$grid_classes .= ' awea-grid-mobile-';
 		// 	$grid_classes .= $settings[$columns_field . '_mobile'];
 		// } else {
 		// 	// Set default size for mobile to 12 columns
-		// 	$grid_classes .= ' wb-grid-mobile-12';
+		// 	$grid_classes .= ' awea-grid-mobile-12';
 		// }
 	
 		return apply_filters('awea_grid_classes', $grid_classes, $settings, $columns_field);
@@ -57,7 +57,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->start_controls_section(
 			'awea_filter_gallery_cat_contents',
 			[
-				'label' => esc_html__('Gallery Controls', 'webbricks-addons'),
+				'label' => esc_html__('Gallery Controls', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -66,10 +66,10 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_menu_show',
 			[
-				'label' => esc_html__( 'Show Button', 'webbricks-addons' ),
+				'label' => esc_html__( 'Show Button', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before'
@@ -82,9 +82,9 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$repeater->add_control(
 			'awea_filter_gallery_cat_name',
 			[
-				'label' => esc_html__( 'Category Name', 'webbricks-addons' ),
+				'label' => esc_html__( 'Category Name', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Landscape', 'webbricks-addons' ),
+				'default' => esc_html__( 'Landscape', 'awesome-widgets-elementor' ),
 				'separator' => 'before',
 				'label_block' => true
 			]
@@ -93,30 +93,30 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_cats',
 			[
-				'label' => esc_html__( 'Category Lists', 'webbricks-addons' ),
+				'label' => esc_html__( 'Category Lists', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Landscape', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Landscape', 'awesome-widgets-elementor'),
 					],					
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Cars', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Cars', 'awesome-widgets-elementor'),
 					],					
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Mountain', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Mountain', 'awesome-widgets-elementor'),
 					],
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Sea Beach', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Sea Beach', 'awesome-widgets-elementor'),
 					],
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Parks', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Parks', 'awesome-widgets-elementor'),
 					],
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Road Trips', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Road Trips', 'awesome-widgets-elementor'),
 					],
 					[
-						'awea_filter_gallery_cat_name' => esc_html__( 'Stars', 'webbricks-addons'),
+						'awea_filter_gallery_cat_name' => esc_html__( 'Stars', 'awesome-widgets-elementor'),
 					]
 				],
 				'title_field' => '{{{ awea_filter_gallery_cat_name }}}',
@@ -130,7 +130,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->start_controls_section(
 			'services_content',
 			[
-				'label' => esc_html__('Filter Gallery', 'webbricks-addons'),
+				'label' => esc_html__('Filter Gallery', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -141,7 +141,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$repeater->add_control(
 			'awea_filter_gallery_image',
 			[
-				'label' => esc_html__( 'Choose Image', 'webbricks-addons' ),
+				'label' => esc_html__( 'Choose Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-1-web-bricks.webp',
@@ -153,18 +153,18 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$repeater->add_control(
 			'awea_filter_gallery_cat',
 			[
-				'label' => esc_html__( 'Category', 'webbricks-addons' ),
+				'label' => esc_html__( 'Category', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'separator' => 'before',
 				'label_block' => true,
-				'description' => __('Use the gallery control name from Gallery Controls. Separate multiple items with comma (e.g. <strong>Gallery Item, Gallery Item 2</strong>)', 'webbricks-addons'),
+				'description' => __('Use the gallery control name from Gallery Controls. Separate multiple items with comma (e.g. <strong>Gallery Item, Gallery Item 2</strong>)', 'awesome-widgets-elementor'),
 			]
 		);
 
 		$this->add_control(
 			'awea_filter_gallerys',
 			[
-				'label' => esc_html__( 'Filter Gallerys List', 'webbricks-addons' ),
+				'label' => esc_html__( 'Filter Gallerys List', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
@@ -233,7 +233,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->start_controls_section(
 			'awea_filter_gallery_settings',
 			[
-				'label' => esc_html__('Settings', 'webbricks-addons'),
+				'label' => esc_html__('Settings', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -242,7 +242,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control( 
             'awea_filter_gallery_column', 
             [
-                'label'              => esc_html__( 'Columns', 'webbricks-addons' ),
+                'label'              => esc_html__( 'Columns', 'awesome-widgets-elementor' ),
                 'type'               => Controls_Manager::SELECT,
                 'default'            => '4',
                 'tablet_default'     => '2',
@@ -286,7 +286,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->start_controls_section(
 			'awea_filter_gallery_controls_style',
 			[
-				'label' => esc_html__( 'Controls', 'webbricks-addons' ),
+				'label' => esc_html__( 'Controls', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE
 			]
 		);
@@ -295,7 +295,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_controls_title_color',
 			[
-				'label' => esc_html__( 'Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-filter-gallery-menu button' => 'color: {{VALUE}}',
@@ -310,7 +310,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_controls_title_active_color',
 			[
-				'label' => esc_html__( 'Active Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Active Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-filter-gallery-menu button.active' => 'color: {{VALUE}}',
@@ -325,7 +325,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_controls_title_active_border',
 			[
-				'label' => esc_html__( 'Active Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Active Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-filter-gallery-menu button.active::before' => 'background-color: {{VALUE}}',
@@ -340,7 +340,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_controls_title_border',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-filter-gallery-menu' => 'border-color: {{VALUE}}',
@@ -369,7 +369,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->start_controls_section(
 			'awea_filter_gallery_controls_images',
 			[
-				'label' => esc_html__( 'Images', 'webbricks-addons' ),
+				'label' => esc_html__( 'Images', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE
 			]
 		);
@@ -379,7 +379,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 			'awea_filter_gallery_image_width',
 			[
 				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Width', 'webbricks-addons' ),
+				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
 					'px' => [
@@ -398,7 +398,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 			'awea_filter_gallery_image_height',
 			[
 				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Height', 'webbricks-addons' ),
+				'label' => esc_html__( 'Height', 'awesome-widgets-elementor' ),
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
 					'px' => [
@@ -425,7 +425,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 		$this->add_control(
 			'awea_filter_gallery_image_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -452,7 +452,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 				<div class="grid awea-grid-active">
 					<div class="col-12">
 						<div class="awea-filter-gallery-menu">
-							<button class="active" data-filter="*"><?php esc_html_e('ALL', 'webbricks-addons'); ?></button>
+							<button class="active" data-filter="*"><?php esc_html_e('ALL', 'awesome-widgets-elementor'); ?></button>
 							<?php
 							$unique_categories = [];
 							foreach ($awea_filter_gallery_cats as $cat) {
@@ -476,7 +476,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 			</div>
 		<?php endif; ?>
 	
-		<div class="wb-grid-row awea-grid-active">
+		<div class="awea-grid-row awea-grid-active">
 			<?php
 			foreach ($awea_filter_gallerys as $image) {
 				$filter_image = $image['awea_filter_gallery_image']['url'] ?? '';
@@ -489,7 +489,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 					$category_classes .= esc_attr($processed_cat) . ' ';
 				}
 				?>
-				<div class="<?php echo esc_attr($this->get_grid_classes($settings)); ?> wb-grid-tablet-6 wb-grid-mobile-12 awea-grid-item <?php echo esc_attr(trim($category_classes)); ?>">
+				<div class="<?php echo esc_attr($this->get_grid_classes($settings)); ?> awea-grid-tablet-6 awea-grid-mobile-12 awea-grid-item <?php echo esc_attr(trim($category_classes)); ?>">
 					<div class="awea-single-filter-gallery">
 						<div class="awea-filter-img" style="background-image:url('<?php echo esc_url($filter_image); ?>')"></div>
 						<div class="awea-image-overlay">

@@ -100,7 +100,7 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 		$this->add_control( 
 			'awea_column_per_row', 
 			[
-				'label'              => esc_html__( 'Columns', 'webbricks-addons' ),
+				'label'              => esc_html__( 'Columns', 'awesome-widgets-elementor' ),
 				'type'               => Controls_Manager::SELECT,
 				'default'            => '4',
 				'tablet_default'     => '2', // Default value for tablet

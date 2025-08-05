@@ -36,7 +36,7 @@ Awesome Widgets is an Elementor add-on to showcase your Number Box, Service Box,
   Enhance your Elementor with the Number Box widget for stylish and customizable content boxes.
 
 * **[Post List Widget](https://devnahian.com/awesome-widgets/demo-awesome-post-list/)**  
-  Display blog posts or content in an organized list format with the Post List widget.
+  Display post posts or content in an organized list format with the Post List widget.
 
 * **[Price Widget](https://devnahian.com/awesome-widgets/demo-awesome-price/)**  
   Showcase pricing information in a clear, user-friendly layout with the Price widget.

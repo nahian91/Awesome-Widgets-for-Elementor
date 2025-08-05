@@ -39,7 +39,7 @@
          */
         protected $_network_notices;
         /**
-         * @var int The ID of the blog that is associated with the current site level options.
+         * @var int The ID of the post that is associated with the current site level options.
          */
         private $_blog_id = 0;
         /**
@@ -56,7 +56,7 @@
          * @param string $title
          * @param string $module_unique_affix
          * @param bool   $is_network_and_blog_admins Whether or not the message should be shown both on network and
-         *                                           blog admin pages.
+         *                                           post admin pages.
          *
          * @return FS_Admin_Notices
          */
@@ -73,7 +73,7 @@
          * @param string $title
          * @param string $module_unique_affix
          * @param bool   $is_network_and_blog_admins Whether or not the message should be shown both on network and
-         *                                           blog admin pages.
+         *                                           post admin pages.
          */
         protected function __construct( $id, $title = '', $module_unique_affix = '', $is_network_and_blog_admins = false ) {
             $this->_id                  = $id;
@@ -197,7 +197,7 @@
          * @param number|null $wp_user_id
          * @param string|null $plugin_title
          * @param bool        $is_network_and_blog_admins Whether or not the message should be shown both on network and
-         *                                                blog admin pages.
+         *                                                post admin pages.
          * @param bool        $is_dismissible
          */
         function add_sticky(
@@ -309,7 +309,7 @@
          * @since  2.0.0
          *
          * @param string        $id
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite notices (if there's a network). When `false`, use the current context blog notices. When `null`, the decision which notices manager to use (MS vs. Current S) will be handled internally and determined based on the $id and the context admin (blog admin vs. network level admin).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite notices (if there's a network). When `false`, use the current context post notices. When `null`, the decision which notices manager to use (MS vs. Current S) will be handled internally and determined based on the $id and the context admin (post admin vs. network level admin).
          *
          * @return bool
          */
@@ -320,12 +320,12 @@
             }
 
             if ( is_numeric( $network_level_or_blog_id ) ) {
-                // Explicitly asked to use a specified blog storage.
+                // Explicitly asked to use a specified post storage.
                 return false;
             }
 
             if ( is_bool( $network_level_or_blog_id ) ) {
-                // Explicitly specified whether should use the network or blog level storage.
+                // Explicitly specified whether should use the network or post level storage.
                 return $network_level_or_blog_id;
             }
 

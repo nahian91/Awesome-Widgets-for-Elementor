@@ -37,7 +37,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_section',
 			[
-				'label' => __( 'Countdown', 'webbricks-addons' ),
+				'label' => __( 'Countdown', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -45,10 +45,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_due_date',
 			[
-				'label' => __( 'Due Date', 'webbricks-addons' ),
+				'label' => __( 'Due Date', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DATE_TIME,
 				'default' => gmdate('Y-m-d H:i', strtotime('+1 month')),
-				'description' => sprintf(esc_html('Date set according to your timezone: %s.', 'webbricks-addons'), date_default_timezone_get()),
+				'description' => sprintf(esc_html('Date set according to your timezone: %s.', 'awesome-widgets-elementor'), date_default_timezone_get()),
 			]
 		);
 
@@ -56,10 +56,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_show_days',
 			[
-				'label' => __( 'Days', 'webbricks-addons' ),
+				'label' => __( 'Days', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'webbricks-addons' ),
-				'label_off' => __( 'Hide', 'webbricks-addons' ),
+				'label_on' => __( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => __( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -69,10 +69,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_show_hours',
 			[
-				'label' => __( 'Hours', 'webbricks-addons' ),
+				'label' => __( 'Hours', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'webbricks-addons' ),
-				'label_off' => __( 'Hide', 'webbricks-addons' ),
+				'label_on' => __( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => __( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -82,10 +82,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_show_minutes',
 			[
-				'label' => __( 'Minutes', 'webbricks-addons' ),
+				'label' => __( 'Minutes', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'webbricks-addons' ),
-				'label_off' => __( 'Hide', 'webbricks-addons' ),
+				'label_on' => __( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => __( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -95,10 +95,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_show_seconds',
 			[
-				'label' => __( 'Seconds', 'webbricks-addons' ),
+				'label' => __( 'Seconds', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'webbricks-addons' ),
-				'label_off' => __( 'Hide', 'webbricks-addons' ),
+				'label_on' => __( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => __( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -109,7 +109,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_expire_section',
 			[
-				'label' => __( 'Countdown Expire' , 'webbricks-addons' )
+				'label' => __( 'Countdown Expire' , 'awesome-widgets-elementor' )
 			]
 		);
 
@@ -117,13 +117,13 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_expire_show_type',
 			[
-				'label'			=> __('Expire Type', 'webbricks-addons'),
+				'label'			=> __('Expire Type', 'awesome-widgets-elementor'),
 				'label_block'	=> false,
 				'type'			=> Controls_Manager::SELECT,
-                'description'   => __('Select whether you want to set a message or a redirect link after expire countdown', 'webbricks-addons'),
+                'description'   => __('Select whether you want to set a message or a redirect link after expire countdown', 'awesome-widgets-elementor'),
 				'options'		=> [
-					'message'		=> __('Message', 'webbricks-addons'),
-					'redirect_link'		=> __('Redirect to Link', 'webbricks-addons')
+					'message'		=> __('Message', 'awesome-widgets-elementor'),
+					'redirect_link'		=> __('Redirect to Link', 'awesome-widgets-elementor')
 				],
 				'default' => 'message'
 			]
@@ -133,9 +133,9 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_expire_message',
 			[
-				'label'			=> __('Expire Message', 'webbricks-addons'),
+				'label'			=> __('Expire Message', 'awesome-widgets-elementor'),
 				'type'			=> Controls_Manager::TEXTAREA,
-				'default'		=> __('Sorry you are late!', 'webbricks-addons'),
+				'default'		=> __('Sorry you are late!', 'awesome-widgets-elementor'),
 				'condition'		=> [
 					'awea_countdown_expire_show_type' => 'message'
 				]
@@ -146,7 +146,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_expire_redirect_link',
 			[
-				'label'			=> __('Redirect On', 'webbricks-addons'),
+				'label'			=> __('Redirect On', 'awesome-widgets-elementor'),
 				'type'			=> Controls_Manager::URL,
 				'show_external' => true,
 				'default' => [
@@ -166,7 +166,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_label_text_section',
 			[
-				'label' => __( 'Change Labels Text' , 'webbricks-addons' )
+				'label' => __( 'Change Labels Text' , 'awesome-widgets-elementor' )
 			]
 		);
 
@@ -174,10 +174,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
         $this->add_control(
 			'awea_countdown_change_labels',
 			[
-				'label' => __( 'Change Labels', 'webbricks-addons' ),
+				'label' => __( 'Change Labels', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'webbricks-addons' ),
-				'label_off' => __( 'No', 'webbricks-addons' ),
+				'label_on' => __( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => __( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'no',
 			]
@@ -187,10 +187,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_label_days',
 			[
-				'label' => __( 'Days', 'webbricks-addons' ),
+				'label' => __( 'Days', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Days', 'webbricks-addons' ),
-				'placeholder' => __( 'Days', 'webbricks-addons' ),
+				'default' => __( 'Days', 'awesome-widgets-elementor' ),
+				'placeholder' => __( 'Days', 'awesome-widgets-elementor' ),
 				'condition' => [
 					'awea_countdown_change_labels' => 'yes',
 					'awea_countdown_show_days' => 'yes',
@@ -202,10 +202,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_label_hours',
 			[
-				'label' => __( 'Hours', 'webbricks-addons' ),
+				'label' => __( 'Hours', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Hours', 'webbricks-addons' ),
-				'placeholder' => __( 'Hours', 'webbricks-addons' ),
+				'default' => __( 'Hours', 'awesome-widgets-elementor' ),
+				'placeholder' => __( 'Hours', 'awesome-widgets-elementor' ),
 				'condition' => [
 					'awea_countdown_change_labels' => 'yes',
 					'awea_countdown_show_hours' => 'yes',
@@ -217,10 +217,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_label_minuts',
 			[
-				'label' => __( 'Minutes', 'webbricks-addons' ),
+				'label' => __( 'Minutes', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Minutes', 'webbricks-addons' ),
-				'placeholder' => __( 'Minutes', 'webbricks-addons' ),
+				'default' => __( 'Minutes', 'awesome-widgets-elementor' ),
+				'placeholder' => __( 'Minutes', 'awesome-widgets-elementor' ),
 				'condition' => [
 					'awea_countdown_change_labels' => 'yes',
 					'awea_countdown_show_minutes' => 'yes',
@@ -232,10 +232,10 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_label_seconds',
 			[
-				'label' => __( 'Seconds', 'webbricks-addons' ),
+				'label' => __( 'Seconds', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Seconds', 'webbricks-addons' ),
-				'placeholder' => __( 'Seconds', 'webbricks-addons' ),
+				'default' => __( 'Seconds', 'awesome-widgets-elementor' ),
+				'placeholder' => __( 'Seconds', 'awesome-widgets-elementor' ),
 				'condition' => [
 					'awea_countdown_change_labels' => 'yes',
 					'awea_countdown_show_seconds' => 'yes',
@@ -248,7 +248,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_pro_message',
 			[
-				'label' => esc_html__('Premium', 'webbricks-addons'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -261,7 +261,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Web Bricks Premium is coming soon with more widgets, features, and customization options.', 'webbricks-addons')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -271,7 +271,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(   
 			'awea_countdown_style_section',
 			[
-				'label' => __( 'Layout', 'webbricks-addons' ),
+				'label' => __( 'Layout', 'awesome-widgets-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -280,7 +280,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_responsive_control(
 			'awea_countdown_box_spacing',
 			[
-				'label' => __( 'Box Gap', 'webbricks-addons' ),
+				'label' => __( 'Box Gap', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 10,
@@ -313,7 +313,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_box_border_radius',
 			[
-				'label' => __( 'Border Radius', 'webbricks-addons' ),
+				'label' => __( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
@@ -328,7 +328,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_digits_style_section',
 			[
-				'label' => __( 'Digits', 'webbricks-addons' ),
+				'label' => __( 'Digits', 'awesome-widgets-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -337,7 +337,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_digits_color',
 			[
-				'label' => __( 'Color', 'webbricks-addons' ),
+				'label' => __( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-countdown-digits' => 'color: {{VALUE}};',
@@ -365,7 +365,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_label_style_section',
 			[
-				'label' => __( 'Labels', 'webbricks-addons' ),
+				'label' => __( 'Labels', 'awesome-widgets-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -374,7 +374,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_label_color',
 			[
-				'label' => __( 'Text Color', 'webbricks-addons' ),
+				'label' => __( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-countdown-label' => 'color: {{VALUE}};',
@@ -401,7 +401,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_label_border_color',
 			[
-				'label' => __( 'Border Color', 'webbricks-addons' ),
+				'label' => __( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-countdown-label' => 'border-color: {{VALUE}};',
@@ -418,7 +418,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->start_controls_section(
 			'awea_countdown_finish_message_style_section',
 			[
-				'label' => __( 'Message', 'webbricks-addons' ),
+				'label' => __( 'Message', 'awesome-widgets-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -427,7 +427,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 		$this->add_control(
 			'awea_countdown_message_color',
 			[
-				'label' => __( 'Color', 'webbricks-addons' ),
+				'label' => __( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-finished-message' => 'color: {{VALUE}};',
@@ -488,7 +488,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
                     <?php
                     $target = $settings['awea_countdown_expire_redirect_link']['is_external'] ? '_blank' : '_self';
                     if (defined('ELEMENTOR_PATH') && class_exists('Elementor\Plugin') && Plugin::$instance->editor->is_edit_mode()): ?>
-                    $("#awea-finished-message-<?php echo esc_attr($this->get_id()); ?>").html("<?php echo esc_js(__('You cannot redirect URLs from Elementor Editor.', 'webbricks-addons')); ?>");
+                    $("#awea-finished-message-<?php echo esc_attr($this->get_id()); ?>").html("<?php echo esc_js(__('You cannot redirect URLs from Elementor Editor.', 'awesome-widgets-elementor')); ?>");
                     <?php else: ?>
                     window.open("<?php echo esc_url($settings['awea_countdown_expire_redirect_link']['url']); ?>", "<?php echo esc_js($target); ?>");
                     <?php endif; ?>

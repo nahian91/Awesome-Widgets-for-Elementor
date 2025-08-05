@@ -3,30 +3,30 @@
 
     $(window).on('elementor/frontend/init', function () {
 
-        // FAQ Widget
+        // accordion Widget
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/awesome-accordion.default',
             function ($scope) {
 
-                var $faq = $scope.find('.awea-faq');
+                var $accordion = $scope.find('.awea-accordion');
 
-                if (!$faq.length) return;
+                if (!$accordion.length) return;
 
-                // Open first FAQ item
-                $faq.find('> li:eq(0) span').addClass('active').next().slideDown();
+                // Open first accordion item
+                $accordion.find('> li:eq(0) span').addClass('active').next().slideDown();
 
                 // Handle click
-                $faq.find('span').on('click', function (e) {
+                $accordion.find('span').on('click', function (e) {
                     var $this = $(this);
                     var dropDown = $this.closest('li').find('p');
 
                     // Close others
-                    $faq.find('p').not(dropDown).slideUp();
+                    $accordion.find('p').not(dropDown).slideUp();
 
                     if ($this.hasClass('active')) {
                         $this.removeClass('active');
                     } else {
-                        $faq.find('span.active').removeClass('active');
+                        $accordion.find('span.active').removeClass('active');
                         $this.addClass('active');
                     }
 

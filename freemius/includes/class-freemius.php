@@ -325,14 +325,14 @@
         /**
          * @since  2.0.0
          *
-         * @var int|null The original blog ID the plugin was loaded with.
+         * @var int|null The original post ID the plugin was loaded with.
          */
         private $_blog_id = null;
 
         /**
          * @since  2.0.0
          *
-         * @var int|null The current execution context. When true, run on network context. When int, run on the specified blog context.
+         * @var int|null The current execution context. When true, run on network context. When int, run on the specified post context.
          */
         private $_context_is_network_or_blog_id = null;
 
@@ -601,7 +601,7 @@
                     $blog_install_timestamp = $this->_storage->get( 'install_timestamp', null, $blog_id );
 
                     if ( is_null( $blog_install_timestamp ) ) {
-                        // Plugin has not been installed on this blog.
+                        // Plugin has not been installed on this post.
                         continue;
                     }
 
@@ -3145,7 +3145,7 @@
         }
 
         /**
-         * Get the basenames of all active plugins for specific blog. Including network activated plugins.
+         * Get the basenames of all active plugins for specific post. Including network activated plugins.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -3227,7 +3227,7 @@
         }
 
         /**
-         * Get collection of all site active plugins for a specified blog.
+         * Get collection of all site active plugins for a specified post.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -3259,7 +3259,7 @@
         }
 
         /**
-         * Get collection of all plugins with their activation status for a specified blog.
+         * Get collection of all plugins with their activation status for a specified post.
          *
          * @author Vova Feldman (@svovaf)
          * @since  1.1.8
@@ -4562,8 +4562,8 @@
                             /**
                              * If not registered for add-on and the following conditions for the add-on are met, activate add-on account.
                              * * Network active and in network admin         - network activate add-on account.
-                             * * Network active and not in network admin     - activate add-on account for the current blog.
-                             * * Not network active and not in network admin - activate add-on account for the current blog.
+                             * * Network active and not in network admin     - activate add-on account for the current post.
+                             * * Not network active and not in network admin - activate add-on account for the current post.
                              *
                              * If not registered for add-on, not network active, and in network admin, do not handle the add-on activation.
                              *
@@ -5983,7 +5983,7 @@
          * @since  2.0.0
          *
          * @param string $name         Cron name.
-         * @param int    $cron_blog_id The cron executing blog ID.
+         * @param int    $cron_blog_id The cron executing post ID.
          */
         private function set_cron_data( $name, $cron_blog_id = 0 ) {
             $this->_logger->entrance( $name );
@@ -5998,7 +5998,7 @@
         }
 
         /**
-         * Get the cron's executing blog ID.
+         * Get the cron's executing post ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -6116,7 +6116,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
-         * @param int $except_blog_id Target any except the excluded blog ID.
+         * @param int $except_blog_id Target any except the excluded post ID.
          *
          * @return int
          */
@@ -6133,7 +6133,7 @@
                     $except_blog_id != $network_install_blog_id &&
                     self::is_site_active( $network_install_blog_id )
                 ) {
-                    // Try to run cron from the main network blog.
+                    // Try to run cron from the main network post.
                     $install = $this->get_install_by_blog_id( $network_install_blog_id );
 
                     if (
@@ -6145,7 +6145,7 @@
                 }
             }
 
-            // Get first opted-in blog ID with active tracking.
+            // Get first opted-in post ID with active tracking.
             $installs = $this->get_blog_install_map();
             foreach ( $installs as $blog_id => $install ) {
                 if ( $except_blog_id != $blog_id &&
@@ -6258,7 +6258,7 @@
          * @param string $recurrence      'single' or 'daily'.
          * @param int    $start_at        Defaults to now.
          * @param bool   $randomize_start If true, schedule first job randomly during the next 12 hours. Otherwise, schedule job to start right away.
-         * @param int    $except_blog_id  Target any except the excluded blog ID.
+         * @param int    $except_blog_id  Target any except the excluded post ID.
          */
         private function schedule_cron(
             $name,
@@ -6275,7 +6275,7 @@
             $cron_blog_id = $this->get_cron_target_blog_id( $except_blog_id );
 
             if ( is_multisite() && 0 == $cron_blog_id ) {
-                // Don't schedule cron since couldn't find a target blog.
+                // Don't schedule cron since couldn't find a target post.
                 return;
             }
 
@@ -6336,7 +6336,7 @@
             $users_2_blog_ids = array();
 
             if ( ! is_multisite() ) {
-                // Add dummy blog.
+                // Add dummy post.
                 $users_2_blog_ids[0] = array( 0 );
             } else {
                 $installs = $this->get_blog_install_map();
@@ -6390,7 +6390,7 @@
         }
 
         /**
-         * Get the sync cron's executing blog ID.
+         * Get the sync cron's executing post ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -6439,8 +6439,8 @@
          *
          * @param int[]    $blog_ids
          * @param int|null $current_blog_id @since 2.2.3. This is passed from the `execute_cron` method and used by the
-         *                                  `_sync_plugin_license` method in order to switch to the previous blog when sending
-         *                                  updates for a single site in case `execute_cron` has switched to a different blog.
+         *                                  `_sync_plugin_license` method in order to switch to the previous post when sending
+         *                                  updates for a single site in case `execute_cron` has switched to a different post.
          */
         function _sync_cron_method( array $blog_ids, $current_blog_id = null ) {
             if ( $this->is_registered() ) {
@@ -6513,7 +6513,7 @@
          *
          * @param int  $start_at        Defaults to now.
          * @param bool $randomize_start If true, schedule first job randomly during the next 12 hours. Otherwise, schedule job to start right away.
-         * @param int  $except_blog_id  Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified blog ID from being the cron executor.
+         * @param int  $except_blog_id  Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified post ID from being the cron executor.
          */
         private function schedule_sync_cron(
             $start_at = WP_FS__SCRIPT_START_TIME,
@@ -6593,7 +6593,7 @@
         }
 
         /**
-         * Get the sync cron's executing blog ID.
+         * Get the sync cron's executing post ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -6610,7 +6610,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  1.1.7.3
          *
-         * @param int $except_blog_id Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified blog ID from being the cron executor.
+         * @param int $except_blog_id Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified post ID from being the cron executor.
          */
         private function schedule_install_sync( $except_blog_id = 0 ) {
             if ( $this->is_clone() ) {
@@ -6987,7 +6987,7 @@
                 return false;
             }
 
-            // If running from a blog admin and delegated the connection.
+            // If running from a post admin and delegated the connection.
             return ! isset( $this->_storage->sticky_optin_added );
         }
 
@@ -8391,7 +8391,7 @@
             }
 
             /**
-             * Store the new blog's information even if there's no install so that when a clone install is stored in the new blog's storage, we can try to resolve it automatically.
+             * Store the new post's information even if there's no install so that when a clone install is stored in the new post's storage, we can try to resolve it automatically.
              *
              * @author Leo Fajardo (@leorw)
              * @since 2.5.0
@@ -8972,7 +8972,7 @@
          * @param string[] $override
          * @param bool     $include_plugins   Since 1.1.8 by default include plugin changes.
          * @param bool     $include_themes    Since 1.1.8 by default include plugin changes.
-         * @param bool     $include_blog_data Since 2.3.0 by default include the current blog's data (language, title, and URL).
+         * @param bool     $include_blog_data Since 2.3.0 by default include the current post's data (language, title, and URL).
          *
          * @return array
          */
@@ -10392,7 +10392,7 @@
          *
          * @param string        $option_name
          * @param mixed         $default
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context blog storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_SITE_LEVEL_PARAMS).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context post storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_SITE_LEVEL_PARAMS).
          *
          * @return mixed|FS_Plugin[]|FS_User[]|FS_Site[]|FS_Plugin_License[]|FS_Plugin_Plan[]|FS_Plugin_Tag[]
          */
@@ -10966,7 +10966,7 @@
             $addon_storage = FS_Storage::instance( WP_FS__MODULE_TYPE_PLUGIN, $slug );
 
             if ( ! fs_is_network_admin() ) {
-                // Get blog-level activated installations.
+                // Get post-level activated installations.
                 $sites = self::maybe_get_entities_account_option( 'sites', array() );
             } else {
                 $sites = null;
@@ -11950,7 +11950,7 @@
         }
 
         /**
-         * Checks if the context license is network activated except on the given blog ID.
+         * Checks if the context license is network activated except on the given post ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -11977,7 +11977,7 @@
                 $blog_id = self::get_site_blog_id( $site );
 
                 if ( $except_blog_id == $blog_id ) {
-                    // Skip excluded blog.
+                    // Skip excluded post.
                     continue;
                 }
 
@@ -12044,7 +12044,7 @@
          *
          * @return false|array {
          * @type array[int]FS_Site $installs Blog ID to install map.
-         * @type int[]               $sites            Non-connected blog IDs.
+         * @type int[]               $sites            Non-connected post IDs.
          * @type int                 $production_count Production sites count.
          * @type int                 $localhost_count  Production sites count.
          * }
@@ -12224,7 +12224,7 @@
                     $installs[] = new FS_Site( $install );
                 }
 
-                // Map site addresses to their blog IDs.
+                // Map site addresses to their post IDs.
                 $address_to_blog_map = $this->get_address_to_blog_map();
 
                 $first_blog_id = null;
@@ -13724,7 +13724,7 @@
 
             if ( $has_valid_blog_id ) {
                 /**
-                 * If a specific blog ID was provided, activate the license only on the specific blog that is associated with the given blog ID.
+                 * If a specific post ID was provided, activate the license only on the specific post that is associated with the given post ID.
                  *
                  * @author Leo Fajardo (@leorw)
                  */
@@ -13735,7 +13735,7 @@
                 $result = true;
 
                 if ( $is_network_activation_or_migration && ! $has_valid_blog_id ) {
-                    // If no specific blog ID was provided, activate the license for all sites in the network.
+                    // If no specific post ID was provided, activate the license for all sites in the network.
                     $blog_2_install_map = array();
                     $site_ids           = array();
 
@@ -15253,8 +15253,8 @@
 
         /**
          * Check if delegated the connection. When running within the network admin,
-         * and haven't specified the blog ID, checks if network level delegated. If running
-         * within a site admin or specified a blog ID, check if delegated the connection for
+         * and haven't specified the post ID, checks if network level delegated. If running
+         * within a site admin or specified a post ID, check if delegated the connection for
          * the current context site.
          *
          * If executed outside the the admin, check if delegated the connection
@@ -15263,7 +15263,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
-         * @param int $blog_id If set, checks if network delegated or blog specific delegated.
+         * @param int $blog_id If set, checks if network delegated or post specific delegated.
          *
          * @return bool
          */
@@ -15352,7 +15352,7 @@
         }
 
         /**
-         * Checks if a given blog is active.
+         * Checks if a given post is active.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15380,20 +15380,20 @@
         }
 
         /**
-         * Get a mapping between the site addresses to their blog IDs.
+         * Get a mapping between the site addresses to their post IDs.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
          * @return array {
          * @key    string Site address without protocol with a trailing slash.
-         * @value  int Site's blog ID.
+         * @value  int Site's post ID.
          * }
          */
         private function get_address_to_blog_map() {
             $sites = self::get_sites();
 
-            // Map site addresses to their blog IDs.
+            // Map site addresses to their post IDs.
             $address_to_blog_map = array();
             foreach ( $sites as $site ) {
                 $blog_id                         = self::get_site_blog_id( $site );
@@ -15405,20 +15405,20 @@
         }
 
         /**
-         * Get a mapping between the site addresses to their blog IDs.
+         * Get a mapping between the site addresses to their post IDs.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
          * @return array {
-         * @key    int     Site's blog ID.
+         * @key    int     Site's post ID.
          * @value  FS_Site Associated install.
          * }
          */
         function get_blog_install_map() {
             $sites = self::get_sites();
 
-            // Map site blog ID to its install.
+            // Map site post ID to its install.
             $install_map = array();
 
             foreach ( $sites as $site ) {
@@ -15437,7 +15437,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.5.1
          *
-         * @param bool|null $is_delegated When `true`, returns only connection delegated blog IDs. When `false`, only non-delegated blog IDs.
+         * @param bool|null $is_delegated When `true`, returns only connection delegated post IDs. When `false`, only non-delegated post IDs.
          *
          * @return int[]
          */
@@ -15524,7 +15524,7 @@
          *
          * @return null|array {
          *      'install' => FS_Site Module's install,
-         *      'blog_id' => string The associated blog ID.
+         *      'blog_id' => string The associated post ID.
          * }
          */
         function find_first_install() {
@@ -15546,7 +15546,7 @@
         }
 
         /**
-         * Switches the Freemius site level context to a specified blog.
+         * Switches the Freemius site level context to a specified post.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15630,7 +15630,7 @@
         }
 
         /**
-         * Restore the blog context to the blog that originally loaded the module.
+         * Restore the post context to the post that originally loaded the module.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15747,7 +15747,7 @@
         }
 
         /**
-         * Load the module's install based on the blog ID.
+         * Load the module's install based on the post ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15861,7 +15861,7 @@
         }
 
         /**
-         * Returns the blog ID that is associated with the main install.
+         * Returns the post ID that is associated with the main install.
          *
          * @author Leo Fajardo (@leorw)
          * @since  2.0.0
@@ -15898,7 +15898,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
-         * @return false|int If yes, return the requested blog ID.
+         * @return false|int If yes, return the requested post ID.
          */
         private function is_network_level_site_specific_action() {
             if ( ! $this->_is_network_active ) {
@@ -15928,7 +15928,7 @@
 
         /**
          * Needs to be executed after site deactivation, archive, deletion, or flag as spam.
-         * The logic updates the network level user and blog, and reschedule the crons if the cron executing site matching the site that is no longer publicly active.
+         * The logic updates the network level user and post, and reschedule the crons if the cron executing site matching the site that is no longer publicly active.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15954,7 +15954,7 @@
                             continue;
                         }
 
-                        // Switch reference to a blog that is opted-in and belong to the same super-admin.
+                        // Switch reference to a post that is opted-in and belong to the same super-admin.
                         $this->_storage->network_install_blog_id = $blog_id;
                         break;
                     }
@@ -16862,7 +16862,7 @@
          * @since  1.1.7.4
          *
          * @param array         $override_with
-         * @param bool|int|null $network_level_or_blog_id If true, return params for network level opt-in. If integer, get params for specified blog in the network.
+         * @param bool|int|null $network_level_or_blog_id If true, return params for network level opt-in. If integer, get params for specified post in the network.
          *
          * @return array
          */
@@ -18033,7 +18033,7 @@
          * @since  1.0.6
          *
          * @param Freemius          $parent_fs
-         * @param bool|int|null     $network_level_or_blog_id True for network level opt-in and integer for opt-in for specified blog in the network.
+         * @param bool|int|null     $network_level_or_blog_id True for network level opt-in and integer for opt-in for specified post in the network.
          * @param FS_Plugin_License $bundle_license           Since 2.4.0. If provided, this license will be activated for the add-on.
          */
         private function _activate_addon_account(
@@ -18056,7 +18056,7 @@
 
             /**
              * Do not override the `uid` if network-level opt-in since the call to `get_sites_for_network_level_optin()`
-             * already returns the data for the current blog.
+             * already returns the data for the current post.
              *
              * @author Leo Fajardo (@leorw)
              * @since 2.3.0
@@ -18070,7 +18070,7 @@
                 false,
                 false,
                 /**
-                 * Do not include the data for the current blog if network-level opt-in since the call to `get_sites_for_network_level_optin`
+                 * Do not include the data for the current post if network-level opt-in since the call to `get_sites_for_network_level_optin`
                  * already includes the data for it.
                  *
                  * @author Leo Fajardo (@leorw)
@@ -18197,7 +18197,7 @@
             } else {
                 $this->_store_user();
 
-                // Map site addresses to their blog IDs.
+                // Map site addresses to their post IDs.
                 $address_to_blog_map = $this->get_address_to_blog_map();
 
                 $first_blog_id      = null;
@@ -19523,7 +19523,7 @@
         }
 
         /**
-         * Returns an AJAX URL with a special extra param to indicate whether the request was triggered from the network admin or blog admin.
+         * Returns an AJAX URL with a special extra param to indicate whether the request was triggered from the network admin or post admin.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.5.1
@@ -20302,7 +20302,7 @@
             if ( ! $is_site_license_synced ) {
                 if ( ! is_null( $blog_id ) ) {
                     /**
-                     * If blog ID is not null, the request is for syncing of the license of a single site via the
+                     * If post ID is not null, the request is for syncing of the license of a single site via the
                      * network-level "Account" page.
                      *
                      * @author Leo Fajardo (@leorw)
@@ -20792,8 +20792,8 @@
          * @param bool $is_context_single_site @since 2.0.0. This is used when syncing a license for a single install from the
          *                                     network-level "Account" page.
          * @param int|null $current_blog_id    @since 2.2.3. This is passed from the `execute_cron` method and used by the
-         *                                     `_sync_plugin_license` method in order to switch to the previous blog when sending
-         *                                      updates for a single site in case `execute_cron` has switched to a different blog.
+         *                                     `_sync_plugin_license` method in order to switch to the previous post when sending
+         *                                      updates for a single site in case `execute_cron` has switched to a different post.
          */
         private function _sync_license( $background = false, $is_context_single_site = false, $current_blog_id = null ) {
             $this->_logger->entrance();
@@ -20906,8 +20906,8 @@
          *                                     syncing its license from the network-level "Account" page (e.g.: after
          *                                     activating a license only for the single install).
          * @param int|null $current_blog_id    Since 2.2.3. This is passed from the `execute_cron` method so that it
-         *                                     can be used here to switch to the previous blog in case `execute_cron`
-         *                                     has switched to a different blog.
+         *                                     can be used here to switch to the previous post in case `execute_cron`
+         *                                     has switched to a different post.
          */
         private function _sync_plugin_license(
             $background = false,
@@ -20931,7 +20931,7 @@
                  */
                 if ( $is_site_level_sync ) {
                     /**
-                     * Switch to the previous blog since `execute_cron` may have switched to a different blog.
+                     * Switch to the previous post since `execute_cron` may have switched to a different post.
                      *
                      * @author Leo Fajardo (@leorw)
                      * @since 2.2.3
@@ -20949,7 +20949,7 @@
 
                 if ( ! $is_valid ) {
                     if ( $is_context_single_site ) {
-                        // Switch back to the main blog so that the following logic will have the right entities.
+                        // Switch back to the main post so that the following logic will have the right entities.
                         $this->switch_to_blog( $this->_storage->network_install_blog_id );
                     }
 
@@ -21017,7 +21017,7 @@
                 if ( $is_site_level_sync ) {
                     $site = new FS_Site( $result );
                 } else {
-                    // Map site addresses to their blog IDs.
+                    // Map site addresses to their post IDs.
                     $address_to_blog_map = $this->get_address_to_blog_map();
 
                     // Find the current context install.
@@ -21055,7 +21055,7 @@
                 if ( $is_context_single_site ) {
                     $context_blog_id = get_current_blog_id();
 
-                    // Switch back to the main blog in order to properly sync the license.
+                    // Switch back to the main post in order to properly sync the license.
                     $this->switch_to_blog( $this->_storage->network_install_blog_id );
                 }
 

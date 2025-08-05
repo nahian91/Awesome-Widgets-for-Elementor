@@ -9,13 +9,13 @@
 }
 
 .awea-dashboard-header h1 {
-    color: #0073aa;
+    color: #633ff5;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 .awea-button {
-    background-color: #0073aa;
+    background-color: #633ff5;
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -51,6 +51,16 @@
     color: #333;
 }
 
+.awea-widget-counts{
+    margin: 20px 0; 
+    padding: 15px; 
+    background: #f9f9f9; 
+    border: 1px solid #ddd; 
+    display: flex; 
+    gap: 30px; 
+    font-size: 16px;
+}
+
 /* Custom Awesome Checkbox */
 .awea-checkbox-container input[type="checkbox"] {
     display: none;
@@ -63,7 +73,7 @@
     width: 20px;
     height: 20px;
     margin-right: 8px;
-    border: 2px solid #0073aa;
+    border: 2px solid #633ff5;
     border-radius: 4px;
     background-color: #fff;
     color: transparent;
@@ -75,9 +85,9 @@
 }
 
 .awea-checkbox-container input[type="checkbox"]:checked + label::before {
-    background-color: #0073aa;
+    background-color: #633ff5;
     color: #fff;
-    border-color: #0073aa;
+    border-color: #633ff5;
 }
 
 
@@ -129,7 +139,7 @@
 }
 
 input:checked + .awea-slider {
-    background-color: #0073aa;
+    background-color: #633ff5;
 }
 
 input:checked + .awea-slider:before {
@@ -259,20 +269,35 @@ input:checked + .awea-slider:before {
     padding: 0;
     margin: 0;
 }
-
 .awea-wrap ul li {
-    padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
+	padding: 15px;
+	border: 1px solid #633ff5;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	background-color: #f4f4f4;
 }
 
-.awea-wrap ul li:last-child {
-    border-bottom: none;
+.awea-widgets-list li .awea-switch-container {
+  display: flex;
+  flex-direction: column;
 }
-
-/* Icon styling (Emoji enhancements) */
+.awea-wrap ul li {
+	padding: 10px 25px;
+	width: 185px;
+	display: flex;
+	justify-content: center;
+}
+.awea-widgets-list li label .awea-switch {
+  margin-top: 5px;
+}
+.awea-widgets-list li .awea-switch-label {
+	font-weight: 600;
+	font-family: "Open Sans";
+	text-align: center;
+	font-size: 17px;
+	line-height: 27px;
+}
 .awea-wrap h3::before {
     content: '✨';
     margin-right: 8px;
@@ -280,16 +305,9 @@ input:checked + .awea-slider:before {
     vertical-align: middle;
 }
 
-.awea-wrap ul li::before {
-    content: '✔️';
-    margin-right: 10px;
-    color: #28a745;
-    font-size: 16px;
-}
-
 /* Link styles */
 .awea-wrap a {
-    color: #0073aa;
+    color: #633ff5;
     text-decoration: none;
 }
 

@@ -39,7 +39,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 	   $this->start_controls_section(
 	       'awea_counter_contents',
 		    [
-		        'label' => esc_html__('Content', 'webbricks-addons'),
+		        'label' => esc_html__('Content', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,		   
 		    ]
 	    );
@@ -50,8 +50,8 @@ class Widget_Awesome_Counter extends Widget_Base {
 				'type' => Controls_Manager::NOTICE,
 				'notice_type' => 'warning',
 				'dismissible' => true,
-				'heading' => esc_html__( 'Notice', 'webbricks-addons' ),
-				'content' => esc_html__( 'Please enable the AwesomeFont option from Elementor settings. Learn more.', 'webbricks-addons' ),
+				'heading' => esc_html__( 'Notice', 'awesome-widgets-elementor' ),
+				'content' => esc_html__( 'Please enable the AwesomeFont option from Elementor settings. Learn more.', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -59,7 +59,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_icon',
 			[
-				'label' => esc_html__( 'Icon', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::ICONS,
 				'default' => [
 					'value' => 'fas fa-globe-africa',
@@ -72,7 +72,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_number',
 			[
-				'label' => esc_html__( 'Number', 'webbricks-addons' ),
+				'label' => esc_html__( 'Number', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 100
 			]
@@ -82,10 +82,10 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_number_suffix',
 			[
-				'label' => esc_html__( 'Number Suffix', 'webbricks-addons' ),
+				'label' => esc_html__( 'Number Suffix', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => ' +',
-				'placeholder' => esc_html__( 'Plus', 'webbricks-addons' ),
+				'placeholder' => esc_html__( 'Plus', 'awesome-widgets-elementor' ),
 			]
 		);
 		
@@ -93,10 +93,10 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 		    'awea_counter_title',
 			[
-			    'label' => esc_html__('Title', 'webbricks-addons'),
+			    'label' => esc_html__('Title', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__('Visiting Country', 'webbricks-addons'),
+				'default' => esc_html__('Visiting Country', 'awesome-widgets-elementor'),
 			]
 		);
 		
@@ -107,7 +107,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->start_controls_section(
 			'awea_counter_pro_message',
 			[
-				'label' => esc_html__('Premium', 'webbricks-addons'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		 );
@@ -120,7 +120,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Web Bricks Premium is coming soon with more widgets, features, and customization options.', 'webbricks-addons')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -130,7 +130,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->start_controls_section(
 			'awea_counter_layout_style',
 			[
-				'label' => esc_html__( 'Layout', 'webbricks-addons' ),
+				'label' => esc_html__( 'Layout', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -139,7 +139,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_background',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-counter-box' => 'background-color: {{VALUE}}',
@@ -163,7 +163,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_border_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -176,7 +176,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_padding',
 			[
-				'label' => esc_html__( 'Padding', 'webbricks-addons' ),
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -191,7 +191,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->start_controls_section(
 			'awea_counter_icon_style',
 			[
-				'label' => esc_html__( 'Icon', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -200,7 +200,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_icon_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-counter-number i' => 'color: {{VALUE}}',
@@ -215,7 +215,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_icon_size',
 			[
-				'label' => esc_html__( 'Icon Size', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Size', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'range' => [
@@ -246,7 +246,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->start_controls_section(
 			'awea_counter_number_style',
 			[
-				'label' => esc_html__( 'Number', 'webbricks-addons' ),
+				'label' => esc_html__( 'Number', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -255,7 +255,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_number_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-counter-content p span' => 'color: {{VALUE}}',
@@ -282,7 +282,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_number_suffix_color',
 			[
-				'label' => esc_html__( 'Suffix Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Suffix Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-counter-content p' => 'color: {{VALUE}}',
@@ -300,7 +300,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->start_controls_section(
 			'awea_counter_title_style',
 			[
-				'label' => esc_html__( 'Title', 'webbricks-addons' ),
+				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -309,7 +309,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-counter-content .awea-counter-title' => 'color: {{VALUE}}',
@@ -336,18 +336,18 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_title_tag',
 			[
-				'label' => __( 'Html Tag', 'webbricks-addons' ),
+				'label' => __( 'Html Tag', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'h1' => __( 'H1', 'webbricks-addons' ),
-					'h2' => __( 'H2', 'webbricks-addons' ),
-					'h3' => __( 'H3', 'webbricks-addons' ),
-					'h4' => __( 'H4', 'webbricks-addons' ),
-					'h5' => __( 'H5', 'webbricks-addons' ),
-					'h6' => __( 'H6', 'webbricks-addons' ),
-					'p' => __( 'P', 'webbricks-addons' ),
-					'span' => __( 'Span', 'webbricks-addons' ),
-					'div' => __( 'Div', 'webbricks-addons' ),
+					'h1' => __( 'H1', 'awesome-widgets-elementor' ),
+					'h2' => __( 'H2', 'awesome-widgets-elementor' ),
+					'h3' => __( 'H3', 'awesome-widgets-elementor' ),
+					'h4' => __( 'H4', 'awesome-widgets-elementor' ),
+					'h5' => __( 'H5', 'awesome-widgets-elementor' ),
+					'h6' => __( 'H6', 'awesome-widgets-elementor' ),
+					'p' => __( 'P', 'awesome-widgets-elementor' ),
+					'span' => __( 'Span', 'awesome-widgets-elementor' ),
+					'div' => __( 'Div', 'awesome-widgets-elementor' ),
 				],
 				'default' => 'p',
 			]

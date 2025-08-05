@@ -38,38 +38,16 @@ class AWEA_Admin_Pages {
             'awesome-widgets-widgets',
             [$this, 'widgets_page']
         );
-
-        add_submenu_page(
-            'awesome-widgets-elementor',
-            'System Info',
-            'System Info',
-            'manage_options',
-            'awesome-widgets-system-info',
-            [$this, 'system_info_page']
-        );
     }
 
     public function general_page() {
         ?>
         <div class="awea-wrap">
             <h1>Awesome Widgets - General Settings</h1>
-            <p><strong>Awesome Widgets for Elementor</strong> is a powerful and versatile plugin designed to supercharge your Elementor experience.</p>
+<p><strong>Awesome Widgets for Elementor</strong> is your ultimate toolkit for designing professional, engaging, and visually stunning websites. Built specifically for Elementor, this plugin offers a wide variety of feature-rich widgets that seamlessly integrate with your design workflow.</p>
+<p>Whether you're building a business website, portfolio, online store, or post, Awesome Widgets empowers you with the flexibility to customize every detail without touching a single line of code. Each widget is thoughtfully crafted to be fully responsive, ensuring your site looks perfect on any device.</p>
+<p>From creative layouts to advanced interactive elements, Awesome Widgets helps you transform your ideas into reality — faster, easier, and better than ever before.</p>
 
-            <h3>🌟 Key Features:</h3>
-            <ul>
-                <li><strong>Exclusive Widgets</strong> for design and functionality</li>
-                <li><strong>Fully Customizable</strong> with Elementor controls</li>
-                <li><strong>Responsive Design</strong> for all screen sizes</li>
-                <li><strong>Lightweight & Fast</strong> codebase</li>
-                <li><strong>Frequent Updates</strong> and new widgets</li>
-            </ul>
-
-            <h3>🚀 Widgets Included:</h3>
-            <ul>
-                <?php foreach ($this->widgets as $widget): ?>
-                    <li><?php echo ucfirst(str_replace('-', ' ', $widget)); ?></li>
-                <?php endforeach; ?>
-            </ul>
         </div>
         <?php
     }
@@ -114,6 +92,7 @@ class AWEA_Admin_Pages {
                         <?php $checked = isset($options[$widget]) ? $options[$widget] : 0; ?>
                         <li class="awea-widgets-list-item">
                             <label for="awea_<?php echo esc_attr($widget); ?>" class="awea-switch-container">
+                                <span class="awea-switch-label"><?php echo ucfirst(str_replace('-', ' ', $widget)); ?></span>
                                 <span class="awea-switch">
                                     <input type="checkbox" 
                                            id="awea_<?php echo esc_attr($widget); ?>" 
@@ -121,7 +100,6 @@ class AWEA_Admin_Pages {
                                            value="1" <?php checked($checked, 1); ?> />
                                     <span class="awea-slider"></span>
                                 </span>
-                                <span class="awea-switch-label"><?php echo ucfirst(str_replace('-', ' ', $widget)); ?></span>
                             </label>
                         </li>
                     <?php endforeach; ?>
@@ -133,26 +111,5 @@ class AWEA_Admin_Pages {
             </form>
         </div>
         <?php
-    }
-
-    public function system_info_page() {
-        $system_info = [
-            'PHP Version'        => phpversion(),
-            'WordPress Version'  => get_bloginfo('version'),
-            'Active Theme'       => wp_get_theme()->get('Name'),
-            'Elementor Version'  => defined('ELEMENTOR_VERSION') ? ELEMENTOR_VERSION : 'Not installed',
-            'WP Memory Limit'    => ini_get('memory_limit'),
-            'WP Debug Mode'      => (defined('WP_DEBUG') && WP_DEBUG) ? 'Enabled' : 'Disabled',
-            'Server Software'    => $_SERVER['SERVER_SOFTWARE'] ?? '',
-            'PHP SAPI'           => php_sapi_name(),
-        ];
-
-        echo '<div class="awea-wrap"><h1>Awesome Widgets - System Info</h1>';
-        echo '<table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">';
-        echo '<thead><tr><th>Information</th><th>Details</th></tr></thead><tbody>';
-        foreach ($system_info as $label => $value) {
-            echo "<tr><td>{$label}</td><td>{$value}</td></tr>";
-        }
-        echo '</tbody></table></div>';
     }
 }

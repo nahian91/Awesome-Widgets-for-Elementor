@@ -10,7 +10,7 @@ use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use \Elementor\Widget_Base;
 
-class Awesome_Product_Carousel extends Widget_Base {
+class Widget_Awesome_Product_Carousel extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -37,7 +37,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Products Carousel', 'webbricks-addons' );
+		return esc_html__( 'Products Carousel', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'wb-icon eicon-carousel-loop';
+		return 'awea-icon eicon-carousel-loop';
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'products', 'carousel', 'wb'];
+		return [ 'products', 'carousel', 'awea'];
 	}
 
 	/**
@@ -88,169 +88,12 @@ class Awesome_Product_Carousel extends Widget_Base {
 	 * @access protected
 	 */
 	protected function register_controls() {
-		
-		// Products Carousel Section Heading Layout
-		$this->start_controls_section(
-			'awea_products_carousel_section_layout_box',
-			[
-				'label' => esc_html__('Layout', 'webbricks-addons'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		// Products Carousel Section Heading Show
-		$this->add_control(
-			'awea_products_carousel_section_heading_show',
-			[
-				'label' => esc_html__( 'Show Section Heading', 'webbricks-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'separator' => 'before'
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Products Carousel Section Sub Heading Box
-		$this->start_controls_section(
-			'awea_products_carousel_section_subheading_box',
-			[
-				'label' => esc_html__('Sub Heading', 'webbricks-addons'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-				'condition' => [
-					'awea_products_carousel_section_heading_show' => 'yes'
-				],
-			]
-		);
-
-		// Products Carousel Section Sub Heading Show?
-		$this->add_control(
-			'awea_products_carousel_section_subheading_show',
-			[
-				'label' => esc_html__( 'Show Sub Heading', 'webbricks-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'separator' => 'before'
-			]
-		);
-		// Products Carousel Sub Heading
-		$this->add_control(
-		    'awea_products_carousel_section_subheading',
-			[
-			    'label' => esc_html__('Sub Heading', 'webbricks-addons'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('Products Carousel', 'webbricks-addons'),
-				'separator' => 'before',
-				'condition' => [
-					'awea_products_carousel_section_subheading_show' => 'yes'
-				],
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Products Carousel Section Heading Box
-		$this->start_controls_section(
-			'awea_products_carousel_section_heading_box',
-			[
-				'label' => esc_html__('Heading', 'webbricks-addons'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-				'condition' => [
-					'awea_products_carousel_section_heading_show' => 'yes'
-				],
-			]
-		);
-		
-		// Products Carousel Section Heading
-		$this->add_control(
-		    'awea_products_carousel_section_heading',
-			[
-			    'label' => esc_html__('Heading', 'webbricks-addons'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('We Are Your One Door To Solve It All', 'webbricks-addons'),
-				'separator' => 'before'
-			]
-		);
-
-		// Section Heading Separator Style
-		$this->add_control(
-			'awea_products_carousel_section_heading_tag',
-			[
-				'label' => __( 'Html Tag', 'webbricks-addons' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'h1' => __( 'H1', 'webbricks-addons' ),
-					'h2' => __( 'H2', 'webbricks-addons' ),
-					'h3' => __( 'H3', 'webbricks-addons' ),
-					'h4' => __( 'H4', 'webbricks-addons' ),
-					'h5' => __( 'H5', 'webbricks-addons' ),
-					'h6' => __( 'H6', 'webbricks-addons' ),
-					'p' => __( 'P', 'webbricks-addons' ),
-					'span' => __( 'Span', 'webbricks-addons' ),
-					'div' => __( 'Div', 'webbricks-addons' ),
-				],
-				'default' => 'h2',
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Products Carousel Section Description
-		$this->start_controls_section(
-			'awea_products_carousel_section_desc_box',
-			[
-				'label' => esc_html__('Description', 'webbricks-addons'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-				'condition' => [
-					'awea_products_carousel_section_heading_show' => 'yes'
-				],
-			]
-		);
-
-		// Products Carousel Section Heading Description Show?
-		$this->add_control(
-			'awea_products_carousel_section_desc_show',
-			[
-				'label' => esc_html__( 'Show Description', 'webbricks-addons' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'separator' => 'before'
-			]
-		);
-
-		// Products Carousel Section Heading Description
-		$this->add_control(
-		    'awea_products_carousel_section_desc',
-			[
-			    'label' => esc_html__('Description', 'webbricks-addons'),
-				'type' => Controls_Manager::WYSIWYG,
-				'label_block' => true,
-				'default' => __('Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'webbricks-addons'),
-				'separator' => 'before',
-				'condition' => [
-					'awea_products_carousel_section_desc_show' => 'yes'
-				],
-			]
-		);
-
-		$this->end_controls_section();
 
 		// start of the Content tab section
 		$this->start_controls_section(
 			'awea_products_carousel_content',
 			[
-				'label' => esc_html__('Products Carousel', 'webbricks-addons'),
+				'label' => esc_html__('Products Carousel', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -259,7 +102,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_responsive_control(
 			'awea_products_carousel_number',
 			[
-				'label' 		=> __('Number of Products', 'webbricks-addons'),
+				'label' 		=> __('Number of Products', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::NUMBER,
 				'default' 		=> '4',
 			]
@@ -269,7 +112,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		// $this->add_control(
 		// 	'awea_products_carousel_category',
 		// 	[
-		// 		'label' => __('Product Category', 'webbricks-addons'),
+		// 		'label' => __('Product Category', 'awesome-widgets-elementor'),
 		// 		'type' => Controls_Manager::SELECT2,
 		// 		'options' => $this->get_product_categories(),
 		// 		'multiple' => true,
@@ -280,13 +123,13 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_order',
 			[
-				'label' 		=> __('Order', 'webbricks-addons'),
+				'label' 		=> __('Order', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SELECT,
 				'default' 		=> '',
 				'options' 		=> [
-					'' 			=> __('Default', 'webbricks-addons'),
-					'DESC' 		=> __('DESCENDING', 'webbricks-addons'),
-					'ASC' 		=> __('ASCENDING', 'webbricks-addons'),
+					'' 			=> __('Default', 'awesome-widgets-elementor'),
+					'DESC' 		=> __('DESCENDING', 'awesome-widgets-elementor'),
+					'ASC' 		=> __('ASCENDING', 'awesome-widgets-elementor'),
 				],
 			]
 		);
@@ -295,20 +138,20 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_orderby',
 			[
-				'label' 		=> __('Order By', 'webbricks-addons'),
+				'label' 		=> __('Order By', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::SELECT,
 				'default' 		=> '',
 				'options' 		=> [
-					''               => __('Default', 'webbricks-addons'),
-					'date'           => __('Date', 'webbricks-addons'),
-					'title'          => __('Title', 'webbricks-addons'),
-					'name'           => __('Name', 'webbricks-addons'),
-					'rand'           => __('Random', 'webbricks-addons'),
-					'comment_count'  => __('Comment Count', 'webbricks-addons'),
-					'menu_order'     => __('Menu Order', 'webbricks-addons'),
-					'best_selling'   => __('Best Selling', 'webbricks-addons'),
-					'on_sale'        => __('On Sale', 'webbricks-addons'),
-					'latest_products' => __('Latest Products', 'webbricks-addons'),
+					''               => __('Default', 'awesome-widgets-elementor'),
+					'date'           => __('Date', 'awesome-widgets-elementor'),
+					'title'          => __('Title', 'awesome-widgets-elementor'),
+					'name'           => __('Name', 'awesome-widgets-elementor'),
+					'rand'           => __('Random', 'awesome-widgets-elementor'),
+					'comment_count'  => __('Comment Count', 'awesome-widgets-elementor'),
+					'menu_order'     => __('Menu Order', 'awesome-widgets-elementor'),
+					'best_selling'   => __('Best Selling', 'awesome-widgets-elementor'),
+					'on_sale'        => __('On Sale', 'awesome-widgets-elementor'),
+					'latest_products' => __('Latest Products', 'awesome-widgets-elementor'),
 				],
 			]
 		);
@@ -319,7 +162,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_carousel_settings',
 			[
-				'label' => esc_html__('Settings', 'webbricks-addons'),
+				'label' => esc_html__('Settings', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -328,7 +171,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_slide_number',
 			[
-                'label'     => esc_html__( 'No. of items per slide', 'webbricks-addons' ),
+                'label'     => esc_html__( 'No. of items per slide', 'awesome-widgets-elementor' ),
                 'type'      => Controls_Manager::SELECT,
                 'options' => [
                     '1' => 1,
@@ -347,10 +190,10 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrows',
 			[
-				'label' => esc_html__( 'Arrows', 'webbricks-addons' ),
+				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -360,10 +203,10 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_loop',
 			[
-				'label' => esc_html__( 'Loops', 'webbricks-addons' ),
+				'label' => esc_html__( 'Loops', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -373,10 +216,10 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_autoplay',
 			[
-				'label' => esc_html__( 'Autoplay', 'webbricks-addons' ),
+				'label' => esc_html__( 'Autoplay', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -386,10 +229,10 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_pause',
 			[
-				'label' => esc_html__( 'Pause on hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Pause on hover', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -399,20 +242,20 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_autoplay_speed',
 			[
-				'label' => esc_html__( 'Speed', 'webbricks-addons' ),
+				'label' => esc_html__( 'Speed', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '5000',
 				'options' => [
-					'1000' => esc_html__( '1 Seconds', 'webbricks-addons' ),
-					'2000' => esc_html__( '2 Seconds', 'webbricks-addons' ),
-					'3000' => esc_html__( '3 Seconds', 'webbricks-addons' ),
-					'4000' => esc_html__( '4 Seconds', 'webbricks-addons' ),
-					'5000' => esc_html__( '5 Seconds', 'webbricks-addons' ),
-					'6000' => esc_html__( '6 Seconds', 'webbricks-addons' ),
-					'7000' => esc_html__( '7 Seconds', 'webbricks-addons' ),
-					'8000' => esc_html__( '8 Seconds', 'webbricks-addons' ),
-					'9000' => esc_html__( '9 Seconds', 'webbricks-addons' ),
-					'10000' => esc_html__( '10 Seconds', 'webbricks-addons' ),
+					'1000' => esc_html__( '1 Seconds', 'awesome-widgets-elementor' ),
+					'2000' => esc_html__( '2 Seconds', 'awesome-widgets-elementor' ),
+					'3000' => esc_html__( '3 Seconds', 'awesome-widgets-elementor' ),
+					'4000' => esc_html__( '4 Seconds', 'awesome-widgets-elementor' ),
+					'5000' => esc_html__( '5 Seconds', 'awesome-widgets-elementor' ),
+					'6000' => esc_html__( '6 Seconds', 'awesome-widgets-elementor' ),
+					'7000' => esc_html__( '7 Seconds', 'awesome-widgets-elementor' ),
+					'8000' => esc_html__( '8 Seconds', 'awesome-widgets-elementor' ),
+					'9000' => esc_html__( '9 Seconds', 'awesome-widgets-elementor' ),
+					'10000' => esc_html__( '10 Seconds', 'awesome-widgets-elementor' ),
 				],
 			]
 		);
@@ -421,20 +264,20 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_autoplay_animation',
 			[
-				'label' => esc_html__( 'Timeout', 'webbricks-addons' ),
+				'label' => esc_html__( 'Timeout', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '5000',
 				'options' => [
-					'1000' => esc_html__( '1 Seconds', 'webbricks-addons' ),
-					'2000' => esc_html__( '2 Seconds', 'webbricks-addons' ),
-					'3000' => esc_html__( '3 Seconds', 'webbricks-addons' ),
-					'4000' => esc_html__( '4 Seconds', 'webbricks-addons' ),
-					'5000' => esc_html__( '5 Seconds', 'webbricks-addons' ),
-					'6000' => esc_html__( '6 Seconds', 'webbricks-addons' ),
-					'7000' => esc_html__( '7 Seconds', 'webbricks-addons' ),
-					'8000' => esc_html__( '8 Seconds', 'webbricks-addons' ),
-					'9000' => esc_html__( '9 Seconds', 'webbricks-addons' ),
-					'10000' => esc_html__( '10 Seconds', 'webbricks-addons' ),
+					'1000' => esc_html__( '1 Seconds', 'awesome-widgets-elementor' ),
+					'2000' => esc_html__( '2 Seconds', 'awesome-widgets-elementor' ),
+					'3000' => esc_html__( '3 Seconds', 'awesome-widgets-elementor' ),
+					'4000' => esc_html__( '4 Seconds', 'awesome-widgets-elementor' ),
+					'5000' => esc_html__( '5 Seconds', 'awesome-widgets-elementor' ),
+					'6000' => esc_html__( '6 Seconds', 'awesome-widgets-elementor' ),
+					'7000' => esc_html__( '7 Seconds', 'awesome-widgets-elementor' ),
+					'8000' => esc_html__( '8 Seconds', 'awesome-widgets-elementor' ),
+					'9000' => esc_html__( '9 Seconds', 'awesome-widgets-elementor' ),
+					'10000' => esc_html__( '10 Seconds', 'awesome-widgets-elementor' ),
 				],
 			]
 		);
@@ -446,7 +289,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_carousel_pro_message',
 			[
-				'label' => esc_html__('Premium', 'webbricks-addons'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		 );
@@ -459,209 +302,17 @@ class Awesome_Product_Carousel extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Web Bricks Premium is coming soon with more widgets, features, and customization options.', 'webbricks-addons')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
-		$this->end_controls_section();
-
-		// Service Section Heading Style
-		$this->start_controls_section(
-			'awea_service_section_subheading_style',
-			[
-				'label' => esc_html__( 'Sub Heading', 'webbricks-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_products_carousel_section_heading_show' => 'yes',
-					'awea_products_carousel_section_subheading_show' => 'yes'
-				],
-			]
-		);
-
-		$this->add_control(
-			'awea_products_carousel_section_subheading_options',
-			[
-				'label' => esc_html__( 'Bullet', 'webbricks-addons' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// Products Carousel Section Heading Separator Style
-		$this->add_control(
-			'awea_section_heading_separator_variation',
-			[
-				'label' => __( 'Style', 'webbricks-addons' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'default' => __( 'Default', 'webbricks-addons' ),
-					'round' => __( 'Round', 'webbricks-addons' ),
-					'square' => __( 'Square', 'webbricks-addons' ),
-					'circle' => __( 'Circle', 'webbricks-addons' ),
-					'custom' => __( 'Custom', 'webbricks-addons' ),
-					'none' => __( 'None', 'webbricks-addons' ),
-				],
-				'default' => 'default',
-			]
-		);
-
-		// Service Section Bullet Color
-		$this->add_control(
-			'awea_product_carousel_sep_bg',
-			[
-				'label' => esc_html__( 'Color', 'webbricks-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-section-title span:before' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				]
-			]
-		);
-
-		// Service Section Bullet Round
-		$this->add_control(
-			'awea_service_section_sep_round',
-			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-section-title span:before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-				'condition' => [
-					'awea_product_carousel_sep_bg' => 'custom', 
-				],
-			]
-		);
-
-		$this->add_control(
-			'awea_pproducts_carousel_section_subheading_options',
-			[
-				'label' => esc_html__( 'Sub Heading', 'webbricks-addons' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// Service Section Sub Heading Color
-		$this->add_control(
-			'awea_service_section_subheading_color',
-			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-section-title span' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Service Section Sub Heading Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_service_section_subheading_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title span',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Service Section Heading Options
-		$this->start_controls_section(
-			'awea_service_section_heading_style',
-			[
-				'label' => esc_html__( 'Heading', 'webbricks-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_products_carousel_section_heading_show' => 'yes'
-				],
-			]
-		);
-
-		// Service Section Heading Color
-		$this->add_control(
-			'awea_section_title_color',
-			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-section-title .awea-section-heading' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				]
-			]
-		);
-
-		// Service Section Heading Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_section_title_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title .awea-section-heading',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Service Section Description Options
-		$this->start_controls_section(
-			'awea_service_section_desc_style',
-			[
-				'label' => esc_html__( 'Description', 'webbricks-addons' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_products_carousel_section_heading_show' => 'yes',
-					'awea_products_carousel_section_desc_show' => 'yes'
-				],
-			]
-		);
-
-		// Service Section Description Color
-		$this->add_control(
-			'awea_section_desc_color',
-			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-section-title p' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_TEXT,
-				]
-			]
-		);
-
-		// Service Section Description Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_section_desc_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title p',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_TEXT,
-				]
-			]
-		);
-
 		$this->end_controls_section();
 
 		// Products Carousel Layout
 		$this->start_controls_section(
 			'awea_products_carousel_layout_style',
 			[
-				'label' => esc_html__( 'Layout', 'webbricks-addons' ),
+				'label' => esc_html__( 'Layout', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -670,7 +321,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_layout_bg',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-product' => 'background-color: {{VALUE}}',
@@ -694,7 +345,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_product_layout_padding',
 			[
-				'label' => esc_html__( 'Padding', 'webbricks-addons' ),
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
@@ -707,7 +358,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_layout_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
@@ -722,7 +373,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_image',
 			[
-				'label' => esc_html__('Images', 'webbricks-addons'),
+				'label' => esc_html__('Images', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_STYLE		   
 			]
 		);
@@ -740,7 +391,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_product_border_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'default' => [
@@ -760,7 +411,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_image_width',
 			[
-				'label' => esc_html__( 'Width', 'webbricks-addons' ),
+				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
@@ -781,7 +432,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_carousel_title_style',
 			[
-				'label' => esc_html__( 'Product Title', 'webbricks-addons' ),
+				'label' => esc_html__( 'Product Title', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -790,7 +441,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-product h4 a' => 'color: {{VALUE}}',
@@ -819,7 +470,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_carousel_meta_style',
 			[
-				'label' => esc_html__( 'Meta', 'webbricks-addons' ),
+				'label' => esc_html__( 'Meta', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -828,7 +479,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_meta_price_style',
 			[
-				'label' => esc_html__( 'Price', 'webbricks-addons' ),
+				'label' => esc_html__( 'Price', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -838,7 +489,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_meta_price_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-price-bottom p span' => 'color: {{VALUE}}',
@@ -865,7 +516,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_meta_sale_style',
 			[
-				'label' => esc_html__( 'Sale', 'webbricks-addons' ),
+				'label' => esc_html__( 'Sale', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -875,7 +526,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_meta_price_sale_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-product span.awea-sale' => 'color: {{VALUE}}',
@@ -890,7 +541,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_meta_sale_bg',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-product span.awea-sale' => 'background-color: {{VALUE}}',
@@ -917,7 +568,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_meta_sale_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'default' => [
@@ -939,7 +590,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_carousel_button_style',
 			[
-				'label' => esc_html__( 'Button', 'webbricks-addons' ),
+				'label' => esc_html__( 'Button', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -952,7 +603,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'wp_products_carousel_btn_normal_tab',
 			[
-				'label' => esc_html__( 'Normal', 'webbricks-addons' ),
+				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -960,7 +611,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_btn_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-icon-border svg path' => 'fill: {{VALUE}}',
@@ -975,7 +626,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_btn_border',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-icon-border' => 'border-color: {{VALUE}}',
@@ -990,7 +641,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_btn_bg',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-icon-border' => 'background-color: {{VALUE}}',
@@ -1005,7 +656,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'wp_products_carousel_btn_hover_tab',
 			[
-				'label' => esc_html__( 'Hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -1013,7 +664,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_btn_hover_color',
 			[
-				'label' => esc_html__( 'Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-icon-border:hover svg path' => 'fill: {{VALUE}}',
@@ -1028,7 +679,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'wp_products_carousel_btn_hover_bg',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-icon-border:hover:after' => 'background-color: {{VALUE}}',
@@ -1049,7 +700,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_products_carousel_arrow_style',
 			[
-				'label' => esc_html__( 'Arrow Buttons', 'webbricks-addons' ),
+				'label' => esc_html__( 'Arrow Buttons', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -1062,7 +713,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'wp_service_arrow_normal_tab',
 			[
-				'label' => esc_html__( 'Normal', 'webbricks-addons' ),
+				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -1070,7 +721,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border svg path' => 'fill: {{VALUE}}',
@@ -1085,7 +736,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border' => 'border-color: {{VALUE}}',
@@ -1100,7 +751,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_bg_color',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border' => 'background-color: {{VALUE}}',
@@ -1113,7 +764,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_padding',
 			[
-				'label' => esc_html__( 'Padding', 'webbricks-addons' ),
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -1126,7 +777,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_round',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -1141,7 +792,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'wp_service_arrow_hover_tab',
 			[
-				'label' => esc_html__( 'Hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -1149,7 +800,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_hover_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border:hover svg path' => 'fill: {{VALUE}}',
@@ -1164,7 +815,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_product_carousel_arrow_hover_border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border:hover' => 'border-color: {{VALUE}}',
@@ -1179,7 +830,7 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_products_carousel_arrow_hover_bg',
 			[
-				'label' => esc_html__( 'Background Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border:after' => 'background-color: {{VALUE}}',
@@ -1234,7 +885,6 @@ class Awesome_Product_Carousel extends Widget_Base {
 	protected function render() {
 		// Get input from the widget settings
 		$settings = $this->get_settings_for_display();
-		$awea_products_carousel_section_heading_show = $settings['awea_products_carousel_section_heading_show'];
 		$awea_products_carousel_number = $settings['awea_products_carousel_number'];
 		$awea_products_carousel_order = $settings['awea_products_carousel_order'];
 		$awea_products_carousel_orderby = $settings['awea_products_carousel_orderby'];
@@ -1247,26 +897,6 @@ class Awesome_Product_Carousel extends Widget_Base {
 		$awea_products_carousel_autoplay_animation = $settings['awea_products_carousel_autoplay_animation'];
 	
 		?>
-		<?php if ($awea_products_carousel_section_heading_show === 'yes') {
-			$awea_products_carousel_section_subheading_show = $settings['awea_products_carousel_section_subheading_show'];
-			$awea_products_carousel_section_subheading = $settings['awea_products_carousel_section_subheading'];
-			$awea_section_heading_separator_variation = $settings['awea_section_heading_separator_variation'];
-			$awea_products_carousel_section_heading = $settings['awea_products_carousel_section_heading'];
-			$awea_products_carousel_section_heading_tag = $settings['awea_products_carousel_section_heading_tag'];
-			$awea_products_carousel_section_desc_show = $settings['awea_products_carousel_section_desc_show'];
-			$awea_products_carousel_section_desc = $settings['awea_products_carousel_section_desc'];
-		?>
-			<div class="awea-section-title awea-service-title">
-				<?php if($awea_products_carousel_section_subheading_show == 'yes') { ?>
-					<span class="<?php echo esc_attr($awea_section_heading_separator_variation); ?> awea-section-subheading"><?php echo esc_html($awea_products_carousel_section_subheading);?></span>
-				<?php } ?>
-				<<?php echo esc_attr($awea_products_carousel_section_heading_tag); ?>  class="awea-section-heading"><?php echo esc_html($awea_products_carousel_section_heading);?></<?php echo esc_attr($awea_products_carousel_section_heading_tag); ?>>
-				
-				<?php if($awea_products_carousel_section_desc_show == 'yes'){ ?>
-					<p><?php echo wp_kses_post($awea_products_carousel_section_desc);?></p>
-				<?php } ?>
-			</div>
-		<?php } ?>
 	
 		<div class="awea-products-carousel owl-carousel <?php echo $awea_products_carousel_arrows === 'yes' ? 'awea-carousel-top-arrows' : ''; ?> <?php echo $awea_products_carousel_section_heading_show === 'yes' ? 'heading-top' : ''; ?>"  awea-products-scroll="<?php echo esc_attr( $awea_products_carousel_slide_number ); ?>" awea-products-loop= "<?php echo esc_attr( $awea_products_carousel_loop ); ?>" awea-products-autoplay="<?php echo esc_attr( $awea_products_carousel_autoplay ); ?>" awea-products-pause="<?php echo esc_attr( $awea_products_carousel_pause ); ?>" awea-products-arrows="<?php echo esc_attr( $awea_products_carousel_arrows ); ?>" awea-products-animation="<?php echo esc_attr( $awea_products_carousel_autoplay_animation ); ?>" awea-products-speed="<?php echo esc_attr( $awea_products_carousel_autoplay_speed ); ?>">
 		<?php
@@ -1292,18 +922,13 @@ class Awesome_Product_Carousel extends Widget_Base {
 							// Display Sale label if the product is on sale
 							if($sale) {
 						?>
-							<span class="awea-sale"><?php echo esc_html('Sale', 'webbricks-addons'); ?></span>
+							<span class="awea-sale"><?php echo esc_html('Sale', 'awesome-widgets-elementor'); ?></span>
 						<?php } ?>
 						<div class="awea-product-img" style="background-image:url('<?php echo esc_url(get_the_post_thumbnail_url());?>')"></div>
 						<h4><a href="<?php echo esc_url(get_the_permalink());?>"><?php the_title();?></a></h4>
 						<div class="awea-price-bottom">
 							<p><?php echo wp_kses_post(wc_price($product->get_price())); ?></p>
-							<a href="<?php echo esc_url($product->add_to_cart_url());?>" class="awea-icon-border">
-							<svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M3.375 0.25C3.76172 0.25 4.11328 0.566406 4.18359 0.953125L4.25391 1.375H19.0195C19.7578 1.375 20.3203 2.11328 20.1094 2.81641L18.2109 9.56641C18.0703 10.0586 17.6484 10.375 17.1211 10.375H5.97656L6.29297 12.0625H17.1562C17.6133 12.0625 18 12.4492 18 12.9062C18 13.3984 17.6133 13.75 17.1562 13.75H5.58984C5.20312 13.75 4.85156 13.4688 4.78125 13.082L2.67188 1.9375H0.84375C0.351562 1.9375 0 1.58594 0 1.09375C0 0.636719 0.351562 0.25 0.84375 0.25H3.375ZM9.5625 6.57812H11.1094V8.125C11.1094 8.51172 11.3906 8.82812 11.8125 8.82812C12.1992 8.82812 12.5156 8.51172 12.5156 8.125V6.57812H14.0625C14.4492 6.57812 14.7656 6.26172 14.7656 5.875C14.7656 5.48828 14.4492 5.17188 14.0625 5.17188H12.5156V3.625C12.5156 3.23828 12.1992 2.92188 11.8125 2.92188C11.3906 2.92188 11.1094 3.23828 11.1094 3.625V5.17188H9.5625C9.14062 5.17188 8.85938 5.48828 8.85938 5.875C8.85938 6.26172 9.14062 6.57812 9.5625 6.57812ZM4.5 16.5625C4.5 15.6484 5.23828 14.875 6.1875 14.875C7.10156 14.875 7.875 15.6484 7.875 16.5625C7.875 17.5117 7.10156 18.25 6.1875 18.25C5.23828 18.25 4.5 17.5117 4.5 16.5625ZM18 16.5625C18 17.5117 17.2266 18.25 16.3125 18.25C15.3633 18.25 14.625 17.5117 14.625 16.5625C14.625 15.6484 15.3633 14.875 16.3125 14.875C17.2266 14.875 18 15.6484 18 16.5625Z" fill="#004851"/>
-							</svg>
-
-							</a>
+							<a href="<?php echo esc_url($product->add_to_cart_url());?>" class="awea-icon-border">Cart</a>
 						</div>
 					</div>
 			<?php 

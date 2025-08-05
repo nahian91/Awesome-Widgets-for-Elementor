@@ -1,4 +1,4 @@
-.awea-faq {
+.awea-accordion {
   border-top-width: 3px;
   border-bottom-width: 3px;
   border-style: solid;
@@ -8,7 +8,7 @@
   border-right: 0;
   list-style: none;
 }
-.awea-faq li {
+.awea-accordion li {
   font-size: 1.125rem;
   line-height: 1.6875rem;
   position: relative;
@@ -19,29 +19,29 @@
   border-left-width: 0;
   border-right-width: 0;
 }
-.awea-faq li:first-child {
+.awea-accordion li:first-child {
   border-top: 0;
 }
-.awea-faq li:last-child{
+.awea-accordion li:last-child{
   border-bottom: 0;
 }
-.awea-faq li p {
+.awea-accordion li p {
   display: none;
   color: var(--e-global-color-text);
 }
-.awea-faq li:first-child p {
+.awea-accordion li:first-child p {
 	display: block;
 }
-.awea-faq li, .awea-faq li p, .awea-faq li ul, .awea-faq li ol{
+.awea-accordion li, .awea-accordion li p, .awea-accordion li ul, .awea-accordion li ol{
   font-size: 1.125rem;
   line-height: 1.6875rem;
 }
-.awea-faq span {
+.awea-accordion span {
   width: 100%;
   display: block;
   cursor: pointer;
 }
-.awea-faq span:after {
+.awea-accordion span:after {
   width: 15px;
   height: 15px;
   position: absolute;
@@ -53,7 +53,7 @@
   transition: all 0.2s ease-in-out;
   color: var(--e-global-color-primary);
 }
-.awea-faq span.active:after {
+.awea-accordion span.active:after {
   transition: all 0.2s ease-in-out;
   top: 15px;
   font-family: "Font Awesome 5 Free"; 
@@ -61,16 +61,16 @@
   content: "\f068";
   color: var(--e-global-color-secondary);
 }
-.awea-faq li span.active {
+.awea-accordion li span.active {
   border-bottom: 1px dashed var(--e-global-color-primary);
   padding-bottom: 16px;
   margin-bottom: 16px;
 }
-.awea-faq li ul li, .faq li ol li {
+.awea-accordion li ul li, .accordion li ol li {
   border: 0;
   padding: 0;
   margin: 0;
 }
-.awea-faq li ul, .faq li ol {
+.awea-accordion li ul, .accordion li ol {
   margin-left: 15px;
 }

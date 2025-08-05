@@ -4,18 +4,18 @@
     flex-wrap: wrap;
 }
 
-.aweaea-single-blog {
+.awea-single-post {
     display: flex;
     flex-direction: column;
     height: 100%; /* Ensure the column takes up 100% height */
 }
 
-.aweaea-blog-content {
+.awea-post-content {
     flex-grow: 1; /* Allow the content to take up remaining space */
 }
 
 /* Add the following style to ensure equal height for columns */
-.awea-grid-row > div[class^="awea-grid-desktop-"] .aweaea-single-blog  {
+.awea-grid-row > div[class^="awea-grid-desktop-"] .awea-single-post  {
     flex: 1;
 }
 .awea-grid-row.align-center {

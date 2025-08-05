@@ -617,7 +617,7 @@ HTML;
                                 url     : $this.find( '.url' ).val(),
                                 title   : $this.find( '.title' ).val(),
                                 language: $this.find( '.language' ).val(),
-                                blog_id : $this.find( '.blog-id' ).find( 'span' ).text()
+                                blog_id : $this.find( '.post-id' ).find( 'span' ).text()
                             };
 
                             sites.push( site );
@@ -838,7 +838,7 @@ HTML;
             $modal.toggleClass( 'is-single-site-activation', isSingleSiteActivation );
 
             singleBlogID = isSingleSiteActivation ?
-                $singleInstallDetails.prev().data( 'blog-id' ) :
+                $singleInstallDetails.prev().data( 'post-id' ) :
                 null;
 
             <?php if ( $fs->apply_filters( 'enable_per_site_activation', true ) ) : ?>

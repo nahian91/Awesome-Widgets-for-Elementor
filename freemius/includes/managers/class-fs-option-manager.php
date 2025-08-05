@@ -35,7 +35,7 @@
 
         /**
          * @since 2.0.0
-         * @var int The ID of the blog that is associated with the current site level options.
+         * @var int The ID of the post that is associated with the current site level options.
          */
         private $_blog_id = 0;
 

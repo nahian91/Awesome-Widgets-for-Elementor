@@ -36,7 +36,7 @@
         $is_whitelabeled = $fs->is_whitelabeled( true, $blog_id );
     }
 ?>
-    <tr class="fs-site-details" data-blog-id="<?php echo $blog_id ?>"<?php if ( $is_registered ) : ?> data-install-id="<?php echo $install->id ?>"<?php endif ?>>
+    <tr class="fs-site-details" data-post-id="<?php echo $blog_id ?>"<?php if ( $is_registered ) : ?> data-install-id="<?php echo $install->id ?>"<?php endif ?>>
         <!-- Install ID or Opt-in option -->
         <td><?php if ( $is_registered ) : ?>
                 <?php echo $install->id ?>
@@ -153,7 +153,7 @@
                     echo ' class="alternate"';
                 } ?>>
                     <td>
-                        <nobr><?php fs_esc_html_echo_inline( 'Blog ID', 'blog-id', $slug ) ?>:</nobr>
+                        <nobr><?php fs_esc_html_echo_inline( 'Blog ID', 'post-id', $slug ) ?>:</nobr>
                     </td>
                     <td><code><?php echo $blog_id ?></code></td>
                     <td><?php if ( ! FS_Plugin_License::is_valid_id( $install->license_id ) ) : ?>

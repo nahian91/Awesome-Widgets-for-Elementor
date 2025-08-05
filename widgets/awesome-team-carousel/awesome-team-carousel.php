@@ -38,7 +38,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Team Carousel', 'webbricks-addons' );
+		return esc_html__( 'Team Carousel', 'awesome-widgets-elementor' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'wb-icon eicon-carousel';
+		return 'awea-icon eicon-carousel';
 	}
 
 	/**
@@ -79,7 +79,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'wb', 'team', 'carousel' ];
+		return [ 'awea', 'team', 'carousel' ];
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_teams_section_layout_box',
 			[
-				'label' => esc_html__('Layout', 'webbricks-addons'),
+				'label' => esc_html__('Layout', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -103,10 +103,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_section_heading_show',
 			[
-				'label' => esc_html__( 'Show Section Heading', 'webbricks-addons' ),
+				'label' => esc_html__( 'Show Section Heading', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before'
@@ -117,12 +117,12 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_bg_pattern',
 			[
-				'label' => __( 'Background Pattern', 'webbricks-addons' ),
+				'label' => __( 'Background Pattern', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'style-1' => __( 'Style 1', 'webbricks-addons' ),
-					'style-2' => __( 'Style 2', 'webbricks-addons' ),
-					'none' => __( 'None', 'webbricks-addons' ),
+					'style-1' => __( 'Style 1', 'awesome-widgets-elementor' ),
+					'style-2' => __( 'Style 2', 'awesome-widgets-elementor' ),
+					'none' => __( 'None', 'awesome-widgets-elementor' ),
 				],
 				'default' => 'style-1',
 			]
@@ -134,7 +134,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_teams_section_subheading_box',
 			[
-				'label' => esc_html__('Sub Heading', 'webbricks-addons'),
+				'label' => esc_html__('Sub Heading', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 				'condition' => [
 					'awea_teams_section_heading_show' => 'yes'
@@ -146,10 +146,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_section_subheading_show',
 			[
-				'label' => esc_html__( 'Show Sub Heading', 'webbricks-addons' ),
+				'label' => esc_html__( 'Show Sub Heading', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before'
@@ -159,10 +159,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 		    'awea_teams_section_subheading',
 			[
-			    'label' => esc_html__('Sub Heading', 'webbricks-addons'),
+			    'label' => esc_html__('Sub Heading', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__('Teams', 'webbricks-addons'),
+				'default' => esc_html__('Teams', 'awesome-widgets-elementor'),
 				'separator' => 'before',
 				'condition' => [
 					'awea_teams_section_subheading_show' => 'yes'
@@ -176,7 +176,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_teams_section_heading_box',
 			[
-				'label' => esc_html__('Heading', 'webbricks-addons'),
+				'label' => esc_html__('Heading', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 				'condition' => [
 					'awea_teams_section_heading_show' => 'yes'
@@ -188,10 +188,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 		    'awea_teams_section_heading',
 			[
-			    'label' => esc_html__('Heading', 'webbricks-addons'),
+			    'label' => esc_html__('Heading', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__('We Are Your One Door To Solve It All', 'webbricks-addons'),
+				'default' => esc_html__('We Are Your One Door To Solve It All', 'awesome-widgets-elementor'),
 				'separator' => 'before'
 			]
 		);
@@ -200,18 +200,18 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_section_heading_tag',
 			[
-				'label' => __( 'Html Tag', 'webbricks-addons' ),
+				'label' => __( 'Html Tag', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'h1' => __( 'H1', 'webbricks-addons' ),
-					'h2' => __( 'H2', 'webbricks-addons' ),
-					'h3' => __( 'H3', 'webbricks-addons' ),
-					'h4' => __( 'H4', 'webbricks-addons' ),
-					'h5' => __( 'H5', 'webbricks-addons' ),
-					'h6' => __( 'H6', 'webbricks-addons' ),
-					'p' => __( 'P', 'webbricks-addons' ),
-					'span' => __( 'Span', 'webbricks-addons' ),
-					'div' => __( 'Div', 'webbricks-addons' ),
+					'h1' => __( 'H1', 'awesome-widgets-elementor' ),
+					'h2' => __( 'H2', 'awesome-widgets-elementor' ),
+					'h3' => __( 'H3', 'awesome-widgets-elementor' ),
+					'h4' => __( 'H4', 'awesome-widgets-elementor' ),
+					'h5' => __( 'H5', 'awesome-widgets-elementor' ),
+					'h6' => __( 'H6', 'awesome-widgets-elementor' ),
+					'p' => __( 'P', 'awesome-widgets-elementor' ),
+					'span' => __( 'Span', 'awesome-widgets-elementor' ),
+					'div' => __( 'Div', 'awesome-widgets-elementor' ),
 				],
 				'default' => 'h2',
 			]
@@ -223,7 +223,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_teams_section_desc_box',
 			[
-				'label' => esc_html__('Description', 'webbricks-addons'),
+				'label' => esc_html__('Description', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 				'condition' => [
 					'awea_teams_section_heading_show' => 'yes'
@@ -235,10 +235,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_section_desc_show',
 			[
-				'label' => esc_html__( 'Show Description', 'webbricks-addons' ),
+				'label' => esc_html__( 'Show Description', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'Hide', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 				'separator' => 'before'
@@ -249,10 +249,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 		    'awea_teams_section_desc',
 			[
-			    'label' => esc_html__('Description', 'webbricks-addons'),
+			    'label' => esc_html__('Description', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::WYSIWYG,
 				'label_block' => true,
-				'default' => esc_html__('Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'webbricks-addons'),
+				'default' => esc_html__('Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor'),
 				'separator' => 'before',
 				'condition' => [
 					'awea_teams_section_desc_show' => 'yes'
@@ -266,7 +266,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'team_carousel_content',
 			[
-				'label' => esc_html__('Teams', 'webbricks-addons'),
+				'label' => esc_html__('Teams', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -277,7 +277,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_team_carousel_image',
 			[
-				'label' => esc_html__( 'Choose Image', 'webbricks-addons' ),
+				'label' => esc_html__( 'Choose Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-1-web-bricks.webp',
@@ -289,9 +289,9 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_team_carousel_name',
 			[
-				'label' => esc_html__( 'Name', 'webbricks-addons' ),
+				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'John Doe', 'webbricks-addons' ),
+				'default' => esc_html__( 'John Doe', 'awesome-widgets-elementor' ),
 				'separator' => 'before',
 				'label_block' => true
 			]
@@ -300,9 +300,9 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
 			'awea_team_carousel_designation',
 			[
-				'label' => esc_html__( 'Designtion', 'webbricks-addons' ),
+				'label' => esc_html__( 'Designtion', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Web Developer', 'webbricks-addons' ),
+				'default' => esc_html__( 'Web Developer', 'awesome-widgets-elementor' ),
 				'separator' => 'before',
 				'label_block' => true
 			]
@@ -311,7 +311,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
             'awea_team_carousel_fb_url',
             [
-                'label' => __( 'Facebook', 'webbricks-addons' ),
+                'label' => __( 'Facebook', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
                     'url' => 'https://getwebbricks.com',
@@ -325,7 +325,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
             'awea_team_carousel_tw_url',
             [
-                'label' => __( 'Twitter', 'webbricks-addons' ),
+                'label' => __( 'Twitter', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
                     'url' => 'https://getwebbricks.com',
@@ -339,7 +339,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
             'awea_team_carousel_ln_url',
             [
-                'label' => __( 'Linkedin', 'webbricks-addons' ),
+                'label' => __( 'Linkedin', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
                     'url' => 'https://getwebbricks.com',
@@ -353,7 +353,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$repeater->add_control(
             'awea_team_carousel_insta_url',
             [
-                'label' => __( 'Instagram', 'webbricks-addons' ),
+                'label' => __( 'Instagram', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
                     'url' => 'https://getwebbricks.com',
@@ -367,7 +367,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousels',
 			[
-				'label' => esc_html__( 'Teams List', 'webbricks-addons' ),
+				'label' => esc_html__( 'Teams List', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
@@ -378,8 +378,8 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 					'awea_team_carousel_bg' => [
 						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
 					],
-					'awea_team_carousel_name' => esc_html__( 'Novák Réka', 'webbricks-addons' ),
-					'awea_team_carousel_designation' => esc_html__( 'Senior Developer', 'webbricks-addons'),
+					'awea_team_carousel_name' => esc_html__( 'Novák Réka', 'awesome-widgets-elementor' ),
+					'awea_team_carousel_designation' => esc_html__( 'Senior Developer', 'awesome-widgets-elementor'),
 					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
 					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
 					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
@@ -392,8 +392,8 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 					'awea_team_carousel_bg' => [
 						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
 					],
-					'awea_team_carousel_name' => esc_html__( 'Pintér Beatrix', 'webbricks-addons' ),
-					'awea_team_carousel_designation' => esc_html__( 'Senior UX Designer', 'webbricks-addons'),
+					'awea_team_carousel_name' => esc_html__( 'Pintér Beatrix', 'awesome-widgets-elementor' ),
+					'awea_team_carousel_designation' => esc_html__( 'Senior UX Designer', 'awesome-widgets-elementor'),
 					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
 					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
 					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
@@ -406,8 +406,8 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 					'awea_team_carousel_bg' => [
 						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
 					],
-					'awea_team_carousel_name' => esc_html__( 'Szekeres Dalma', 'webbricks-addons' ),
-					'awea_team_carousel_designation' => esc_html__( 'Admin Manager', 'webbricks-addons'),
+					'awea_team_carousel_name' => esc_html__( 'Szekeres Dalma', 'awesome-widgets-elementor' ),
+					'awea_team_carousel_designation' => esc_html__( 'Admin Manager', 'awesome-widgets-elementor'),
 					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
 					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
 					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
@@ -420,8 +420,8 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 					'awea_team_carousel_bg' => [
 						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
 					],
-					'awea_team_carousel_name' => esc_html__( 'John Doe', 'webbricks-addons' ),
-					'awea_team_carousel_designation' => esc_html__( 'SEO Expert', 'webbricks-addons'),
+					'awea_team_carousel_name' => esc_html__( 'John Doe', 'awesome-widgets-elementor' ),
+					'awea_team_carousel_designation' => esc_html__( 'SEO Expert', 'awesome-widgets-elementor'),
 					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
 					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
 					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
@@ -439,7 +439,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_team_carousel_settings',
 			[
-				'label' => esc_html__('Settings', 'webbricks-addons'),
+				'label' => esc_html__('Settings', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT			
 			]
 		 );
@@ -448,7 +448,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_number',
 			[
-				'label' 		=> __('Number of Teams', 'webbricks-addons'),
+				'label' 		=> __('Number of Teams', 'awesome-widgets-elementor'),
 				'type' 			=> Controls_Manager::NUMBER,
 				'default' 		=> '3',
 			]
@@ -458,10 +458,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_arrows',
 			[
-				'label' => esc_html__( 'Arrows', 'webbricks-addons' ),
+				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -471,10 +471,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_loop',
 			[
-				'label' => esc_html__( 'Loops', 'webbricks-addons' ),
+				'label' => esc_html__( 'Loops', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -484,10 +484,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_pause',
 			[
-				'label' => esc_html__( 'Pause on hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Pause on hover', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -497,10 +497,10 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_autoplay',
 			[
-				'label' => esc_html__( 'Autoplay', 'webbricks-addons' ),
+				'label' => esc_html__( 'Autoplay', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'webbricks-addons' ),
-				'label_off' => esc_html__( 'No', 'webbricks-addons' ),
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -510,20 +510,20 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_autoplay_speed',
 			[
-				'label' => esc_html__( 'Speed', 'webbricks-addons' ),
+				'label' => esc_html__( 'Speed', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '5000',
 				'options' => [
-					'1000' => esc_html__( '1 Seconds', 'webbricks-addons' ),
-					'2000' => esc_html__( '2 Seconds', 'webbricks-addons' ),
-					'3000' => esc_html__( '3 Seconds', 'webbricks-addons' ),
-					'4000' => esc_html__( '4 Seconds', 'webbricks-addons' ),
-					'5000' => esc_html__( '5 Seconds', 'webbricks-addons' ),
-					'6000' => esc_html__( '6 Seconds', 'webbricks-addons' ),
-					'7000' => esc_html__( '7 Seconds', 'webbricks-addons' ),
-					'8000' => esc_html__( '8 Seconds', 'webbricks-addons' ),
-					'9000' => esc_html__( '9 Seconds', 'webbricks-addons' ),
-					'10000' => esc_html__( '10 Seconds', 'webbricks-addons' ),
+					'1000' => esc_html__( '1 Seconds', 'awesome-widgets-elementor' ),
+					'2000' => esc_html__( '2 Seconds', 'awesome-widgets-elementor' ),
+					'3000' => esc_html__( '3 Seconds', 'awesome-widgets-elementor' ),
+					'4000' => esc_html__( '4 Seconds', 'awesome-widgets-elementor' ),
+					'5000' => esc_html__( '5 Seconds', 'awesome-widgets-elementor' ),
+					'6000' => esc_html__( '6 Seconds', 'awesome-widgets-elementor' ),
+					'7000' => esc_html__( '7 Seconds', 'awesome-widgets-elementor' ),
+					'8000' => esc_html__( '8 Seconds', 'awesome-widgets-elementor' ),
+					'9000' => esc_html__( '9 Seconds', 'awesome-widgets-elementor' ),
+					'10000' => esc_html__( '10 Seconds', 'awesome-widgets-elementor' ),
 				],
 			]
 		);
@@ -532,20 +532,20 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_autoplay_animation',
 			[
-				'label' => esc_html__( 'Timeout', 'webbricks-addons' ),
+				'label' => esc_html__( 'Timeout', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '5000',
 				'options' => [
-					'1000' => esc_html__( '1 Seconds', 'webbricks-addons' ),
-					'2000' => esc_html__( '2 Seconds', 'webbricks-addons' ),
-					'3000' => esc_html__( '3 Seconds', 'webbricks-addons' ),
-					'4000' => esc_html__( '4 Seconds', 'webbricks-addons' ),
-					'5000' => esc_html__( '5 Seconds', 'webbricks-addons' ),
-					'6000' => esc_html__( '6 Seconds', 'webbricks-addons' ),
-					'7000' => esc_html__( '7 Seconds', 'webbricks-addons' ),
-					'8000' => esc_html__( '8 Seconds', 'webbricks-addons' ),
-					'9000' => esc_html__( '9 Seconds', 'webbricks-addons' ),
-					'10000' => esc_html__( '10 Seconds', 'webbricks-addons' ),
+					'1000' => esc_html__( '1 Seconds', 'awesome-widgets-elementor' ),
+					'2000' => esc_html__( '2 Seconds', 'awesome-widgets-elementor' ),
+					'3000' => esc_html__( '3 Seconds', 'awesome-widgets-elementor' ),
+					'4000' => esc_html__( '4 Seconds', 'awesome-widgets-elementor' ),
+					'5000' => esc_html__( '5 Seconds', 'awesome-widgets-elementor' ),
+					'6000' => esc_html__( '6 Seconds', 'awesome-widgets-elementor' ),
+					'7000' => esc_html__( '7 Seconds', 'awesome-widgets-elementor' ),
+					'8000' => esc_html__( '8 Seconds', 'awesome-widgets-elementor' ),
+					'9000' => esc_html__( '9 Seconds', 'awesome-widgets-elementor' ),
+					'10000' => esc_html__( '10 Seconds', 'awesome-widgets-elementor' ),
 				],
 			]
 		);
@@ -557,7 +557,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_team_carousel_pro_message',
 			[
-				'label' => esc_html__('Premium', 'webbricks-addons'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		 );
@@ -570,7 +570,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Web Bricks Premium is coming soon with more widgets, features, and customization options.', 'webbricks-addons')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -580,7 +580,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_service_section_subheading_style',
 			[
-				'label' => esc_html__( 'Sub Heading', 'webbricks-addons' ),
+				'label' => esc_html__( 'Sub Heading', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'awea_teams_section_heading_show' => 'yes',
@@ -592,7 +592,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_carousel_section_subheading_options',
 			[
-				'label' => esc_html__( 'Bullet', 'webbricks-addons' ),
+				'label' => esc_html__( 'Bullet', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::HEADING,
 			]
 		);
@@ -602,15 +602,15 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_section_heading_separator_variation',
 			[
-				'label' => __( 'Style', 'webbricks-addons' ),
+				'label' => __( 'Style', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'default' => __( 'Default', 'webbricks-addons' ),
-					'round' => __( 'Round', 'webbricks-addons' ),
-					'square' => __( 'Square', 'webbricks-addons' ),
-					'circle' => __( 'Circle', 'webbricks-addons' ),
-					'custom' => __( 'Custom', 'webbricks-addons' ),
-					'none' => __( 'None', 'webbricks-addons' ),
+					'default' => __( 'Default', 'awesome-widgets-elementor' ),
+					'round' => __( 'Round', 'awesome-widgets-elementor' ),
+					'square' => __( 'Square', 'awesome-widgets-elementor' ),
+					'circle' => __( 'Circle', 'awesome-widgets-elementor' ),
+					'custom' => __( 'Custom', 'awesome-widgets-elementor' ),
+					'none' => __( 'None', 'awesome-widgets-elementor' ),
 				],
 				'default' => 'default',
 			]
@@ -620,7 +620,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_service_section_sep_bg',
 			[
-				'label' => esc_html__( 'Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-section-title span:before' => 'background-color: {{VALUE}}',
@@ -635,7 +635,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_service_section_sep_round',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -652,7 +652,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_service_section_subheading_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-section-title span' => 'color: {{VALUE}}',
@@ -681,7 +681,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_service_section_heading_style',
 			[
-				'label' => esc_html__( 'Heading', 'webbricks-addons' ),
+				'label' => esc_html__( 'Heading', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'awea_teams_section_heading_show' => 'yes'
@@ -693,7 +693,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_section_title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-section-title .awea-section-heading' => 'color: {{VALUE}}',
@@ -722,7 +722,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_service_section_desc_style',
 			[
-				'label' => esc_html__( 'Description', 'webbricks-addons' ),
+				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'awea_teams_section_heading_show' => 'yes',
@@ -735,7 +735,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_section_desc_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-section-title p' => 'color: {{VALUE}}',
@@ -764,7 +764,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_team_carousel_layout_style',
 			[
-				'label' => esc_html__( 'Teams Card', 'webbricks-addons' ),
+				'label' => esc_html__( 'Teams Card', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -773,7 +773,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_background',
 			[
-				'label' => esc_html__( 'Background', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-team-bg' => 'background-color: {{VALUE}}',
@@ -796,18 +796,18 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			'awea_team_alignment',
 			[
 				'type' => Controls_Manager::CHOOSE,
-				'label' => esc_html__( 'Alignment', 'webbricks-addons' ),
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'webbricks-addons' ),
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'webbricks-addons' ),
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'webbricks-addons' ),
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -824,7 +824,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_teams_box_style',
 			[
-				'label' => esc_html__( 'Teams Content', 'webbricks-addons' ),
+				'label' => esc_html__( 'Teams Content', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -833,7 +833,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_box_icon_options',
 			[
-				'label' => esc_html__( 'Image', 'webbricks-addons' ),
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
@@ -844,7 +844,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			'awea_team_image_width',
 			[
 				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Width', 'webbricks-addons' ),
+				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
 					'px' => [
@@ -863,7 +863,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			'awea_team_image_height',
 			[
 				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Height', 'webbricks-addons' ),
+				'label' => esc_html__( 'Height', 'awesome-widgets-elementor' ),
 				'size_units' => [ 'px', '%', 'rem' ],
 				'range' => [
 					'px' => [
@@ -881,7 +881,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_image_border_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -894,7 +894,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_box_title_options',
 			[
-				'label' => esc_html__( 'Name', 'webbricks-addons' ),
+				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
@@ -904,7 +904,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_name_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-team-name' => 'color: {{VALUE}}',
@@ -931,7 +931,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_box_desc_options',
 			[
-				'label' => esc_html__( 'Designation', 'webbricks-addons' ),
+				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
@@ -941,7 +941,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_desg_color',
 			[
-				'label' => esc_html__( 'Text Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-team-desg' => 'color: {{VALUE}}',
@@ -968,7 +968,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_box_social_options',
 			[
-				'label' => esc_html__( 'Socials', 'webbricks-addons' ),
+				'label' => esc_html__( 'Socials', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before'
 			]
@@ -978,7 +978,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_social_color',
 			[
-				'label' => esc_html__( 'Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-team-social a' => 'color: {{VALUE}}',
@@ -993,7 +993,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_team_social_hover_color',
 			[
-				'label' => esc_html__( 'Hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-team-social a:hover' => 'color: {{VALUE}}',
@@ -1010,7 +1010,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'awea_teams_arrow_style',
 			[
-				'label' => esc_html__( 'Arrow Buttons', 'webbricks-addons' ),
+				'label' => esc_html__( 'Arrow Buttons', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'awea_team_carousel_arrows' => 'yes'
@@ -1026,7 +1026,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'wp_teams_arrow_normal_tab',
 			[
-				'label' => esc_html__( 'Normal', 'webbricks-addons' ),
+				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -1034,7 +1034,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_arrow_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border svg path' => 'fill: {{VALUE}}',
@@ -1049,7 +1049,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_arrow_border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border' => 'border-color: {{VALUE}}',
@@ -1064,7 +1064,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_arrow_border_round',
 			[
-				'label' => esc_html__( 'Border Radius', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
@@ -1079,7 +1079,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->start_controls_tab(
 			'wp_teams_arrow_hover_tab',
 			[
-				'label' => esc_html__( 'Hover', 'webbricks-addons' ),
+				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -1087,7 +1087,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_arrow_hover_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border:hover svg path' => 'fill: {{VALUE}}',
@@ -1102,7 +1102,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_arrow_hover_border',
 			[
-				'label' => esc_html__( 'Border Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border:hover' => 'border-color: {{VALUE}}',
@@ -1117,7 +1117,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->add_control(
 			'awea_teams_arrow_hover_bg',
 			[
-				'label' => esc_html__( 'Background Color', 'webbricks-addons' ),
+				'label' => esc_html__( 'Background Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .awea-carousel-arrow-border:after' => 'background-color: {{VALUE}}',

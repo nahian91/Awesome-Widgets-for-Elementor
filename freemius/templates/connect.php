@@ -795,7 +795,7 @@
 								url     : $this.find( '.url' ).val(),
 								title   : $this.find( '.title' ).val(),
 								language: $this.find( '.language' ).val(),
-								blog_id : $this.find( '.blog-id' ).find( 'span' ).text()
+								blog_id : $this.find( '.post-id' ).find( 'span' ).text()
 							};
 
 							if ( ! requireLicenseKey) {
