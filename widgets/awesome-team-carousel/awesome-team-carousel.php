@@ -89,179 +89,6 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 	 * @access protected
 	 */
 	protected function register_controls() {
-		
-		// Teams Section Heading Layout
-		$this->start_controls_section(
-			'awea_teams_section_layout_box',
-			[
-				'label' => esc_html__('Layout', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		// Teams Section Heading Show
-		$this->add_control(
-			'awea_teams_section_heading_show',
-			[
-				'label' => esc_html__( 'Show Section Heading', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'separator' => 'before'
-			]
-		);
-
-		// Section Heading Separator Style
-		$this->add_control(
-			'awea_team_carousel_bg_pattern',
-			[
-				'label' => __( 'Background Pattern', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'style-1' => __( 'Style 1', 'awesome-widgets-elementor' ),
-					'style-2' => __( 'Style 2', 'awesome-widgets-elementor' ),
-					'none' => __( 'None', 'awesome-widgets-elementor' ),
-				],
-				'default' => 'style-1',
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Teams Section Sub Heading Box
-		$this->start_controls_section(
-			'awea_teams_section_subheading_box',
-			[
-				'label' => esc_html__('Sub Heading', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-				'condition' => [
-					'awea_teams_section_heading_show' => 'yes'
-				],
-			]
-		);
-
-		// Teams Section Sub Heading Show?
-		$this->add_control(
-			'awea_teams_section_subheading_show',
-			[
-				'label' => esc_html__( 'Show Sub Heading', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'separator' => 'before'
-			]
-		);
-		// Teams Sub Heading
-		$this->add_control(
-		    'awea_teams_section_subheading',
-			[
-			    'label' => esc_html__('Sub Heading', 'awesome-widgets-elementor'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('Teams', 'awesome-widgets-elementor'),
-				'separator' => 'before',
-				'condition' => [
-					'awea_teams_section_subheading_show' => 'yes'
-				],
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Teams Section Heading Box
-		$this->start_controls_section(
-			'awea_teams_section_heading_box',
-			[
-				'label' => esc_html__('Heading', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-				'condition' => [
-					'awea_teams_section_heading_show' => 'yes'
-				],
-			]
-		);
-		
-		// Teams Section Heading
-		$this->add_control(
-		    'awea_teams_section_heading',
-			[
-			    'label' => esc_html__('Heading', 'awesome-widgets-elementor'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('We Are Your One Door To Solve It All', 'awesome-widgets-elementor'),
-				'separator' => 'before'
-			]
-		);
-
-		// Section Heading Separator Style
-		$this->add_control(
-			'awea_teams_section_heading_tag',
-			[
-				'label' => __( 'Html Tag', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'h1' => __( 'H1', 'awesome-widgets-elementor' ),
-					'h2' => __( 'H2', 'awesome-widgets-elementor' ),
-					'h3' => __( 'H3', 'awesome-widgets-elementor' ),
-					'h4' => __( 'H4', 'awesome-widgets-elementor' ),
-					'h5' => __( 'H5', 'awesome-widgets-elementor' ),
-					'h6' => __( 'H6', 'awesome-widgets-elementor' ),
-					'p' => __( 'P', 'awesome-widgets-elementor' ),
-					'span' => __( 'Span', 'awesome-widgets-elementor' ),
-					'div' => __( 'Div', 'awesome-widgets-elementor' ),
-				],
-				'default' => 'h2',
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Teams Section Description
-		$this->start_controls_section(
-			'awea_teams_section_desc_box',
-			[
-				'label' => esc_html__('Description', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-				'condition' => [
-					'awea_teams_section_heading_show' => 'yes'
-				],
-			]
-		);
-
-		// Teams Section Heading Description Show?
-		$this->add_control(
-			'awea_teams_section_desc_show',
-			[
-				'label' => esc_html__( 'Show Description', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'awesome-widgets-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'awesome-widgets-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-				'separator' => 'before'
-			]
-		);
-
-		// Teams Section Heading Description
-		$this->add_control(
-		    'awea_teams_section_desc',
-			[
-			    'label' => esc_html__('Description', 'awesome-widgets-elementor'),
-				'type' => Controls_Manager::WYSIWYG,
-				'label_block' => true,
-				'default' => esc_html__('Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor'),
-				'separator' => 'before',
-				'condition' => [
-					'awea_teams_section_desc_show' => 'yes'
-				],
-			]
-		);
-
-		$this->end_controls_section();
-		// start of the Content tab section
 
 		$this->start_controls_section(
 			'team_carousel_content',
@@ -576,86 +403,145 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		);
 		$this->end_controls_section();
 
-		// Service Section Heading Style
+		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_service_section_subheading_style',
+			'awea_single_team_carousel_layout_style',
 			[
-				'label' => esc_html__( 'Sub Heading', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_teams_section_heading_show' => 'yes',
-					'awea_teams_section_subheading_show' => 'yes'
-				],
 			]
 		);
 
+		// Team Background Color
 		$this->add_control(
-			'awea_team_carousel_section_subheading_options',
+			'awea_single_team_carousel_background_color',
 			[
-				'label' => esc_html__( 'Bullet', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-			]
-		);
-
-
-		// Teams Section Heading Separator Style
-		$this->add_control(
-			'awea_section_heading_separator_variation',
-			[
-				'label' => __( 'Style', 'awesome-widgets-elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'default' => __( 'Default', 'awesome-widgets-elementor' ),
-					'round' => __( 'Round', 'awesome-widgets-elementor' ),
-					'square' => __( 'Square', 'awesome-widgets-elementor' ),
-					'circle' => __( 'Circle', 'awesome-widgets-elementor' ),
-					'custom' => __( 'Custom', 'awesome-widgets-elementor' ),
-					'none' => __( 'None', 'awesome-widgets-elementor' ),
-				],
-				'default' => 'default',
-			]
-		);
-
-		// Service Section Bullet Color
-		$this->add_control(
-			'awea_service_section_sep_bg',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-section-title span:before' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-team-carousel' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT, 
+					'default' => Global_Colors::COLOR_PRIMARY,
 				]
 			]
 		);
 
-		// Service Section Bullet Round
-		$this->add_control(
-			'awea_service_section_sep_round',
+		// Team Border
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'name' => 'awea_single_team_carousel_border',
+				'selector' => '{{WRAPPER}} .awea-single-team-carousel',
+			]
+		);	
+
+		// Team Padding
+		$this->add_control(
+			'awea_single_team_carousel_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
+				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-section-title span:before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-				'condition' => [
-					'awea_section_heading_separator_variation' => 'custom', 
+					'{{WRAPPER}} .awea-single-team-carousel' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-		
 
-		// Service Section Sub Heading Color
-		$this->add_control(
-			'awea_service_section_subheading_color',
+		$this->end_controls_section();
+		// end of the Style tab section
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_single_team_carousel_image_style',
 			[
-				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'awea_image_width',
+			[
+				'label' => esc_html__('Image Width', 'awesome-widgets-elementor'),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['%', 'px', 'vw'],
+				'range' => [
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+					],
+					'vw' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-carousel img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Image Box Border
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_image_box_border',
+				'selector' => '{{WRAPPER}} .awea-single-team-carousel img',
+			]
+		);	
+		
+		// Image Box Border Radius
+		$this->add_control(
+			'awea_image_box_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-carousel img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+		// end of the Style tab section
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_single_team_carousel_contents_style',
+			[
+				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_contents_name_options',
+			[
+				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Team Title Color
+		$this->add_control(
+			'awea_single_team_carousel_contents_name_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-section-title span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-team-carousel-content h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -663,82 +549,35 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			]
 		);
 
-		// Service Section Sub Heading Typography
+		// Team Title Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_service_section_subheading_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title span',
+				'name' => 'awea_single_team_carousel_contents_name_typography',
+				'selector' => '{{WRAPPER}} .awea-single-team-carousel-content h4',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);
 
-		$this->end_controls_section();
-
-		// Service Section Heading Options
-		$this->start_controls_section(
-			'awea_service_section_heading_style',
+		$this->add_control(
+			'awea_single_team_carousel_contents_desg_options',
 			[
-				'label' => esc_html__( 'Heading', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_teams_section_heading_show' => 'yes'
-				],
+				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
 			]
 		);
 
-		// Service Section Heading Color
+		// Team Title Color
 		$this->add_control(
-			'awea_section_title_color',
+			'awea_single_team_carousel_contents_desg_color',
 			[
-				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-section-title .awea-section-heading' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				]
-			]
-		);
-
-		// Service Section Heading Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_section_title_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title .awea-section-heading',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Service Section Description Options
-		$this->start_controls_section(
-			'awea_service_section_desc_style',
-			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_teams_section_heading_show' => 'yes',
-					'awea_teams_section_desc_show' => 'yes'
-				],
-			]
-		);
-
-		// Service Section Description Color
-		$this->add_control(
-			'awea_section_desc_color',
-			[
-				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-section-title p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-team-carousel-content h4 span' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -746,12 +585,12 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			]
 		);
 
-		// Service Section Description Typography
+		// Team Title Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_section_desc_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title p',
+				'name' => 'awea_single_team_carousel_contents_desg_typography',
+				'selector' => '{{WRAPPER}} .awea-single-team-carousel-content h4 span',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -759,372 +598,84 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+		// end of the Style tab section
 
-		// Teams Layout
+		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_team_carousel_layout_style',
-			[
-				'label' => esc_html__( 'Teams Card', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		// Team Background
-		$this->add_control(
-			'awea_team_background',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-bg' => 'background-color: {{VALUE}}',
-				],
-				'default' => '#ffffff00',
-			]
-		);
-
-		// Team Border
-		$this->add_group_control(
-			Group_Control_Border::get_type(), 
-			[
-				'name' => 'awea_team_border',
-				'selector' => '{{WRAPPER}} .awea-team-content',
-			]
-		);	
-
-		// Team Alignment
-		$this->add_control(
-			'awea_team_alignment',
-			[
-				'type' => Controls_Manager::CHOOSE,
-				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'default' => 'center',
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-content' => 'text-align: {{VALUE}}',
-				],
-			],
-		);
-
-		$this->end_controls_section();
-
-		// Teams Box Style
-		$this->start_controls_section(
-			'awea_teams_box_style',
-			[
-				'label' => esc_html__( 'Teams Content', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		// Teams Box Icon Options
-		$this->add_control(
-			'awea_teams_box_icon_options',
-			[
-				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before'
-			]
-		);
-
-		// Team Image Width
-		$this->add_control(
-			'awea_team_image_width',
-			[
-				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
-				'size_units' => [ 'px', '%', 'rem' ],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 1200,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-img' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		// Team Image Height
-		$this->add_control(
-			'awea_team_image_height',
-			[
-				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Height', 'awesome-widgets-elementor' ),
-				'size_units' => [ 'px', '%', 'rem' ],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 600,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-img' => 'height: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		// Team Image Border
-		$this->add_control(
-			'awea_team_image_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		// Teams Box Heading Options
-		$this->add_control(
-			'awea_teams_box_title_options',
-			[
-				'label' => esc_html__( 'Name', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before'
-			]
-		);
-
-		// Team Name Color
-		$this->add_control(
-			'awea_team_name_color',
-			[
-				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-name' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Team Name Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_team_name_typography',
-				'selector' => '{{WRAPPER}} .awea-team-name',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-				]
-			]
-		);
-
-		// Teams Box Description Options
-		$this->add_control(
-			'awea_teams_box_desc_options',
-			[
-				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before'
-			]
-		);
-
-		// Team Designation Color
-		$this->add_control(
-			'awea_team_desg_color',
-			[
-				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-desg' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Team Designation Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_team_desg_typography',
-				'selector' => '{{WRAPPER}} .awea-team-desg',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-				]
-			]
-		);
-
-		// Teams Box Social Options
-		$this->add_control(
-			'awea_teams_box_social_options',
+			'awea_single_team_carousel_social_style',
 			[
 				'label' => esc_html__( 'Socials', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before'
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		// Team Social Color
+		// Start of Tabs
+		$this->start_controls_tabs('awea_single_team_carousel_social_tabs');
+
+		// Normal Tab
+		$this->start_controls_tab(
+			'awea_single_team_carousel_social_tabs_normal',
+			[
+				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
+			]
+		);
+
 		$this->add_control(
-			'awea_team_social_color',
+			'awea_single_team_carousel_social_size',
+			[
+				'label' => esc_html__( 'Size', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 25,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-carousel-social a i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_social_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-team-social a' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Team Social Hover Color
-		$this->add_control(
-			'awea_team_social_hover_color',
-			[
-				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-team-social a:hover' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_ACCENT,
-				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// Teams Arrow Style
-		$this->start_controls_section(
-			'awea_teams_arrow_style',
-			[
-				'label' => esc_html__( 'Arrow Buttons', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'awea_team_carousel_arrows' => 'yes'
-				],
-			]
-		);
-
-		$this->start_controls_tabs(
-			'wp_teams_arrow_style_tabs'
-		);
-
-		// Teams Arrow Normal Tab
-		$this->start_controls_tab(
-			'wp_teams_arrow_normal_tab',
-			[
-				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
-			]
-		);
-
-		// Teams Arrow Color
-		$this->add_control(
-			'awea_teams_arrow_color',
-			[
-				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border svg path' => 'fill: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY, 
-				]
-			]
-		);
-
-		// Teams Arrow Border Color
-		$this->add_control(
-			'awea_teams_arrow_border_color',
-			[
-				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border' => 'border-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// Teams Arrow Border Radius
-		$this->add_control(
-			'awea_teams_arrow_border_round',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-team-carousel-social a' => 'color: {{VALUE}}',
 				],
 			]
 		);
 
 		$this->end_controls_tab();
 
-		// Teams Arrow Hover Tab
+		// Hover Tab
 		$this->start_controls_tab(
-			'wp_teams_arrow_hover_tab',
+			'awea_single_team_carousel_social_tabs_hover',
 			[
-				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
+				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
 			]
 		);
 
-		// Teams Arrow Hover Icon Color
 		$this->add_control(
-			'awea_teams_arrow_hover_color',
+			'awea_single_team_carousel_social_color_hover',
 			[
-				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border:hover svg path' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-team-carousel-social a:hover' => 'color: {{VALUE}}',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Teams Arrow Hover Border Color
-		$this->add_control(
-			'awea_teams_arrow_hover_border',
-			[
-				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border:hover' => 'border-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Teams Arrow Round
-		$this->add_control(
-			'awea_teams_arrow_hover_bg',
-			[
-				'label' => esc_html__( 'Background Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border:after' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
 			]
 		);
 
@@ -1133,6 +684,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+		// end of the Style tab section
 
 	}
 
@@ -1149,7 +701,6 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$settings = $this->get_settings_for_display();        
 	
 		// Sanitize and escape settings values before using them.
-		$awea_teams_section_heading_show = isset($settings['awea_teams_section_heading_show']) ? $settings['awea_teams_section_heading_show'] : '';
 		$awea_team_carousels = isset($settings['awea_team_carousels']) ? $settings['awea_team_carousels'] : [];
 		$awea_team_carousels_items = isset($settings['awea_team_carousel_number']) ? $settings['awea_team_carousel_number'] : 3; // Default to 3 items
 		$awea_team_carousels_arrows = isset($settings['awea_team_carousel_arrows']) ? $settings['awea_team_carousel_arrows'] : 'no';
@@ -1158,63 +709,11 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$awea_team_carousels_autoplay = isset($settings['awea_team_carousel_autoplay']) ? $settings['awea_team_carousel_autoplay'] : 'no';
 		$awea_team_carousels_autoplay_speed = isset($settings['awea_team_carousel_autoplay_speed']) ? $settings['awea_team_carousel_autoplay_speed'] : 5000;
 		$awea_team_carousels_autoplay_animation = isset($settings['awea_team_carousel_autoplay_animation']) ? $settings['awea_team_carousel_autoplay_animation'] : '';
-		$awea_team_carousel_bg_pattern = isset($settings['awea_team_carousel_bg_pattern']) ? $settings['awea_team_carousel_bg_pattern'] : '';
-	
-		// Background pattern URLs
-		$team_pattern_url = '';
-		switch ($awea_team_carousel_bg_pattern) {
-			case 'style-1':
-				$team_pattern_url = 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp';
-				break;
-			case 'style-2':
-				$team_pattern_url = 'https://market.weekitechi.com/wp-content/uploads/2025/01/service-pattern-2-web-bricks.webp';
-				break;
-			case 'none':
-				$team_pattern_url = '';
-				break;
-			default:
-				$team_pattern_url = 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp'; // Default pattern
-				break;
-		}
-	
-		// Output the background pattern if applicable.
-		if (!empty($team_pattern_url)) {
-			?>
-			<style>                                
-				.awea-team-bg {
-					background-image: url('<?php echo esc_url($team_pattern_url); ?>');
-				}
-			</style>
-			<?php
-		}
-	
-		// Render the section heading if needed.
-		if ($awea_teams_section_heading_show === 'yes') {
-			$awea_teams_section_subheading_show = isset($settings['awea_teams_section_subheading_show']) ? $settings['awea_teams_section_subheading_show'] : '';
-			$awea_teams_section_subheading = isset($settings['awea_teams_section_subheading']) ? $settings['awea_teams_section_subheading'] : '';
-			$awea_section_heading_separator_variation = isset($settings['awea_section_heading_separator_variation']) ? $settings['awea_section_heading_separator_variation'] : '';
-			$awea_teams_section_heading = isset($settings['awea_teams_section_heading']) ? $settings['awea_teams_section_heading'] : '';
-			$awea_teams_section_heading_tag = isset($settings['awea_teams_section_heading_tag']) ? $settings['awea_teams_section_heading_tag'] : 'h3';
-			$awea_teams_section_desc_show = isset($settings['awea_teams_section_desc_show']) ? $settings['awea_teams_section_desc_show'] : '';
-			$awea_teams_section_desc = isset($settings['awea_teams_section_desc']) ? $settings['awea_teams_section_desc'] : '';
-			?>            
-			<div class="awea-section-title awea-service-title">
-				<?php if ($awea_teams_section_subheading_show === 'yes') { ?>
-					<span class="<?php echo esc_attr($awea_section_heading_separator_variation); ?> awea-section-subheading"><?php echo esc_html($awea_teams_section_subheading); ?></span>
-				<?php } ?>
-				<<?php echo esc_attr($awea_teams_section_heading_tag); ?> class="awea-section-heading"><?php echo esc_html($awea_teams_section_heading); ?></<?php echo esc_attr($awea_teams_section_heading_tag); ?>>
-				
-				<?php if ($awea_teams_section_desc_show === 'yes') { ?>
-					<p><?php echo wp_kses_post($awea_teams_section_desc); ?></p>
-				<?php } ?>
-			</div>
-			<?php
-		}
 	
 		// Render the team carousel if there are items.
 		if (!empty($awea_team_carousels)) {
 			?>
-			<div class="awea-team-carousel owl-carousel <?php echo esc_attr($awea_team_carousels_arrows === 'yes' ? 'awea-carousel-top-arrows' : ''); ?> <?php echo esc_attr($awea_teams_section_heading_show === 'yes' ? 'awea-heading-top' : ''); ?>" 
+			<div class="awea-team-carousel owl-carousel" 
 				awea-team-items="<?php echo esc_attr($awea_team_carousels_items); ?>" 
 				awea-team-arrows="<?php echo esc_attr($awea_team_carousels_arrows); ?>" 
 				awea-team-loops="<?php echo esc_attr($awea_team_carousels_loops); ?>" 
@@ -1228,35 +727,41 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 					$team_image = isset($team['awea_team_carousel_image']['url']) ? esc_url($team['awea_team_carousel_image']['url']) : '';
 					$team_name = isset($team['awea_team_carousel_name']) ? esc_html($team['awea_team_carousel_name']) : '';
 					$team_designation = isset($team['awea_team_carousel_designation']) ? esc_html($team['awea_team_carousel_designation']) : '';
-	
-					$social_links = [
-						'fb_url' => 'fa-facebook-square',
-						'tw_url' => 'fa-twitter-square',
-						'ln_url' => 'fa-linkedin-square',
-						'insta_url' => 'fa-instagram',
-					];
+
+					$team_fb_url = isset($team['awea_team_carousel_fb_url']['url']) ? esc_url($team['awea_team_carousel_fb_url']['url']) : '';
+
+					$team_tw_url = isset($team['awea_team_carousel_tw_url']['url']) ? esc_url($team['awea_team_carousel_tw_url']['url']) : '';
+
+					$team_ln_url = isset($team['awea_team_carousel_ln_url']['url']) ? esc_url($team['awea_team_carousel_ln_url']['url']) : '';
+
+					$team_insta_url = isset($team['awea_team_carousel_insta_url']['url']) ? esc_url($team['awea_team_carousel_insta_url']['url']) : '';
+
 					?>
-					<div class="awea-single-team">
-						<?php if ($team_image) { ?>
-							<div class="awea-team-img" style="background-image:url(<?php echo esc_url($team_image); ?>)"></div>
-						<?php } ?>
-						<div class="awea-team-bg">
-							<div class="awea-team-content">
-								<h4 class="awea-team-name"><?php echo esc_html($team_name); ?></h4>
-								<p class="awea-team-desg"><?php echo esc_html($team_designation); ?></p>
-								<div class="awea-team-social">
-									<?php
-									foreach ($social_links as $key => $icon) {
-										$url = isset($team["awea_team_carousel_{$key}"]['url']) ? esc_url($team["awea_team_carousel_{$key}"]['url']) : '';
-										if ($url) {
-											echo '<a href="' . esc_url($url) . '"><i class="fa ' . esc_attr($icon) . '"></i></a>';
-										}
-									}
-									?>
-								</div>
+					<div class="awea-single-team-carousel">
+							<img src="<?php echo $team_image;?>" alt="<?php echo $team_name;?>">
+							<div class="awea-single-team-carousel-content">
+								<h4><?php echo $team_name;?> <span><?php echo $team_designation;?></span></h4>
+								<div class="awea-single-team-carousel-social">
+    <?php
+    $social_links = [
+        [ 'url' => $team_fb_url,    'icon' => 'fab fa-facebook-f' ],
+        [ 'url' => $team_tw_url,    'icon' => 'fab fa-twitter' ],
+        [ 'url' => $team_ln_url,    'icon' => 'fab fa-linkedin-in' ],
+        [ 'url' => $team_insta_url, 'icon' => 'fab fa-instagram' ],
+    ];
+
+    foreach ( $social_links as $social ) {
+        if ( ! empty( $social['url'] ) ) {
+            echo '<a href="' . esc_url( $social['url'] ) . '" target="_blank" rel="noopener noreferrer">
+                    <i class="' . esc_attr( $social['icon'] ) . '"></i>
+                  </a>';
+        }
+    }
+    ?>
+</div>
+
 							</div>
 						</div>
-					</div>
 					<?php
 				}
 				?>

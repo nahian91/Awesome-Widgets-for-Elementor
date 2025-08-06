@@ -1,5 +1,6 @@
 .awea-cta-box{
   padding: 30px 40px;
+  background-color: var(--e-global-color-primary);
 }
 .awea-cta-box span {
   display: block;

@@ -154,7 +154,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'default' => 'center',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .section-title' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .awea-section-title' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -210,7 +210,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .section-title span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-section-title span' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -223,7 +223,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_sub_heading_typography',
-				'selector' => '{{WRAPPER}} .section-title span',
+				'selector' => '{{WRAPPER}} .awea-section-title span',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -247,7 +247,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .section-title h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-section-title h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -260,7 +260,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_heading_typography',
-				'selector' => '{{WRAPPER}} .section-title h4',
+				'selector' => '{{WRAPPER}} .awea-section-title h4',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
@@ -284,7 +284,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .section-title p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-section-title p' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -297,7 +297,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_desc_typography',
-				'selector' => '{{WRAPPER}} .section-title p',
+				'selector' => '{{WRAPPER}} .awea-section-title p',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -321,7 +321,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'label' => esc_html__( 'Separator 1 Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .section-title h4::before' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-section-title h4::before' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -336,7 +336,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'label' => esc_html__( 'Separator 2 Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .section-title h4::after' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-section-title h4::after' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -363,7 +363,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 		$awea_heading = $settings['awea_heading'];
 		$awea_heading_desc = $settings['awea_heading_desc'];
        ?>
-			<div class="section-title">
+			<div class="awea-section-title">
 				<span><?php echo esc_html($awea_sub_heading);?></span>
 				<h4><?php echo esc_html($awea_heading);?></h4>
 				<p><?php echo $awea_heading_desc;?></p>

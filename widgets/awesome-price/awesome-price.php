@@ -207,21 +207,42 @@ $this->add_control(
 		'type' => Controls_Manager::REPEATER,
 		'fields' => $repeater->get_controls(),
 		'default' => [
-			[
-				'awea_price_box_icon' => [
-					'value' => 'fas fa-check-circle',
-					'library' => 'fa-solid',
-				],
-				'awea_price_box_features' => esc_html__( 'Responsive Design', 'awesome-widgets-elementor' ),
-			],
-			[
-				'awea_price_box_icon' => [
-					'value' => 'fas fa-check-circle',
-					'library' => 'fa-solid',
-				],
-				'awea_price_box_features' => esc_html__( 'Content Upload', 'awesome-widgets-elementor' ),
-			],
+	[
+		'awea_price_box_icon' => [
+			'value' => 'fas fa-check-circle',
+			'library' => 'fa-solid',
 		],
+		'awea_price_box_features' => esc_html__( 'Responsive Web Design', 'awesome-widgets-elementor' ),
+	],
+	[
+		'awea_price_box_icon' => [
+			'value' => 'fas fa-check-circle',
+			'library' => 'fa-solid',
+		],
+		'awea_price_box_features' => esc_html__( 'SEO Optimization', 'awesome-widgets-elementor' ),
+	],
+	[
+		'awea_price_box_icon' => [
+			'value' => 'fas fa-check-circle',
+			'library' => 'fa-solid',
+		],
+		'awea_price_box_features' => esc_html__( 'Cloud Hosting Setup', 'awesome-widgets-elementor' ),
+	],
+	[
+		'awea_price_box_icon' => [
+			'value' => 'fas fa-check-circle',
+			'library' => 'fa-solid',
+		],
+		'awea_price_box_features' => esc_html__( 'E-commerce Integration', 'awesome-widgets-elementor' ),
+	],
+	[
+		'awea_price_box_icon' => [
+			'value' => 'fas fa-check-circle',
+			'library' => 'fa-solid',
+		],
+		'awea_price_box_features' => esc_html__( 'Security & SSL Setup', 'awesome-widgets-elementor' ),
+	],
+],
 		'title_field' => '{{{ awea_price_box_features }}}',
 	]
 );

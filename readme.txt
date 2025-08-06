@@ -1,3 +1,34 @@
+'awesome-image-box' - Done
+'awesome-list-group' - Done 
+'awesome-number-box' - Done 
+'awesome-contact-info' - Done
+'awesome-business-hours' - Done
+'awesome-icon-box' - Done 
+'awesome-counter' - Done 
+'awesome-accordion' - Done
+'awesome-countdown' - Done
+'awesome-cta' - Done
+'awesome-heading' - Done
+'awesome-filter-gallery' - Done
+'awesome-timeline' - Done
+'awesome-testimonials' - Done
+'awesome-team' - Done
+'awesome-price-menu' - Done
+'awesome-price' - Done
+'awesome-post-grid',
+'awesome-product-grid',
+'awesome-product-category-grid',
+'awesome-product-list',
+'awesome-post-carousel',
+'awesome-product-carousel',
+'awesome-product-category-carousel',
+'awesome-team-carousel',
+'awesome-testimonials-carousel',
+
+
+
+
+
 === Awesome Widgets for Elementor ===
 Contributors: nahian91
 Tags: elementor, elementor addons, elementor widget, elements

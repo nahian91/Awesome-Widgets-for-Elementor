@@ -244,34 +244,6 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 			]
 		);	
 
-		// Icon Box Background
-		$this->add_control(
-			'awea_icon_box_bg_color',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-single-icon-box' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// Icon Box Padding
-		$this->add_control(
-			'awea_icon_box_padding',
-			[
-				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-single-icon-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 		// Icon Box Border
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -354,7 +326,7 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-single-icon-box i' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-icon-box' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -370,23 +342,10 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-single-icon-box i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-icon-box-content-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);	
-
-		// Icon Box Border Radius
-		$this->add_control(
-			'awea_icon_box_icon_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-single-icon-box i' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
 
 		$this->end_controls_section();
 
@@ -651,7 +610,9 @@ class Widget_Awesome_Icon_Box extends Widget_Base {
 		$awea_icon_box_btn_link = $settings['awea_icon_box_btn_link']['url'];
        ?>
 			<div class="awea-single-icon-box">
-				<i class="<?php echo $awea_icon_box_icon;?>"></i>
+				<div class="awea-single-icon-box-content-icon">
+					<i class="<?php echo $awea_icon_box_icon;?>"></i>
+				</div>
 				<div class="awea-single-icon-box-content">
 					<h4><?php echo esc_html($awea_icon_box_title);?></h4>
 					<p><?php echo esc_html($awea_icon_box_des);?></p>

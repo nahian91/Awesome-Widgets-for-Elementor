@@ -1,0 +1,36 @@
+.awea-single-team {
+	overflow: hidden;
+}
+.awea-single-team-content {
+	text-align: center;
+	padding: 15px 0;
+	transition: all 0.4s linear;
+	margin-top: -60px;
+	position: relative;
+	margin: 0 15px;
+	border-bottom: 1px solid #f5f5f5;
+}
+.awea-single-team-social {
+	margin-bottom: 0;
+}
+.awea-single-team-social a {
+	position: relative;
+	transition: color 0.3s linear;
+}
+.awea-single-team img {
+  width: 100%;
+}
+.awea-single-team-content h4 span {
+  display: block;
+  margin: 5px 0 10px;
+}
+.awea-single-team-content {
+	padding: 15px 0 25px;
+	background-color: #fff;
+	margin: -50px 25px 0;
+	border-radius: 8px;
+}
+.awea-single-team-social a {
+  display: inline-block;
+  transition: .3s;
+}

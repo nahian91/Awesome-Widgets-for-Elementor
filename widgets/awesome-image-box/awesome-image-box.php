@@ -242,34 +242,6 @@ class Widget_Awesome_Image_Box extends Widget_Base {
 			]
 		);	
 
-		// Image Box Background
-		$this->add_control(
-			'awea_image_box_bg_color',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-single-image-box' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// Image Box Padding
-		$this->add_control(
-			'awea_image_box_padding',
-			[
-				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-single-image-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 		// Image Box Border
 		$this->add_group_control(
 			Group_Control_Border::get_type(),

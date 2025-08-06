@@ -25,7 +25,6 @@ class AWEA {
         'awesome-counter',
         'awesome-accordion',
         'awesome-filter-gallery',
-        'awesome-step-flow',
         'awesome-post-carousel',
         'awesome-product-carousel',
         'awesome-product-category-carousel',

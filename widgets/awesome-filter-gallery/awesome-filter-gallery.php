@@ -170,55 +170,55 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 				'default' => [
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-1-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'landscape, stars, parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-2-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'cars',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-3-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'mountain, parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-4-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'seabeach, landscape, cars',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-5-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-6-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'roadtrips, landscape, mountain',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-7-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'stars',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-8-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'stars, cars, parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-9-web-bricks.webp',
+							'url' => '\Elementor\Utils::get_placeholder_image_src()',
 						],
 						'awea_filter_gallery_cat' => 'roadtrips, cars, parks',
 					]
@@ -494,7 +494,9 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 						<div class="awea-filter-img" style="background-image:url('<?php echo esc_url($filter_image); ?>')"></div>
 						<div class="awea-image-overlay">
 							<a href="<?php echo esc_url($filter_image); ?>" class="elementor-lightbox">
-								<div class="awea-filter-img-overlay" style="background-image:url('<?php echo esc_url(AWEA_URL . 'img/icon-zoom.svg'); ?>')"></div>
+								<div class="awea-filter-img-overlay">
+									<i class="fas fa-search-plus"></i>
+								</div>
 							</a>
 						</div>
 					</div>

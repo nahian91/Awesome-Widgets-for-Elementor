@@ -153,7 +153,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'default' => 'left',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .awea-single-number-box' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -200,7 +200,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-number-box' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -213,7 +213,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_number_box_border',
-				'selector' => '{{WRAPPER}} .single-number-box',
+				'selector' => '{{WRAPPER}} .awea-single-number-box',
 			]
 		);
 
@@ -225,7 +225,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-number-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -238,7 +238,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-number-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -261,7 +261,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-number-box span' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -274,7 +274,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_number_box_number_typography',
-				'selector' => '{{WRAPPER}} .single-number-box span',
+				'selector' => '{{WRAPPER}} .awea-single-number-box span',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -288,7 +288,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box span' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-number-box span' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -301,7 +301,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_number_box_number_border',
-				'selector' => '{{WRAPPER}} .single-number-box span',
+				'selector' => '{{WRAPPER}} .awea-single-number-box span',
 			]
 		);
 
@@ -324,7 +324,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-number-box h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -337,7 +337,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_number_box_title_typography',
-				'selector' => '{{WRAPPER}} .single-number-box h4',
+				'selector' => '{{WRAPPER}} .awea-single-number-box h4',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -363,7 +363,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-number-box p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-number-box p' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -376,7 +376,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_number_box_desc_typography',
-				'selector' => '{{WRAPPER}} .single-number-box p',
+				'selector' => '{{WRAPPER}} .awea-single-number-box p',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -403,7 +403,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 		$awea_number_box_title = $settings['awea_number_box_title'];
 		$awea_number_box_des = $settings['awea_number_box_des'];
        ?>
-			<div class="single-number-box">
+			<div class="awea-single-number-box">
 				<span><?php echo esc_html($awea_number_box_number);?></span>
 				<h4><?php echo esc_html($awea_number_box_title);?></h4>
 				<p><?php echo esc_html($awea_number_box_des);?></p>

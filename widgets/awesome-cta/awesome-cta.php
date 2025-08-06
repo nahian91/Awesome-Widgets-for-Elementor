@@ -331,7 +331,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 					'{{WRAPPER}} .awea-cta-box span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_TEXT,
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 			]
 		);
@@ -465,7 +465,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 				'name' => 'awea_cta_desc_typography',
 				'selector' => '{{WRAPPER}} .awea-cta-box-content p',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);

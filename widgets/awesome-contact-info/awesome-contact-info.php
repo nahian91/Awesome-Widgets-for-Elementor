@@ -212,7 +212,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_contact_info_border',
-				'selector' => '{{WRAPPER}} .single-awesome-widget-contact-info',
+				'selector' => '{{WRAPPER}} .awea-single-awesome-widget-contact-info',
 			]
 		);	
 
@@ -224,7 +224,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-awesome-widget-contact-info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-awesome-widget-contact-info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -248,7 +248,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-awesome-widget-contact-info .icon i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-awesome-widget-contact-info .awea-single-awesome-widget-contact-info-icon i' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -263,7 +263,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-awesome-widget-contact-info .icon' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-awesome-widget-contact-info .awea-single-awesome-widget-contact-info-icon' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -279,7 +279,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-awesome-widget-contact-info .icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-awesome-widget-contact-info .awea-single-awesome-widget-contact-info-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -302,7 +302,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-awesome-widget-contact-info h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-awesome-widget-contact-info h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -315,7 +315,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_contact_info_title_typography',
-				'selector' => '{{WRAPPER}} .single-awesome-widget-contact-info h4',
+				'selector' => '{{WRAPPER}} .awea-single-awesome-widget-contact-info h4',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
@@ -340,7 +340,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-awesome-widget-contact-info h4 span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-awesome-widget-contact-info h4 span' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -353,7 +353,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_contact_info_desc_typography',
-				'selector' => '{{WRAPPER}} .single-awesome-widget-contact-info h4 span',
+				'selector' => '{{WRAPPER}} .awea-single-awesome-widget-contact-info h4 span',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
@@ -383,8 +383,8 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 			$awea_contact_info_title = $list['awea_contact_info_title'];
 			$awea_contact_info_description = $list['awea_contact_info_description'];
 		?>
-		<div class="single-awesome-widget-contact-info">
-			<div class="icon">
+		<div class="awea-single-awesome-widget-contact-info">
+			<div class="awea-single-awesome-widget-contact-info-icon">
 				<i class="<?php echo esc_attr($awea_contact_info_icon);?>"></i>
 			</div>
 			<h4><?php echo esc_html($awea_contact_info_title);?> <span><?php echo esc_html($awea_contact_info_description);?></span></h4>

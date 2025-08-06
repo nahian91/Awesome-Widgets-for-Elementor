@@ -195,7 +195,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .list-item' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-list-item' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -208,7 +208,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_list_group_border',
-				'selector' => '{{WRAPPER}} .list-item',
+				'selector' => '{{WRAPPER}} .awea-list-item',
 			]
 		);	
 
@@ -220,7 +220,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -233,7 +233,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -258,7 +258,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .list-item i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-list-item i' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -273,7 +273,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .list-item i' => 'border-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-list-item i' => 'border-color: {{VALUE}}',
 				],
 			]
 		);
@@ -298,7 +298,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .list-item h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-list-item h4' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -308,7 +308,7 @@ class Widget_Awesome_List_Group extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_list_group_title_typography',
-				'selector' => '{{WRAPPER}} .list-item h4',
+				'selector' => '{{WRAPPER}} .awea-list-item h4',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -338,8 +338,8 @@ class Widget_Awesome_List_Group extends Widget_Base {
 				$awea_group_list_title = $item['awea_list_group_title'];
 				$awea_group_list_icon =  $item['awea_list_group_icon'];
 			?>
-				<div class="list-group">
-					<div class="list-item">
+				<div class="awea-list-group">
+					<div class="awea-list-item">
 						<i class="<?php echo esc_attr($awea_group_list_icon);?>"></i> <h4><?php echo esc_html($awea_group_list_title);?></h4>
 					</div>
 				</div>

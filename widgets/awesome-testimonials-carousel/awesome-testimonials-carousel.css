@@ -1,21 +1,25 @@
-.awea-cta-box{
-  padding: 30px 40px;
+.awea-testimonial-carousel {
+  text-align: center;
+  padding: 30px;
 }
-.awea-cta-box span {
-  display: block;
+.awea-testimonial-carousel-content {
+  margin: 20px 0 30px;
 }
-.awea-cta-box-content {
-  margin-top: 10px;
-}
-.awea-cta-box-btn {
+.awea-testimonial-carousel-author {
   display: flex;
-  gap: 30px;
   justify-content: center;
-  margin-top: 40px;
+  align-items: center;
 }
-.awea-cta-box-btn a {
-  display: inline-block;
-  padding: 10px 25px;
-  background-color: var(--e-global-color-text);
-  color: var(--e-global-color-secondary);
+.awea-testimonial-carousel-author img {
+  max-width: 70px;
+  border: 1px dashed #ddd;
+  margin-right: 15px;
+}
+.awea-testimonial-carousel-author h4 {
+  font-size: 20px;
+  text-align: left;
+}
+.awea-testimonial-carousel-author h4 span {
+  display: block;
+  margin-top: 5px;
 }

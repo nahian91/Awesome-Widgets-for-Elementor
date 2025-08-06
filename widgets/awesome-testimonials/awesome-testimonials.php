@@ -117,7 +117,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'label' => esc_html__( 'Speech', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::WYSIWYG,
 				'label_block' => true,
-				'default' => esc_html__( 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima excepturi, animi eaque sed quidem libero doloribus repellat nostrum architecto atque officia molestias perferendis quaerat asperiores, quam reprehenderit temporibus corrupti eum quis! Pariatur modi quis ad voluptatem dolores odit voluptas ullam blanditiis non.', 'awesome-widgets-elementor' ),
+				'default' => esc_html__( 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima excepturi, animi eaque sed quidem libero doloribus repellat nostrum architecto atque officia.' ),
 			]
 		);
 
@@ -215,7 +215,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'default' => 'center',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial' => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-testimonial' => 'text-align: {{VALUE}}',
 				],
 			]
 		);	
@@ -227,7 +227,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-testimonial' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -240,7 +240,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_testimonials_border',
-				'selector' => '{{WRAPPER}} .single-testimonial',
+				'selector' => '{{WRAPPER}} .awea-single-testimonial',
 			]
 		);	
 
@@ -252,7 +252,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-testimonial' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -265,7 +265,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-testimonial' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -298,7 +298,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial-icon i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-testimonial-icon i' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -322,7 +322,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-testimonial-content' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -335,7 +335,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_testimonials_speech_typography',
-				'selector' => '{{WRAPPER}} .single-testimonial-content p',
+				'selector' => '{{WRAPPER}} .awea-single-testimonial-content',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -368,7 +368,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_testimonials_author_image_border',
-				'selector' => '{{WRAPPER}} .single-testimonial-author img',
+				'selector' => '{{WRAPPER}} .awea-single-testimonial-author img',
 			]
 		);	
 
@@ -380,7 +380,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial-author img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-single-testimonial-author img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -401,7 +401,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial-author h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-testimonial-author h4' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -414,7 +414,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_testimonials_author_name_typography',
-				'selector' => '{{WRAPPER}} .single-testimonial-author h4',
+				'selector' => '{{WRAPPER}} .awea-single-testimonial-author h4',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
@@ -437,7 +437,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .single-testimonial-author span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-single-testimonial-author span' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -450,7 +450,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_testimonials_author_designation_typography',
-				'selector' => '{{WRAPPER}} .single-testimonial-author span',
+				'selector' => '{{WRAPPER}} .awea-single-testimonial-author span',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
@@ -479,14 +479,14 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 		$awea_testimonials_author_name = $settings['awea_testimonials_author_name'];
 		$awea_testimonials_author_desg = $settings['awea_testimonials_author_desg'];
        ?>
-	   		<div class="single-testimonial">
-				<div class="single-testimonial-icon">
+	   		<div class="awea-single-testimonial">
+				<div class="awea-single-testimonial-icon">
 					<i class="<?php echo esc_attr($awea_testimonials_icon);?>"></i>
 				</div>
-			   	<div class="single-testimonial-content">
+			   	<div class="awea-single-testimonial-content">
 				   <?php echo $awea_testimonials_speech;?>
 				</div>
-				<div class="single-testimonial-author">
+				<div class="awea-single-testimonial-author">
 					<img src="<?php echo esc_url($awea_testimonials_author_image);?>" alt="">
 					<h4><?php echo esc_html($awea_testimonials_author_name);?> <span><?php echo esc_html($awea_testimonials_author_desg);?></span></h4>
 				</div>

@@ -1,0 +1,25 @@
+.awea-single-testimonial {
+  text-align: center;
+  padding: 30px;
+}
+.awea-single-testimonial-content {
+  margin: 20px 0 30px;
+}
+.awea-single-testimonial-author {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.awea-single-testimonial-author img {
+  max-width: 70px;
+  border: 1px dashed #ddd;
+  margin-right: 15px;
+}
+.awea-single-testimonial-author h4 {
+  font-size: 20px;
+  text-align: left;
+}
+.awea-single-testimonial-author h4 span {
+  display: block;
+  margin-top: 5px;
+}

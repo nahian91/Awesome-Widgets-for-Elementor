@@ -212,6 +212,38 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 
 		// start of the Style tab section
 		$this->start_controls_section(
+			'awea_business_hours_layout_style',
+			[
+				'label' => esc_html__( 'Layout', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_business_hours_layout_border',
+				'selector' => '{{WRAPPER}} .awea-business-hours',
+			]
+		);
+
+		// Business Hours Border Radius
+		$this->add_control(
+			'awea_business_hours_layout_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-business-hours' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		// start of the Style tab section
+		$this->start_controls_section(
 			'awea_business_hours_title_style',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
@@ -258,19 +290,6 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
 				]
-			]
-		);
-
-		// Business Hours Border Radius
-		$this->add_control(
-			'awea_business_hours_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-business-hours-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
 			]
 		);
 
