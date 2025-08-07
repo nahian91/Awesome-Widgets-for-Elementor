@@ -166,7 +166,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 		$this->start_controls_section(
 			'awea_price_menu_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -179,7 +179,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -208,7 +208,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 		$this->add_control(
 			'awea_price_menu_layout_padding',
 			[
-				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
@@ -228,7 +228,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 		$this->add_control(
 			'awea_price_menu_layout_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
@@ -259,7 +259,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 		$this->add_control(
 			'awea_style_price_menu_image_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
@@ -370,7 +370,7 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 				$img_url = ! empty( $item['awea_price_menu_image']['url'] ) ? esc_url( $item['awea_price_menu_image']['url'] ) : 'https://placehold.co/600x400/png';
 				?>
 				<li class="awea-price-menu">
-					<img src="<?php echo $img_url; ?>" alt="<?php echo esc_attr( $item['awea_price_menu_title'] ); ?>">
+					<img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr( $item['awea_price_menu_title'] ); ?>">
 					<div class="awea-price-menu-details">
 						<div class="awea-price-menu-header">
 							<h4><?php echo esc_html( $item['awea_price_menu_title'] ); ?></h4>

@@ -1,21 +1,10 @@
-.awea-cta-box{
-  padding: 30px 40px;
+.awesa-product-category {
+  position: relative;
 }
-.awea-cta-box span {
-  display: block;
-}
-.awea-cta-box-content {
-  margin-top: 10px;
-}
-.awea-cta-box-btn {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  margin-top: 40px;
-}
-.awea-cta-box-btn a {
-  display: inline-block;
-  padding: 10px 25px;
-  background-color: var(--e-global-color-text);
-  color: var(--e-global-color-secondary);
+.awea-product-category-content {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  padding: 20px 5px;
 }

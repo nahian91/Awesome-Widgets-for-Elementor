@@ -418,7 +418,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-content' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel-content' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -434,7 +434,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-carousel-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -447,7 +447,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-carousel-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -470,7 +470,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-carousel-meta, .awea-post-carousel-meta a' => 'color: {{VALUE}} !important',
+					'{{WRAPPER}} .awea-post-carousel-carousel-meta, .awea-post-carousel-carousel-meta a' => 'color: {{VALUE}} !important',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -483,7 +483,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_post_carousel_meta_typography',
-				'selector' => '{{WRAPPER}} .awea-post-carousel-meta, .awea-post-carousel-meta a',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-carousel-meta, .awea-post-carousel-carousel-meta a',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -509,7 +509,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-title .awea-post-post-title a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel-title .awea-post-carousel-post-title a' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -522,7 +522,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_post_carousel_title_typography',
-				'selector' => '{{WRAPPER}} .awea-post-title .awea-post-post-title a',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-title .awea-post-carousel-post-title a',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -572,7 +572,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-excerpt' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel-excerpt' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -585,7 +585,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_post_carousel_excerpt_typography',
-				'selector' => '{{WRAPPER}} .awea-post-excerpt',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-excerpt',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -618,7 +618,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-img' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-carousel-img' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -637,7 +637,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-img' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-carousel-img' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -666,7 +666,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-carousel-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -705,7 +705,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-content .awea-btn-line' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel-content .awea-btn-line' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_ACCENT,
@@ -718,7 +718,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_post_carousel_btn_typography',
-				'selector' => '{{WRAPPER}} .awea-post-content .awea-btn-line',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-content .awea-btn-line',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				]
@@ -737,12 +737,12 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 
 		// Blog Button Hover Color
 		$this->add_control(
-			'awea_post_carousel_btn_color',
+			'awea_post_carousel_btn_hover_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-content .awea-btn-line:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel-content .awea-btn-line:hover' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -975,27 +975,27 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
     >
         <?php if ($query->have_posts()) : ?>
             <?php while ($query->have_posts()) : $query->the_post(); ?>
-                <div class="awea-single-post">
+                <div class="awea-single-post-carousel">
                     <?php
                     $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: get_template_directory_uri() . '/assets/images/default-image.jpg';
                     ?>
-                    <div class="awea-post-img" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
-                    <div class="awea-post-content">
-                        <div class="awea-post-meta">
+                    <div class="awea-post-carousel-img" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
+                    <div class="awea-post-carousel-content">
+                        <div class="awea-post-carousel-meta">
                             <?php if ($awea_post_carousel_cat_visibility) : ?>
                                 <?php the_category(', '); ?>
                             <?php endif; ?>
                             <?php if ($awea_post_carousel_date_visibility) : ?>
-                                <a class="awea-post-date" href="<?php echo esc_url(get_the_permalink()); ?>"><?php echo esc_html(get_the_date('j M, Y')); ?></a>
+                                <a class="awea-post-carousel-date" href="<?php echo esc_url(get_the_permalink()); ?>"><?php echo esc_html(get_the_date('j M, Y')); ?></a>
                             <?php endif; ?>
                         </div>
-                        <div class="awea-post-title">
-                            <<?php echo esc_attr($awea_post_carousel_title_tag); ?> class="awea-post-post-title">
+                        <div class="awea-post-carousel-title">
+                            <<?php echo esc_attr($awea_post_carousel_title_tag); ?> class="awea-post-carousel-title">
                                 <a href="<?php echo esc_url(get_the_permalink()); ?>"><?php the_title(); ?></a>
                             </<?php echo esc_attr($awea_post_carousel_title_tag); ?>>
                         </div>
                         <?php if ($awea_post_carousel_excerpt_visibility) : ?>
-                            <div class="awea-post-excerpt">
+                            <div class="awea-post-carousel-excerpt">
                                 <?php echo wp_kses_post(wp_trim_words(get_the_excerpt(), 20, '...')); ?>
                             </div>
                         <?php endif; ?>

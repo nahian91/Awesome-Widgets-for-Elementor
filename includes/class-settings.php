@@ -17,12 +17,14 @@ class AWEA_Settings {
     }
 
     public function settings_init() {
-        // Register widget toggle settings
-        register_setting('awesomeWidgets', 'awea_widgets_enabled');
+        // Register widget toggle settings with sanitization
+        register_setting('awesomeWidgets', 'awea_widgets_enabled', [
+            'sanitize_callback' => [$this, 'sanitize_widget_settings']
+        ]);
 
         add_settings_section(
             'awea_section',
-            'Widgets Settings',
+            esc_html__('Widgets Settings', 'awesome-widgets-elementor'),
             null,
             'awesome-widgets-elementor'
         );
@@ -30,7 +32,7 @@ class AWEA_Settings {
         foreach ($this->widgets as $widget) {
             add_settings_field(
                 "awea_{$widget}_enabled",
-                ucfirst(str_replace('-', ' ', $widget)),
+                esc_html(ucfirst(str_replace('-', ' ', $widget))),
                 [$this, 'checkbox_render'],
                 'awesome-widgets-elementor',
                 'awea_section',
@@ -38,19 +40,21 @@ class AWEA_Settings {
             );
         }
 
-        // General settings
-        register_setting('awesomeWidgetsGeneral', 'awea_general_options');
+        // Register general settings with sanitization
+        register_setting('awesomeWidgetsGeneral', 'awea_general_options', [
+            'sanitize_callback' => [$this, 'sanitize_general_settings']
+        ]);
 
         add_settings_section(
             'awea_general_section',
-            'General Settings',
+            esc_html__('General Settings', 'awesome-widgets-elementor'),
             null,
             'awesome-widgets-general'
         );
 
         add_settings_field(
             'awea_general_field',
-            'General Option',
+            esc_html__('General Option', 'awesome-widgets-elementor'),
             function () {
                 $options = get_option('awea_general_options');
                 ?>
@@ -76,8 +80,28 @@ class AWEA_Settings {
                        value="1" <?php checked($checked, 1); ?> />
                 <span class="awea-slider"></span>
             </span>
-            <span class="awea-switch-label"><?php echo ucfirst(str_replace('-', ' ', $widget)); ?></span>
+            <span class="awea-switch-label"><?php echo esc_html(ucfirst(str_replace('-', ' ', $widget))); ?></span>
         </label>
         <?php
+    }
+
+    /**
+     * Sanitization for widget toggle options
+     */
+    public function sanitize_widget_settings($input) {
+        $sanitized = [];
+        foreach ($this->widgets as $widget) {
+            $sanitized[$widget] = isset($input[$widget]) && $input[$widget] == '1' ? 1 : 0;
+        }
+        return $sanitized;
+    }
+
+    /**
+     * Sanitization for general options
+     */
+    public function sanitize_general_settings($input) {
+        $sanitized = [];
+        $sanitized['general_field'] = isset($input['general_field']) ? sanitize_text_field($input['general_field']) : '';
+        return $sanitized;
     }
 }

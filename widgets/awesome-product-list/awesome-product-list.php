@@ -169,7 +169,7 @@ class Widget_Awesome_Product_List extends Widget_Base {
 		$this->start_controls_section(
 			'awea_product_list_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -182,7 +182,7 @@ class Widget_Awesome_Product_List extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);

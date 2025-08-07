@@ -242,7 +242,7 @@ class Widget_Awesome_Team extends Widget_Base {
 		$this->start_controls_section(
 			'awea_single_team_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -255,7 +255,7 @@ class Widget_Awesome_Team extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -420,6 +420,25 @@ class Widget_Awesome_Team extends Widget_Base {
 		);
 
 		$this->add_control(
+			'awea_single_team_contents_name_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-content h4 span' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'awea_single_team_contents_desg_options',
 			[
 				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
@@ -452,6 +471,25 @@ class Widget_Awesome_Team extends Widget_Base {
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_contents_desg_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-content h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -497,10 +535,22 @@ class Widget_Awesome_Team extends Widget_Base {
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 25,
+					'size' => 20,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-team-social a i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_social_margin',
+			[
+				'label' => esc_html__( 'Margin', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-social a i' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -564,9 +614,9 @@ class Widget_Awesome_Team extends Widget_Base {
 		$awea_single_team_socials_list = $settings['awea_single_team_socials_list'];
         ?>
 			<div class="awea-single-team">
-				<img src="<?php echo $awea_single_team_image_upload_url;?>" alt="<?php echo $awea_single_team_name;?>">
+				<img src="<?php echo esc_url($awea_single_team_image_upload_url);?>" alt="<?php echo esc_attr($awea_single_team_name);?>">
 				<div class="awea-single-team-content">
-					<h4><?php echo $awea_single_team_name;?> <span><?php echo $awea_single_team_designation;?></span></h4>
+					<h4><?php echo esc_html($awea_single_team_name);?> <span><?php echo esc_html($awea_single_team_designation);?></span></h4>
 					<div class="awea-single-team-social">
 						<?php foreach($awea_single_team_socials_list as $social) {
 							$link = $social['awea_single_team_socials_link']['url'];

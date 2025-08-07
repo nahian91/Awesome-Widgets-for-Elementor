@@ -17,11 +17,15 @@ jQuery(window).on('elementor/frontend/init', function () {
             loop: true,
             autoplay: post_autoplay,
             margin: 30,
-            nav: true,
+            nav: post_arrows,
             autoplayTimeout: post_autoplay_animation,
             autoplaySpeed: post_autoplay_speed,
             autoplayHoverPause: post_pause,
             items: post_items,
+            navText: [
+                "<div class='awea-carousel-arrow-border'><i class='fas fa-long-arrow-alt-left'></i></div>",
+                "<div class='awea-carousel-arrow-border'><i class='fas fa-long-arrow-alt-right'></i></div>"
+            ], 
             responsive: {
                 0: {
                     items: 1,

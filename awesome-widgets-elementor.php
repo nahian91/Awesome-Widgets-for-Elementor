@@ -20,9 +20,6 @@ define('AWEA_FILE', __FILE__);
 define('AWEA_PATH', plugin_dir_path(__FILE__));
 define('AWEA_URL', plugin_dir_url(__FILE__));
 
-// Load Freemius (if applicable)
-require_once AWEA_PATH . 'includes/freemius-init.php';
-
 // Load core plugin class
 require_once AWEA_PATH . 'includes/class-plugin-core.php';
 

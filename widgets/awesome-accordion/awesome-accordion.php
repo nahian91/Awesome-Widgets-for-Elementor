@@ -39,7 +39,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 	   	$this->start_controls_section(
 	       'accordion_content',
 		    [
-		        'label' => esc_html__('Content', 'awesome-elementor-widgets'),
+		        'label' => esc_html__('Content', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT,		   
 		    ]
 	    );
@@ -51,9 +51,9 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$repeater->add_control(
 			'awea_accordion_title',
 			[
-				'label' => esc_html__( 'Accordion Question', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Accordion Question', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Where can I find your warranty policy?', 'awesome-elementor-widgets' ),
+				'default' => esc_html__( 'Where can I find your warranty policy?', 'awesome-widgets-elementor' ),
 				'separator' => 'before',
 				'label_block' => true
 			]
@@ -63,9 +63,9 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$repeater->add_control(
 			'awea_accordion_content',
 			[
-				'label' => esc_html__( 'Accordion Answer', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Accordion Answer', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::WYSIWYG,
-				'default' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' ),
+				'default' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -73,35 +73,35 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_list',
 			[
-				'label' => esc_html__( 'Accordion Lists', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Accordion Lists', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'title_field' => '{{{ awea_accordion_title }}}',
 				'separator' => 'before',
 				'default' => [
 					[
-						'awea_accordion_title' => esc_html__( 'Do you offer gift wrapping or special packaging?', 'awesome-elementor-widgets' ),
-						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' )
+						'awea_accordion_title' => esc_html__( 'Do you offer gift wrapping or special packaging?', 'awesome-widgets-elementor' ),
+						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' )
 					],
 					[
-						'awea_accordion_title' => esc_html__( 'Can I track my order in real-time?', 'awesome-elementor-widgets'),
-						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' )
+						'awea_accordion_title' => esc_html__( 'Can I track my order in real-time?', 'awesome-widgets-elementor'),
+						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' )
 					],
 					[
-						'awea_accordion_title' => esc_html__( 'Do you ship internationally?', 'awesome-elementor-widgets'),
-						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' )
+						'awea_accordion_title' => esc_html__( 'Do you ship internationally?', 'awesome-widgets-elementor'),
+						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' )
 					],
 					[
-						'awea_accordion_title' => esc_html__( 'How do I apply a discount code?', 'awesome-elementor-widgets'),
-						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' )
+						'awea_accordion_title' => esc_html__( 'How do I apply a discount code?', 'awesome-widgets-elementor'),
+						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' )
 					],
 					[
-						'awea_accordion_title' => esc_html__( 'Can I request a custom or personalized product?', 'awesome-elementor-widgets'),
-						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' )
+						'awea_accordion_title' => esc_html__( 'Can I request a custom or personalized product?', 'awesome-widgets-elementor'),
+						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' )
 					],
 					[
-						'awea_accordion_title' => esc_html__( 'What should I do if I receive a damaged item?', 'awesome-elementor-widgets'),
-						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-elementor-widgets' )
+						'awea_accordion_title' => esc_html__( 'What should I do if I receive a damaged item?', 'awesome-widgets-elementor'),
+						'awea_accordion_content' => esc_html__( 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.', 'awesome-widgets-elementor' )
 					]
 				],
 			]
@@ -114,7 +114,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->start_controls_section(
 			'awea_accordion_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -127,7 +127,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -137,7 +137,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->start_controls_section(
 			'awea_accordion_options',
 			[
-				'label' => esc_html__( 'Layouts', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -146,7 +146,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_border_color',
 			[
-				'label' => esc_html__( 'Border Color', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -164,7 +164,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->start_controls_section(
 			'awea_accordion_title_options',
 			[
-				'label' => esc_html__( 'Accordion Question', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Accordion Question', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -173,7 +173,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_title_color',
 			[
-				'label' => esc_html__( 'Text Color', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -188,7 +188,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_title_border',
 			[
-				'label' => esc_html__( 'Border Color', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_ACCENT,
@@ -203,7 +203,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_title_border_active_color',
 			[
-				'label' => esc_html__( 'Border Active', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Border Active', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_ACCENT,
@@ -232,7 +232,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->start_controls_section(
 			'awea_accordion_desc_options',
 			[
-				'label' => esc_html__( 'Accordion Answer', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Accordion Answer', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -241,7 +241,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_desc_color',
 			[
-				'label' => esc_html__( 'Text Color', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -270,7 +270,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->start_controls_section(
 			'awea_accordion_icon_options',
 			[
-				'label' => esc_html__( 'Icon', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Icon', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -279,7 +279,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_icon_active_color',
 			[
-				'label' => esc_html__( 'Open State', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Open State', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -294,7 +294,7 @@ class Widget_Awesome_Accordion extends Widget_Base {
 		$this->add_control(
 			'awea_accordion_icon_color',
 			[
-				'label' => esc_html__( 'Close State', 'awesome-elementor-widgets' ),
+				'label' => esc_html__( 'Close State', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_ACCENT,

@@ -34,7 +34,7 @@ jQuery(window).on('elementor/frontend/init', function () {
                     nav: false
                 },
                 1000: {
-                    items: product_category_carousel_items,
+                    items: 3,
                     nav: product_category_carousel_arrows,
                     loop: product_category_carousel_loops,
                 }

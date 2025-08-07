@@ -18,7 +18,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__('Countdown', 'awesome-widgets');
+		return esc_html__('Countdown', 'awesome-widgets-elementor');
 	}
 
 	public function get_icon() {
@@ -150,7 +150,7 @@ class Widget_Awesome_Countdown extends Widget_Base {
 				'type'			=> Controls_Manager::URL,
 				'show_external' => true,
 				'default' => [
-					'url' => 'https://getwebbricks.com',
+					'url' => 'https://devnahian.com.com',
 					'is_external' => true,
 					'nofollow' => true,
 				],

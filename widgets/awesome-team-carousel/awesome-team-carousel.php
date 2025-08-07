@@ -141,7 +141,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Facebook', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://getwebbricks.com',
+                    'url' => 'https://devnahian.com.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -155,7 +155,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Twitter', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://getwebbricks.com',
+                    'url' => 'https://devnahian.com.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -169,7 +169,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Linkedin', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://getwebbricks.com',
+                    'url' => 'https://devnahian.com.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -183,7 +183,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Instagram', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://getwebbricks.com',
+                    'url' => 'https://devnahian.com.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -286,6 +286,19 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			'awea_team_carousel_arrows',
 			[
 				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
+		// Teams Carousel Dots
+		$this->add_control(
+			'awea_team_carousel_dots',
+			[
+				'label' => esc_html__( 'Dots', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
 				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
 				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
@@ -562,6 +575,25 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		);
 
 		$this->add_control(
+			'awea_single_team_carousel_contents_name_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-carousel-content h4 span' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
 			'awea_single_team_carousel_contents_desg_options',
 			[
 				'label' => esc_html__( 'Designation', 'awesome-widgets-elementor' ),
@@ -594,6 +626,25 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_contents_desg_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-carousel-content h4 span' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -639,13 +690,26 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 				],
 				'default' => [
 					'unit' => 'px',
-					'size' => 25,
+					'size' => 15,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .awea-single-team-carousel-social a i' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
+
+		$this->add_control(
+			'awea_single_team_carousel_social_margin',
+			[
+				'label' => esc_html__( 'Margin', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-single-team-carousel-social a i' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
 
 		$this->add_control(
 			'awea_single_team_carousel_social_color',
@@ -686,6 +750,152 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		$this->end_controls_section();
 		// end of the Style tab section
 
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_single_team_carousel_arrows_style',
+			[
+				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition'		=> [
+					'awea_team_carousel_arrows' => 'yes'
+				]
+			]
+		);
+
+		// Start of Tabs
+		$this->start_controls_tabs('awea_single_team_carousel_arrows_tabs');
+
+		// Normal Tab
+		$this->start_controls_tab(
+			'awea_single_team_carousel_arrows_tabs_normal',
+			[
+				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_arrows_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-carousel .awea-carousel-arrow-border i' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_arrows_bg',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-carousel .awea-carousel-arrow-border' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		// Hover Tab
+		$this->start_controls_tab(
+			'awea_single_team_carousel_arrows_tabs_hover',
+			[
+				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_arrow_hover_bg',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-carousel .awea-carousel-arrow-border:hover' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+		// end of the Style tab section
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_single_team_carousel_dots_style',
+			[
+				'label' => esc_html__( 'Dots', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition'		=> [
+					'awea_team_carousel_dots' => 'yes'
+				]
+			]
+		);
+
+		// Start of Tabs
+		$this->start_controls_tabs('awea_single_team_carousel_dots_tabs');
+
+		// Normal Tab
+		$this->start_controls_tab(
+			'awea_single_team_carousel_dots_tabs_normal',
+			[
+				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_dots_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-carousel .owl-dots button.owl-dot' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_dots_active',
+			[
+				'label' => esc_html__( 'Active Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-carousel .owl-dots button.owl-dot.active' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		// Hover Tab
+		$this->start_controls_tab(
+			'awea_single_team_carousel_dots_tabs_hover',
+			[
+				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_single_team_carousel_dots_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-team-carousel .awea-carousel-arrow-border i' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+		// end of the Style tab section
+
 	}
 
 	/**
@@ -703,7 +913,8 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		// Sanitize and escape settings values before using them.
 		$awea_team_carousels = isset($settings['awea_team_carousels']) ? $settings['awea_team_carousels'] : [];
 		$awea_team_carousels_items = isset($settings['awea_team_carousel_number']) ? $settings['awea_team_carousel_number'] : 3; // Default to 3 items
-		$awea_team_carousels_arrows = isset($settings['awea_team_carousel_arrows']) ? $settings['awea_team_carousel_arrows'] : 'no';
+		$awea_team_carousels_arrows = isset($settings['awea_team_carousel_arrows']) ? $settings['awea_team_carousel_arrows'] : 'yes';
+		$awea_team_carousels_dots = isset($settings['awea_team_carousel_dots']) ? $settings['awea_team_carousel_dots'] : 'yes';
 		$awea_team_carousels_loops = isset($settings['awea_team_carousel_loop']) ? $settings['awea_team_carousel_loop'] : 'no';
 		$awea_team_carousels_pause = isset($settings['awea_team_carousel_pause']) ? $settings['awea_team_carousel_pause'] : 'no';
 		$awea_team_carousels_autoplay = isset($settings['awea_team_carousel_autoplay']) ? $settings['awea_team_carousel_autoplay'] : 'no';
@@ -716,6 +927,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 			<div class="awea-team-carousel owl-carousel" 
 				awea-team-items="<?php echo esc_attr($awea_team_carousels_items); ?>" 
 				awea-team-arrows="<?php echo esc_attr($awea_team_carousels_arrows); ?>" 
+				awea-team-dots="<?php echo esc_attr($awea_team_carousels_dots); ?>" 
 				awea-team-loops="<?php echo esc_attr($awea_team_carousels_loops); ?>" 
 				awea-team-pause="<?php echo esc_attr($awea_team_carousels_pause); ?>" 
 				awea-team-autoplay="<?php echo esc_attr($awea_team_carousels_autoplay); ?>" 
@@ -738,27 +950,27 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 
 					?>
 					<div class="awea-single-team-carousel">
-							<img src="<?php echo $team_image;?>" alt="<?php echo $team_name;?>">
+							<img src="<?php echo esc_url($team_image);?>" alt="<?php echo esc_attr($team_name);?>">
 							<div class="awea-single-team-carousel-content">
-								<h4><?php echo $team_name;?> <span><?php echo $team_designation;?></span></h4>
+								<h4><?php echo esc_html($team_name);?> <span><?php echo esc_html($team_designation);?></span></h4>
 								<div class="awea-single-team-carousel-social">
-    <?php
-    $social_links = [
-        [ 'url' => $team_fb_url,    'icon' => 'fab fa-facebook-f' ],
-        [ 'url' => $team_tw_url,    'icon' => 'fab fa-twitter' ],
-        [ 'url' => $team_ln_url,    'icon' => 'fab fa-linkedin-in' ],
-        [ 'url' => $team_insta_url, 'icon' => 'fab fa-instagram' ],
-    ];
+								<?php
+								$social_links = [
+									[ 'url' => $team_fb_url,    'icon' => 'fab fa-facebook-f' ],
+									[ 'url' => $team_tw_url,    'icon' => 'fab fa-twitter' ],
+									[ 'url' => $team_ln_url,    'icon' => 'fab fa-linkedin-in' ],
+									[ 'url' => $team_insta_url, 'icon' => 'fab fa-instagram' ],
+								];
 
-    foreach ( $social_links as $social ) {
-        if ( ! empty( $social['url'] ) ) {
-            echo '<a href="' . esc_url( $social['url'] ) . '" target="_blank" rel="noopener noreferrer">
-                    <i class="' . esc_attr( $social['icon'] ) . '"></i>
-                  </a>';
-        }
-    }
-    ?>
-</div>
+									foreach ( $social_links as $social ) {
+										if ( ! empty( $social['url'] ) ) {
+											echo '<a href="' . esc_url( $social['url'] ) . '" target="_blank" rel="noopener noreferrer">
+													<i class="' . esc_attr( $social['icon'] ) . '"></i>
+												</a>';
+										}
+									}
+									?>
+								</div>
 
 							</div>
 						</div>

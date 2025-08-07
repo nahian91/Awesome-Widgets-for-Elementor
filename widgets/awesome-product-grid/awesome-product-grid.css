@@ -1,0 +1,34 @@
+
+.awea-product-grid-img {
+  background-size: cover;
+  background-position: center;
+  padding-top: 90%;
+}
+.awea-product-grid {
+  position: relative;
+  overflow: hidden;
+}
+.awea-product-grid-sale {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px 30px;
+}
+.awea-product-grid-btn {
+	display: inline-block;
+  transition: .3s;
+}
+.awea-product-grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.awea-product-grid-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.awea-product-grid-price-bottom {
+    margin-top: auto;
+}

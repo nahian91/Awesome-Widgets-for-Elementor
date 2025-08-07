@@ -1,39 +1,8 @@
-'awesome-image-box' - Done
-'awesome-list-group' - Done 
-'awesome-number-box' - Done 
-'awesome-contact-info' - Done
-'awesome-business-hours' - Done
-'awesome-icon-box' - Done 
-'awesome-counter' - Done 
-'awesome-accordion' - Done
-'awesome-countdown' - Done
-'awesome-cta' - Done
-'awesome-heading' - Done
-'awesome-filter-gallery' - Done
-'awesome-timeline' - Done
-'awesome-testimonials' - Done
-'awesome-team' - Done
-'awesome-price-menu' - Done
-'awesome-price' - Done
-'awesome-post-grid',
-'awesome-product-grid',
-'awesome-product-category-grid',
-'awesome-product-list',
-'awesome-post-carousel',
-'awesome-product-carousel',
-'awesome-product-category-carousel',
-'awesome-team-carousel',
-'awesome-testimonials-carousel',
-
-
-
-
-
 === Awesome Widgets for Elementor ===
 Contributors: nahian91
 Tags: elementor, elementor addons, elementor widget, elements
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.8
 Stable tag: 1.3
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -67,7 +36,7 @@ Awesome Widgets is an Elementor add-on to showcase your Number Box, Service Box,
   Enhance your Elementor with the Number Box widget for stylish and customizable content boxes.
 
 * **[Post List Widget](https://devnahian.com/awesome-widgets/demo-awesome-post-list/)**  
-  Display post posts or content in an organized list format with the Post List widget.
+  Display posts or content in an organized list format with the Post List widget.
 
 * **[Price Widget](https://devnahian.com/awesome-widgets/demo-awesome-price/)**  
   Showcase pricing information in a clear, user-friendly layout with the Price widget.
@@ -118,15 +87,17 @@ Awesome Widgets is an Elementor add-on to showcase your Number Box, Service Box,
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/awesome-widgets-for-elementor` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 
 == Frequently Asked Questions ==
 
 = Can I add multiple widgets on a single page? =
+
 Yes, you can. Awesome Widgets for Elementor allows you to add multiple card styles on the same page. Simply drag and drop the module multiple times and select different card styles as needed.
 
 = Can I change colors or customize the card styles? =
+
 Yes, you can customize the card styles. All possible customization options are available in the plugin's backend.
 
 == Screenshots ==
@@ -144,11 +115,21 @@ Yes, you can customize the card styles. All possible customization options are a
 
 == Upgrade Notice ==
 
-More features coming soon!
+= 1.3 =  
+Release Date: 08 August, 2025  
+* Added new widgets and improved performance.
+
+= 1.1 =  
+Release Date: 11 November, 2023  
+* Initial release on WordPress.org. Enjoy!
 
 == Changelog ==
 
-= 1.1 =
-Release Date: 11 November, 2023
+= 1.3 =  
+Release Date: 08 August, 2025  
+* Added new widgets and improved performance.
+
+= 1.1 =  
+Release Date: 11 November, 2023  
 * Initial release on WordPress.org. Enjoy!
 

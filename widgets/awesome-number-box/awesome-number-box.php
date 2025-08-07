@@ -125,7 +125,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXTAREA,
 				'label_block' => true,
-				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' ),
+				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 'awesome-widgets-elementor' ),
 			]
 		);
 
@@ -165,7 +165,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 		$this->start_controls_section(
 			'awea_number_box_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -178,7 +178,7 @@ class Widget_Awesome_Number_Box extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);

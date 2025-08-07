@@ -1,3 +1,13 @@
+.awea-business-hours {
+	overflow: hidden;
+}
+.awea-business-hours-title h4 {
+  font-size: 1.625rem;
+  line-height: 1.2;
+}
+.awea-business-hours-content {
+  padding: 15px;
+}
 .awea-business-hours-content ul {
   list-style: none;
   padding: 0;
@@ -6,9 +16,8 @@
 .awea-business-hours-content ul li {
   display: flex;
   justify-content: space-between;
-}
-.awea-business-hours-content ul li {
-  border-bottom: 1px solid #ddd;
+  font-size: 1.125rem;
+  border-bottom: 1px solid var(--e-global-color-accent);
   padding-bottom: 10px;
   margin-bottom: 10px;
 }

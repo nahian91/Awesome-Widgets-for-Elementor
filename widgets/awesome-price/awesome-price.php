@@ -317,7 +317,7 @@ $this->end_controls_section();
 		$this->start_controls_section(
 			'awea_price_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -330,7 +330,7 @@ $this->end_controls_section();
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -698,7 +698,7 @@ $this->end_controls_section();
 		$this->add_control(
 			'awea_price_feature__alignment',
 			[
-				'label' => esc_html__( 'Alignment', 'awesome-widgets-elmentor' ),
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::CHOOSE,
 				'separator' => 'before',
 				'options' => [
@@ -885,25 +885,25 @@ $this->end_controls_section();
        ?>
 			<div class="awea-price">
 				<div class="awea-price-header">
-					<h4><?php echo $awea_price_box_title;?></h4>
-					<p><?php echo $awea_price_box_desc;?></p>
+					<h4><?php echo esc_html($awea_price_box_title);?></h4>
+					<p><?php echo esc_html($awea_price_box_desc);?></p>
 				</div>
 				<div class="awea-price-amount">
-					<span><?php echo $awea_price_box_amount_currency;?></span><?php echo $awea_price_box_amount;?><sub>/<?php echo $awea_price_box_amount_plan;?></sub>
+					<span><?php echo esc_html($awea_price_box_amount_currency);?></span><?php echo esc_html($awea_price_box_amount);?><sub>/<?php echo esc_html($awea_price_box_amount_plan);?></sub>
 				</div>
 				<div class="awea-price-features">
 					<ul class="features">
 						<?php 
 							foreach($awea_price_box_features_list as $list) {
 								?>
-									<li><i class="<?php echo $list['awea_price_box_icon']['value'];?>"></i> <?php echo $list['awea_price_box_features']; ?></li>						
+									<li><i class="<?php echo esc_attr($list['awea_price_box_icon']['value']);?>"></i> <?php echo esc_html($list['awea_price_box_features']); ?></li>						
 								<?php
 							}
 						?>						
 					</ul>
 				</div>
 				<div class="awea-price-btn">
-					<a href="<?php echo $awea_price_box_button_link;?>"><?php echo $awea_price_box_button_text;?></a>
+					<a href="<?php echo esc_url($awea_price_box_button_link);?>"><?php echo esc_html($awea_price_box_button_text);?></a>
 				</div>
 			</div>
        <?php

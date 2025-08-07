@@ -33,6 +33,17 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 		return [ 'product', 'category', 'awesome'];
 	}
 
+	public function get_grid_classes( $settings, $columns_field = 'awea_column_per_row' ) {        
+        $grid_classes = 'awea-grid-desktop-';
+        $grid_classes .= $settings[$columns_field];
+        // $grid_classes .= ' awea-grid-tablet-';
+        // $grid_classes .= $settings[$columns_field . '_tablet'];
+        // $grid_classes .= ' awea-grid-mobile-';
+        // $grid_classes .= $settings[$columns_field . '_mobile'];
+
+        return apply_filters( 'awea_grid_classes', $grid_classes, $settings, $columns_field );
+    }
+
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'awea_product_category_section_categories',
@@ -63,22 +74,25 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'awea_product_category_columns',
-			[
-				'label' => esc_html__( 'Columns', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => '3',
-				'options' => [
-					'1' => '1',
-					'2' => '2',
-					'3' => '3',
-					'4' => '4',
-					'5' => '5',
-					'6' => '6',
-				],
-			]
-		);
+		// Blog Column
+		$this->add_control( 
+            'awea_column_per_row', 
+            [
+                'label'              => esc_html__( 'Columns', 'awesome-widgets-elementor' ),
+                'type'               => Controls_Manager::SELECT,
+                'default'            => '4',
+                'tablet_default'     => '2',
+                'mobile_default'     => '1',
+                'options'            => [
+                    '12' => '1',
+                    '6' => '2',
+                    '4' => '3',
+                    '3' => '4',
+                    '2' => '6',
+                ],
+                'frontend_available' => true,
+            ] 
+        );
 
 		$this->add_control(
 			'awea_product_category_orderby',
@@ -114,7 +128,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 		$this->start_controls_section(
 			'awea_product_category_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -127,7 +141,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -204,13 +218,10 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			return;
 		}
 
-		$columns = intval( $settings['awea_product_category_columns'] );
-		$column_class = 'awea-cat-col-' . $columns;
-
 		?>
 
 		<div class="awesa-product-categories-grid <?php echo esc_attr( $column_class ); ?>">
-
+			<div class="awea-grid-row">
 			<?php foreach ( $product_categories as $category ) : ?>
 				<?php
 					$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
@@ -220,7 +231,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 					}
 					$category_link = get_term_link( $category );
 				?>
-
+				<div class="<?php echo esc_attr($this->get_grid_classes($settings)); ?> awea-grid-tablet-6 awea-grid-mobile-12">
 				<div class="awesa-product-category">
 					<?php if ( $image_url ) : ?>
 						<a href="<?php echo esc_url( $category_link ); ?>" class="awea-product-category-img-link">
@@ -235,8 +246,10 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 						</div>
 					<?php endif; ?>
 				</div>
+				</div>
 
 			<?php endforeach; ?>
+			</div>
 
 		</div>
 

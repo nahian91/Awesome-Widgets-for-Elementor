@@ -111,19 +111,19 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		$this->add_control(
 			'awea_business_hours_title_align',
 			[
-				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'textdomain' ),
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -191,7 +191,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		$this->start_controls_section(
 			'awea_faq_pro_message',
 			[
-				'label' => esc_html__('Premium', 'awesome-elementor-widgets'),
+				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
 				'tab'   => Controls_Manager::TAB_CONTENT		
 			]
 		);
@@ -204,7 +204,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 					'<div style="text-align:center;line-height:1.6;">
 						<p style="margin-bottom:10px">%s</p>
 					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-elementor-widgets')
+					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
 				)
 			]  
 		);
@@ -332,19 +332,6 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 			]
 		);
 
-		// Business Hours Border Radius
-		$this->add_control(
-			'awea_business_hours_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-business-hours-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
 		// Business Hours Padding
 		$this->add_control(
 			'awea_business_hours_content_padding',
@@ -376,7 +363,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		$this->add_control(
 			'awea_business_hours_days_options',
 			[
-				'label' => esc_html__( 'Days', 'textdomain' ),
+				'label' => esc_html__( 'Days', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -412,7 +399,7 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
 		$this->add_control(
 			'awea_business_hours_hour_options',
 			[
-				'label' => esc_html__( 'Hours', 'textdomain' ),
+				'label' => esc_html__( 'Hours', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -465,14 +452,14 @@ class Widget_Awesome_Business_Hours extends Widget_Base {
        ?>
 		<div class="awea-business-hours">
 			<div class="awea-business-hours-title">
-				<h4><?php echo $awea_business_hours_title;?></h4>
+				<h4><?php echo esc_html($awea_business_hours_title);?></h4>
 			</div>
 			<div class="awea-business-hours-content">
 				<ul>
 					<?php 
 						foreach($awea_business_hours_list as $hour) {
 							?>
-								<li><?php echo $hour['awea_business_hours_day'];?><span><?php echo $hour['awea_business_hours_hour'];?></span></li>
+								<li><?php echo esc_html($hour['awea_business_hours_day']);?><span><?php echo esc_html($hour['awea_business_hours_hour']);?></span></li>
 							<?php 
 						}
 					?>
