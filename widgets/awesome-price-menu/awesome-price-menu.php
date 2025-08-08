@@ -155,6 +155,21 @@ class Widget_Awesome_Price_Menu extends Widget_Base {
 						'awea_price_menu_price' => '$15',
 						'awea_price_menu_description' => esc_html__( 'Cleans and nourishes hair naturally.', 'awesome-widgets-elementor' ),
 					],
+					[
+						'awea_price_menu_title' => esc_html__( 'Face Cream', 'awesome-widgets-elementor' ),
+						'awea_price_menu_price' => '$30',
+						'awea_price_menu_description' => esc_html__( 'Hydrates and revitalizes the skin.', 'awesome-widgets-elementor' ),
+					],
+					[
+						'awea_price_menu_title' => esc_html__( 'Hair Oil', 'awesome-widgets-elementor' ),
+						'awea_price_menu_price' => '$18',
+						'awea_price_menu_description' => esc_html__( 'Strengthens hair and promotes growth.', 'awesome-widgets-elementor' ),
+					],
+					[
+						'awea_price_menu_title' => esc_html__( 'Body Lotion', 'awesome-widgets-elementor' ),
+						'awea_price_menu_price' => '$22',
+						'awea_price_menu_description' => esc_html__( 'Keeps skin soft and moisturized all day.', 'awesome-widgets-elementor' ),
+					],
 				],
 				'title_field' => '{{{ awea_price_menu_title }}}',
 			]

@@ -320,9 +320,8 @@ class Widget_Awesome_Accordion extends Widget_Base {
 			<ul class="awea-accordion">
 				<?php
 				foreach ($awea_accordion_list as $list) {
-					// Sanitize and escape data at the point of output
 					$accordion_title = isset($list['awea_accordion_title']) ? esc_html($list['awea_accordion_title']) : '';
-					$accordion_content = isset($list['awea_accordion_content']) ? wp_kses_post($list['awea_accordion_content']) : ''; // Allow certain HTML in content
+					$accordion_content = isset($list['awea_accordion_content']) ? wp_kses_post($list['awea_accordion_content']) : ''; 
 					?>
 					<li>
 						<h4><span><?php echo esc_html($accordion_title); ?></span></h4>

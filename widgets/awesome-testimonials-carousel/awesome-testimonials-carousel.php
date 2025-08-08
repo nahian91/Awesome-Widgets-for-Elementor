@@ -108,7 +108,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Client Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
-					'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-1-web-bricks.webp',
+					'url' => Utils::get_placeholder_image_src(),
 				]
 			]
 		);
@@ -159,7 +159,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 					[
 						'awea_testimonials_carousel_image' => [
 							'default' => [
-								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-1-web-bricks.webp',
+								'url' => Utils::get_placeholder_image_src(),
 							]
 						],
 						'awea_testimonials_carousel_name' => esc_html__( 'Esther Howard', 'awesome-widgets-elementor' ),
@@ -170,7 +170,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 					[
 						'awea_testimonials_carousel_image' => [
 							'default' => [
-								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-2-web-bricks.webp',
+								'url' => Utils::get_placeholder_image_src(),
 							]
 						],
 						'awea_testimonials_carousel_name' => esc_html__( 'Maria Sauks', 'awesome-widgets-elementor' ),
@@ -181,7 +181,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 					[
 						'awea_testimonials_carousel_image' => [
 							'default' => [
-								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-3-web-bricks.webp',
+								'url' => Utils::get_placeholder_image_src(),
 							]
 						],
 						'awea_testimonials_carousel_name' => esc_html__( 'Sarah Heinsed', 'awesome-widgets-elementor' ),
@@ -192,7 +192,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 					[
 						'awea_testimonials_carousel_image' => [
 							'default' => [
-								'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/client-4-web-bricks.webp',
+								'url' => Utils::get_placeholder_image_src(),
 							]
 						],
 						'awea_testimonials_carousel_name' => esc_html__( 'Mithc Hodge', 'awesome-widgets-elementor' ),
@@ -215,7 +215,19 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 			]
 		 );
 
-		  // Dots
+		$this->add_control(
+			'awea_testimonials_carousel_items',
+			[
+				'label' => esc_html__( 'Slides Per View', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => 3,
+				'min' => 1,
+				'max' => 6,
+				'step' => 1,
+			]
+		);
+
+		// Arrows
 		$this->add_control(
 			'awea_testimonials_carousel_arrows',
 			[
@@ -610,7 +622,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 					'{{WRAPPER}} .awea-testimonial-carousel-author span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -622,7 +634,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 				'name' => 'awea_testimonials_carousel_author_designation_typography',
 				'selector' => '{{WRAPPER}} .awea-testimonial-carousel-author span',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -779,27 +791,23 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 	}
 
 	protected function render() {
-   $settings = $this->get_settings_for_display();
+   	$settings = $this->get_settings_for_display();
 
-$awea_testimonials_carousel = $settings['awea_testimonials_carousel'] ?? [];
+	$awea_testimonials_carousel = $settings['awea_testimonials_carousel'] ?? [];
 
-$awea_testimonials_carousel_dots              = !empty($settings['awea_testimonials_carousel_dots']) ? 'yes' : 'no';
-$awea_testimonials_carousel_arrows              = !empty($settings['awea_testimonials_carousel_arrows']) ? 'yes' : 'no';
-$awea_testimonials_carousel_loops             = !empty($settings['awea_testimonials_carousel_loops']) ? 'yes' : 'no';
-$awea_testimonials_carousel_autoplay          = !empty($settings['awea_testimonials_carousel_autoplay']) ? 'yes' : 'no';
-$awea_testimonials_carousel_pause             = !empty($settings['awea_testimonials_carousel_pause']) ? 'yes' : 'no';
-
-$awea_testimonials_carousel_autoplay_speed    = !empty($settings['awea_testimonials_carousel_autoplay_speed']) ? (int) $settings['awea_testimonials_carousel_autoplay_speed'] : 5000;
-$awea_testimonials_carousel_autoplay_animation= !empty($settings['awea_testimonials_carousel_autoplay_animation']) ? (int) $settings['awea_testimonials_carousel_autoplay_animation'] : 300;
-
-$awea_testimonials_carousel_name_tag          = $settings['awea_testimonials_carousel_name_tag'] ?? 'h3';
-
-$awea_testimonials_carousel_icon              = !empty($settings['awea_testimonials_carousel_icon']['value']) ? $settings['awea_testimonials_carousel_icon']['value'] : 'fas fa-quote-left';
-
+	$awea_testimonials_carousel_items= !empty($settings['awea_testimonials_carousel_items']) ? (int) $settings['awea_testimonials_carousel_items'] : 3;
+	$awea_testimonials_carousel_dots = !empty($settings['awea_testimonials_carousel_dots']) ? 'yes' : 'no';
+	$awea_testimonials_carousel_arrows = !empty($settings['awea_testimonials_carousel_arrows']) ? 'yes' : 'no';
+	$awea_testimonials_carousel_loops = !empty($settings['awea_testimonials_carousel_loops']) ? 'yes' : 'no';
+	$awea_testimonials_carousel_autoplay = !empty($settings['awea_testimonials_carousel_autoplay']) ? 'yes' : 'no';
+	$awea_testimonials_carousel_pause = !empty($settings['awea_testimonials_carousel_pause']) ? 'yes' : 'no';
+	$awea_testimonials_carousel_autoplay_speed = !empty($settings['awea_testimonials_carousel_autoplay_speed']) ? (int) $settings['awea_testimonials_carousel_autoplay_speed'] : 5000;
+	$awea_testimonials_carousel_autoplay_animation= !empty($settings['awea_testimonials_carousel_autoplay_animation']) ? (int) $settings['awea_testimonials_carousel_autoplay_animation'] : 300;
 
     ?>
     <!-- Testimonials Start Here -->
     <div class="awea-testimonials owl-carousel" 
+		awea-testimonial-items="<?php echo esc_attr( $awea_testimonials_carousel_items ); ?>"
         awea-testimonial-arrows="<?php echo esc_attr( $awea_testimonials_carousel_arrows ); ?>" 
         awea-testimonial-dots="<?php echo esc_attr( $awea_testimonials_carousel_dots ); ?>" 
         awea-testimonial-loops="<?php echo esc_attr( $awea_testimonials_carousel_loops ); ?>" 
@@ -824,10 +832,10 @@ $awea_testimonials_carousel_icon              = !empty($settings['awea_testimoni
                     </div>
                     <div class="awea-testimonial-carousel-author">
                         <img src="<?php echo esc_url($testimonial_image_url); ?>" alt="<?php echo esc_attr( $testimonial_name ); ?>">
-                        <<?php echo esc_attr( $awea_testimonials_carousel_name_tag ); ?>>
+                        <h4>
                             <?php echo esc_html($testimonial_name); ?> 
                             <span><?php echo esc_html($testimonial_desg); ?></span>
-                        </<?php echo esc_attr( $awea_testimonials_carousel_name_tag ); ?>>
+						</h4>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -835,6 +843,5 @@ $awea_testimonials_carousel_icon              = !empty($settings['awea_testimoni
     </div>
     <!-- Testimonials End Here -->
     <?php
-}
-
+	}
 }

@@ -2,7 +2,7 @@ jQuery(window).on('elementor/frontend/init', function () {
 
     elementorFrontend.hooks.addAction('frontend/element_ready/awesome-testimonials-carousel.default', function ($scope, $) {
         var testimonial_widget = $scope.find('.awea-testimonials');
-
+        var testimonial_items = parseInt(testimonial_widget.attr('awea-testimonial-items')) || 3;
         var testimonial_arrows = testimonial_widget.attr('awea-testimonial-arrows') === 'yes';
         var testimonial_dots = testimonial_widget.attr('awea-testimonial-dots') === 'yes';
         var testimonial_loops = testimonial_widget.attr('awea-testimonial-loops') === 'yes';
@@ -12,11 +12,12 @@ jQuery(window).on('elementor/frontend/init', function () {
         var testimonial_autoplay_animation = parseInt(testimonial_widget.attr('awea-testimonial-autoplay-animation')) || 300;
 
         testimonial_widget.owlCarousel({
+            items: testimonial_items,
             nav: testimonial_arrows,
             dots: testimonial_dots,
             autoplay: testimonial_autoplay,
-            autoplayTimeout: testimonial_autoplay_animation,
-            autoplaySpeed: testimonial_autoplay_speed,
+            autoplayTimeout: testimonial_autoplay_speed,
+            smartSpeed: testimonial_autoplay_animation,  
             autoplayHoverPause: testimonial_pause,
             loop: testimonial_loops,
             items: 3,
@@ -27,16 +28,16 @@ jQuery(window).on('elementor/frontend/init', function () {
             ],
             responsive: {
                 0: {
-                    items: 1,
-                    nav: testimonial_arrows
+                    items: Math.min(1, testimonial_items),
+                    nav: testimonial_arrows,
                 },
                 600: {
-                    items: 2,
-                    nav: testimonial_arrows
+                    items: Math.min(2, testimonial_items),
+                    nav: testimonial_arrows,
                 },
                 1000: {
-                    items: 3,
-                    nav: testimonial_arrows
+                    items: testimonial_items,
+                    nav: testimonial_arrows,
                 }
             }
         });

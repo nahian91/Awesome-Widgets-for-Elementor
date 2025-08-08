@@ -107,7 +107,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
-					'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-1-web-bricks.webp',
+					'url' => Utils::get_placeholder_image_src(),
 				],
 				'separator' => 'before',
 			]
@@ -141,7 +141,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Facebook', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://devnahian.com.com',
+                    'url' => 'https://devnahian.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -155,7 +155,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Twitter', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://devnahian.com.com',
+                    'url' => 'https://devnahian.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -169,7 +169,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Linkedin', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://devnahian.com.com',
+                    'url' => 'https://devnahian.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -183,7 +183,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
                 'label' => __( 'Instagram', 'awesome-widgets-elementor' ),
                 'type' => Controls_Manager::URL,
                 'default' => [
-                    'url' => 'https://devnahian.com.com',
+                    'url' => 'https://devnahian.com',
                 ],
                 'show_external' => true,
                 'autocomplete' => false,
@@ -200,59 +200,47 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 				'default' => [
 				[
 					'awea_team_carousel_image' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-1-web-bricks.webp',
-					],
-					'awea_team_carousel_bg' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
+						'url' => Utils::get_placeholder_image_src(),
 					],
 					'awea_team_carousel_name' => esc_html__( 'Novák Réka', 'awesome-widgets-elementor' ),
 					'awea_team_carousel_designation' => esc_html__( 'Senior Developer', 'awesome-widgets-elementor'),
-					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
-					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
-					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
-					'awea_team_carousel_insta_url' => 'https://www.instagram.com/webbricks_/',
+					'awea_team_carousel_fb_url' => 'https://www.facebook.com',
+					'awea_team_carousel_tw_url' => 'https://twitter.com',
+					'awea_team_carousel_ln_url' => 'https://www.linkedin.com',
+					'awea_team_carousel_insta_url' => 'https://www.instagram.com',
 				],
 				[
 					'awea_team_carousel_image' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-2-web-bricks.webp',
-					],
-					'awea_team_carousel_bg' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
+						'url' => Utils::get_placeholder_image_src(),
 					],
 					'awea_team_carousel_name' => esc_html__( 'Pintér Beatrix', 'awesome-widgets-elementor' ),
 					'awea_team_carousel_designation' => esc_html__( 'Senior UX Designer', 'awesome-widgets-elementor'),
-					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
-					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
-					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
-					'awea_team_carousel_insta_url' => 'https://www.instagram.com/webbricks_/',
+					'awea_team_carousel_fb_url' => 'https://www.facebook.com',
+					'awea_team_carousel_tw_url' => 'https://twitter.com',
+					'awea_team_carousel_ln_url' => 'https://www.linkedin.com',
+					'awea_team_carousel_insta_url' => 'https://www.instagram.com/',
 				],
 				[
 					'awea_team_carousel_image' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-3-web-bricks.webp',
-					],
-					'awea_team_carousel_bg' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
+						'url' => Utils::get_placeholder_image_src(),
 					],
 					'awea_team_carousel_name' => esc_html__( 'Szekeres Dalma', 'awesome-widgets-elementor' ),
 					'awea_team_carousel_designation' => esc_html__( 'Admin Manager', 'awesome-widgets-elementor'),
-					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
-					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
-					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
-					'awea_team_carousel_insta_url' => 'https://www.instagram.com/webbricks_/',
+					'awea_team_carousel_fb_url' => 'https://www.facebook.com',
+					'awea_team_carousel_tw_url' => 'https://twitter.com',
+					'awea_team_carousel_ln_url' => 'https://www.linkedin.com',
+					'awea_team_carousel_insta_url' => 'https://www.instagram.com/',
 				],
 				[
 					'awea_team_carousel_image' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-3-web-bricks.webp',
-					],
-					'awea_team_carousel_bg' => [
-						'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/team-pattern-7-1-web-bricks.webp',
+						'url' => Utils::get_placeholder_image_src(),
 					],
 					'awea_team_carousel_name' => esc_html__( 'John Doe', 'awesome-widgets-elementor' ),
 					'awea_team_carousel_designation' => esc_html__( 'SEO Expert', 'awesome-widgets-elementor'),
-					'awea_team_carousel_fb_url' => 'https://www.facebook.com/webBricksWP',
-					'awea_team_carousel_tw_url' => 'https://twitter.com/webbricks_',
-					'awea_team_carousel_ln_url' => 'https://www.linkedin.com/company/web-bricks-wp/',
-					'awea_team_carousel_insta_url' => 'https://www.instagram.com/webbricks_/',
+					'awea_team_carousel_fb_url' => 'https://www.facebook.com',
+					'awea_team_carousel_tw_url' => 'https://twitter.com',
+					'awea_team_carousel_ln_url' => 'https://www.linkedin.com',
+					'awea_team_carousel_insta_url' => 'https://www.instagram.com/',
 				],
 				],
 				'title_field' => '{{{ awea_team_carousel_name }}}',

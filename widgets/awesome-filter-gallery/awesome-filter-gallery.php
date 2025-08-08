@@ -144,7 +144,7 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
-					'url' => 'https://market.weekitechi.com/wp-content/uploads/2025/01/Gallery-1-web-bricks.webp',
+					'url' => Utils::get_placeholder_image_src(),
 				],
 				'separator' => 'before',
 			]
@@ -170,55 +170,55 @@ class Widget_Awesome_Filter_Gallery extends Widget_Base {
 				'default' => [
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'landscape, stars, parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'cars',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'mountain, parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'seabeach, landscape, cars',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'roadtrips, landscape, mountain',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'stars',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'stars, cars, parks',
 					],
 					[
 						'awea_filter_gallery_image' => [
-							'url' => '\Elementor\Utils::get_placeholder_image_src()',
+							'url' => Utils::get_placeholder_image_src(),
 						],
 						'awea_filter_gallery_cat' => 'roadtrips, cars, parks',
 					]

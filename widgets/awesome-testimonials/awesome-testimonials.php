@@ -440,7 +440,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 					'{{WRAPPER}} .awea-single-testimonial-author span' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -452,7 +452,7 @@ class Widget_Awesome_Testimonials extends Widget_Base {
 				'name' => 'awea_testimonials_author_designation_typography',
 				'selector' => '{{WRAPPER}} .awea-single-testimonial-author span',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);

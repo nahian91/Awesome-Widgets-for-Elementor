@@ -1,8 +1,8 @@
 <?php
 /**
- * Awesome CTA Widget.
+ * Awesome Product List Widget.
  *
- * Elementor widget that inserts a cta into the page
+ * Elementor widget that inserts a product list into the page
  *
  * @since 1.0.0
  */
@@ -16,60 +16,21 @@ use \Elementor\Group_Control_Typography;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use \Elementor\Widget_Base;
+
 class Widget_Awesome_Product_List extends Widget_Base {
 
-	/**
-	 * Get widget name.
-	 *
-	 * Retrieve heading widget name.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return string Widget name.
-	 */
 	public function get_name() {
 		return 'awesome-product-list';
 	}
 
-	/**
-	 * Get widget title.
-	 *
-	 * Retrieve affiliate products widget title.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return string Widget title.
-	 */
 	public function get_title() {
 		return esc_html__( 'Product List', 'awesome-widgets-elementor' );
 	}
 
-	/**
-	 * Get widget icon.
-	 *
-	 * Retrieve affiliate products widget icon.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return string Widget icon.
-	 */
 	public function get_icon() {
 		return 'eicon-price-list';
 	}
 
-	/**
-	 * Get widget categories.
-	 *
-	 * Retrieve the list of categories the heading widget belongs to.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return array Widget categories.
-	 */
 	public function get_categories() {
 		return [ 'awesome-widgets-elementor' ];
 	}
@@ -78,88 +39,89 @@ class Widget_Awesome_Product_List extends Widget_Base {
 		return [ 'product', 'list', 'awesome'];
 	}
 
-	/**
-	 * Adds different input fields to allow the user to change and customize the widget settings.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 */
 	protected function _register_controls() {
 		
-		// start of the Content tab section
-	   	$this->start_controls_section(
-	       'awea_cta_contents',
-		    [
-		        'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-		   
-		    ]
-	    );
-		
-		// CTA Sub Title
-		$this->add_control(
-			'awea_cta_sub_title',
+		$this->start_controls_section(
+			'awea_product_list_title',
 			[
-				'label' => esc_html__( 'Sub Title', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__( 'are you ready?', 'awesome-widgets-elementor' ),
+				'label' => esc_html__('Title', 'awesome-widgets-elementor'),
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		// CTA Title
 		$this->add_control(
-			'awea_cta_title',
+			'awea_product_list_title_heading',
 			[
-				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
+				'label' => __('Title', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default' => esc_html__( 'We Are Awesome CTA!', 'awesome-widgets-elementor' ),
 			]
 		);
 
-		// CTA Description
 		$this->add_control(
-			'awea_cta_desc',
+			'awea_product_list_title_heading_align',
 			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::WYSIWYG,
-				'label_block' => true,
-				'default' => esc_html__( 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .awea-product-grid > h4' => 'text-align: {{VALUE}};',
+				],
 			]
 		);
-		
+
 		$this->end_controls_section();
 
-		// start of the Button tab section
 		$this->start_controls_section(
-			'awea_cta_btns',
-			 [
-				 'label' => esc_html__('Buttons', 'awesome-widgets-elementor'),
-				 'tab'   => Controls_Manager::TAB_CONTENT,
-			
-			 ]
-		 );
-
-		 // CTA Button 1
-		$this->add_control(
-			'awea_cta_button1',
+			'awea_product_list_items',
 			[
-				'label' => esc_html__( 'Button 1', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__( '+8801686195607', 'awesome-widgets-elementor' ),
+				'label' => esc_html__('Items', 'awesome-widgets-elementor'),
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		// CTA Button 2
 		$this->add_control(
-			'awea_cta_button2',
+			'awea_product_list_count',
 			[
-				'label' => esc_html__( 'Button 2', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__( 'nahiansylhet@gmail.com', 'awesome-widgets-elementor' ),
+				'label' => __('Number of Products', 'awesome-widgets-elementor'),
+				'type' => Controls_Manager::NUMBER,
+				'default' => 6,
+				'min' => 1,
+				'max' => 50,
+			]
+		);
+
+		$this->add_control(
+			'awea_product_list_orderby',
+			[
+				'label' => __('Order By', 'awesome-widgets-elementor'),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'latest',
+				'options' => [
+					'latest'     => __('Latest', 'awesome-widgets-elementor'),
+					'top_rated'  => __('Top Rated', 'awesome-widgets-elementor'),
+					'random'     => __('Random', 'awesome-widgets-elementor'),
+					'featured'   => __('Featured', 'awesome-widgets-elementor'),
+					'price_low'  => __('Price: Low to High', 'awesome-widgets-elementor'),
+					'price_high' => __('Price: High to Low', 'awesome-widgets-elementor'),
+					'most_reviewed' => __('Most Reviewed', 'awesome-widgets-elementor'),
+					'on_sale' => __('On Sale', 'awesome-widgets-elementor'),
+				],
 			]
 		);
 
@@ -186,152 +148,41 @@ class Widget_Awesome_Product_List extends Widget_Base {
 				)
 			]  
 		);
-		$this->end_controls_section();
-		
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_cta_layout_style',
-			[
-				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		// CTA Background Color
-		$this->add_control(
-			'awea_cta_background_color',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Border
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name' => 'awea_cta_border',
-				'selector' => '{{WRAPPER}} .cta-box',
-			]
-		);	
-
-		// CTA Border Radius
-		$this->add_control(
-			'awea_cta_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		// CTA Padding
-		$this->add_control(
-			'awea_cta_padding',
-			[
-				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		// CTA Alignment
-		$this->add_control(
-			'awea_cta_alignment',
-			[
-				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::CHOOSE,
-				'separator' => 'before',
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'default' => 'center',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box' => 'text-align: {{VALUE}};',
-				],
-			]
-		);
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_cta_subtitle_style',
-			[
-				'label' => esc_html__( 'Sub Title', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-		
-		// CTA Sub Heading Color
-		$this->add_control(
-			'awea_cta_subtitle_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box span' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				],
-			]
-		);
-
-		// CTA Sub Heading Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_cta_subtitle_typography',
-				'selector' => '{{WRAPPER}} .cta-box span',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-				]
-			]
-		);
 
 		$this->end_controls_section();
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_cta_title_style',
+			'awea_product_list_layout_style',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		// CTA Title Color
+		// Title Color
 		$this->add_control(
-			'awea_cta_title_color',
+			'awea_product_list_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-product-grid > h4' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		// Title Background
+		$this->add_control(
+			'awea_product_list_title_bg_color',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-product-grid > h4' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -339,125 +190,238 @@ class Widget_Awesome_Product_List extends Widget_Base {
 			]
 		);
 
-		// CTA Title Typography
+		// Title Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_cta_title_typography',
-				'selector' => '{{WRAPPER}} .cta-box h4',
+				'name' => 'awea_product_list_title_typography',
+				'selector' => '{{WRAPPER}} .awea-product-grid > h4',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);
 
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_cta_desc_style',
+		// Title Border
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
 			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'name' => 'awea_product_list_title_border',
+				'selector' => '{{WRAPPER}} .awea-product-grid > h4',
 			]
-		);
+		);	
 
-		// CTA Title Color
+		// Title Padding
 		$this->add_control(
-			'awea_cta_desc_color',
+			'awea_product_list_padding',
 			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .cta-box p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-product-grid > h4' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'awea_cta_desc_typography',
-				'selector' => '{{WRAPPER}} .cta-box p',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				]
 			]
 		);
 
 		$this->end_controls_section();
+		// end of the Style tab section
 
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_cta_btns_style',
+			'awea_product_list_image_style',
 			[
-				'label' => esc_html__( 'Buttons', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// Image Box Border
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_product_list_image_border',
+				'selector' => '{{WRAPPER}} .single-awea-product-list-img',
+			]
+		);	
+		
+		// Image Box Border Radius
+		$this->add_control(
+			'awea_product_list_image_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-awea-product-list-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+		// end of the Style tab section
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_product_list_contents_style',
+			[
+				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
 		$this->add_control(
-			'awea_cta_contents_btn1_options',
+			'awea_product_list_content_padding',
 			[
-				'label' => esc_html__( 'Buttons', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .single-awea-product-list-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_product_list_content_border',
+				'selector' => '{{WRAPPER}} .single-awea-product-list-box',
+			]
+		);	
+
+		$this->add_control(
+			'awea_product_list_contents_title_options',
+			[
+				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
 
+		// Team Title Color
+		$this->add_control(
+			'awea_product_list_contents_title_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-awea-product-list-content h4 a' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_SECONDARY,
+				]
+			]
+		);
+
+		// Team Title Typography
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_product_list_contents_title_typography',
+				'selector' => '{{WRAPPER}} .single-awea-product-list-content h4 a',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_product_list_contents_title_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .single-awea-product-list-content h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_product_list_contents_price_options',
+			[
+				'label' => esc_html__( 'Price', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Team Title Color
+		$this->add_control(
+			'awea_product_list_contents_price_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .single-awea-product-list-meta span' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		// Team Title Typography
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_product_list_contents_price_typography',
+				'selector' => '{{WRAPPER}} .single-awea-product-list-meta span',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->end_controls_section();
+		// end of the Style tab section
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_product_list_btn_style',
+			[
+				'label' => esc_html__( 'Button', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
 		// Start of Tabs
-		$this->start_controls_tabs('cta_button1_tabs');
+		$this->start_controls_tabs('awea_product_list_btn_tabs');
 
 		// Normal Tab
 		$this->start_controls_tab(
-			'cta_button_tab_normal',
+			'awea_product_list_btn_tabs_normal',
 			[
 				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
 			]
 		);
 
-		// CTA Title Color
 		$this->add_control(
-			'awea_cta_btn_color',
+			'awea_product_list_btn_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .single-awea-product-list-meta .awea-product-grid-btn' => 'color: {{VALUE}}',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
 			]
 		);
 
-		// CTA Title Color
-		$this->add_control(
-			'awea_cta_btn_bgcolor',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// CTA Title Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_cta_btn_typography',
-				'selector' => '{{WRAPPER}} .cta-box span.cta-button',
+				'name' => 'awea_product_list_contents_btn_typography',
+				'selector' => '{{WRAPPER}} .single-awea-product-list-meta .awea-product-grid-btn',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
 			]
 		);
@@ -466,37 +430,20 @@ class Widget_Awesome_Product_List extends Widget_Base {
 
 		// Hover Tab
 		$this->start_controls_tab(
-			'cta_button_tab_hover',
+			'awea_product_list_btn_tabs_hover',
 			[
 				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
 			]
 		);
 
 		$this->add_control(
-			'awea_cta_btn_hovercolor',
+			'awea_product_list_btn_color_hover',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .single-awea-product-list-meta .awea-product-grid-btn:hover' => 'color: {{VALUE}}',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_cta_btn_hoverbg',
-			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cta-box span.cta-button:hover' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
 			]
 		);
 
@@ -509,59 +456,126 @@ class Widget_Awesome_Product_List extends Widget_Base {
 
 	}
 
-	/**
-	 * Render heading widget output on the frontend.
-	 *
-	 * Written in PHP and used to generate the final HTML.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 */ 
 	protected function render() {
-    $settings = $this->get_settings_for_display();
+		$settings = $this->get_settings_for_display();
+		$awea_product_list_title_heading = $settings['awea_product_list_title_heading'];
 
-    // Example: get 6 latest products
-    $args = [
-        'post_type' => 'product',
-        'posts_per_page' => 6,
-        'post_status' => 'publish',
-    ];
+		$product_count = !empty($settings['product_count']) ? intval($settings['product_count']) : 6;
+		$product_orderby = $settings['product_orderby'] ?? 'latest';
 
-    $products = new \WP_Query($args);
+		$args = [
+			'post_type' => 'product',
+			'posts_per_page' => $product_count,
+			'post_status' => 'publish',
+		];
 
-    if ($products->have_posts()) {
-        echo '<div class="awea-product-grid">';
-        while ($products->have_posts()) {
-            $products->the_post();
-            global $product;
+		switch ($product_orderby) {
 
-            $product_id = get_the_ID();
-            $product_link = get_permalink($product_id);
-            $product_title = get_the_title();
-            $product_price = $product->get_price_html();
-            $product_image = get_the_post_thumbnail_url($product_id, 'medium');
+			case 'top_rated':
+				// Order by total sales
+				$args['meta_key'] = 'total_sales';
+				$args['orderby'] = 'meta_value_num';
+				$args['order'] = 'DESC';
+				break;
 
-            ?>
-            <div class="single-awea-product-grid">
-                <a href="<?php echo esc_url($product_link); ?>">
-                    <img src="<?php echo esc_url($product_image); ?>" alt="<?php echo esc_attr($product_title); ?>">
-                </a>
-                <div class="single-awea-product-grid-content">
-                    <h4><a href="<?php echo esc_url($product_link); ?>"><?php echo esc_html($product_title); ?></a></h4>
-                    <div class="single-awea-product-grid-meta">
-                        <span><?php echo $product_price; ?></span>
-                        <?php
-                        echo do_shortcode('[add_to_cart id="' . $product_id . '"]');
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <?php
-        }
-        echo '</div>';
-        wp_reset_postdata();
-    } else {
-        echo '<p>' . esc_html__('No products found.', 'awesome-widgets-elementor') . '</p>';
-    }
+			case 'random':
+				$args['orderby'] = 'rand';
+				break;
+
+			case 'featured':
+				$args['tax_query'] = [
+					[
+						'taxonomy' => 'product_visibility',
+						'field'    => 'name',
+						'terms'    => 'featured',
+						'operator' => 'IN',
+					],
+				];
+				break;
+
+			case 'price_low':
+				$args['meta_key'] = '_price';
+				$args['orderby'] = 'meta_value_num';
+				$args['order'] = 'ASC';
+				break;
+
+			case 'price_high':
+				$args['meta_key'] = '_price';
+				$args['orderby'] = 'meta_value_num';
+				$args['order'] = 'DESC';
+				break;
+
+			case 'most_reviewed':
+				$args['orderby'] = 'comment_count';
+				$args['order'] = 'DESC';
+				break;
+
+			case 'on_sale':
+				$sale_products = wc_get_product_ids_on_sale();
+				if ( !empty($sale_products) ) {
+					$args['post__in'] = $sale_products;
+				} else {
+					$args['post__in'] = [0];
+				}
+				break;
+
+			case 'latest':
+			default:
+				$args['orderby'] = 'date';
+				$args['order'] = 'DESC';
+				break;
+		}
+
+		$products = new \WP_Query($args);
+
+		if ($products->have_posts()) {
+			echo '<div class="awea-product-grid"><h4>' . esc_html($awea_product_list_title_heading) . '</h4>';
+			while ($products->have_posts()) {
+				$products->the_post();
+				global $product;
+
+				$product_id = get_the_ID();
+				$product_link = get_permalink($product_id);
+				$product_title = get_the_title();
+				$product_price = $product->get_price_html();
+
+				$product_image = get_the_post_thumbnail_url($product_id, 'medium');
+				if (!$product_image) {
+					$product_image = wc_placeholder_img_src();
+				}
+				?>
+				<div class="single-awea-product-list">
+					<div class="single-awea-product-list-box">
+						<div class="single-awea-product-list-img" style="background-image: url('<?php echo esc_url($product_image); ?>');"></div>
+					<div class="single-awea-product-list-content">
+						<h4><a href="<?php echo esc_url($product_link); ?>"><?php echo esc_html($product_title); ?></a></h4>
+							<div class="single-awea-product-list-meta">
+							<span><?php echo $product_price; ?></span>
+							<?php if ( WC()->cart && WC()->cart->find_product_in_cart( WC()->cart->generate_cart_id( $product->get_id() ) ) ) : ?>
+									<!-- Product already in cart -->
+									<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="awea-product-grid-btn">
+										<?php esc_html_e( 'View Cart', 'awesome-widgets-elementor' ); ?>
+									</a>
+								<?php else : ?>
+									<!-- Product not yet in cart -->
+									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" 
+									class="awea-product-grid-btn" 
+									data-quantity="1" 
+									data-product_id="<?php echo esc_attr( $product->get_id() ); ?>" 
+									rel="nofollow">
+										<?php echo esc_html( $product->add_to_cart_text() ); ?>
+									</a>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+			echo '</div>';
+			wp_reset_postdata();
+		} else {
+			echo '<p>' . esc_html__('No products found.', 'awesome-widgets-elementor') . '</p>';
+		}
 	}
 }
