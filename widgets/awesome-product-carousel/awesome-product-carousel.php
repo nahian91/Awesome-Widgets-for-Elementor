@@ -434,13 +434,6 @@ class Widget_Awesome_Product_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
-				'default' => [
-					'top' => '12',
-					'right' => '12',
-					'bottom' => '12',
-					'left' => '12',
-					'unit' => 'px',
-				],
 				'selectors' => [
 					'{{WRAPPER}} .awea-product-carousel-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
@@ -738,7 +731,7 @@ class Widget_Awesome_Product_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} awea-product-carousel-btn' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-product-carousel-btn' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -755,7 +748,9 @@ class Widget_Awesome_Product_Carousel extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .awea-product-carousel-btn' => 'background-color: {{VALUE}}',
 				],
-				'default' => '#fff'
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				]
 			]
 		);
 
@@ -778,7 +773,7 @@ class Widget_Awesome_Product_Carousel extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea_product_carousel_btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-product-carousel-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -807,7 +802,6 @@ class Widget_Awesome_Product_Carousel extends Widget_Base {
 				]
 			]
 		);
-
 
 		// Products Button Hover Background
 		$this->add_control(

@@ -366,7 +366,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			<div class="awea-section-title">
 				<span><?php echo esc_html($awea_sub_heading);?></span>
 				<h4><?php echo esc_html($awea_heading);?></h4>
-				<p><?php echo esc_html($awea_heading_desc);?></p>
+				<?php echo wp_kses_post($awea_heading_desc);?>
 			</div>
        <?php
 	}

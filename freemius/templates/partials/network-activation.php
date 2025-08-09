@@ -66,7 +66,7 @@
                     <?php if ( $require_license_key ) : ?>
                         <td><input type="checkbox" value="true" /></td>
                     <?php endif ?>
-                    <td class="post-id"><span><?php echo esc_html( $site['blog_id'] ) ?></span>.</td>
+                    <td class="blog-id"><span><?php echo esc_html( $site['blog_id'] ) ?></span>.</td>
                     <td width="600"><span><?php
                         $url = str_replace( 'http://', '', str_replace( 'https://', '', $site['url'] ) );
                         echo esc_html( $url );

@@ -50,7 +50,7 @@
                         action      : '<?php echo $VARS['ajax_action'] ?>',
                         security    : '<?php echo wp_create_nonce( $VARS['ajax_action'] ) ?>',
                         clone_action: $this.data( 'clone-action' ),
-                        blog_id     : $optionsContainer.data( 'post-id' )
+                        blog_id     : $optionsContainer.data( 'blog-id' )
                     },
                     beforeSend: function() {
                         $body.css( { cursor: 'wait' } );

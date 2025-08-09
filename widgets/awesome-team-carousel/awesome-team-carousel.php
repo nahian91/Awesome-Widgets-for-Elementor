@@ -867,7 +867,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 		);
 
 		$this->add_control(
-			'awea_single_team_carousel_dots_color',
+			'awea_single_team_carousel_dots_hover_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,

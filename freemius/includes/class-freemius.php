@@ -110,6 +110,12 @@
         private $_enable_anonymous = true;
 
         /**
+         * @since 2.9.1
+         * @var string|null Hints the SDK whether the plugin supports parallel activation mode, preventing the auto-deactivation of the free version when the premium version is activated, and vice versa.
+         */
+        private $_premium_plugin_basename_from_parallel_activation;
+
+        /**
          * @since 1.1.7.5
          * @var bool Hints the SDK if plugin should run in anonymous mode (only adds feedback form).
          */
@@ -325,14 +331,14 @@
         /**
          * @since  2.0.0
          *
-         * @var int|null The original post ID the plugin was loaded with.
+         * @var int|null The original blog ID the plugin was loaded with.
          */
         private $_blog_id = null;
 
         /**
          * @since  2.0.0
          *
-         * @var int|null The current execution context. When true, run on network context. When int, run on the specified post context.
+         * @var int|null The current execution context. When true, run on network context. When int, run on the specified blog context.
          */
         private $_context_is_network_or_blog_id = null;
 
@@ -601,7 +607,7 @@
                     $blog_install_timestamp = $this->_storage->get( 'install_timestamp', null, $blog_id );
 
                     if ( is_null( $blog_install_timestamp ) ) {
-                        // Plugin has not been installed on this post.
+                        // Plugin has not been installed on this blog.
                         continue;
                     }
 
@@ -1651,6 +1657,31 @@
                     );
                 }
             }
+
+            if (
+                $this->is_user_in_admin() &&
+                $this->is_parallel_activation() &&
+                $this->_premium_plugin_basename !== $this->_premium_plugin_basename_from_parallel_activation
+            ) {
+                $this->_premium_plugin_basename = $this->_premium_plugin_basename_from_parallel_activation;
+
+                register_activation_hook(
+                    dirname( $this->_plugin_dir_path ) . '/' . $this->_premium_plugin_basename,
+                    array( &$this, '_activate_plugin_event_hook' )
+                );
+            }
+        }
+
+        /**
+         * Determines if a plugin is running in parallel activation mode.
+         *
+         * @author Leo Fajardo (@leorw)
+         * @since 2.9.1
+         *
+         * @return bool
+         */
+        private function is_parallel_activation() {
+            return ! empty( $this->_premium_plugin_basename_from_parallel_activation );
         }
 
         /**
@@ -3145,7 +3176,7 @@
         }
 
         /**
-         * Get the basenames of all active plugins for specific post. Including network activated plugins.
+         * Get the basenames of all active plugins for specific blog. Including network activated plugins.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -3227,7 +3258,7 @@
         }
 
         /**
-         * Get collection of all site active plugins for a specified post.
+         * Get collection of all site active plugins for a specified blog.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -3259,7 +3290,7 @@
         }
 
         /**
-         * Get collection of all plugins with their activation status for a specified post.
+         * Get collection of all plugins with their activation status for a specified blog.
          *
          * @author Vova Feldman (@svovaf)
          * @since  1.1.8
@@ -3598,7 +3629,7 @@
 
             $this->delete_current_install( false );
 
-            $license_key = false;
+            $license = null;
 
             if (
                 is_object( $this->_license ) &&
@@ -3606,20 +3637,21 @@
                     ( WP_FS__IS_LOCALHOST_FOR_SERVER || FS_Site::is_localhost_by_address( self::get_unfiltered_site_url() ) )
                 )
             ) {
-                $license_key = $this->_license->secret_key;
+                $license = $this->_license;
             }
 
             return $this->opt_in(
                 false,
                 false,
                 false,
-                $license_key,
+                ( is_object( $license ) ? $license->secret_key : false ),
                 false,
                 false,
                 false,
                 null,
                 array(),
-                false
+                false,
+                ( is_object( $license ) ? $license->user_id : null )
             );
         }
 
@@ -4463,33 +4495,31 @@
                 return;
             }
 
-            if ( $this->has_api_connectivity() ) {
-                if ( self::is_cron() ) {
-                    $this->hook_callback_to_sync_cron();
-                } else if ( $this->is_user_in_admin() ) {
-                    /**
-                     * Schedule daily data sync cron if:
-                     *
-                     *  1. User opted-in (for tracking).
-                     *  2. If skipped, but later upgraded (opted-in via upgrade).
-                     *
-                     * @author Vova Feldman (@svovaf)
-                     * @since  1.1.7.3
-                     *
-                     */
-                    if ( $this->is_registered() && $this->is_tracking_allowed() ) {
-                        $this->maybe_schedule_sync_cron();
-                    }
+            $this->hook_callback_to_sync_cron();
 
-                    /**
-                     * Check if requested for manual blocking background sync.
-                     */
-                    if ( fs_request_has( 'background_sync' ) ) {
-                        self::require_pluggable_essentials();
-                        self::wp_cookie_constants();
+            if ( $this->has_api_connectivity() && ! self::is_cron() && $this->is_user_in_admin() ) {
+                /**
+                 * Schedule daily data sync cron if:
+                 *
+                 *  1. User opted-in (for tracking).
+                 *  2. If skipped, but later upgraded (opted-in via upgrade).
+                 *
+                 * @author Vova Feldman (@svovaf)
+                 * @since  1.1.7.3
+                 *
+                 */
+                if ( $this->is_registered() && $this->is_tracking_allowed() ) {
+                    $this->maybe_schedule_sync_cron();
+                }
 
-                        $this->run_manual_sync();
-                    }
+                /**
+                 * Check if requested for manual blocking background sync.
+                 */
+                if ( fs_request_has( 'background_sync' ) ) {
+                    self::require_pluggable_essentials();
+                    self::wp_cookie_constants();
+
+                    $this->run_manual_sync();
                 }
             }
 
@@ -4562,8 +4592,8 @@
                             /**
                              * If not registered for add-on and the following conditions for the add-on are met, activate add-on account.
                              * * Network active and in network admin         - network activate add-on account.
-                             * * Network active and not in network admin     - activate add-on account for the current post.
-                             * * Not network active and not in network admin - activate add-on account for the current post.
+                             * * Network active and not in network admin     - activate add-on account for the current blog.
+                             * * Not network active and not in network admin - activate add-on account for the current blog.
                              *
                              * If not registered for add-on, not network active, and in network admin, do not handle the add-on activation.
                              *
@@ -5155,11 +5185,35 @@
                 $this->_plugin :
                 new FS_Plugin();
 
+            $is_premium     = $this->get_bool_option( $plugin_info, 'is_premium', true );
             $premium_suffix = $this->get_option( $plugin_info, 'premium_suffix', '(Premium)' );
+
+            $module_type = $this->get_option( $plugin_info, 'type', $this->_module_type );
+
+            $parallel_activation = $this->get_option( $plugin_info, 'parallel_activation' );
+
+            if (
+                ! $is_premium &&
+                is_array( $parallel_activation ) &&
+                ( WP_FS__MODULE_TYPE_PLUGIN === $module_type ) &&
+                $this->get_bool_option( $parallel_activation, 'enabled' )
+            ) {
+                $premium_basename = $this->get_option( $parallel_activation, 'premium_version_basename' );
+
+                if ( empty( $premium_basename ) ) {
+                    throw new Exception('You need to specify the premium version basename to enable parallel version activation.');
+                }
+
+                $this->_premium_plugin_basename_from_parallel_activation = $premium_basename;
+
+                if ( is_plugin_active( $premium_basename ) ) {
+                    $is_premium = true;
+                }
+            }
 
             $plugin->update( array(
                 'id'                   => $id,
-                'type'                 => $this->get_option( $plugin_info, 'type', $this->_module_type ),
+                'type'                 => $module_type,
                 'public_key'           => $public_key,
                 'slug'                 => $this->_slug,
                 'premium_slug'         => $this->get_option( $plugin_info, 'premium_slug', "{$this->_slug}-premium" ),
@@ -5167,7 +5221,7 @@
                 'version'              => $this->get_plugin_version(),
                 'title'                => $this->get_plugin_name( $premium_suffix ),
                 'file'                 => $this->_plugin_basename,
-                'is_premium'           => $this->get_bool_option( $plugin_info, 'is_premium', true ),
+                'is_premium'           => $is_premium,
                 'premium_suffix'       => $premium_suffix,
                 'is_live'              => $this->get_bool_option( $plugin_info, 'is_live', true ),
                 'affiliate_moderation' => $this->get_option( $plugin_info, 'has_affiliation' ),
@@ -5236,7 +5290,14 @@
                 $this->_anonymous_mode   = false;
             } else {
                 $this->_enable_anonymous = $this->get_bool_option( $plugin_info, 'enable_anonymous', true );
-                $this->_anonymous_mode   = $this->get_bool_option( $plugin_info, 'anonymous_mode', false );
+                $this->_anonymous_mode   = (
+                    $this->get_bool_option( $plugin_info, 'anonymous_mode', false ) ||
+                    (
+                        $this->apply_filters( 'playground_anonymous_mode', true ) &&
+                        ! empty( $_SERVER['HTTP_HOST'] ) &&
+                        FS_Site::is_playground_wp_environment_by_host( $_SERVER['HTTP_HOST'] )
+                    )
+                );
             }
             $this->_permissions = $this->get_option( $plugin_info, 'permissions', array() );
             $this->_is_bundle_license_auto_activation_enabled = $this->get_option( $plugin_info, 'bundle_license_auto_activation', false );
@@ -5444,7 +5505,7 @@
 
             if ( $this->is_registered() ) {
                 // Schedule code type changes event.
-                $this->schedule_install_sync();
+                $this->maybe_schedule_install_sync_cron();
             }
 
             /**
@@ -5983,7 +6044,7 @@
          * @since  2.0.0
          *
          * @param string $name         Cron name.
-         * @param int    $cron_blog_id The cron executing post ID.
+         * @param int    $cron_blog_id The cron executing blog ID.
          */
         private function set_cron_data( $name, $cron_blog_id = 0 ) {
             $this->_logger->entrance( $name );
@@ -5998,7 +6059,7 @@
         }
 
         /**
-         * Get the cron's executing post ID.
+         * Get the cron's executing blog ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -6116,7 +6177,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
-         * @param int $except_blog_id Target any except the excluded post ID.
+         * @param int $except_blog_id Target any except the excluded blog ID.
          *
          * @return int
          */
@@ -6133,7 +6194,7 @@
                     $except_blog_id != $network_install_blog_id &&
                     self::is_site_active( $network_install_blog_id )
                 ) {
-                    // Try to run cron from the main network post.
+                    // Try to run cron from the main network blog.
                     $install = $this->get_install_by_blog_id( $network_install_blog_id );
 
                     if (
@@ -6145,7 +6206,7 @@
                 }
             }
 
-            // Get first opted-in post ID with active tracking.
+            // Get first opted-in blog ID with active tracking.
             $installs = $this->get_blog_install_map();
             foreach ( $installs as $blog_id => $install ) {
                 if ( $except_blog_id != $blog_id &&
@@ -6258,7 +6319,7 @@
          * @param string $recurrence      'single' or 'daily'.
          * @param int    $start_at        Defaults to now.
          * @param bool   $randomize_start If true, schedule first job randomly during the next 12 hours. Otherwise, schedule job to start right away.
-         * @param int    $except_blog_id  Target any except the excluded post ID.
+         * @param int    $except_blog_id  Target any except the excluded blog ID.
          */
         private function schedule_cron(
             $name,
@@ -6275,7 +6336,7 @@
             $cron_blog_id = $this->get_cron_target_blog_id( $except_blog_id );
 
             if ( is_multisite() && 0 == $cron_blog_id ) {
-                // Don't schedule cron since couldn't find a target post.
+                // Don't schedule cron since couldn't find a target blog.
                 return;
             }
 
@@ -6336,7 +6397,7 @@
             $users_2_blog_ids = array();
 
             if ( ! is_multisite() ) {
-                // Add dummy post.
+                // Add dummy blog.
                 $users_2_blog_ids[0] = array( 0 );
             } else {
                 $installs = $this->get_blog_install_map();
@@ -6390,7 +6451,7 @@
         }
 
         /**
-         * Get the sync cron's executing post ID.
+         * Get the sync cron's executing blog ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -6439,8 +6500,8 @@
          *
          * @param int[]    $blog_ids
          * @param int|null $current_blog_id @since 2.2.3. This is passed from the `execute_cron` method and used by the
-         *                                  `_sync_plugin_license` method in order to switch to the previous post when sending
-         *                                  updates for a single site in case `execute_cron` has switched to a different post.
+         *                                  `_sync_plugin_license` method in order to switch to the previous blog when sending
+         *                                  updates for a single site in case `execute_cron` has switched to a different blog.
          */
         function _sync_cron_method( array $blog_ids, $current_blog_id = null ) {
             if ( $this->is_registered() ) {
@@ -6508,12 +6569,39 @@
         }
 
         /**
+         * Instead of running blocking install sync event, execute non blocking scheduled cron job.
+         *
+         * @param int $except_blog_id Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding specified blog ID from being the cron job executor.
+         *
+         * @author Leo Fajardo (@leorw)
+         * @since  2.9.1
+         */
+        private function maybe_schedule_install_sync_cron( $except_blog_id = 0 ) {
+            if ( ! $this->is_user_in_admin() ) {
+                return;
+            }
+
+            if ( $this->is_clone() ) {
+                return;
+            }
+
+            if (
+                // The event has been properly scheduled, so no need to reschedule it.
+                is_numeric( $this->next_install_sync() )
+            ) {
+                return;
+            }
+
+            $this->schedule_cron( 'install_sync', 'install_sync', 'single', WP_FS__SCRIPT_START_TIME, false, $except_blog_id );
+        }
+
+        /**
          * @author Vova Feldman (@svovaf)
          * @since  1.1.7.3
          *
          * @param int  $start_at        Defaults to now.
          * @param bool $randomize_start If true, schedule first job randomly during the next 12 hours. Otherwise, schedule job to start right away.
-         * @param int  $except_blog_id  Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified post ID from being the cron executor.
+         * @param int  $except_blog_id  Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified blog ID from being the cron executor.
          */
         private function schedule_sync_cron(
             $start_at = WP_FS__SCRIPT_START_TIME,
@@ -6593,7 +6681,7 @@
         }
 
         /**
-         * Get the sync cron's executing post ID.
+         * Get the sync cron's executing blog ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -6602,22 +6690,6 @@
          */
         private function get_install_sync_cron_blog_id() {
             return $this->get_cron_blog_id( 'install_sync' );
-        }
-
-        /**
-         * Instead of running blocking install sync event, execute non blocking scheduled wp-cron.
-         *
-         * @author Vova Feldman (@svovaf)
-         * @since  1.1.7.3
-         *
-         * @param int $except_blog_id Since 2.0.0 when running in a multisite network environment, the cron execution is consolidated. This param allows excluding excluded specified post ID from being the cron executor.
-         */
-        private function schedule_install_sync( $except_blog_id = 0 ) {
-            if ( $this->is_clone() ) {
-                return;
-            }
-
-            $this->schedule_cron( 'install_sync', 'install_sync', 'single', WP_FS__SCRIPT_START_TIME, false, $except_blog_id );
         }
 
         /**
@@ -6987,7 +7059,7 @@
                 return false;
             }
 
-            // If running from a post admin and delegated the connection.
+            // If running from a blog admin and delegated the connection.
             return ! isset( $this->_storage->sticky_optin_added );
         }
 
@@ -7411,7 +7483,7 @@
                  */
                 if (
                     is_plugin_active( $other_version_basename ) &&
-                    $this->apply_filters( 'deactivate_on_activation', true )
+                    $this->apply_filters( 'deactivate_on_activation', ! $this->is_parallel_activation() )
                 ) {
                     deactivate_plugins( $other_version_basename );
                 }
@@ -7425,7 +7497,7 @@
 
                 // Schedule re-activation event and sync.
 //				$this->sync_install( array(), true );
-                $this->schedule_install_sync();
+                $this->maybe_schedule_install_sync_cron();
 
                 // If activating the premium module version, add an admin notice to congratulate for an upgrade completion.
                 if ( $is_premium_version_activation ) {
@@ -7586,7 +7658,14 @@
                     $parent_fs->get_current_or_network_user()->email,
                     false,
                     false,
-                    $license->secret_key
+                    $license->secret_key,
+                    false,
+                    false,
+                    false,
+                    null,
+                    array(),
+                    true,
+                    $license->user_id
                 );
             } else {
                 // Activate the license.
@@ -7650,7 +7729,9 @@
                     false,
                     false,
                     null,
-                    $sites
+                    $sites,
+                    true,
+                    $license->user_id
                 );
             } else {
                 $blog_2_install_map = array();
@@ -7704,7 +7785,7 @@
          * @param array             $sites
          * @param int               $blog_id
          */
-        private function maybe_activate_bundle_license( FS_Plugin_License $license = null, $sites = array(), $blog_id = 0 ) {
+        private function maybe_activate_bundle_license( $license = null, $sites = array(), $blog_id = 0 ) {
             if ( ! is_object( $license ) && $this->has_active_valid_license() ) {
                 $license = $this->_license;
             }
@@ -7876,7 +7957,8 @@
                     null,
                     null,
                     $sites,
-                    ( $current_blog_id > 0 ? $current_blog_id : null )
+                    ( $current_blog_id > 0 ? $current_blog_id : null ),
+                    $license->user_id
                 );
             }
         }
@@ -8391,7 +8473,7 @@
             }
 
             /**
-             * Store the new post's information even if there's no install so that when a clone install is stored in the new post's storage, we can try to resolve it automatically.
+             * Store the new blog's information even if there's no install so that when a clone install is stored in the new blog's storage, we can try to resolve it automatically.
              *
              * @author Leo Fajardo (@leorw)
              * @since 2.5.0
@@ -8616,7 +8698,7 @@
                 return;
             }
 
-            $this->schedule_install_sync();
+            $this->maybe_schedule_install_sync_cron();
 //			$this->sync_install( array(), true );
         }
 
@@ -8972,7 +9054,7 @@
          * @param string[] $override
          * @param bool     $include_plugins   Since 1.1.8 by default include plugin changes.
          * @param bool     $include_themes    Since 1.1.8 by default include plugin changes.
-         * @param bool     $include_blog_data Since 2.3.0 by default include the current post's data (language, title, and URL).
+         * @param bool     $include_blog_data Since 2.3.0 by default include the current blog's data (language, title, and URL).
          *
          * @return array
          */
@@ -10392,7 +10474,7 @@
          *
          * @param string        $option_name
          * @param mixed         $default
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context post storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_SITE_LEVEL_PARAMS).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context blog storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_SITE_LEVEL_PARAMS).
          *
          * @return mixed|FS_Plugin[]|FS_User[]|FS_Site[]|FS_Plugin_License[]|FS_Plugin_Plan[]|FS_Plugin_Tag[]
          */
@@ -10966,7 +11048,7 @@
             $addon_storage = FS_Storage::instance( WP_FS__MODULE_TYPE_PLUGIN, $slug );
 
             if ( ! fs_is_network_admin() ) {
-                // Get post-level activated installations.
+                // Get blog-level activated installations.
                 $sites = self::maybe_get_entities_account_option( 'sites', array() );
             } else {
                 $sites = null;
@@ -11503,7 +11585,7 @@
                         continue;
                     }
 
-                    $missing_plan = self::_get_plan_by_id( $plan_id );
+                    $missing_plan = self::_get_plan_by_id( $plan_id, false );
 
                     if ( is_object( $missing_plan ) ) {
                         $plans[] = $missing_plan;
@@ -11665,10 +11747,10 @@
          *
          * @return FS_Plugin_Plan|false
          */
-        function _get_plan_by_id( $id ) {
+        function _get_plan_by_id( $id, $allow_sync = true ) {
             $this->_logger->entrance();
 
-            if ( ! is_array( $this->_plans ) || 0 === count( $this->_plans ) ) {
+            if ( $allow_sync && ( ! is_array( $this->_plans ) || 0 === count( $this->_plans ) ) ) {
                 $this->_sync_plans();
             }
 
@@ -11950,7 +12032,7 @@
         }
 
         /**
-         * Checks if the context license is network activated except on the given post ID.
+         * Checks if the context license is network activated except on the given blog ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -11977,7 +12059,7 @@
                 $blog_id = self::get_site_blog_id( $site );
 
                 if ( $except_blog_id == $blog_id ) {
-                    // Skip excluded post.
+                    // Skip excluded blog.
                     continue;
                 }
 
@@ -12044,7 +12126,7 @@
          *
          * @return false|array {
          * @type array[int]FS_Site $installs Blog ID to install map.
-         * @type int[]               $sites            Non-connected post IDs.
+         * @type int[]               $sites            Non-connected blog IDs.
          * @type int                 $production_count Production sites count.
          * @type int                 $localhost_count  Production sites count.
          * }
@@ -12224,7 +12306,7 @@
                     $installs[] = new FS_Site( $install );
                 }
 
-                // Map site addresses to their post IDs.
+                // Map site addresses to their blog IDs.
                 $address_to_blog_map = $this->get_address_to_blog_map();
 
                 $first_blog_id = null;
@@ -12312,7 +12394,7 @@
          *
          * @param \FS_Plugin_License $license
          */
-        private function set_license( FS_Plugin_License $license = null ) {
+        private function set_license( $license = null ) {
             $this->_license = $license;
 
             $this->maybe_update_whitelabel_flag( $license );
@@ -13412,7 +13494,8 @@
                 fs_request_get( 'module_id', null, 'post' ),
                 fs_request_get( 'user_id', null ),
                 fs_request_get_bool( 'is_extensions_tracking_allowed', null ),
-                fs_request_get_bool( 'is_diagnostic_tracking_allowed', null )
+                fs_request_get_bool( 'is_diagnostic_tracking_allowed', null ),
+                fs_request_get( 'license_owner_id', null )
             );
 
             if (
@@ -13561,6 +13644,7 @@
          * @param null|number $plugin_id
          * @param array       $sites
          * @param int         $blog_id
+         * @param null|number $license_owner_id
          *
          * @return array {
          *      @var bool   $success
@@ -13575,7 +13659,8 @@
             $is_marketing_allowed = null,
             $plugin_id = null,
             $sites = array(),
-            $blog_id = null
+            $blog_id = null,
+            $license_owner_id = null
         ) {
             $this->_logger->entrance();
 
@@ -13586,7 +13671,11 @@
                     $sites,
                 $is_marketing_allowed,
                 $blog_id,
-                $plugin_id
+                $plugin_id,
+                null,
+                null,
+                null,
+                $license_owner_id
             );
 
             // No need to show the sticky after license activation notice after migrating a license.
@@ -13660,9 +13749,10 @@
          * @param null|bool   $is_marketing_allowed
          * @param null|int    $blog_id
          * @param null|number $plugin_id
-         * @param null|number $license_owner_id
+         * @param null|number $user_id
          * @param bool|null   $is_extensions_tracking_allowed
          * @param bool|null   $is_diagnostic_tracking_allowed Since 2.5.0.2 to allow license activation with minimal data footprint.
+         * @param null|number $license_owner_id
          *
          *
          * @return array {
@@ -13677,9 +13767,10 @@
             $is_marketing_allowed = null,
             $blog_id = null,
             $plugin_id = null,
-            $license_owner_id = null,
+            $user_id = null,
             $is_extensions_tracking_allowed = null,
-            $is_diagnostic_tracking_allowed = null
+            $is_diagnostic_tracking_allowed = null,
+            $license_owner_id = null
         ) {
             $this->_logger->entrance();
 
@@ -13724,7 +13815,7 @@
 
             if ( $has_valid_blog_id ) {
                 /**
-                 * If a specific post ID was provided, activate the license only on the specific post that is associated with the given post ID.
+                 * If a specific blog ID was provided, activate the license only on the specific blog that is associated with the given blog ID.
                  *
                  * @author Leo Fajardo (@leorw)
                  */
@@ -13735,7 +13826,7 @@
                 $result = true;
 
                 if ( $is_network_activation_or_migration && ! $has_valid_blog_id ) {
-                    // If no specific post ID was provided, activate the license for all sites in the network.
+                    // If no specific blog ID was provided, activate the license for all sites in the network.
                     $blog_2_install_map = array();
                     $site_ids           = array();
 
@@ -13768,10 +13859,10 @@
 
                         $install_ids = array();
 
-                        $change_owner = FS_User::is_valid_id( $license_owner_id );
+                        $change_owner = FS_User::is_valid_id( $user_id );
 
                         if ( $change_owner ) {
-                            $params['user_id'] = $license_owner_id;
+                            $params['user_id'] = $user_id;
 
                             $installs_info_by_slug_map = $fs->get_parent_and_addons_installs_info();
 
@@ -13847,7 +13938,9 @@
                     false,
                     false,
                     $is_marketing_allowed,
-                    $sites
+                    $sites,
+                    true,
+                    $license_owner_id
                 );
 
                 if ( isset( $next_page->error ) ) {
@@ -15253,8 +15346,8 @@
 
         /**
          * Check if delegated the connection. When running within the network admin,
-         * and haven't specified the post ID, checks if network level delegated. If running
-         * within a site admin or specified a post ID, check if delegated the connection for
+         * and haven't specified the blog ID, checks if network level delegated. If running
+         * within a site admin or specified a blog ID, check if delegated the connection for
          * the current context site.
          *
          * If executed outside the the admin, check if delegated the connection
@@ -15263,7 +15356,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
-         * @param int $blog_id If set, checks if network delegated or post specific delegated.
+         * @param int $blog_id If set, checks if network delegated or blog specific delegated.
          *
          * @return bool
          */
@@ -15352,7 +15445,7 @@
         }
 
         /**
-         * Checks if a given post is active.
+         * Checks if a given blog is active.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15380,20 +15473,20 @@
         }
 
         /**
-         * Get a mapping between the site addresses to their post IDs.
+         * Get a mapping between the site addresses to their blog IDs.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
          * @return array {
          * @key    string Site address without protocol with a trailing slash.
-         * @value  int Site's post ID.
+         * @value  int Site's blog ID.
          * }
          */
         private function get_address_to_blog_map() {
             $sites = self::get_sites();
 
-            // Map site addresses to their post IDs.
+            // Map site addresses to their blog IDs.
             $address_to_blog_map = array();
             foreach ( $sites as $site ) {
                 $blog_id                         = self::get_site_blog_id( $site );
@@ -15405,20 +15498,20 @@
         }
 
         /**
-         * Get a mapping between the site addresses to their post IDs.
+         * Get a mapping between the site addresses to their blog IDs.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
          * @return array {
-         * @key    int     Site's post ID.
+         * @key    int     Site's blog ID.
          * @value  FS_Site Associated install.
          * }
          */
         function get_blog_install_map() {
             $sites = self::get_sites();
 
-            // Map site post ID to its install.
+            // Map site blog ID to its install.
             $install_map = array();
 
             foreach ( $sites as $site ) {
@@ -15437,7 +15530,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.5.1
          *
-         * @param bool|null $is_delegated When `true`, returns only connection delegated post IDs. When `false`, only non-delegated post IDs.
+         * @param bool|null $is_delegated When `true`, returns only connection delegated blog IDs. When `false`, only non-delegated blog IDs.
          *
          * @return int[]
          */
@@ -15524,7 +15617,7 @@
          *
          * @return null|array {
          *      'install' => FS_Site Module's install,
-         *      'blog_id' => string The associated post ID.
+         *      'blog_id' => string The associated blog ID.
          * }
          */
         function find_first_install() {
@@ -15546,7 +15639,7 @@
         }
 
         /**
-         * Switches the Freemius site level context to a specified post.
+         * Switches the Freemius site level context to a specified blog.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15557,7 +15650,7 @@
          *
          * @return bool Since 2.3.1 returns if a switch was made.
          */
-        function switch_to_blog( $blog_id, FS_Site $install = null, $flush = false ) {
+        function switch_to_blog( $blog_id, $install = null, $flush = false ) {
             if ( ! is_numeric( $blog_id ) ) {
                 return false;
             }
@@ -15630,7 +15723,7 @@
         }
 
         /**
-         * Restore the post context to the post that originally loaded the module.
+         * Restore the blog context to the blog that originally loaded the module.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15747,7 +15840,7 @@
         }
 
         /**
-         * Load the module's install based on the post ID.
+         * Load the module's install based on the blog ID.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15861,7 +15954,7 @@
         }
 
         /**
-         * Returns the post ID that is associated with the main install.
+         * Returns the blog ID that is associated with the main install.
          *
          * @author Leo Fajardo (@leorw)
          * @since  2.0.0
@@ -15898,7 +15991,7 @@
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
          *
-         * @return false|int If yes, return the requested post ID.
+         * @return false|int If yes, return the requested blog ID.
          */
         private function is_network_level_site_specific_action() {
             if ( ! $this->_is_network_active ) {
@@ -15928,7 +16021,7 @@
 
         /**
          * Needs to be executed after site deactivation, archive, deletion, or flag as spam.
-         * The logic updates the network level user and post, and reschedule the crons if the cron executing site matching the site that is no longer publicly active.
+         * The logic updates the network level user and blog, and reschedule the crons if the cron executing site matching the site that is no longer publicly active.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.0.0
@@ -15954,7 +16047,7 @@
                             continue;
                         }
 
-                        // Switch reference to a post that is opted-in and belong to the same super-admin.
+                        // Switch reference to a blog that is opted-in and belong to the same super-admin.
                         $this->_storage->network_install_blog_id = $blog_id;
                         break;
                     }
@@ -15974,7 +16067,7 @@
             if ( $this->is_install_sync_scheduled() &&
                  $context_blog_id == $this->get_install_sync_cron_blog_id()
             ) {
-                $this->schedule_install_sync( $context_blog_id );
+                $this->maybe_schedule_install_sync_cron( $context_blog_id );
             }
         }
 
@@ -16862,14 +16955,13 @@
          * @since  1.1.7.4
          *
          * @param array         $override_with
-         * @param bool|int|null $network_level_or_blog_id If true, return params for network level opt-in. If integer, get params for specified post in the network.
+         * @param bool|int|null $network_level_or_blog_id If true, return params for network level opt-in. If integer, get params for specified blog in the network.
+         * @param bool          $skip_user_info
          *
          * @return array
          */
-        function get_opt_in_params( $override_with = array(), $network_level_or_blog_id = null ) {
+        function get_opt_in_params( $override_with = array(), $network_level_or_blog_id = null, $skip_user_info = false ) {
             $this->_logger->entrance();
-
-            $current_user = self::_get_current_wp_user();
 
             $activation_action = $this->get_unique_affix() . '_activate_new';
             $return_url        = $this->is_anonymous() ?
@@ -16881,9 +16973,6 @@
             $versions = $this->get_versions();
 
             $params = array_merge( $versions, array(
-                'user_firstname'    => $current_user->user_firstname,
-                'user_lastname'     => $current_user->user_lastname,
-                'user_email'        => $current_user->user_email,
                 'plugin_slug'       => $this->_slug,
                 'plugin_id'         => $this->get_id(),
                 'plugin_public_key' => $this->get_public_key(),
@@ -16898,6 +16987,21 @@
                 'is_uninstalled'    => false,
                 'is_localhost'      => WP_FS__IS_LOCALHOST,
             ) );
+
+            if (
+                ! $skip_user_info &&
+                (
+                    empty( $override_with['user_firstname'] ) ||
+                    empty( $override_with['user_lastname'] ) ||
+                    empty( $override_with['user_email'] )
+                )
+            ) {
+                $current_user = self::_get_current_wp_user();
+
+                $params['user_firstname'] = $current_user->user_firstname;
+                $params['user_lastname']  = $current_user->user_lastname;
+                $params['user_email']     = $current_user->user_email;
+            }
 
             if ( $this->is_addon() ) {
                 $parent_fs = $this->get_parent_instance();
@@ -16978,6 +17082,7 @@
          * @param null|bool   $is_marketing_allowed
          * @param array       $sites                If network-level opt-in, an array of containing details of sites.
          * @param bool        $redirect
+         * @param null|number $license_owner_id
          *
          * @return string|object
          * @use    WP_Error
@@ -16992,14 +17097,10 @@
             $is_disconnected = false,
             $is_marketing_allowed = null,
             $sites = array(),
-            $redirect = true
+            $redirect = true,
+            $license_owner_id = null
         ) {
             $this->_logger->entrance();
-
-            if ( false === $email ) {
-                $current_user = self::_get_current_wp_user();
-                $email        = $current_user->user_email;
-            }
 
             /**
              * @since 1.2.1 If activating with license key, ignore the context-user
@@ -17010,6 +17111,11 @@
                 $this->_storage->remove( 'pending_license_key' );
 
                 if ( ! $is_uninstall ) {
+                    if ( false === $email ) {
+                        $current_user = self::_get_current_wp_user();
+                        $email        = $current_user->user_email;
+                    }
+
                     $fs_user = Freemius::_get_user_by_email( $email );
                     if ( is_object( $fs_user ) && ! $this->is_pending_activation() ) {
                         return $this->install_with_user(
@@ -17024,15 +17130,22 @@
                 }
             }
 
+            $skip_user_info = ( ! empty( $license_key ) && FS_User::is_valid_id( $license_owner_id ) );
+
             $user_info = array();
-            if ( ! empty( $email ) ) {
-                $user_info['user_email'] = $email;
-            }
-            if ( ! empty( $first ) ) {
-                $user_info['user_firstname'] = $first;
-            }
-            if ( ! empty( $last ) ) {
-                $user_info['user_lastname'] = $last;
+
+            if ( ! $skip_user_info ) {
+                if ( ! empty( $email ) ) {
+               	    $user_info['user_email'] = $email;
+                }
+
+                if ( ! empty( $first ) ) {
+               	    $user_info['user_firstname'] = $first;
+                }
+
+                if ( ! empty( $last ) ) {
+               	    $user_info['user_lastname'] = $last;
+                }
             }
 
             if ( ! empty( $sites ) ) {
@@ -17043,7 +17156,7 @@
                 $is_network = false;
             }
 
-            $params = $this->get_opt_in_params( $user_info, $is_network );
+            $params = $this->get_opt_in_params( $user_info, $is_network, $skip_user_info );
 
             $filtered_license_key = false;
             if ( is_string( $license_key ) ) {
@@ -18033,13 +18146,13 @@
          * @since  1.0.6
          *
          * @param Freemius          $parent_fs
-         * @param bool|int|null     $network_level_or_blog_id True for network level opt-in and integer for opt-in for specified post in the network.
+         * @param bool|int|null     $network_level_or_blog_id True for network level opt-in and integer for opt-in for specified blog in the network.
          * @param FS_Plugin_License $bundle_license           Since 2.4.0. If provided, this license will be activated for the add-on.
          */
         private function _activate_addon_account(
             Freemius $parent_fs,
             $network_level_or_blog_id = null,
-            FS_Plugin_License $bundle_license = null
+            $bundle_license = null
         ) {
             if ( $this->is_registered() ) {
                 // Already activated.
@@ -18056,7 +18169,7 @@
 
             /**
              * Do not override the `uid` if network-level opt-in since the call to `get_sites_for_network_level_optin()`
-             * already returns the data for the current post.
+             * already returns the data for the current blog.
              *
              * @author Leo Fajardo (@leorw)
              * @since 2.3.0
@@ -18070,7 +18183,7 @@
                 false,
                 false,
                 /**
-                 * Do not include the data for the current post if network-level opt-in since the call to `get_sites_for_network_level_optin`
+                 * Do not include the data for the current blog if network-level opt-in since the call to `get_sites_for_network_level_optin`
                  * already includes the data for it.
                  *
                  * @author Leo Fajardo (@leorw)
@@ -18197,7 +18310,7 @@
             } else {
                 $this->_store_user();
 
-                // Map site addresses to their post IDs.
+                // Map site addresses to their blog IDs.
                 $address_to_blog_map = $this->get_address_to_blog_map();
 
                 $first_blog_id      = null;
@@ -18672,7 +18785,7 @@
          * @return bool
          */
         function is_pricing_page_visible() {
-            return (
+            $visible = (
                 // Has at least one paid plan.
                 $this->has_paid_plan() &&
                 // Didn't ask to hide the pricing page.
@@ -18680,6 +18793,8 @@
                 // Don't have a valid active license or has more than one plan.
                 ( ! $this->is_paying() || ! $this->is_single_plan( true ) )
             );
+
+            return $this->apply_filters( 'is_pricing_page_visible', $visible );
         }
 
         /**
@@ -19523,7 +19638,7 @@
         }
 
         /**
-         * Returns an AJAX URL with a special extra param to indicate whether the request was triggered from the network admin or post admin.
+         * Returns an AJAX URL with a special extra param to indicate whether the request was triggered from the network admin or blog admin.
          *
          * @author Vova Feldman (@svovaf)
          * @since  2.5.1
@@ -19635,7 +19750,7 @@
          * @param null|int $network_level_or_blog_id Since 2.0.0
          * @param \FS_Site $site                     Since 2.0.0
          */
-        private function _store_site( $store = true, $network_level_or_blog_id = null, FS_Site $site = null, $is_backup = false ) {
+        private function _store_site( $store = true, $network_level_or_blog_id = null, $site = null, $is_backup = false ) {
             $this->_logger->entrance();
 
             if ( is_null( $site ) ) {
@@ -20302,7 +20417,7 @@
             if ( ! $is_site_license_synced ) {
                 if ( ! is_null( $blog_id ) ) {
                     /**
-                     * If post ID is not null, the request is for syncing of the license of a single site via the
+                     * If blog ID is not null, the request is for syncing of the license of a single site via the
                      * network-level "Account" page.
                      *
                      * @author Leo Fajardo (@leorw)
@@ -20488,11 +20603,18 @@
          * @param bool        $flush      Since 1.1.7.3
          * @param int         $expiration Since 1.2.2.7
          * @param bool|string $newer_than Since 2.2.1
+         * @param bool        $fetch_upgrade_notice Since 2.12.1
          *
          * @return object|false New plugin tag info if exist.
          */
-        private function _fetch_newer_version( $plugin_id = false, $flush = true, $expiration = WP_FS__TIME_24_HOURS_IN_SEC, $newer_than = false ) {
-            $latest_tag = $this->_fetch_latest_version( $plugin_id, $flush, $expiration, $newer_than );
+        private function _fetch_newer_version(
+            $plugin_id = false,
+            $flush = true,
+            $expiration = WP_FS__TIME_24_HOURS_IN_SEC,
+            $newer_than = false,
+            $fetch_upgrade_notice = true
+        ) {
+            $latest_tag = $this->_fetch_latest_version( $plugin_id, $flush, $expiration, $newer_than, false, $fetch_upgrade_notice );
 
             if ( ! is_object( $latest_tag ) ) {
                 return false;
@@ -20525,19 +20647,18 @@
          *
          * @param bool|number $plugin_id
          * @param bool        $flush      Since 1.1.7.3
-         * @param int         $expiration Since 1.2.2.7
-         * @param bool|string $newer_than Since 2.2.1
          *
          * @return bool|FS_Plugin_Tag
          */
-        function get_update( $plugin_id = false, $flush = true, $expiration = FS_Plugin_Updater::UPDATES_CHECK_CACHE_EXPIRATION, $newer_than = false ) {
+        function get_update( $plugin_id = false, $flush = true ) {
             $this->_logger->entrance();
 
             if ( ! is_numeric( $plugin_id ) ) {
                 $plugin_id = $this->_plugin->id;
             }
 
-            $this->check_updates( true, $plugin_id, $flush, $expiration, $newer_than );
+            $this->check_updates( true, $plugin_id, $flush );
+
             $updates = $this->get_all_updates();
 
             return isset( $updates[ $plugin_id ] ) && is_object( $updates[ $plugin_id ] ) ? $updates[ $plugin_id ] : false;
@@ -20792,8 +20913,8 @@
          * @param bool $is_context_single_site @since 2.0.0. This is used when syncing a license for a single install from the
          *                                     network-level "Account" page.
          * @param int|null $current_blog_id    @since 2.2.3. This is passed from the `execute_cron` method and used by the
-         *                                     `_sync_plugin_license` method in order to switch to the previous post when sending
-         *                                      updates for a single site in case `execute_cron` has switched to a different post.
+         *                                     `_sync_plugin_license` method in order to switch to the previous blog when sending
+         *                                      updates for a single site in case `execute_cron` has switched to a different blog.
          */
         private function _sync_license( $background = false, $is_context_single_site = false, $current_blog_id = null ) {
             $this->_logger->entrance();
@@ -20906,8 +21027,8 @@
          *                                     syncing its license from the network-level "Account" page (e.g.: after
          *                                     activating a license only for the single install).
          * @param int|null $current_blog_id    Since 2.2.3. This is passed from the `execute_cron` method so that it
-         *                                     can be used here to switch to the previous post in case `execute_cron`
-         *                                     has switched to a different post.
+         *                                     can be used here to switch to the previous blog in case `execute_cron`
+         *                                     has switched to a different blog.
          */
         private function _sync_plugin_license(
             $background = false,
@@ -20931,7 +21052,7 @@
                  */
                 if ( $is_site_level_sync ) {
                     /**
-                     * Switch to the previous post since `execute_cron` may have switched to a different post.
+                     * Switch to the previous blog since `execute_cron` may have switched to a different blog.
                      *
                      * @author Leo Fajardo (@leorw)
                      * @since 2.2.3
@@ -20949,7 +21070,7 @@
 
                 if ( ! $is_valid ) {
                     if ( $is_context_single_site ) {
-                        // Switch back to the main post so that the following logic will have the right entities.
+                        // Switch back to the main blog so that the following logic will have the right entities.
                         $this->switch_to_blog( $this->_storage->network_install_blog_id );
                     }
 
@@ -21017,7 +21138,7 @@
                 if ( $is_site_level_sync ) {
                     $site = new FS_Site( $result );
                 } else {
-                    // Map site addresses to their post IDs.
+                    // Map site addresses to their blog IDs.
                     $address_to_blog_map = $this->get_address_to_blog_map();
 
                     // Find the current context install.
@@ -21055,7 +21176,7 @@
                 if ( $is_context_single_site ) {
                     $context_blog_id = get_current_blog_id();
 
-                    // Switch back to the main post in order to properly sync the license.
+                    // Switch back to the main blog in order to properly sync the license.
                     $this->switch_to_blog( $this->_storage->network_install_blog_id );
                 }
 
@@ -21475,7 +21596,14 @@
                         false,
                         false,
                         false,
-                        $premium_license->secret_key
+                        $premium_license->secret_key,
+                        false,
+                        false,
+                        false,
+                        null,
+                        array(),
+                        true,
+                        $premium_license->user_id
                     );
 
                     return;
@@ -21987,6 +22115,7 @@
          * @param int         $expiration   Since 1.2.2.7
          * @param bool|string $newer_than   Since 2.2.1
          * @param bool|string $fetch_readme Since 2.2.1
+         * @param bool        $fetch_upgrade_notice Since 2.12.1
          *
          * @return object|false Plugin latest tag info.
          */
@@ -21995,7 +22124,8 @@
             $flush = true,
             $expiration = WP_FS__TIME_24_HOURS_IN_SEC,
             $newer_than = false,
-            $fetch_readme = true
+            $fetch_readme = true,
+            $fetch_upgrade_notice = false
         ) {
             $this->_logger->entrance();
 
@@ -22066,6 +22196,10 @@
 
                 // Don't cache the API response when fetching readme information.
                 $expiration = null;
+            }
+
+            if ( true === $fetch_upgrade_notice ) {
+                $latest_version_endpoint = add_query_arg( 'include_upgrade_notice', 'true', $latest_version_endpoint );
             }
 
             $tag = $this->get_api_site_or_plugin_scope()->get(
@@ -22213,20 +22347,20 @@
          *                                was initiated by the admin.
          * @param bool|number $plugin_id
          * @param bool        $flush      Since 1.1.7.3
-         * @param int         $expiration Since 1.2.2.7
-         * @param bool|string $newer_than Since 2.2.1
          */
-        private function check_updates(
-            $background = false,
-            $plugin_id = false,
-            $flush = true,
-            $expiration = FS_Plugin_Updater::UPDATES_CHECK_CACHE_EXPIRATION,
-            $newer_than = false
-        ) {
+        private function check_updates( $background = false, $plugin_id = false, $flush = true ) {
             $this->_logger->entrance();
 
+            $newer_than = ( $this->is_premium() ? $this->get_plugin_version() : false );
+
             // Check if there's a newer version for download.
-            $new_version = $this->_fetch_newer_version( $plugin_id, $flush, $expiration, $newer_than );
+            $new_version = $this->_fetch_newer_version(
+                $plugin_id,
+                $flush,
+                FS_Plugin_Updater::UPDATES_CHECK_CACHE_EXPIRATION,
+                $newer_than,
+                ( false !== $newer_than )
+            );
 
             $update = null;
             if ( is_object( $new_version ) ) {
@@ -23927,13 +24061,15 @@
 
             // Start trial button.
             $button = ' ' . sprintf(
-                    '<a style="margin-left: 10px; vertical-align: super;" href="%s"><button class="button button-primary">%s &nbsp;&#10140;</button></a>',
+                    '<div><a class="button button-primary" href="%s">%s &nbsp;&#10140;</a></div>',
                     $trial_url,
                     $this->get_text_x_inline( 'Start free trial', 'call to action', 'start-free-trial' )
                 );
 
+            $message_text = $this->apply_filters( 'trial_promotion_message', "{$message} {$cc_string}" );
+
             $this->_admin_notices->add_sticky(
-                $this->apply_filters( 'trial_promotion_message', "{$message} {$cc_string} {$button}" ),
+                "<div class=\"fs-trial-message-container\"><div>{$message_text}</div> {$button}</div>",
                 'trial_promotion',
                 '',
                 'promotion'
@@ -25403,7 +25539,7 @@
                 $img_dir = WP_FS__DIR_IMG;
 
                 // Locate the main assets folder.
-                if ( 1 < count( $fs_active_plugins->plugins ) ) {
+                if ( ! empty( $fs_active_plugins->plugins ) ) {
                     $plugin_or_theme_img_dir = ( $this->is_plugin() ? WP_PLUGIN_DIR : get_theme_root( get_stylesheet() ) );
 
                     foreach ( $fs_active_plugins->plugins as $sdk_path => &$data ) {

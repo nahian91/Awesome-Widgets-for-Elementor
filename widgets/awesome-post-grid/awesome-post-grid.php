@@ -330,6 +330,15 @@ class Widget_Awesome_Post_Grid extends Widget_Base {
 			]
 		);
 
+		// Blog Border
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_blog_grid_border',
+				'selector' => '{{WRAPPER}} .awea-post-content',
+			]
+		);
+
 		// Blog Padding
 		$this->add_control(
 			'awea_blog_grid_padding',

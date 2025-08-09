@@ -671,7 +671,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-testimonials .awea-carousel-arrow-border i' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-testimonials .awea-carousel-arrow-border i' => 'color: {{VALUE}} !important',
 				],
 			]
 		);
@@ -825,7 +825,7 @@ class Widget_Awesome_Testimonials_Carousel extends Widget_Base {
             ?>
                 <div class="awea-testimonial-carousel">
                     <div class="awea-testimonial-carousel-icon">
-                        <i class="<?php echo esc_attr( $awea_testimonials_carousel_icon ); ?>"></i>
+                        <i class="fas fa-quote-left"></i>
                     </div>
                     <div class="awea-testimonial-carousel-content">
                         <?php echo wp_kses_post($testimonial_speech);; ?>

@@ -293,6 +293,19 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			]
 		);
 
+		// posts Carousel Arrows
+		$this->add_control(
+			'awea_post_carousel_dots',
+			[
+				'label' => esc_html__( 'Dots', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'awesome-widgets-elementor' ),
+				'label_off' => esc_html__( 'No', 'awesome-widgets-elementor' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+
 		// posts Carousel Loops
 		$this->add_control(
 			'awea_post_carousel_loop',
@@ -452,6 +465,14 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_post_carousel_border',
+				'selector' => '{{WRAPPER}} .awea-single-post-carousel',
+			]
+		);	
+
 		$this->end_controls_section();
 
 		// start of the Style tab section
@@ -470,7 +491,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-carousel-carousel-meta, .awea-post-carousel-carousel-meta a' => 'color: {{VALUE}} !important',
+					'{{WRAPPER}} .awea-post-carousel-meta a' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -483,7 +504,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_post_carousel_meta_typography',
-				'selector' => '{{WRAPPER}} .awea-post-carousel-carousel-meta, .awea-post-carousel-carousel-meta a',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-meta a',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -509,7 +530,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 				'label' => esc_html__( 'Text Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-post-carousel-title .awea-post-carousel-post-title a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel-title h3' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -522,7 +543,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_post_carousel_title_typography',
-				'selector' => '{{WRAPPER}} .awea-post-carousel-title .awea-post-carousel-post-title a',
+				'selector' => '{{WRAPPER}} .awea-post-carousel-title h3',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
@@ -757,148 +778,69 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 		$this->end_controls_section();
 		// end of the Style tab section
 
-		// post Arrow Style
+		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_post_carousel_arrow_style',
+			'awea_post_carousel_arrows_style',
 			[
-				'label' => esc_html__( 'Arrow Buttons', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Arrows', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
+				'condition'		=> [
+					'awea_post_carousel_arrows' => 'yes'
+				]
 			]
 		);
 
-		$this->start_controls_tabs(
-			'awea_post_carousel_arrow_style_tabs'
-		);
+		// Start of Tabs
+		$this->start_controls_tabs('awea_post_carousel_arrows_tabs');
 
-		// post Arrow Normal Tab
+		// Normal Tab
 		$this->start_controls_tab(
-			'awea_post_carousel_arrow_normal_tab',
+			'awea_post_carousel_arrows_tabs_normal',
 			[
-				'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
+				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
 			]
 		);
 
-		// post Arrow Color
 		$this->add_control(
-			'awea_post_carousel_arrow_color',
+			'awea_post_carousel_arrows_color',
 			[
-				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border svg path' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel .awea-carousel-arrow-border i' => 'color: {{VALUE}}',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
 			]
 		);
 
-		// post Arrow Border Color
 		$this->add_control(
-			'awea_post_carousel_arrow_border_color',
-			[
-				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border' => 'border-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// post Background Color
-		$this->add_control(
-			'awea_post_carousel_arrow_bg_color',
+			'awea_post_carousel_arrows_bg',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border' => 'background-color: {{VALUE}}',
-				],
-				'default' => '#fff',
-			]
-		);
-
-		// post Padding
-		$this->add_control(
-			'awea_post_carousel_arrow_padding',
-			[
-				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		// post Round
-		$this->add_control(
-			'awea_post_carousel_arrow_round',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-post-carousel .awea-carousel-arrow-border' => 'background-color: {{VALUE}}',
 				],
 			]
 		);
 
 		$this->end_controls_tab();
 
-		// post Arrow Hover Tab
+		// Hover Tab
 		$this->start_controls_tab(
-			'awea_post_carousel_arrow_hover_tab',
+			'awea_post_carousel_arrows_tabs_hover',
 			[
-				'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
+				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
 			]
 		);
 
-		// post Arrow Hover Icon Color
-		$this->add_control(
-			'awea_post_carousel_arrow_hover_color',
-			[
-				'label' => esc_html__( 'Icon Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border:hover svg path' => 'fill: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				]
-			]
-		);
-
-		// post Arrow Border Color
-		$this->add_control(
-			'awea_post_carousel_arrow_hover_border_color',
-			[
-				'label' => esc_html__( 'Border Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border:hover' => 'border-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		// post Arrow Round
 		$this->add_control(
 			'awea_post_carousel_arrow_hover_bg',
 			[
-				'label' => esc_html__( 'Background Color', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-carousel-arrow-border:hover:after' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-post-carousel .awea-carousel-arrow-border:hover' => 'background-color: {{VALUE}}',
 				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
 			]
 		);
 
@@ -907,6 +849,80 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
+		// end of the Style tab section
+
+		// start of the Style tab section
+		$this->start_controls_section(
+			'awea_post_carousel_dots_style',
+			[
+				'label' => esc_html__( 'Dots', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition'		=> [
+					'awea_post_carousel_arrows' => 'yes'
+				]
+			]
+		);
+
+		// Start of Tabs
+		$this->start_controls_tabs('awea_post_carousel_dots_tabs');
+
+		// Normal Tab
+		$this->start_controls_tab(
+			'awea_post_carousel_dots_tabs_normal',
+			[
+				'label' => esc_html__('Normal', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_post_carousel_dots_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-post-carousel .owl-dots button.owl-dot' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_post_carousel_dots_active',
+			[
+				'label' => esc_html__( 'Active Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-post-carousel .owl-dots button.owl-dot.active' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		// Hover Tab
+		$this->start_controls_tab(
+			'awea_post_carousel_dots_tabs_hover',
+			[
+				'label' => esc_html__('Hover', 'awesome-widgets-elementor'),
+			]
+		);
+
+		$this->add_control(
+			'awea_post_carousel_dots_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-post-carousel .awea-carousel-arrow-border i' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+		// end of the Style tab section
 
 	}
 
@@ -930,7 +946,8 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
     $awea_post_carousel_date_visibility = isset($settings['awea_post_carousel_date_visibility']) && $settings['awea_post_carousel_date_visibility'] === 'yes';
     $awea_post_carousel_excerpt_visibility = isset($settings['awea_post_carousel_excerpt_visibility']) && $settings['awea_post_carousel_excerpt_visibility'] === 'yes';
     $awea_post_carousel_slide_number = !empty($settings['awea_post_carousel_slide_number']) ? $settings['awea_post_carousel_slide_number'] : 3;
-    $awea_post_carousel_arrows = isset($settings['awea_post_carousel_arrows']) && $settings['awea_post_carousel_arrows'] === 'yes' ? 'yes' : 'no';
+    $awea_post_carousel_arrows = $settings['awea_post_carousel_arrows'];
+	$awea_post_carousel_dots = $settings['awea_post_carousel_dots'];
     $awea_post_carousel_loop = isset($settings['awea_post_carousel_loop']) && $settings['awea_post_carousel_loop'] === 'yes' ? 'yes' : 'no';
     $awea_post_carousel_pause = isset($settings['awea_post_carousel_pause']) && $settings['awea_post_carousel_pause'] === 'yes' ? 'yes' : 'no';
     $awea_post_carousel_autoplay = isset($settings['awea_post_carousel_autoplay']) && $settings['awea_post_carousel_autoplay'] === 'yes' ? 'yes' : 'no';
@@ -967,6 +984,7 @@ class Widget_Awesome_Post_Carousel extends Widget_Base {
     <div class="awea-post-carousel owl-carousel"
         awea-post-items="<?php echo esc_attr($awea_post_carousel_slide_number); ?>"
         awea-post-arrows="<?php echo esc_attr($awea_post_carousel_arrows); ?>"
+		awea-post-dots="<?php echo esc_attr($awea_post_carousel_dots); ?>"
         awea-post-loops="<?php echo esc_attr($awea_post_carousel_loop); ?>"
         awea-post-pause="<?php echo esc_attr($awea_post_carousel_pause); ?>"
         awea-post-autoplay="<?php echo esc_attr($awea_post_carousel_autoplay); ?>"

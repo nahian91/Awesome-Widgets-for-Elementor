@@ -39,7 +39,7 @@
         protected $_logger;
         /**
          * @since 2.0.0
-         * @var int The ID of the post that is associated with the current site level admin notices.
+         * @var int The ID of the blog that is associated with the current site level admin notices.
          */
         private $_blog_id = 0;
         /**
@@ -58,7 +58,7 @@
          * @param string $title
          * @param string $module_unique_affix
          * @param bool   $is_network_and_blog_admins           Whether or not the message should be shown both on
-         *                                                     network and post admin pages.
+         *                                                     network and blog admin pages.
          * @param bool   $network_level_or_blog_id Since 2.0.0
          *
          * @return \FS_Admin_Notice_Manager
@@ -106,7 +106,7 @@
          * @param string $title
          * @param string $module_unique_affix
          * @param bool   $is_network_and_blog_admins Whether or not the message should be shown both on network and
-         *                                             post admin pages.
+         *                                             blog admin pages.
          * @param bool|int $network_level_or_blog_id
          */
         protected function __construct(
@@ -194,8 +194,14 @@
          * @since  1.0.7
          */
         static function _add_sticky_dismiss_javascript() {
+            $sticky_admin_notice_js_template_name = 'sticky-admin-notice-js.php';
+
+            if ( ! file_exists( fs_get_template_path( $sticky_admin_notice_js_template_name ) ) ) {
+                return;
+            }
+
             $params = array();
-            fs_require_once_template( 'sticky-admin-notice-js.php', $params );
+            fs_require_once_template( $sticky_admin_notice_js_template_name, $params );
         }
 
         private static $_added_sticky_javascript = false;
@@ -362,7 +368,7 @@
          * @param number|null $wp_user_id
          * @param string|null $plugin_title
          * @param bool        $is_network_and_blog_admins Whether or not the message should be shown both on network
-         *                                                and post admin pages.
+         *                                                and blog admin pages.
          * @param bool|null   $is_dismissible
          * @param array       $data
          *
@@ -467,7 +473,7 @@
          * @param number|null $wp_user_id
          * @param string|null $plugin_title
          * @param bool        $is_network_and_blog_admins Whether or not the message should be shown both on network
-         *                                                and post admin pages.
+         *                                                and blog admin pages.
          * @param bool        $is_dimissible
          * @param array       $data
          */

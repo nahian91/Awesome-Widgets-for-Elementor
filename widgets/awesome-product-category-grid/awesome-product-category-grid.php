@@ -5,7 +5,6 @@ namespace Elementor;
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 use \Elementor\Controls_Manager;
-use \Elementor\Group_Control_Border;
 use \Elementor\Group_Control_Typography;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
@@ -33,14 +32,24 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 		return [ 'product', 'category', 'awesome'];
 	}
 
+	private function get_product_categories_list() {
+		$terms = get_terms( [
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => false,
+		] );
+
+		$options = [];
+		if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$options[ $term->term_id ] = $term->name;
+			}
+		}
+		return $options;
+	}
+
 	public function get_grid_classes( $settings, $columns_field = 'awea_column_per_row' ) {        
         $grid_classes = 'awea-grid-desktop-';
         $grid_classes .= $settings[$columns_field];
-        // $grid_classes .= ' awea-grid-tablet-';
-        // $grid_classes .= $settings[$columns_field . '_tablet'];
-        // $grid_classes .= ' awea-grid-mobile-';
-        // $grid_classes .= $settings[$columns_field . '_mobile'];
-
         return apply_filters( 'awea_grid_classes', $grid_classes, $settings, $columns_field );
     }
 
@@ -49,6 +58,17 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'awea_product_category_section_categories',
 			[
 				'label' => esc_html__( 'Category Settings', 'awesome-widgets-elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'awea_product_category_include',
+			[
+				'label' => esc_html__( 'Select Categories', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::SELECT2,
+				'multiple' => true,
+				'options' => $this->get_product_categories_list(),
+				'label_block' => true,
 			]
 		);
 
@@ -74,7 +94,6 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			]
 		);
 
-		// Blog Column
 		$this->add_control( 
             'awea_column_per_row', 
             [
@@ -124,30 +143,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 
 		$this->end_controls_section();
 
-		// start of the Content tab section
-		$this->start_controls_section(
-			'awea_product_category_pro_message',
-			[
-				'label' => esc_html__('Premium', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT		
-			]
-		);
-
-		$this->add_control( 
-			'awea_product_category_pro_message_notice', 
-			[
-				'type'      => Controls_Manager::RAW_HTML,
-				'raw'       => sprintf(
-					'<div style="text-align:center;line-height:1.6;">
-						<p style="margin-bottom:10px">%s</p>
-					</div>',
-					esc_html__('Awesome Widgets for Elementor Premium is coming soon with more widgets, features, and customization options.', 'awesome-widgets-elementor')
-				)
-			]  
-		);
-		$this->end_controls_section();
-
-		// start of the Style tab section
+		// Style
 		$this->start_controls_section(
 			'awea_product_category_content_style',
 			[
@@ -156,7 +152,6 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			]
 		);
 
-		// CTA Title Color
 		$this->add_control(
 			'awea_product_category_color',
 			[
@@ -171,7 +166,6 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			]
 		);
 
-		// CTA Title Color
 		$this->add_control(
 			'awea_product_category_bg_color',
 			[
@@ -186,7 +180,6 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			]
 		);
 
-		// CTA Title Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -195,6 +188,26 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_product_category_border',
+				'selector' => '{{WRAPPER}} .awesa-product-category',
+			]
+		);	
+
+		$this->add_control(
+			'awea_product_category_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-product-category-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -211,6 +224,10 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 			'order' => $settings['awea_product_category_order'],
 		];
 
+		if ( ! empty( $settings['awea_product_category_include'] ) ) {
+			$args['include'] = $settings['awea_product_category_include'];
+		}
+
 		$product_categories = get_terms( $args );
 
 		if ( empty( $product_categories ) || is_wp_error( $product_categories ) ) {
@@ -219,8 +236,7 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 		}
 
 		?>
-
-		<div class="awesa-product-categories-grid <?php echo esc_attr( $column_class ); ?>">
+		<div class="awesa-product-categories-grid">
 			<div class="awea-grid-row">
 			<?php foreach ( $product_categories as $category ) : ?>
 				<?php
@@ -232,27 +248,23 @@ class Widget_Awesome_Product_Category_Grid extends Widget_Base {
 					$category_link = get_term_link( $category );
 				?>
 				<div class="<?php echo esc_attr($this->get_grid_classes($settings)); ?> awea-grid-tablet-6 awea-grid-mobile-12">
-				<div class="awesa-product-category">
-					<?php if ( $image_url ) : ?>
-						<a href="<?php echo esc_url( $category_link ); ?>" class="awea-product-category-img-link">
-							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $category->name ); ?>">
-						</a>
+					<div class="awesa-product-category">
+						<?php if ( $image_url ) : ?>
+							<a href="<?php echo esc_url( $category_link ); ?>" class="awea-product-category-img-link">
+								<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $category->name ); ?>">
+							</a>
+						<?php endif; ?>
 						<div class="awea-product-category-content">
 							<a href="<?php echo esc_url( $category_link ); ?>" class="awea-product-category-link"><?php echo esc_html( $category->name ); ?></a>
-
 							<?php if ( $settings['awea_product_category_show_count'] === 'yes' ) : ?>
 								<span class="count">(<?php echo intval( $category->count ); ?>)</span>
 							<?php endif; ?>
 						</div>
-					<?php endif; ?>
+					</div>
 				</div>
-				</div>
-
 			<?php endforeach; ?>
 			</div>
-
 		</div>
-
 		<?php
 	}
 }

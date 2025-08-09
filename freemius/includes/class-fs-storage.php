@@ -48,7 +48,7 @@
         private $_module_slug;
 
         /**
-         * @var int The ID of the post that is associated with the current site level options.
+         * @var int The ID of the blog that is associated with the current site level options.
          */
         private $_blog_id = 0;
 
@@ -154,7 +154,7 @@
          *
          * @param string        $key
          * @param mixed         $value
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context post storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context blog storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
          * @param int           $option_level Since 2.5.1
          * @param bool          $flush
          */
@@ -202,7 +202,7 @@
          *
          * @param string        $key
          * @param bool          $store
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context post storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context blog storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
          */
         function remove( $key, $store = true, $network_level_or_blog_id = null ) {
             if ( $this->should_use_network_storage( $key, $network_level_or_blog_id ) ) {
@@ -218,7 +218,7 @@
          *
          * @param string        $key
          * @param mixed         $default
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context post storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context blog storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
          * @param int           $option_level Since 2.5.1
          *
          * @return mixed
@@ -470,7 +470,7 @@
          * @author Leo Fajardo
          *
          * @param string        $key
-         * @param null|bool|int $network_level_or_blog_id When an integer, use the given post storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context post storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
+         * @param null|bool|int $network_level_or_blog_id When an integer, use the given blog storage. When `true` use the multisite storage (if there's a network). When `false`, use the current context blog storage. When `null`, the decision which storage to use (MS vs. Current S) will be handled internally and determined based on the $option (based on self::$_BINARY_MAP).
          * @param int           $option_level Since 2.5.1
          *
          * @return bool
@@ -486,12 +486,12 @@
             }
 
             if ( is_numeric( $network_level_or_blog_id ) ) {
-                // Explicitly asked to use a specified post storage.
+                // Explicitly asked to use a specified blog storage.
                 return false;
             }
 
             if ( is_bool( $network_level_or_blog_id ) ) {
-                // Explicitly specified whether it should use the network or post level storage.
+                // Explicitly specified whether it should use the network or blog level storage.
                 return $network_level_or_blog_id;
             }
 

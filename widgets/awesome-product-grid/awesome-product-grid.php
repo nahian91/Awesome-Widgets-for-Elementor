@@ -326,13 +326,6 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
-				'default' => [
-					'top' => '12',
-					'right' => '12',
-					'bottom' => '12',
-					'left' => '12',
-					'unit' => 'px',
-				],
 				'selectors' => [
 					'{{WRAPPER}} .awea-product-grid-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],

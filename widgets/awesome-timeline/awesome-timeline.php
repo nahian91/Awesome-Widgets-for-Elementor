@@ -144,17 +144,32 @@ class Widget_Awesome_Timeline extends Widget_Base {
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
-					[
-						'awea_timeline_year' => '2008',
-						'awea_timeline_title' => 'Intern Developer',
-						'awea_timeline_desc' => 'Worked on basic frontend tasks and learned company workflow.',
-					],
-					[
-						'awea_timeline_year' => '2009 - 2012',
-						'awea_timeline_title' => 'Junior Developer',
-						'awea_timeline_desc' => 'Handled minor feature updates and fixed bugs.',
-					],
-				],
+			[
+				'awea_timeline_year'  => '2008',
+				'awea_timeline_title' => 'Intern Developer',
+				'awea_timeline_desc'  => 'Worked on basic frontend tasks and learned company workflow. Gained hands-on experience with HTML, CSS, and JavaScript, and participated in team meetings to understand project lifecycles and client requirements.',
+			],
+			[
+				'awea_timeline_year'  => '2009 - 2012',
+				'awea_timeline_title' => 'Junior Developer',
+				'awea_timeline_desc'  => 'Handled minor feature updates and fixed bugs in the existing codebase. Assisted senior developers in troubleshooting issues and improving code quality, while steadily building knowledge of backend development and database management.',
+			],
+			[
+				'awea_timeline_year'  => '2012 - 2015',
+				'awea_timeline_title' => 'Mid-Level Developer',
+				'awea_timeline_desc'  => 'Developed new features and optimized the existing codebase for better performance and scalability. Collaborated closely with designers and product managers to ensure timely delivery of user-friendly applications, and started mentoring junior developers.',
+			],
+			[
+				'awea_timeline_year'  => '2015 - 2018',
+				'awea_timeline_title' => 'Senior Developer',
+				'awea_timeline_desc'  => 'Led a small development team, coordinating project deliverables and reviewing code to maintain standards. Played a key role in architecture planning, implementing automated testing, and improving deployment workflows for smoother releases.',
+			],
+			[
+				'awea_timeline_year'  => '2018 - Present',
+				'awea_timeline_title' => 'Lead Developer',
+				'awea_timeline_desc'  => 'Overseeing the entire development process, mentoring junior and mid-level developers, and managing deployments. Responsible for technical strategy, adopting new technologies, and ensuring the team delivers high-quality software aligned with business goals.',
+			],
+		],
 				'title_field' => '{{{ awea_timeline_year }}} - {{{ awea_timeline_title }}}',
 			]
 		);

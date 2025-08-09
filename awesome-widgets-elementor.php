@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Awesome Widgets for Elementor
  * Description: Easily create stunning websites with advanced design options and increased functionality.
- * Version: 1.3
+ * Version: 1.4
  * Author: Abdullah Nahian
  * Text Domain: awesome-widgets-elementor
  * Domain Path: /languages
@@ -13,6 +13,41 @@
 if ( ! defined('ABSPATH') ) {
     exit;
 }
+
+if ( ! function_exists( 'awea_fs' ) ) {
+    // Create a helper function for easy SDK access.
+    function awea_fs() {
+        global $awea_fs;
+
+        if ( ! isset( $awea_fs ) ) {
+            // Include Freemius SDK.
+            require_once dirname( __FILE__ ) . '/freemius/start.php';
+            $awea_fs = fs_dynamic_init( array(
+                'id'                  => '17015',
+                'slug'                => 'awesome-widgets',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_23e89894238073bcb61ffa59279c6',
+                'is_premium'          => false,
+                'has_addons'          => false,
+                'has_paid_plans'      => false,
+                'menu'                => array(
+                    'slug'           => 'awesome-widgets',
+                    'account'        => false,
+                    'support'        => false,
+                ),
+            ) );
+        }
+
+        return $awea_fs;
+    }
+
+    // Init Freemius.
+    awea_fs();
+    // Signal that SDK was initiated.
+    do_action( 'awea_fs_loaded' );
+}
+
+
 
 // Define plugin constants
 define('AWEA_VERSION', '1.3');

@@ -309,6 +309,7 @@ HTML;
              */
             afterLicenseUserDataLoaded = function () {
                 if (
+                    false !== otherLicenseOwnerID &&
                     null !== otherLicenseOwnerID &&
                     otherLicenseOwnerID != <?php echo $fs->is_registered() ? $fs->get_user()->id : 'null' ?>
                 ) {
@@ -569,7 +570,7 @@ HTML;
 				        licenseKey = $otherLicenseKey.val();
                     } else {
 				        if ( ! hasLicensesDropdown ) {
-                            licenseID = $availableLicenseKey.data( 'id' );
+                            licenseID = $availableLicenseKey.data( 'id' ).toString();
                         } else {
                             licenseID = $licensesDropdown.val();
                         }
@@ -617,7 +618,7 @@ HTML;
                                 url     : $this.find( '.url' ).val(),
                                 title   : $this.find( '.title' ).val(),
                                 language: $this.find( '.language' ).val(),
-                                blog_id : $this.find( '.post-id' ).find( 'span' ).text()
+                                blog_id : $this.find( '.blog-id' ).find( 'span' ).text()
                             };
 
                             sites.push( site );
@@ -838,7 +839,7 @@ HTML;
             $modal.toggleClass( 'is-single-site-activation', isSingleSiteActivation );
 
             singleBlogID = isSingleSiteActivation ?
-                $singleInstallDetails.prev().data( 'post-id' ) :
+                $singleInstallDetails.prev().data( 'blog-id' ) :
                 null;
 
             <?php if ( $fs->apply_filters( 'enable_per_site_activation', true ) ) : ?>

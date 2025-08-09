@@ -21,29 +21,23 @@
 }
 .awea-testimonial-carousel-author h4 span {
   display: block;
-  margin-top: 5px;
+  margin-top: 2px;
 }
-
-
 .awea-testimonials .awea-carousel-arrow-border {
   background-color: var(--e-global-color-primary);
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 50%;
   z-index: 10;
   cursor: pointer;
 }
-
 .awea-testimonials .owl-prev .awea-carousel-arrow-border {
-  margin-left: -30px;
+  margin-left: -20px;
 }
-
 .awea-testimonials .owl-next .awea-carousel-arrow-border {
-  margin-right: -30px;
+  margin-right: -20px;
 }
-
-
 .awea-testimonials .owl-dots {
   display: flex;
   justify-content: center;

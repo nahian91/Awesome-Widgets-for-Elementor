@@ -336,7 +336,7 @@
                 $this->all_installs = FS_DebugManager::get_all_modules_sites();
             }
 
-            // Check if there's another post that has the same site.
+            // Check if there's another blog that has the same site.
             $module_type          = $instance->get_module_type();
             $sites_by_module_type = ! empty( $this->all_installs[ $module_type ] ) ?
                 $this->all_installs[ $module_type ] :
@@ -412,12 +412,12 @@
          * @author Vova Feldman (@svovaf)
          * @since 2.5.0
          *
-         * @param Freemius    $instance
-         * @param string|false $license_key
+         * @param Freemius               $instance
+         * @param FS_Plugin_License|null $license
          *
          * @return bool TRUE if successfully connected. FALSE if failed and had to restore install from backup.
          */
-        private function delete_install_and_connect( Freemius $instance, $license_key = false ) {
+        private function delete_install_and_connect( Freemius $instance, $license = null ) {
             $user = Freemius::_get_user_by_id( $instance->get_site()->user_id );
 
             $instance->delete_current_install( true );
@@ -430,6 +430,9 @@
                 $user = Freemius::_get_user_by_email( $current_user->user_email );
             }
 
+            $license_key      = ( is_object( $license ) ? $license->secret_key : false );
+            $license_owner_id = ( is_object( $license ) ? $license->user_id : null );
+
             if ( is_object( $user ) ) {
                 // When a clone is found, we prefer to use the same user of the original install for the opt-in.
                 $instance->install_with_user( $user, $license_key, false, false );
@@ -439,7 +442,14 @@
                     false,
                     false,
                     false,
-                    $license_key
+                    $license_key,
+                    false,
+                    false,
+                    false,
+                    null,
+                    array(),
+                    true,
+                    $license_owner_id
                 );
             }
 
@@ -505,7 +515,7 @@
             }
 
             // If the site is a clone of another subsite in the network, or a localhost one, try to auto activate the license.
-            return $this->delete_install_and_connect( $instance, $license->secret_key );
+            return $this->delete_install_and_connect( $instance, $license );
         }
 
         /**
@@ -709,7 +719,7 @@
         }
 
         /**
-         * If a new install was created after creating a new subsite, its ID is stored in the post-install map so that it can be recovered in case it's replaced with a clone install (e.g., when the newly created subsite is a clone). The IDs of the clone subsites that were created while not running this version of the SDK or a higher version will also be stored in the said map so that the clone manager can also try to resolve them later on.
+         * If a new install was created after creating a new subsite, its ID is stored in the blog-install map so that it can be recovered in case it's replaced with a clone install (e.g., when the newly created subsite is a clone). The IDs of the clone subsites that were created while not running this version of the SDK or a higher version will also be stored in the said map so that the clone manager can also try to resolve them later on.
          *
          * @author Leo Fajardo (@leorw)
          * @since 2.5.0
@@ -1306,7 +1316,7 @@
              */
             $message = sprintf(
                 $notice_header .
-                '<div class="fs-clone-resolution-options-container" data-ajax-url="' . esc_attr( admin_url( 'admin-ajax.php?_fs_network_admin=false', 'relative' ) ) . '" data-post-id="' . $blog_id . '">' .
+                '<div class="fs-clone-resolution-options-container" data-ajax-url="' . esc_attr( admin_url( 'admin-ajax.php?_fs_network_admin=false', 'relative' ) ) . '" data-blog-id="' . $blog_id . '">' .
                 $duplicate_option .
                 $migration_option .
                 $new_website . '</div>' .
@@ -1417,7 +1427,7 @@
                     ) :
                     $sites_list ),
                 sprintf(
-                    '<div class="fs-clone-resolution-options-container fs-duplicate-site-options" data-ajax-url="%s" data-post-id="' . get_current_blog_id() . '"><p>%s</p>%s<p>%s</p></div>',
+                    '<div class="fs-clone-resolution-options-container fs-duplicate-site-options" data-ajax-url="%s" data-blog-id="' . get_current_blog_id() . '"><p>%s</p>%s<p>%s</p></div>',
                     esc_attr( admin_url( 'admin-ajax.php?_fs_network_admin=false', 'relative' ) ),
                     sprintf(
                         fs_esc_html_inline( "%s automatic security & feature updates and paid functionality will keep working without interruptions until %s (or when your license expires, whatever comes first).", 'duplicate-site-confirmation-message' ),

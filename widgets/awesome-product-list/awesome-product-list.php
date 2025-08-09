@@ -55,6 +55,7 @@ class Widget_Awesome_Product_List extends Widget_Base {
 				'label' => __('Title', 'awesome-widgets-elementor'),
 				'type' => Controls_Manager::TEXT,
 				'label_block' => true,
+				'default' => esc_html__('Product Title', 'awesome-widgets-elementor'),
 			]
 		);
 

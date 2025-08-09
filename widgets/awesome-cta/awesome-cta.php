@@ -661,7 +661,7 @@ class Widget_Awesome_CTA extends Widget_Base {
 			<div class="awea-cta-box">
 				<span><?php echo esc_html($awea_cta_sub_title);?></span>
 				<h4><?php echo esc_html($awea_cta_title);?></h4>
-				<div class="awea-cta-box-content"><?php echo esc_html($awea_cta_desc);?></div>
+				<div class="awea-cta-box-content"><?php echo wp_kses_post($awea_cta_desc);?></div>
 				<div class="awea-cta-box-btn">
 					<a class="awea-cta-button" href="<?php echo esc_url($awea_cta_button1_url);?>"><?php echo esc_html($awea_cta_button1);?></a>
 					<a class="awea-cta-button" href="<?php echo esc_url($awea_cta_button2_url);?>"><?php echo esc_html($awea_cta_button2);?></a>

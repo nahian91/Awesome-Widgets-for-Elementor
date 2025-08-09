@@ -3,7 +3,7 @@ Contributors: nahian91
 Tags: elementor, elementor addons, elementor widget, elements
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.3
+Stable tag: 1.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,76 +12,91 @@ Showcase useful elements with card style for Elementor Page Builder.
 
 == Description ==
 
-Awesome Widgets is an Elementor add-on to showcase your Number Box, Service Box, Team, Testimonial, List Group, (Our Team), Testimonials, and WordPress posts with a card-style design. This is a simple and flexible way to add new elements/widgets to Elementor Page Builder.
+Awesome Widgets for Elementor is a powerful and lightweight Elementor add-on that lets you easily showcase Number Boxes, Service Boxes, Team Members, Testimonials, List Groups, WordPress Posts, and more — all with a modern card-style design. With its simple and flexible interface, you can quickly add stunning, responsive widgets to your Elementor-powered website without writing a single line of code. Perfect for enhancing your site’s visual appeal and user engagement.
 
 === Awesome Widgets for Elementor Features ===
 
-[LIVE DEMO](https://devnahian.com/awesome-widgets/widgets-demo/) | [DOCUMENTATION](https://devnahian.com/awesome-widgets/documentation/)
+[LIVE DEMO](https://devnahian.com/awesome-widgets-for-elementor/)
 
-20+ Awesome Widgets for Elementor FREE:
+25+ Awesome Widgets for Elementor FREE:
 
-* **[CTA Widget](https://devnahian.com/awesome-widgets/demo-awesome-cta/)**  
-  Automate your Elementor with the Content widget for dynamic and engaging website content.
+* **CTA Widget**  
+  Create high-converting call-to-action sections to boost clicks and engagement.
 
-* **[Heading Widget](https://devnahian.com/awesome-widgets/demo-awesome-heading/)**  
-  Generate stunning, dynamic page titles easily with the Title widget.
+* **Heading Widget**  
+  Design SEO-friendly headings and titles for better content structure.
 
-* **[Image Box Widget](https://devnahian.com/awesome-widgets/demo-awesome-image-box/)**  
-  Create interactive image boxes with accompanying icons using the Image Box widget.
+* **Image Box Widget**  
+  Showcase images with captions, titles, and descriptions to grab attention.
 
-* **[List Box Widget](https://devnahian.com/awesome-widgets/demo-awesome-list-box/)**  
-  Display organized content in list form with the List Box widget.
+* **List Group Widget**  
+  Organize information into clean, responsive lists for easy reading.
 
-* **[Number Box Widget](https://devnahian.com/awesome-widgets/demo-awesome-number-box/)**  
-  Enhance your Elementor with the Number Box widget for stylish and customizable content boxes.
+* **Number Box Widget**  
+  Highlight key stats, achievements, or figures with eye-catching numbers.
 
-* **[Post List Widget](https://devnahian.com/awesome-widgets/demo-awesome-post-list/)**  
-  Display posts or content in an organized list format with the Post List widget.
+* **Price Widget**  
+  Present pricing tables or service rates in a professional, user-friendly way.
 
-* **[Price Widget](https://devnahian.com/awesome-widgets/demo-awesome-price/)**  
-  Showcase pricing information in a clear, user-friendly layout with the Price widget.
+* **Testimonial Widget**  
+  Display customer reviews to build trust and credibility.
 
-* **[Process Widget](https://devnahian.com/awesome-widgets/demo-awesome-process/)**  
-  Create visually appealing step-by-step process sections with the Process widget.
+* **Contact Info Widget**  
+  Share business contact details with icons for phone, email, and location.
 
-* **[Countdown Timer Widget](https://devnahian.com/awesome-widgets/demo-countdown-timer/)**  
-  Display countdown timers for promotions, events, or deadlines with the Countdown Timer widget.
+* **Team Widget**  
+  Introduce your team members with photos, roles, and bios.
 
-* **[Logo Carousel Widget](https://devnahian.com/awesome-widgets/demo-logo-carousel/)**  
-  Showcase brand logos or client testimonials in a rotating carousel with the Logo Carousel widget.
+* **Business Hours Widget**  
+  Display your opening hours and availability in a clear format.
 
-* **[Products Carousel Widget](https://devnahian.com/awesome-widgets/demo-products-carousel/)**  
-  Display product carousels with the Products Carousel widget for a dynamic shopping experience.
+* **Icon Box Widget**  
+  Promote services or features using icons with headings and descriptions.
 
-* **[Products Category Carousel Widget](https://devnahian.com/awesome-widgets/demo-products-category-carousel/)**  
-  Showcase product categories in a rotating carousel format with the Products Category Carousel widget.
+* **Post Grid Widget**  
+  Show blog posts in a stylish, responsive grid layout.
 
-* **[Products Category Grid Widget](https://devnahian.com/awesome-widgets/demo-products-category-grid/)**  
-  Organize product categories in a grid layout with the Products Category Grid widget.
+* **Price Menu Widget**  
+  List food, services, or products with prices in an elegant menu style.
 
-* **[Products Category List Widget](https://devnahian.com/awesome-widgets/demo-products-category-list/)**  
-  Display product categories in a well-organized list with the Products Category List widget.
+* **Product Category Grid Widget**  
+  Organize WooCommerce product categories in a modern grid layout.
 
-* **[Products Grid Widget](https://devnahian.com/awesome-widgets/demo-products-grid/)**  
-  Display products in a customizable grid layout with the Products Grid widget.
+* **Product Grid Widget**  
+  Display WooCommerce products with images, prices, and descriptions.
 
-* **[Products List Widget](https://devnahian.com/awesome-widgets/demo-products-list/)**  
-  Display your products in a structured list format with the Products List widget.
+* **Product List Widget**  
+  Present WooCommerce products in a detailed, list-style format.
 
-* **[Team Carousel Widget](https://devnahian.com/awesome-widgets/demo-team-carousel/)**  
-  Showcase team members in a carousel format with the Team Carousel widget.
+* **Timeline Widget**  
+  Create engaging timelines for events, history, or project milestones.
 
-* **[Testimonials Carousel Widget](https://devnahian.com/awesome-widgets/demo-testimonials-carousel/)**  
-  Display customer testimonials in a rotating carousel with the Testimonials Carousel widget.
+* **Countdown Widget**  
+  Add an animated countdown timer for sales, launches, or events.
 
-* **[Contact Info Widget](https://devnahian.com/awesome-widgets/demo-awesome-contact-info/)**  
-  Display your contact information in a clear, accessible layout with the Contact Info widget.
+* **Counter Widget**  
+  Show animated statistics, counters, and performance figures.
 
-* **[Icon Box Widget](https://devnahian.com/awesome-widgets/demo-awesome-icon-box/)**  
-  Present services or features in visually appealing boxes with icons and text using the Icon Box widget.
+* **Accordion Widget**  
+  Display FAQs or toggle content in collapsible sections.
 
-* **[Icon List Widget](https://devnahian.com/awesome-widgets/demo-awesome-icon-list/)**  
-  Create informative lists with icons and text using the Icon List widget.
+* **Filter Gallery Widget**  
+  Build an interactive gallery with category-based filters.
+
+* **Post Carousel Widget**  
+  Feature blog posts in a sliding carousel for more engagement.
+
+* **Product Carousel Widget**  
+  Showcase WooCommerce products in an auto-sliding carousel.
+
+* **Product Category Carousel Widget**  
+  Highlight WooCommerce product categories in a rotating carousel.
+
+* **Team Carousel Widget**  
+  Display team member profiles in a carousel layout.
+
+* **Testimonials Carousel Widget**  
+  Rotate customer testimonials in a stylish, sliding carousel.
 
 *Note:* This plugin is a widget of [Elementor Page Builder](https://wordpress.org/plugins/elementor/) and will only work with Elementor Page Builder installed.
 
@@ -102,16 +117,31 @@ Yes, you can customize the card styles. All possible customization options are a
 
 == Screenshots ==
 
-1. Awesome Heading
-2. Awesome Process
-3. Awesome Team
-4. Awesome Image Box
-5. Awesome Price Plan
-6. Awesome CTA Box
-7. Awesome Testimonials
-8. Awesome About Us
-9. Awesome Number Box
-10. Awesome List Group
+1. Awesome Icon Box
+2. Awesome Business Hours
+3. Awesome Price
+4. Awesome Price Menu 
+5. Awesome Countdown Timer 
+6. Awesome Contact Info
+7. Awesome Filter Gallery 
+8. Awesome Post Carousel 
+9. Awesome Timeline
+10. Awesome Accordion
+11. Awesome Post Grid
+12. Awesome Product List
+13. Awesome Counter
+14. Awesome Product Category Grid
+15. Awesome Team Carousel
+16. Awesome Testimonial
+17. Awesome List Box
+18. Awesome Team Grid
+19. Awesome Testimonial Carousel
+20. Awesome Product Carousel
+21. Awesome Number Box
+22. Awesome Image Box
+23. Awesome CTA
+24. Awesome Product Category Carousel
+25. Awesome Timeline 
 
 == Upgrade Notice ==
 
