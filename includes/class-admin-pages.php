@@ -40,15 +40,54 @@ class AWEA_Admin_Pages {
     }
 
     public function general_page() {
-        ?>
-        <div class="awea-wrap">
-            <h1><?php esc_html_e('Awesome Widgets - General Settings', 'awesome-widgets-elementor'); ?></h1>
-            <p><strong><?php esc_html_e('Awesome Widgets for Elementor', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('is your ultimate toolkit for designing professional, engaging, and visually stunning websites. Built specifically for Elementor, this plugin offers a wide variety of feature-rich widgets that seamlessly integrate with your design workflow.', 'awesome-widgets-elementor'); ?></p>
-            <p><?php esc_html_e('Whether you\'re building a business website, portfolio, online store, or post, Awesome Widgets empowers you with the flexibility to customize every detail without touching a single line of code. Each widget is thoughtfully crafted to be fully responsive, ensuring your site looks perfect on any device.', 'awesome-widgets-elementor'); ?></p>
-            <p><?php esc_html_e('From creative layouts to advanced interactive elements, Awesome Widgets helps you transform your ideas into reality — faster, easier, and better than ever before.', 'awesome-widgets-elementor'); ?></p>
+    ?>
+    <div class="awea-wrap awea-general-page" style="width:100%; max-width:none; padding:20px; box-sizing:border-box; font-family: Arial, sans-serif; line-height:1.6;">
+
+        <h1><?php esc_html_e('Awesome Widgets - General Settings', 'awesome-widgets-elementor'); ?></h1>
+
+        <div style="display:flex; gap:40px; flex-wrap: wrap;">
+            <!-- Left Column: Main Info -->
+            <div style="flex:1 1 60%; min-width:280px;">
+                <p><strong><?php esc_html_e('Awesome Widgets for Elementor', 'awesome-widgets-elementor'); ?></strong>
+                <?php esc_html_e('is your ultimate toolkit for designing professional, engaging, and visually stunning websites. Built specifically for Elementor, this plugin offers a wide variety of feature-rich widgets that seamlessly integrate with your design workflow.', 'awesome-widgets-elementor'); ?></p>
+
+                <h2><?php esc_html_e('Key Features', 'awesome-widgets-elementor'); ?></h2>
+                <ul>
+                    <li><strong><?php esc_html_e('Diverse Widget Collection:', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('Over 50 customizable widgets including sliders, pricing tables, galleries, testimonials, and more.', 'awesome-widgets-elementor'); ?></li>
+                    <li><strong><?php esc_html_e('Responsive Design:', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('All widgets adapt perfectly to any screen size ensuring seamless mobile experience.', 'awesome-widgets-elementor'); ?></li>
+                    <li><strong><?php esc_html_e('Easy Customization:', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('User-friendly controls allow you to style and configure widgets without any coding knowledge.', 'awesome-widgets-elementor'); ?></li>
+                    <li><strong><?php esc_html_e('Performance Optimized:', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('Lightweight code ensures your website loads fast without sacrificing functionality.', 'awesome-widgets-elementor'); ?></li>
+                    <li><strong><?php esc_html_e('Seamless Integration:', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('Works flawlessly with Elementor and compatible with most WordPress themes and plugins.', 'awesome-widgets-elementor'); ?></li>
+                    <li><strong><?php esc_html_e('Regular Updates & Support:', 'awesome-widgets-elementor'); ?></strong> <?php esc_html_e('Continuous improvements and responsive support to help you succeed.', 'awesome-widgets-elementor'); ?></li>
+                </ul>
+
+                <h2><?php esc_html_e('Getting Started', 'awesome-widgets-elementor'); ?></h2>
+                <p><?php esc_html_e('After installing and activating the plugin, you can access all widgets from within the Elementor editor. Simply search for "Awesome" in the widget panel, drag your desired widget onto the page, and customize using the intuitive settings.', 'awesome-widgets-elementor'); ?></p>
+            </div>
+
+            <!-- Right Column: Resources & Contact -->
+            <div style="flex:1 1 35%; min-width:260px; background:#f9f9f9; padding:20px; border-radius:8px; box-sizing:border-box;">
+                <h2><?php esc_html_e('Resources & Support', 'awesome-widgets-elementor'); ?></h2>
+                <ul>
+                    <li><a href="#" target="_blank" rel="noopener"><?php esc_html_e('Documentation', 'awesome-widgets-elementor'); ?></a></li>
+                    <li><a href="#" target="_blank" rel="noopener"><?php esc_html_e('Live Demo', 'awesome-widgets-elementor'); ?></a></li>
+                    <li><a href="#" target="_blank" rel="noopener"><?php esc_html_e('Support Forum', 'awesome-widgets-elementor'); ?></a></li>
+                </ul>
+
+                <h2><?php esc_html_e('Contact Us', 'awesome-widgets-elementor'); ?></h2>
+                <p><?php esc_html_e('We\'d love to hear from you! Whether you have questions, suggestions, or need help, feel free to reach out:', 'awesome-widgets-elementor'); ?></p>
+                <ul>
+                    <li><?php esc_html_e('Email:', 'awesome-widgets-elementor'); ?> <a href="mailto:nahiansylhet@gmail.com">nahiansylhet@gmail.com</a></li>
+                    <li><?php esc_html_e('Website:', 'awesome-widgets-elementor'); ?> <a href="https://devnahian.com" target="_blank" rel="noopener">https://devnahian.com</a></li>
+                </ul>
+
+                <p><em><?php esc_html_e('Thank you for choosing Awesome Widgets! We are committed to helping you build the website of your dreams.', 'awesome-widgets-elementor'); ?></em></p>
+            </div>
         </div>
-        <?php
-    }
+    </div>
+    <?php
+}
+
 
     public function widgets_page() {
         // Safely get and sanitize 'settings-updated' from URL

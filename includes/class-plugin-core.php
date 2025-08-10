@@ -33,6 +33,8 @@ class AWEA {
         'awesome-breadcumb',
         'awesome-slider',
         'awesome-about',
+        'awesome-step-flow',
+        'awesome-progress-bar',
     ];
 
     public static function instance() {

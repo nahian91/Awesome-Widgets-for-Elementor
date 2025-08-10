@@ -315,6 +315,16 @@ input:checked + .awea-slider:before {
     text-decoration: underline;
 }
 
+.awea-wrap.awea-general-page ul li {
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .awea-wrap {

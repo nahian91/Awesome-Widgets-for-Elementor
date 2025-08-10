@@ -160,7 +160,8 @@ class Widget_Awesome_Breadcumb extends Widget_Base {
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'label_block' => true
+				'label_block' => true,
+				'default' => esc_html__('Page Title' , 'awesome-widgets-elementor')
 			]
 		);
 		
@@ -243,7 +244,7 @@ class Widget_Awesome_Breadcumb extends Widget_Base {
 				'default' => 'center',
 				'toggle' => true,
 				'selectors' => [
-					'{{WRAPPER}} .awea-breadcumb' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .awea-breadcumb, {{WRAPPER}} .awea-breadcumb ul' => 'text-align: {{VALUE}}; justify-content: {{VALUE}};',
 				],
 			]
 		);

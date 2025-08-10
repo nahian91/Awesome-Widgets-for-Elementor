@@ -1,7 +1,9 @@
 .awea-breadcumb {
+  padding: 20px 0;
     position: relative;
     overflow: hidden;
-	z-index: 2;
+	  z-index: 2;
+    background-color: var(--e-global-color-primary);
 }
 .awea-breadcumb::before {
     content: "";
@@ -13,7 +15,9 @@
     z-index: -1;
     pointer-events: none;
 }
-
+.awea-breadcumb h4{
+  margin-bottom: 15px;
+}
 .awea-breadcumb ul {
   display: flex;
   justify-content: center;

@@ -1,5 +1,3 @@
-
-
 .awea-slide-box {
   position: relative;
   z-index: 2;
@@ -12,6 +10,41 @@
   background-color: var(--e-global-color-text);
   z-index: -1;
 }
+
+.awea-slide-content {
+  padding: 150px 80px;
+}
+.awea-slide-content span {
+  display: block;
+  font-size: 26px;
+}
+.awea-slide-content h4 {
+  font-size: 60px;
+  margin: 25px 0;
+}
+.awea-slide-btn {
+  margin-top: 40px;
+}
+.awea-slide-btn a {
+  display: inline-block;
+  margin: 0 15px;
+  transition: .3s;
+}
+
+.awea-slide-btn .awea-slide-btn-bg {
+  background-color: var(--e-global-color-primary);
+  color: var(--e-global-color-text);
+  display: inline-block;
+  padding: 8px 30px;
+  border: 2px solid var(--e-global-color-primary);
+}
+.awea-slide-btn .awea-slide-btn-border {
+  color: var(--e-global-color-text);
+  display: inline-block;
+  padding: 8px 30px;
+  border: 2px solid var(--e-global-color-primary);
+}
+
 .awea-slider .awea-carousel-arrow-border {
   background-color: var(--e-global-color-primary);
   width: 40px;

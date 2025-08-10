@@ -7,22 +7,22 @@ jQuery(window).on('elementor/frontend/init', function () {
             return;
         }
 
-        // Convert attributes to booleans/numbers
+        // Convert attributes to booleans/numbers - match PHP exactly
         var slider_arrows = slider_carousel.attr('awea-slider-arrows') === 'true';
         var slider_dots = slider_carousel.attr('awea-slider-dots') === 'true';
-        var slider_loop = slider_carousel.attr('awea-slider-loop') === 'true';         // fixed from loops
-        var slider_pause = slider_carousel.attr('awea-slider-pause') === 'true' || false;  // fallback false if undefined
+        var slider_loop = slider_carousel.attr('awea-slider-loops') === 'true';
+        var slider_pause = slider_carousel.attr('awea-slider-pause') === 'true';
         var slider_autoplay = slider_carousel.attr('awea-slider-autoplay') === 'true';
-        var slider_autoplay_speed = parseInt(slider_carousel.attr('awea-slider-autoplay-speed'), 10) || 500;
-        var slider_autoplay_animation = parseInt(slider_carousel.attr('awea-slider-autoplay-animation'), 10) || 3000;
+        var slider_autoplay_speed = parseInt(slider_carousel.attr('awea-slider-autoplay-speed')) || 5000; // delay
+        var slider_autoplay_animation = parseInt(slider_carousel.attr('awea-slider-autoplay-animation')) || 600; // smooth transition
 
         slider_carousel.owlCarousel({
             dots: slider_dots,
             nav: slider_arrows,
             margin: 0,
             autoplay: slider_autoplay,
-            autoplayTimeout: slider_autoplay_animation,
-            autoplaySpeed: slider_autoplay_speed,
+            autoplayTimeout: slider_autoplay_speed,      // delay between slides
+            autoplaySpeed: slider_autoplay_animation,    // animation speed
             autoplayHoverPause: slider_pause,
             loop: slider_loop,
             navText: [
