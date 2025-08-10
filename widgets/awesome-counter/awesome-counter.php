@@ -185,6 +185,33 @@ class Widget_Awesome_Counter extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'awea_counter_align',
+			[
+				'label' => esc_html__( 'Alignment', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'awesome-widgets-elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .awea-counter-box' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 		// start of the Style tab section
@@ -220,18 +247,10 @@ class Widget_Awesome_Counter extends Widget_Base {
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'range' => [
 					'px' => [
-						'min' => 50,
+						'min' => 10,
 						'max' => 100,
 						'step' => 5,
 					],
-					'%' => [
-						'min' => 5,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 55,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .awea-counter-number i' => 'font-size: {{SIZE}}{{UNIT}};',
@@ -285,11 +304,30 @@ class Widget_Awesome_Counter extends Widget_Base {
 				'label' => esc_html__( 'Suffix Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-counter-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-counter-content p span.awea-counter-suffix' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
 				]
+			]
+		);
+
+		$this->add_control(
+			'awea_counter_number_suffix_size',
+			[
+				'label' => esc_html__( 'Suffix Size', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-counter-content p span.awea-counter-suffix' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -385,8 +423,8 @@ class Widget_Awesome_Counter extends Widget_Base {
 			</div>
 			<div class="awea-counter-content">
 				<p>
-					<span class="awea-counter" aria-live="polite"><?php echo esc_html($awea_counter_number); ?></span>
-					<?php echo esc_html($awea_counter_number_suffix); ?>
+					<span class="awea-counter"><?php echo esc_html($awea_counter_number); ?></span>
+					<span class="awea-counter-suffix"><?php echo esc_html($awea_counter_number_suffix); ?></span>
 				</p>
 				<<?php echo esc_attr($awea_counter_title_tag); ?> class="awea-counter-title">
 					<?php echo esc_html($awea_counter_title); ?>

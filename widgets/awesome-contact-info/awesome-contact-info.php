@@ -162,7 +162,7 @@ class Widget_Awesome_Contact_Info extends Widget_Base {
 					],
 					[
 						'awea_contact_info_icon' => [
-							'value' => 'fas fa-phone',
+							'value' => 'fas fa-phone-alt',
 							'library' => 'fa-solid',
 						],
 						'awea_contact_info_title' => esc_html__('Phone', 'awesome-widgets-elementor'),

@@ -30,6 +30,9 @@ class AWEA {
         'awesome-product-category-carousel',
         'awesome-team-carousel',
         'awesome-testimonials-carousel',
+        'awesome-breadcumb',
+        'awesome-slider',
+        'awesome-about',
     ];
 
     public static function instance() {

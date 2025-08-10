@@ -697,8 +697,7 @@ class Widget_Awesome_Team_Carousel extends Widget_Base {
 				],
 			]
 		);
-
-
+		
 		$this->add_control(
 			'awea_single_team_carousel_social_color',
 			[
