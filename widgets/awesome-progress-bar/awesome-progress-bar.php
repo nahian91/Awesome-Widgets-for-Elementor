@@ -105,72 +105,26 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 		   
 		    ]
 	    );
-		
-		$repeater = new Repeater();
 
-		$repeater->add_control(
-			'awea_progress_bar_year',
-			[
-				'label' => esc_html__( 'Year/Range', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '2020',
-				'label_block' => true,
-			]
-		);
-
-		$repeater->add_control(
+		$this->add_control(
 			'awea_progress_bar_title',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => 'Developer',
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'WordPress', 'awesome-widgets-elementor' ),
 				'label_block' => true,
-			]
-		);
-
-		$repeater->add_control(
-			'awea_progress_bar_desc',
-			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => 'Describe your role or event here.',
 			]
 		);
 
 		$this->add_control(
-			'awea_progress_bar_items',
+			'awea_progress_bar_value',
 			[
-				'label' => esc_html__( 'Timeline Items', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'default' => [
-			[
-				'awea_progress_bar_year'  => '2008',
-				'awea_progress_bar_title' => 'Intern Developer',
-				'awea_progress_bar_desc'  => 'Worked on basic frontend tasks and learned company workflow. Gained hands-on experience with HTML, CSS, and JavaScript, and participated in team meetings to understand project lifecycles and client requirements.',
-			],
-			[
-				'awea_progress_bar_year'  => '2009 - 2012',
-				'awea_progress_bar_title' => 'Junior Developer',
-				'awea_progress_bar_desc'  => 'Handled minor feature updates and fixed bugs in the existing codebase. Assisted senior developers in troubleshooting issues and improving code quality, while steadily building knowledge of backend development and database management.',
-			],
-			[
-				'awea_progress_bar_year'  => '2012 - 2015',
-				'awea_progress_bar_title' => 'Mid-Level Developer',
-				'awea_progress_bar_desc'  => 'Developed new features and optimized the existing codebase for better performance and scalability. Collaborated closely with designers and product managers to ensure timely delivery of user-friendly applications, and started mentoring junior developers.',
-			],
-			[
-				'awea_progress_bar_year'  => '2015 - 2018',
-				'awea_progress_bar_title' => 'Senior Developer',
-				'awea_progress_bar_desc'  => 'Led a small development team, coordinating project deliverables and reviewing code to maintain standards. Played a key role in architecture planning, implementing automated testing, and improving deployment workflows for smoother releases.',
-			],
-			[
-				'awea_progress_bar_year'  => '2018 - Present',
-				'awea_progress_bar_title' => 'Lead Developer',
-				'awea_progress_bar_desc'  => 'Overseeing the entire development process, mentoring junior and mid-level developers, and managing deployments. Responsible for technical strategy, adopting new technologies, and ensuring the team delivers high-quality software aligned with business goals.',
-			],
-		],
-				'title_field' => '{{{ awea_progress_bar_year }}} - {{{ awea_progress_bar_title }}}',
+				'label' => esc_html__( 'Value', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'min' => 1,
+				'max' => 100,
+				'step' => 1,
+				'default' => 50,
 			]
 		);
 
@@ -210,15 +164,30 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 
 		// Timeline Background Color
 		$this->add_control(
-			'awea_progress_bar_background_color',
+			'awea_progress_bar_background1_color',
 			[
-				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Background 1', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-progress-bar-box .awea-progress-bar1' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		// Timeline Background Color
+		$this->add_control(
+			'awea_progress_bar_background2_color',
+			[
+				'label' => esc_html__( 'Background 2', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-progress-bar-box' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
 				]
 			]
 		);
@@ -228,7 +197,7 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'awea_progress_bar_border',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content',
+				'selector' => '{{WRAPPER}} .awea-progress-bar-box',
 			]
 		);	
 
@@ -240,23 +209,29 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-progress-bar-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-		// Timeline Padding
 		$this->add_control(
-			'awea_progress_bar_padding',
+			'awea_progress_bar_height',
 			[
-				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Height', 'awesome-widgets-elementor' ),
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 200,
+					],
+				],
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-progress-bar-box' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
+
 
 		$this->end_controls_section();
 
@@ -271,9 +246,9 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 
 		// Timeline Year Heading
 		$this->add_control(
-			'awea_progress_bar_year_heading',
+			'awea_progress_bar_title_heading',
 			[
-				'label' => esc_html__( 'Year', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -281,15 +256,15 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 		
 		// Timeline Year Color
 		$this->add_control(
-			'awea_progress_bar_year_color',
+			'awea_progress_bar_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-progress-bar-title' => 'color: {{VALUE}}',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 			]
 		);
@@ -298,54 +273,18 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_progress_bar_year_typography',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content span',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_progress_bar_title_heading',
-			[
-				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// CTA Sub Heading Color
-		$this->add_control(
-			'awea_progress_bar_title_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content h4' => 'color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				],
-			]
-		);
-
-		// CTA Sub Heading Typography
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
 				'name' => 'awea_progress_bar_title_typography',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content h4',
+				'selector' => '{{WRAPPER}} .awea-progress-bar-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);
 
 		$this->add_control(
-			'awea_progress_bar_desc_heading',
+			'awea_progress_bar_value_heading',
 			[
-				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Value', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -353,12 +292,12 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 
 		// CTA Sub Heading Color
 		$this->add_control(
-			'awea_progress_bar_desc_color',
+			'awea_progress_bar_value_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-progress-bar-value' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -370,104 +309,11 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_progress_bar_desc_typography',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content p',
+				'name' => 'awea_progress_bar_value_typography',
+				'selector' => '{{WRAPPER}} .awea-progress-bar-value',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_progress_bar_sep_style',
-			[
-				'label' => esc_html__( 'Separator', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'awea_progress_bar_sep1_heading',
-			[
-				'label' => esc_html__( 'Separator 1', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_progress_bar_sep1_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list::after' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_progress_bar_sep1_width',
-			[
-				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list::after' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'awea_progress_bar_sep2_heading',
-			[
-				'label' => esc_html__( 'Separator 2', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'awea_progress_bar_sep2_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li::after' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_progress_bar_sep2_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
 			]
 		);
 
@@ -486,40 +332,19 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 	protected function render() {
 		// get our input from the widget settings.
 		$settings = $this->get_settings_for_display();
-		$awea_progress_bar_items = $settings['awea_progress_bar_items'];
+		$awea_progress_bar_title = $settings['awea_progress_bar_title'];
+		$awea_progress_bar_value = $settings['awea_progress_bar_value'];
        ?>
-			<div class="process__list">
-                                            <div class="process__single">
-                                <span class="process__number">01</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-1-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Discuss Ideas</h4>
-                                <p class="process__desc">We discuss for better understandings of the client’s vision</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number">02</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-2-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Data Collection</h4>
-                                <p class="process__desc">As per design brief we collect data and organize the server</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number">03</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-3-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Research</h4>
-                                <p class="process__desc">Conduct intensive research to make perfect system for clients</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number">04</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-4-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Develop</h4>
-                                <p class="process__desc">We use latest and up-to-date technology to build the systems</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number"></span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-5-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Help to Grow</h4>
-                                <p class="process__desc">We help to understand the proper use of the system and grow</p>
-                            </div>
-                                        </div>
+			<div class="awea-progress-bar">
+                   
+                    <h4 class="awea-progress-bar-title"><?php echo esc_html($awea_progress_bar_title);?></h4>
+                    <div class="awea-progress-bar-box">
+                        <div class="awea-progress-bar1" style="width: <?php echo esc_html($awea_progress_bar_value);?>%;">
+                          <div class="awea-progress-bar-value"><?php echo esc_html($awea_progress_bar_value);?>%</div>
+                        </div>
+                    </div>
+                   
+                </div>
        <?php
 	}
 }
