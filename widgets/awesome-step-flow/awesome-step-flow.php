@@ -58,7 +58,7 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-time-line';
+		return 'eicon-flow';
 	}
 
 	/**
@@ -106,15 +106,25 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 		    ]
 	    );
 		
-		$repeater = new Repeater();
+		$repeater = new \Elementor\Repeater();
 
 		$repeater->add_control(
-			'awea_step_flow_year',
+			'awea_step_flow_image',
 			[
-				'label' => esc_html__( 'Year/Range', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '2020',
-				'label_block' => true,
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'awea_step_flow_number',
+			[
+				'label' => esc_html__( 'Number', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'default' => 1,
 			]
 		);
 
@@ -122,8 +132,8 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			'awea_step_flow_title',
 			[
 				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => 'Developer',
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Step Title', 'awesome-widgets-elementor' ),
 				'label_block' => true,
 			]
 		);
@@ -132,45 +142,60 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			'awea_step_flow_desc',
 			[
 				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => 'Describe your role or event here.',
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => esc_html__( 'Describe this step here.', 'awesome-widgets-elementor' ),
 			]
 		);
 
 		$this->add_control(
 			'awea_step_flow_items',
 			[
-				'label' => esc_html__( 'Timeline Items', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::REPEATER,
+				'label' => esc_html__( 'Step Flow Items', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
-			[
-				'awea_step_flow_year'  => '2008',
-				'awea_step_flow_title' => 'Intern Developer',
-				'awea_step_flow_desc'  => 'Worked on basic frontend tasks and learned company workflow. Gained hands-on experience with HTML, CSS, and JavaScript, and participated in team meetings to understand project lifecycles and client requirements.',
-			],
-			[
-				'awea_step_flow_year'  => '2009 - 2012',
-				'awea_step_flow_title' => 'Junior Developer',
-				'awea_step_flow_desc'  => 'Handled minor feature updates and fixed bugs in the existing codebase. Assisted senior developers in troubleshooting issues and improving code quality, while steadily building knowledge of backend development and database management.',
-			],
-			[
-				'awea_step_flow_year'  => '2012 - 2015',
-				'awea_step_flow_title' => 'Mid-Level Developer',
-				'awea_step_flow_desc'  => 'Developed new features and optimized the existing codebase for better performance and scalability. Collaborated closely with designers and product managers to ensure timely delivery of user-friendly applications, and started mentoring junior developers.',
-			],
-			[
-				'awea_step_flow_year'  => '2015 - 2018',
-				'awea_step_flow_title' => 'Senior Developer',
-				'awea_step_flow_desc'  => 'Led a small development team, coordinating project deliverables and reviewing code to maintain standards. Played a key role in architecture planning, implementing automated testing, and improving deployment workflows for smoother releases.',
-			],
-			[
-				'awea_step_flow_year'  => '2018 - Present',
-				'awea_step_flow_title' => 'Lead Developer',
-				'awea_step_flow_desc'  => 'Overseeing the entire development process, mentoring junior and mid-level developers, and managing deployments. Responsible for technical strategy, adopting new technologies, and ensuring the team delivers high-quality software aligned with business goals.',
-			],
-		],
-				'title_field' => '{{{ awea_step_flow_year }}} - {{{ awea_step_flow_title }}}',
+					[
+						'awea_step_flow_image' => [
+							'url' => \Elementor\Utils::get_placeholder_image_src(),
+						],
+						'awea_step_flow_number' => 1,
+						'awea_step_flow_title'  => 'Discuss Ideas',
+						'awea_step_flow_desc'   => 'We discuss for better understandings of the client’s vision',
+					],
+					[
+						'awea_step_flow_image' => [
+							'url' => \Elementor\Utils::get_placeholder_image_src(),
+						],
+						'awea_step_flow_number' => 2,
+						'awea_step_flow_title'  => 'Data Collection',
+						'awea_step_flow_desc'   => 'We discuss for better understandings of the client’s vision',
+					],
+					[
+						'awea_step_flow_image' => [
+							'url' => \Elementor\Utils::get_placeholder_image_src(),
+						],
+						'awea_step_flow_number' => 3,
+						'awea_step_flow_title'  => 'Research',
+						'awea_step_flow_desc'   => 'We discuss for better understandings of the client’s vision',
+					],
+					[
+						'awea_step_flow_image' => [
+							'url' => \Elementor\Utils::get_placeholder_image_src(),
+						],
+						'awea_step_flow_number' => 4,
+						'awea_step_flow_title'  => 'Develop',
+						'awea_step_flow_desc'   => 'We discuss for better understandings of the client’s vision',
+					],
+					[
+						'awea_step_flow_image' => [
+							'url' => \Elementor\Utils::get_placeholder_image_src(),
+						],
+						'awea_step_flow_number' => 5,
+						'awea_step_flow_title'  => 'Help to Grow',
+						'awea_step_flow_desc'   => 'We discuss for better understandings of the client’s vision',
+					],
+				],
+				'title_field' => '{{{ awea_step_flow_title }}}',
 			]
 		);
 
@@ -201,21 +226,21 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 		
 		// start of the Style tab section
 		$this->start_controls_section(
-			'awea_step_flow_layout_style',
+			'awea_step_flow_image_style',
 			[
-				'label' => esc_html__( 'Layouts', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Image', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		// Timeline Background Color
+		// Step Flow Background Color
 		$this->add_control(
-			'awea_step_flow_background_color',
+			'awea_step_flow_image_bgcolor',
 			[
 				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .awea-steps-img' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -223,37 +248,37 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			]
 		);
 
-		// Timeline Border
+		// Step Flow Border
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
-				'name' => 'awea_step_flow_border',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content',
+				'name' => 'awea_step_flow_img_border',
+				'selector' => '{{WRAPPER}} .awea-steps-img',
 			]
 		);	
 
-		// Timeline Border Radius
+		// Step Flow Border Radius
 		$this->add_control(
-			'awea_step_flow_border_radius',
+			'awea_step_flow_img_border_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-steps-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-		// Timeline Padding
+		// Step Flow Padding
 		$this->add_control(
-			'awea_step_flow_padding',
+			'awea_step_flow_img_padding',
 			[
 				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem'],
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .awea-steps-img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -264,29 +289,44 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 		$this->start_controls_section(
 			'awea_step_flow_content_style',
 			[
-				'label' => esc_html__( 'Content', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		// Timeline Year Heading
+		// Step Flow Year Heading
 		$this->add_control(
-			'awea_step_flow_year_heading',
+			'awea_step_flow_number_heading',
 			[
-				'label' => esc_html__( 'Year', 'awesome-widgets-elementor' ),
+				'label' => esc_html__( 'Number', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
-		
-		// Timeline Year Color
+
+		// Step Flow Number Color
 		$this->add_control(
-			'awea_step_flow_year_color',
+			'awea_step_flow_number_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content span' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-steps-number' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				],
+			]
+		);
+
+		// Step Flow Number BG Color
+		$this->add_control(
+			'awea_step_flow_bumber_bgcolor',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-steps-number' => 'background-color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -294,18 +334,41 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			]
 		);
 
-		// Timeline Year Typography
+		// Step Flow Number Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'awea_step_flow_year_typography',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content span',
+				'name' => 'awea_step_flow_number_typography',
+				'selector' => '{{WRAPPER}} .awea-steps-number',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
 			]
 		);
 
+		// Step Flow Number Border
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_step_flow_number_border',
+				'selector' => '{{WRAPPER}} .awea-steps-number',
+			]
+		);	
+
+		// Step Flow Number Border Radius
+		$this->add_control(
+			'awea_step_flow_number_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-steps-number' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Step Flow Title Heading
 		$this->add_control(
 			'awea_step_flow_title_heading',
 			[
@@ -314,15 +377,15 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 				'separator' => 'before',
 			]
 		);
-
-		// CTA Sub Heading Color
+		
+		// Step Flow Title Color
 		$this->add_control(
 			'awea_step_flow_title_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content h4' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-steps-title' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -330,14 +393,14 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			]
 		);
 
-		// CTA Sub Heading Typography
+		// Step Flow Year Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_step_flow_title_typography',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content h4',
+				'selector' => '{{WRAPPER}} .awea-steps-title',
 				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				]
 			]
 		);
@@ -351,14 +414,14 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			]
 		);
 
-		// CTA Sub Heading Color
+		// Step Flow Sub Heading Color
 		$this->add_control(
 			'awea_step_flow_desc_color',
 			[
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li .awea-timeline-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-steps-desc' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -366,108 +429,15 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			]
 		);
 
-		// CTA Sub Heading Typography
+		// Step Flow Sub Heading Typography
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_step_flow_desc_typography',
-				'selector' => '{{WRAPPER}} .awea-timeline-list li .awea-timeline-content p',
+				'selector' => '{{WRAPPER}} .awea-steps-desc',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				]
-			]
-		);
-
-		$this->end_controls_section();
-
-		// start of the Style tab section
-		$this->start_controls_section(
-			'awea_step_flow_sep_style',
-			[
-				'label' => esc_html__( 'Separator', 'awesome-widgets-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'awea_step_flow_sep1_heading',
-			[
-				'label' => esc_html__( 'Separator 1', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		// CTA Title Color
-		$this->add_control(
-			'awea_step_flow_sep1_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list::after' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_step_flow_sep1_width',
-			[
-				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list::after' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'awea_step_flow_sep2_heading',
-			[
-				'label' => esc_html__( 'Separator 2', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'awea_step_flow_sep2_color',
-			[
-				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li::after' => 'background-color: {{VALUE}}',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				]
-			]
-		);
-
-		$this->add_control(
-			'awea_step_flow_sep2_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .awea-timeline-list li::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
 			]
 		);
 
@@ -488,38 +458,24 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$awea_step_flow_items = $settings['awea_step_flow_items'];
        ?>
-			<div class="process__list">
-                                            <div class="process__single">
-                                <span class="process__number">01</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-1-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Discuss Ideas</h4>
-                                <p class="process__desc">We discuss for better understandings of the client’s vision</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number">02</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-2-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Data Collection</h4>
-                                <p class="process__desc">As per design brief we collect data and organize the server</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number">03</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-3-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Research</h4>
-                                <p class="process__desc">Conduct intensive research to make perfect system for clients</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number">04</span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-4-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Develop</h4>
-                                <p class="process__desc">We use latest and up-to-date technology to build the systems</p>
-                            </div>
-                                                        <div class="process__single">
-                                <span class="process__number"></span>
-                                <img decoding="async" src="https://infinityflamesoft.com/wp-content/uploads/2023/07/ifs-steps-5-1.png" class="process__img" alt="">
-                                <h4 class="process__title">Help to Grow</h4>
-                                <p class="process__desc">We help to understand the proper use of the system and grow</p>
-                            </div>
-                                        </div>
+			<div class="awea-steps-list">
+				<?php 
+					foreach($awea_step_flow_items as $item) {
+						$item_image = $item['awea_step_flow_image']['url'];
+						$item_title = $item['awea_step_flow_title'];
+						$item_number = $item['awea_step_flow_number'];
+						$item_desc = $item['awea_step_flow_desc'];
+						?>
+							<div class="awea-steps-single">
+								<span class="awea-steps-number"><?php echo esc_html($item_number);?></span>
+								<img decoding="async" src="<?php echo esc_url($item_image);?>" class="awea-steps-img" alt="">
+								<h4 class="awea-steps-title"><?php echo esc_html($item_title);?></h4>
+								<p class="awea-steps-desc"><?php echo esc_html($item_desc);?></p>
+							</div>
+						<?php
+					}
+				?>
+			</div>
        <?php
 	}
 }

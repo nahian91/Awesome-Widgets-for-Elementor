@@ -58,7 +58,7 @@ class Widget_Awesome_Progress_Bar extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-time-line';
+		return 'eicon-skill-bar';
 	}
 
 	/**

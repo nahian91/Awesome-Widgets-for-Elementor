@@ -23,7 +23,7 @@ class Widget_Awesome_Slider extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-slider-push';
+		return 'eicon-slider-full-screen';
 	}
 
 	public function get_categories() {
