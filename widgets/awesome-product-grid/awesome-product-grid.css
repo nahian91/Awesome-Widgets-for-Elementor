@@ -1,34 +1,52 @@
-
 .awea-product-grid-img {
   background-size: cover;
   background-position: center;
   padding-top: 90%;
 }
+
 .awea-product-grid {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
+
 .awea-product-grid-sale {
   position: absolute;
   left: 0;
   top: 0;
-  padding: 10px 30px;
+  padding: 0.625rem 1.875rem; /* 10px 30px */
 }
+
 .awea-product-grid-btn {
-	display: inline-block;
-  transition: .3s;
+  display: inline-block;
+  transition: 0.3s;
 }
-.awea-product-grid {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
+
 .awea-product-grid-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0; /* 20px 0 */
 }
 
 .awea-product-grid-price-bottom {
-    margin-top: auto;
+  margin-top: 0.625rem; /* 10px */
+}
+
+.awea-product-grid-title {
+  font-size: 1.625rem; /* 26px */
+}
+
+.awea-product-price {
+  font-size: 1.375rem; /* 22px */
+}
+
+.awea-product-grid-btn {
+  display: inline-block;
+  transition: 0.3s;
+  margin-top: 1.25rem; /* 20px */
+  font-size: 1.125rem; /* 18px */
+  padding: 0.625rem 1.875rem; /* 10px 30px */
 }

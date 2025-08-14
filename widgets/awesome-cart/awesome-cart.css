@@ -1,0 +1,55 @@
+/* .pro-qty input[type="number"] {
+	-moz-appearance: textfield;
+}
+.pro-qty .qtybtn {
+	width: 32px;
+	display: block;
+	float: left;
+	line-height: 26px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 300;
+	color: #000;
+	height: 32px;
+	background: #f6f7fb;
+	border-radius: 50%;
+	transition: .3s;
+	border: 2px solid rgba(0,0,0,0);
+} */
+.awea-cart, .awea-cart-totals {
+    border-collapse: collapse;
+    width: 100%;
+}
+.awea-cart tr a img {
+  width: 80px;
+}
+
+.awea-cart-summary-buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+.awea-cart-summary-buttons a {
+  display: inline-block;
+  transition: .3s;
+}
+.awea-cart-summary {
+  padding-bottom: 20px;
+}
+.awea-cart-totals tr, .awea-cart-totals td, .awea-cart-totals th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 10px;
+}
+
+.awea-quantity-input {
+  width: 50px;
+  border: 1px solid #ddd;
+  -moz-appearance: textfield;
+  height: 30px;
+  padding: 5px;
+}
+.awea-qty {
+  text-align: center;
+  cursor: pointer;
+}

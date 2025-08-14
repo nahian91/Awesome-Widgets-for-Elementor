@@ -233,6 +233,30 @@ class Widget_Awesome_Step_Flow extends Widget_Base {
 			]
 		);
 
+		// Step Flow Image Width
+		$this->add_control(
+			'awea_step_flow_image_width',
+			[
+				'label' => esc_html__( 'Width', 'awesome-widgets-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 120,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .awea-steps-img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		// Step Flow Background Color
 		$this->add_control(
 			'awea_step_flow_image_bgcolor',

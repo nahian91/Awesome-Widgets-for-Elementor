@@ -109,6 +109,29 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 		    ]
 	    );
 
+		$this->add_control(
+            'awea_select_products',
+            [
+                'label'       => __( 'Select Products', 'your-textdomain' ),
+                'type'        => Controls_Manager::SELECT2,
+                'options'     => $this->get_products_options(),
+                'multiple'    => true,
+                'label_block' => true,
+            ]
+        );
+
+        // Select2 for Categories
+        $this->add_control(
+            'awea_select_categories',
+            [
+                'label'       => __( 'Select Categories', 'your-textdomain' ),
+                'type'        => Controls_Manager::SELECT2,
+                'options'     => $this->get_categories_options(),
+                'multiple'    => true,
+                'label_block' => true,
+            ]
+        );
+
 		// Products Number
 		$this->add_control(
 			'awea_products_number',
@@ -717,6 +740,45 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 
 	}
 
+	protected function get_products_options() {
+        $args = [
+            'post_type'      => 'product',
+            'posts_per_page' => -1,
+            'post_status'    => 'publish',
+        ];
+
+        $query = new \WP_Query( $args );
+        $options = [];
+
+        if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+                $query->the_post();
+                $options[ get_the_ID() ] = get_the_title();
+            }
+            wp_reset_postdata();
+        }
+
+        return $options;
+    }
+
+    // Get WooCommerce categories
+    protected function get_categories_options() {
+        $terms = get_terms( [
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => false,
+        ] );
+
+        $options = [];
+
+        if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+            foreach ( $terms as $term ) {
+                $options[ $term->term_id ] = $term->name;
+            }
+        }
+
+        return $options;
+    }
+
 	/**
 	 * Render heading widget output on the frontend.
 	 *
@@ -732,6 +794,9 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 		$awea_products_number = $settings['awea_products_number'];
 		$awea_products_order = $settings['awea_products_order'];
 		$awea_products_orderby = $settings['awea_products_orderby'];
+
+		$product_ids    = ! empty( $settings['awea_select_products'] ) ? $settings['awea_select_products'] : [];
+        $category_ids   = ! empty( $settings['awea_select_categories'] ) ? $settings['awea_select_categories'] : [];
 	
 		if (!class_exists('woocommerce')) {
 			echo '<p>' . esc_html__('WooCommerce is not active.', 'awesome-widgets-elementor') . '</p>';
@@ -745,6 +810,20 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 			'orderby'        => sanitize_text_field($awea_products_orderby),
 			'fields'         => 'ids',
 		];
+
+		if ( ! empty( $product_ids ) ) {
+            $args['post__in'] = $product_ids;
+        }
+
+        if ( ! empty( $category_ids ) ) {
+            $args['tax_query'] = [
+                [
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $category_ids,
+                ],
+            ];
+        }
 	
 		$query = new \WP_Query($args);
 	

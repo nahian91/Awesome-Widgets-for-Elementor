@@ -1,6 +1,8 @@
 .awea-slide-box {
-  position: relative;
-  z-index: 2;
+	position: relative;
+	z-index: 2;
+	background-size: cover;
+	background-position: center;
 }
 .awea-slide-box:before {
   position: absolute;

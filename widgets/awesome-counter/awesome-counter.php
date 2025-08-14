@@ -315,7 +315,7 @@ class Widget_Awesome_Counter extends Widget_Base {
 		$this->add_control(
 			'awea_counter_number_suffix_size',
 			[
-				'label' => esc_html__( 'Suffix Size', 'textdomain' ),
+				'label' => esc_html__( 'Suffix Size', 'awesome-widgets-elementor' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [

@@ -44,7 +44,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 	protected function _register_controls() {
 		
-		// Image Section
+		// About Image
 		$this->start_controls_section(
 			'awea_about_image_content',
 			[
@@ -53,6 +53,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Image Field
 		$this->add_control(
 			'awea_about_image_upload',
 			[
@@ -66,6 +67,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 		$this->end_controls_section();
 
+		// About Text Contents
 		$this->start_controls_section(
 			'awea_about_text_content',
 			[
@@ -74,6 +76,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Subheading
 		$this->add_control(
 			'awea_about_subheading',
 			[
@@ -84,6 +87,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Heading
 		$this->add_control(
 			'awea_about_heading',
 			[
@@ -94,6 +98,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Description
 		$this->add_control(
 			'awea_about_desc',
 			[
@@ -109,7 +114,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 		$this->end_controls_section();
 
-		// Features repeater section
+		// About Features
 		$this->start_controls_section(
 			'awea_about_features',
 			[
@@ -120,6 +125,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 		$repeater = new Repeater();
 
+		// About Feature Title
 		$repeater->add_control(
 			'awea_about_feature_title',
 			[
@@ -130,6 +136,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Feature Icon
 		$repeater->add_control(
 			'awea_about_feature_icon',
 			[
@@ -139,6 +146,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Feature List
 		$this->add_control(
 			'awea_about_features_list',
 			[
@@ -173,7 +181,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 		$this->end_controls_section();
 
-		// start of the Button tab section
+		// About Button
 		$this->start_controls_section(
 			'awea_about_btn_content',
 			[
@@ -183,6 +191,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Button Text
 		$this->add_control(
 			'awea_about_button',
 			[
@@ -193,6 +202,7 @@ class Widget_Awesome_About extends Widget_Base {
 			]
 		);
 
+		// About Button Link
 		$this->add_control(
 			'awea_about_button_url',
 			[
@@ -211,7 +221,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 		$this->end_controls_section();
 
-		// Premium message section (optional)
+		// Premium Message Section
 		$this->start_controls_section(
 			'awea_about_pro_message',
 			[
@@ -588,7 +598,7 @@ class Widget_Awesome_About extends Widget_Base {
 
 		?>
 		<div class="awea-grid-row">
-			<div class="awea-grid-desktop-7">
+			<div class="awea-grid-desktop-7 awea-grid-tablet-6 awea-grid-mobile-12">
 				<div class="awea-about-content">
 					<span><?php echo esc_html( $subheading ); ?></span>
 					<h4><?php echo esc_html( $heading ); ?></h4>
@@ -616,7 +626,7 @@ class Widget_Awesome_About extends Widget_Base {
 					<a href="<?php echo esc_url($awea_about_button_url); ?>" class="awea-about-btn"><?php echo esc_html($awea_about_button); ?></a>
 				</div>
 			</div>
-			<div class="awea-grid-desktop-5">
+			<div class="awea-grid-desktop-5 awea-grid-tablet-6 awea-grid-mobile-12">
 				<div class="awea-about-img">
 					<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $heading ); ?>">
 				</div>

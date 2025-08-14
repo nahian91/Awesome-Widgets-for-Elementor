@@ -35,6 +35,9 @@ class AWEA {
         'awesome-about',
         'awesome-step-flow',
         'awesome-progress-bar',
+        'awesome-cart',
+        'awesome-myaccount',
+        'awesome-checkout',
     ];
 
     public static function instance() {

@@ -7,14 +7,15 @@ jQuery(window).on('elementor/frontend/init', function () {
             return;
         }
 
-        // Convert attributes to booleans/numbers - match PHP exactly
+        // Convert attributes to booleans/numbers with new slower defaults
         var slider_arrows = slider_carousel.attr('awea-slider-arrows') === 'true';
         var slider_dots = slider_carousel.attr('awea-slider-dots') === 'true';
         var slider_loop = slider_carousel.attr('awea-slider-loops') === 'true';
         var slider_pause = slider_carousel.attr('awea-slider-pause') === 'true';
         var slider_autoplay = slider_carousel.attr('awea-slider-autoplay') === 'true';
-        var slider_autoplay_speed = parseInt(slider_carousel.attr('awea-slider-autoplay-speed')) || 5000; // delay
-        var slider_autoplay_animation = parseInt(slider_carousel.attr('awea-slider-autoplay-animation')) || 600; // smooth transition
+
+        var slider_autoplay_speed = parseInt(slider_carousel.attr('awea-slider-autoplay-speed')) || 8000; // delay
+        var slider_autoplay_animation = parseInt(slider_carousel.attr('awea-slider-autoplay-animation')) || 1200; // transition speed
 
         slider_carousel.owlCarousel({
             dots: slider_dots,

@@ -407,10 +407,10 @@ class Widget_Awesome_Breadcumb extends Widget_Base {
 		$awea_breadcumb_title = $settings['awea_breadcumb_title'];
         ?>
 			<div class="awea-breadcumb">
-				<h4><?php echo $awea_breadcumb_title;?></h4>
+				<h4><?php echo esc_html($awea_breadcumb_title);?></h4>
 				<ul>
 					<li><a href="<?php echo esc_url( site_url() ); ?>">Home</a></li>
-					<li><?php echo $awea_breadcumb_title;?></li>
+					<li><?php echo esc_attr($awea_breadcumb_title);?></li>
 				</ul>
 			</div>
        <?php

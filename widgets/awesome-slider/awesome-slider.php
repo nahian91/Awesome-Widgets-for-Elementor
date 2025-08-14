@@ -465,7 +465,7 @@ class Widget_Awesome_Slider extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-slide-content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-slide-content-desc' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -478,7 +478,7 @@ class Widget_Awesome_Slider extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_slider_contents_desc_typography',
-				'selector' => '{{WRAPPER}} .awea-slide-content p',
+				'selector' => '{{WRAPPER}} .awea-slide-content-desc',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -928,14 +928,18 @@ protected function render() {
         return;
     }
 
+    // Defaults updated for slower slider
     $awea_sliders_items = $settings['awea_slider_number'] ?? 3;
     $awea_sliders_arrows = $settings['awea_slider_arrows'] ?? 'yes';
     $awea_sliders_dots = $settings['awea_slider_dots'] ?? 'yes';
     $awea_sliders_loops = $settings['awea_slider_loop'] ?? 'no';
     $awea_sliders_pause = $settings['awea_slider_pause'] ?? 'no';
     $awea_sliders_autoplay = $settings['awea_slider_autoplay'] ?? 'no';
-    $awea_sliders_autoplay_speed = $settings['awea_slider_autoplay_speed'] ?? 5000;
-    $awea_sliders_autoplay_animation = $settings['awea_slider_autoplay_animation'] ?? '';
+
+    // Slower defaults
+    $awea_slider_autoplay_speed = $settings['awea_slider_autoplay_speed'] ?? 8000; // 8s delay
+    $awea_slider_autoplay_animation = $settings['awea_slider_autoplay_animation'] ?? 1200; // 1.2s transition
+
     ?>
     <div class="awea-slider owl-carousel" 
         awea-slider-items="<?php echo esc_attr( $awea_sliders_items ); ?>" 
@@ -944,8 +948,9 @@ protected function render() {
         awea-slider-loops="<?php echo esc_attr( $awea_sliders_loops === 'yes' ? 'true' : 'false' ); ?>" 
         awea-slider-pause="<?php echo esc_attr( $awea_sliders_pause === 'yes' ? 'true' : 'false' ); ?>" 
         awea-slider-autoplay="<?php echo esc_attr( $awea_sliders_autoplay === 'yes' ? 'true' : 'false' ); ?>" 
-        awea-slider-autoplay-speed="<?php echo esc_attr( $awea_sliders_autoplay_speed ); ?>" 
-        awea-slider-autoplay-animation="<?php echo esc_attr( $awea_sliders_autoplay_animation ); ?>">
+        awea-slider-autoplay-speed="<?php echo esc_attr( $awea_slider_autoplay_speed ); ?>" 
+        awea-slider-autoplay-animation="<?php echo esc_attr( $awea_slider_autoplay_animation ); ?>">
+        
         <?php foreach ( $slides as $slide ) :
             $awea_slide_image_url = !empty( $slide['awea_slider_image']['url'] ) ? esc_url( $slide['awea_slider_image']['url'] ) : '';
             $awea_slide_subtitle  = esc_html( $slide['awea_slider_subtitle'] ?? '' );
@@ -958,15 +963,35 @@ protected function render() {
         ?>
             <div class="awea-slide-box" style="background-image: url('<?php echo esc_url( $awea_slide_image_url ); ?>');">
                 <div class="awea-slide-content">
-                    <?php if ( $awea_slide_subtitle ) : ?><span><?php echo $awea_slide_subtitle; ?></span><?php endif; ?>
-                    <?php if ( $awea_slide_title ) : ?><h4><?php echo $awea_slide_title; ?></h4><?php endif; ?>
-                    <?php if ( $awea_slide_desc ) : ?><?php echo $awea_slide_desc; ?><?php endif; ?>
+                    <?php if ( $awea_slide_subtitle ) : ?>
+                        <span><?php echo esc_html($awea_slide_subtitle); ?></span>
+                    <?php endif; ?>
+
+                    <?php if ( $awea_slide_title ) : ?>
+                        <h4><?php echo esc_html($awea_slide_title); ?></h4>
+                    <?php endif; ?>
+					
+                    <?php if ( $awea_slide_desc ) : ?>
+                        <div class="awea-slide-content-desc">
+                            <?php echo wp_kses_post($awea_slide_desc); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="awea-slide-btn">
                         <?php if ( $awea_btn1_text && $awea_btn1_url ) : ?>
-                            <a href="<?php echo $awea_btn1_url; ?>" class="awea-slide-btn-bg"><?php echo $awea_btn1_text; ?></a>
+                            <a href="<?php echo esc_url($awea_btn1_url); ?>" 
+                               class="awea-slide-btn-bg"
+                               aria-label="<?php echo esc_attr($awea_btn1_text); ?>">
+                               <?php echo esc_html($awea_btn1_text); ?>
+                            </a>
                         <?php endif; ?>
+
                         <?php if ( $awea_btn2_text && $awea_btn2_url ) : ?>
-                            <a href="<?php echo $awea_btn2_url; ?>" class="awea-slide-btn-border"><?php echo $awea_btn2_text; ?></a>
+                            <a href="<?php echo esc_url($awea_btn2_url); ?>" 
+                               class="awea-slide-btn-border"
+                               aria-label="<?php echo esc_attr($awea_btn2_text); ?>">
+                               <?php echo esc_html($awea_btn2_text); ?>
+                            </a>
                         <?php endif; ?>
                     </div>
                 </div>
