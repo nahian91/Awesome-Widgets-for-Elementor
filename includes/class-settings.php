@@ -105,3 +105,10 @@ class AWEA_Settings {
         return $sanitized;
     }
 }
+
+// Show product images in checkout order review
+add_filter('woocommerce_cart_item_name', function($product_name, $cart_item, $cart_item_key){
+    $_product = $cart_item['data'];
+    $thumbnail = $_product->get_image('thumbnail'); // Get product thumbnail
+    return '<div class="checkout-product-with-image">' . $thumbnail . '<span class="checkout-product-name">' . $product_name . '</span></div>';
+}, 10, 3);

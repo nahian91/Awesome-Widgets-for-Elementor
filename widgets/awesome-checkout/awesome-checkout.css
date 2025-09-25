@@ -1,0 +1,49 @@
+.awea-checkout-title {
+  margin-bottom: 10px;
+}
+.awea-checkout-item {
+	display: flex;
+	gap: 20px;
+	justify-content: space-between;
+	align-items: center;
+}
+.awea-checkout-item-thumb img {
+  max-width: 70px;
+}
+.awea-checkout-right-sidebar-items {
+	border: 1px solid #ddd;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.awea-checkout-item-thumb {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.awea-checkout-subtotal, .awea-checkout-order-total {
+  display: flex;
+  justify-content: space-between;
+}
+.awea-checkout-order-total {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.awea-checkout-payment-wrapper {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 30px;
+}
+.awea-woocommerce-terms-and-conditions-wrapper {
+  margin: 20px 0;
+}
+.awea-form-row.awea-place-order button {
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}

@@ -87,18 +87,6 @@ class Widget_Awesome_MyAccount extends Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
-		
-		// start of the Content tab section
-		$this->start_controls_section(
-			'awea_myaccount_contents',
-			 [
-				'label' => esc_html__('Contents', 'awesome-widgets-elementor'),
-				'tab'   => Controls_Manager::TAB_CONTENT,			
-			]
-		);
-
-		$this->end_controls_section();
-		// end of the Content tab section
 
 		// start of the Content tab section
 		$this->start_controls_section(
@@ -125,12 +113,544 @@ class Widget_Awesome_MyAccount extends Widget_Base {
 
 		// start of the Heading Style
 		$this->start_controls_section(
-			'awea_myaccount_style',
+			'awea_myaccount_tabs_style',
+			[
+				'label' => esc_html__( 'Tabs', 'awesome-widgets-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+        $this->start_controls_tabs(
+            'awea_myaccount_tabs_normal_tabs'
+        );
+
+        $this->start_controls_tab(
+            'awea_myaccount_tabs_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'awesome-widgets-elementor' ),
+            ]
+        );
+
+        $this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_tabs_normal_typography',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_tabs_normal_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_normal_background',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_myaccount_tabs_normal_border',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li',
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_normal_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_normal_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'awea_myaccount_tabs_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'awesome-widgets-elementor' ),
+            ]
+        );
+
+		$this->add_control(
+			'awea_myaccount_tabs_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li:hover' => 'color: {{VALUE}} !important',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_hover_background',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li:hover' => 'background-color: {{VALUE}} important',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_myaccount_tabs_hover_border',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li:hover',
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_hover_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'awea_myaccount_tabs_active_tab',
+            [
+                'label' => esc_html__( 'Active', 'awesome-widgets-elementor' ),
+            ]
+        );
+
+        $this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_tabs_active_typography',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li.active',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_tabs_active_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_active_background',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'awea_myaccount_tabs_active_border',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li.active',
+			]
+		);
+
+        $this->add_control(
+			'awea_myaccount_tabs_active_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+
+		$this->end_controls_section();
+		// end of the Style tab section
+
+        // start of the Heading Style
+		$this->start_controls_section(
+			'awea_myaccount_content_style',
 			[
 				'label' => esc_html__( 'Contents', 'awesome-widgets-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
+
+		$this->add_control(
+			'awea_myaccount_content_title',
+			[
+				'label' => esc_html__( 'Title', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_content_title_typography',
+				'selector' => '{{WRAPPER}} .awea-tab-pane h4',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_title_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tab-pane h4' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_text',
+			[
+				'label' => esc_html__( 'Description', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_content_text_typography',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li.active',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_text_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_input_heading',
+			[
+				'label' => esc_html__( 'Input Label', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_content_input_heading_typography',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li.active',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_input_heading_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_input_border',
+			[
+				'label' => esc_html__( 'Input Border', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_input_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_input_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_input_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn',
+			[
+				'label' => esc_html__( 'Button', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->start_controls_tabs(
+			'awea_myaccount_content_btn_style_tabs'
+		);
+
+		$this->start_controls_tab(
+			'awea_myaccount_content_btn_style_normal_tab',
+			[
+				'label' => esc_html__( 'Normal', 'textdomain' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_content_btn_normal_typography',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li.active',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_normal_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_normal_bgcolor',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_normal_radius',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_normal_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'awea_myaccount_content_btn_style_hover_tab',
+			[
+				'label' => esc_html__( 'Hover', 'textdomain' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'awea_myaccount_content_btn_hover_typography',
+				'selector' => '{{WRAPPER}} .awea-tabs-nav li.active',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_hover_color',
+			[
+				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_hover_bgcolor',
+			[
+				'label' => esc_html__( 'Background', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li.active' => 'background-color: {{VALUE}}',
+				],
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				]
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_hover_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'awea_myaccount_content_btn_hover_padding',
+			[
+				'label' => esc_html__( 'Padding', 'awesome-widgets-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%'],
+				'selectors' => [
+					'{{WRAPPER}} .awea-tabs-nav li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 		// end of the Style tab section
@@ -145,8 +665,14 @@ class Widget_Awesome_MyAccount extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
+
     if ( ! is_user_logged_in() ) {
-        echo '<p>Please <a href="' . esc_url( wc_get_page_permalink( 'myaccount' ) ) . '">login</a> to view your account.</p>';
+        ?>
+        <div class="awesome-myaccount-widget">
+            <h4>Please log in to access your account</h4>
+            <?php echo do_shortcode('[woocommerce_my_account]'); ?>
+        </div>
+        <?php 
         return;
     }
 
@@ -155,152 +681,154 @@ class Widget_Awesome_MyAccount extends Widget_Base {
     $user_id      = $current_user->ID;
     ?>
     <div class="awesome-myaccount-widget">
-        <div class="amw-tabs-wrapper">
-            <!-- Sidebar Tabs -->
-            <ul class="amw-tabs-nav">
-                <li class="active" data-tab="dashboard"><i class="fa-regular fa-chart-line"></i> Dashboard</li>
-                <li data-tab="orders"><i class="fa-regular fa-bag-shopping"></i> Orders</li>
-                <li data-tab="downloads"><i class="fa-regular fa-download"></i> Downloads</li>
-                <li data-tab="address"><i class="fa-regular fa-location-dot"></i> Addresses</li>
-                <li data-tab="account"><i class="fa-regular fa-user"></i> Account Details</li>
-                <li><a href="<?php echo esc_url($logout_url); ?>"><i class="fa-regular fa-right-from-bracket"></i> Logout</a></li>
-            </ul>
-
-            <!-- Tab Content -->
-            <div class="amw-tabs-content">
+        <div class="awea-tabs-wrapper">
+            <div class="awea-grid-row">
+                <div class="awea-grid-desktop-3">
+                    <ul class="awea-tabs-nav">
+                        <li class="active" data-tab="dashboard"><i class="far fa-chart-bar"></i> <?php echo esc_html__( 'Dashboard', 'awesome-widgets-elementor' ); ?></li>
+                        <li data-tab="orders"><i class="fas fa-shopping-bag"></i> <?php echo esc_html__( 'Orders', 'awesome-widgets-elementor' ); ?></li>
+                        <li data-tab="downloads"><i class="fas fa-cloud-download-alt"></i> <?php echo esc_html__( 'Downloads', 'awesome-widgets-elementor' ); ?></li>
+                        <li data-tab="address"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html__( 'Addresses', 'awesome-widgets-elementor' ); ?></li>
+                        <li data-tab="account"><i class="far fa-user"></i> <?php echo esc_html__( 'Account Details', 'awesome-widgets-elementor' ); ?></li>
+                        <li><a href="<?php echo esc_url($logout_url); ?>"><i class="fas fa-sign-out-alt"></i> <?php echo esc_html__( 'Logout', 'awesome-widgets-elementor' ); ?></a></li>
+                    </ul>
+                </div>
+                <div class="awea-grid-desktop-9">
+                    <!-- Tab Content -->
+            <div class="awea-tabs-content">
                 <!-- Dashboard -->
-                <div id="dashboard" class="amw-tab-pane active">
-                    <h3>Hello, <?php echo esc_html( $current_user->display_name ); ?> 👋</h3>
-                    <p>Email: <strong><?php echo esc_html( $current_user->user_email ); ?></strong></p>
-                    <p>Member since: <strong><?php echo esc_html( date( 'F j, Y', strtotime( $current_user->user_registered ) ) ); ?></strong></p>
-                    <p>From your dashboard you can manage orders, addresses, and account settings.</p>
-                </div>
+                <div id="dashboard" class="awea-tab-pane active">
+                <h4><?php
+                    /* translators: %s: User display name */
+                    echo sprintf( esc_html__( 'Hello, %s 👋', 'awesome-widgets-elementor' ), esc_html( $current_user->display_name ) );
+                    ?></h4>
+                <p><?php esc_html_e( 'Email:', 'awesome-widgets-elementor' ); ?> 
+                    <strong><?php echo esc_html( $current_user->user_email ); ?></strong></p>
+                <p><?php esc_html_e( 'From your dashboard you can manage orders, addresses, and account settings.', 'awesome-widgets-elementor' ); ?></p>
+            </div>
 
-                <!-- Orders -->
-                <div id="orders" class="amw-tab-pane">
-                    <h3>Your Recent Orders</h3>
-                    <?php
-                    $orders = wc_get_orders( [ 'customer_id' => $user_id, 'limit' => 5 ] );
-                    if ( $orders ) {
-                        echo '<table class="amw-orders-table">';
-                        echo '<thead><tr><th>Order</th><th>Date</th><th>Status</th><th>Total</th></tr></thead><tbody>';
-                        foreach ( $orders as $order ) {
-                            echo '<tr>';
-                            echo '<td>#' . esc_html( $order->get_id() ) . '</td>';
-                            echo '<td>' . esc_html( wc_format_datetime( $order->get_date_created() ) ) . '</td>';
-                            echo '<td>' . esc_html( ucfirst( $order->get_status() ) ) . '</td>';
-                            echo '<td>' . esc_html( wc_price( $order->get_total() ) ) . '</td>';
-                            echo '</tr>';
-                        }
-                        echo '</tbody></table>';
-                    } else {
-                        echo '<p>No recent orders.</p>';
-                    }
-                    ?>
-                </div>
+            <!-- Orders -->
+<div id="orders" class="awea-tab-pane">
+    <h4><?php echo esc_html__( 'Your Recent Orders', 'awesome-widgets-elementor' ); ?></h4>
+    <?php
+    $orders = wc_get_orders( [ 'customer_id' => $user_id, 'limit' => 5 ] );
+    if ( $orders ) {
+        ?>
+        <table class="awea-orders-table">
+            <thead>
+                <tr>
+                    <th><?php echo esc_html__( 'Order', 'awesome-widgets-elementor' ); ?></th>
+                    <th><?php echo esc_html__( 'Date', 'awesome-widgets-elementor' ); ?></th>
+                    <th><?php echo esc_html__( 'Status', 'awesome-widgets-elementor' ); ?></th>
+                    <th><?php echo esc_html__( 'Total', 'awesome-widgets-elementor' ); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ( $orders as $order ) : ?>
+                    <tr>
+                        <td><?php echo esc_html( $order->get_id() ); ?></td>
+                        <td><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></td>
+                        <td><?php echo esc_html( ucfirst( $order->get_status() ) ); ?></td>
+                        <td><?php echo wp_kses_post( wc_price( $order->get_total() ) ); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php
+    } else {
+        echo '<p>' . esc_html__( 'No recent orders.', 'awesome-widgets-elementor' ) . '</p>';
+    }
+    ?>
+</div>
+
 
                 <!-- Downloads -->
-                <div id="downloads" class="amw-tab-pane">
-                    <h3>Available Downloads</h3>
+                <div id="downloads" class="awea-tab-pane">
+                    <h4><?php echo esc_html__( 'Available Downloads', 'awesome-widgets-elementor' ); ?></h4>
                     <?php
                     $downloads = wc_get_customer_available_downloads( $user_id );
                     if ( $downloads ) {
-                        echo '<ul class="amw-downloads-list">';
-                        foreach ( $downloads as $download ) {
-                            echo '<li><a href="' . esc_url( $download['download_url'] ) . '">' . esc_html( $download['product_name'] ) . '</a></li>';
-                        }
-                        echo '</ul>';
+                        ?>
+                            <ul class="awea-downloads-list">
+                                <?php 
+                                    foreach ( $downloads as $download ) {
+                                        ?>
+                                            <li><a href="<?php echo esc_url( $download['download_url'] );?>"><?php echo esc_html( $download['product_name'] );?></a></li>
+                                        <?php 
+                                    }
+                                ?>
+                            </ul>
+                        <?php
                     } else {
-                        echo '<p>No downloads available.</p>';
+                        echo '<p>' . esc_html__( 'No downloads available.', 'awesome-widgets-elementor' ) . '</p>';
                     }
                     ?>
                 </div>
 
                 <!-- Addresses -->
-                <div id="address" class="amw-tab-pane">
-                    <h3>Billing Address</h3>
-                    <p><?php echo wc_get_account_formatted_address( 'billing' ) ?: 'No billing address set.'; ?></p>
-                    <h3>Shipping Address</h3>
+                <div id="address" class="awea-tab-pane">
+					<div class="awea-address-box">
+						<div class="awea-single-address">
+							<h4><?php echo esc_html__( 'Billing Address', 'awesome-widgets-elementor' ); ?></h4>
+                    		<p><?php echo wc_get_account_formatted_address( 'billing' ) ?: 'No billing address set.'; ?></p>
+						</div>
+						<div class="awea-single-address">
+							<h4>Shipping Address</h4>
                     <p><?php echo wc_get_account_formatted_address( 'shipping' ) ?: 'No shipping address set.'; ?></p>
+						</div>
+					</div>
                 </div>
 
                 <!-- Account Details -->
-                <div id="account" class="amw-tab-pane">
-                    <h3>Edit Account Details</h3>
-                    <form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" class="amw-account-form">
-                        <input type="hidden" name="action" value="update_account">
-                        <div class="amw-form-group">
-                            <label>First Name</label>
-                            <input type="text" name="first_name" value="<?php echo esc_attr( $current_user->first_name ); ?>">
+                <div id="account" class="awea-tab-pane">
+                    <h4><?php echo esc_html__( 'Edit Account Details', 'awesome-widgets-elementor' ); ?></h4>
+                        <form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" class="awea-account-form">
+                            <input type="hidden" name="action" value="update_account">
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'First Name', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="text" name="first_name" value="<?php echo esc_attr( $current_user->first_name ); ?>">
+                            </div>
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'Last Name', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="text" name="last_name" value="<?php echo esc_attr( $current_user->last_name ); ?>">
+                            </div>
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'Display Name', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="text" name="display_name" value="<?php echo esc_attr( $current_user->display_name ); ?>" required>
+                            </div>
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'Email', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="email" name="user_email" value="<?php echo esc_attr( $current_user->user_email ); ?>" required>
+                            </div>
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'Current Password', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="password" name="current_password">
+                            </div>
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'New Password', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="password" name="new_password">
+                            </div>
+
+                            <div class="awea-form-group">
+                                <label><?php echo esc_html__( 'Confirm New Password', 'awesome-widgets-elementor' ); ?></label>
+                                <input type="password" name="confirm_password">
+                            </div>
+
+                            <button type="submit" class="awea-btn"><?php echo esc_html__( 'Save Changes', 'awesome-widgets-elementor' ); ?></button>
+                        </form>
+
                         </div>
-                        <div class="amw-form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name" value="<?php echo esc_attr( $current_user->last_name ); ?>">
-                        </div>
-                        <div class="amw-form-group">
-                            <label>Display Name</label>
-                            <input type="text" name="display_name" value="<?php echo esc_attr( $current_user->display_name ); ?>" required>
-                        </div>
-                        <div class="amw-form-group">
-                            <label>Email</label>
-                            <input type="email" name="user_email" value="<?php echo esc_attr( $current_user->user_email ); ?>" required>
-                        </div>
-                        <div class="amw-form-group">
-                            <label>Current Password</label>
-                            <input type="password" name="current_password">
-                        </div>
-                        <div class="amw-form-group">
-                            <label>New Password</label>
-                            <input type="password" name="new_password">
-                        </div>
-                        <div class="amw-form-group">
-                            <label>Confirm New Password</label>
-                            <input type="password" name="confirm_password">
-                        </div>
-                        <button type="submit" class="amw-btn">Save Changes</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <style>
-    .amw-tabs-wrapper { display:flex; flex-wrap:wrap; gap:20px; }
-    .amw-tabs-nav { list-style:none; padding:0; margin:0; flex:1; min-width:180px; }
-    .amw-tabs-nav li { cursor:pointer; padding:12px 20px; margin-bottom:10px; background:#f4f4f4; border-radius:6px; display:flex; align-items:center; gap:10px; transition:0.3s; }
-    .amw-tabs-nav li.active { background:#0073aa; color:#fff; }
-    .amw-tabs-nav li a { color: inherit; text-decoration:none; display:flex; align-items:center; gap:10px; }
-    .amw-tab-pane { display:none; flex:3; padding:20px; background:#fff; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.05); }
-    .amw-tab-pane.active { display:block; }
-    .amw-orders-table { width:100%; border-collapse:collapse; margin-top:15px; }
-    .amw-orders-table th, .amw-orders-table td { padding:10px; border:1px solid #ddd; text-align:left; }
-    .amw-downloads-list { list-style:none; padding:0; margin-top:15px; }
-    .amw-downloads-list li { padding:6px 0; border-bottom:1px solid #eee; }
-    .amw-account-form .amw-form-group { margin-bottom:15px; }
-    .amw-account-form label { display:block; margin-bottom:5px; font-weight:600; }
-    .amw-account-form input { width:100%; padding:8px 10px; border:1px solid #ccc; border-radius:4px; }
-    .amw-btn { padding:10px 20px; background:#0073aa; color:#fff; border:none; border-radius:5px; cursor:pointer; transition:0.3s; }
-    .amw-btn:hover { background:#005177; }
-    </style>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function(){
-        const tabs = document.querySelectorAll('.amw-tabs-nav li[data-tab]');
-        const panes = document.querySelectorAll('.amw-tab-pane');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function(){
-                tabs.forEach(t => t.classList.remove('active'));
-                panes.forEach(p => p.classList.remove('active'));
-                this.classList.add('active');
-                document.getElementById(this.dataset.tab).classList.add('active');
-            });
-        });
-
-        // Activate first tab
-        if(tabs.length) tabs[0].click();
-    });
-    </script>
     <?php
 }
 }

@@ -284,7 +284,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 				'label' => esc_html__( 'Color', 'awesome-widgets-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .awea-section-title p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .awea-section-content' => 'color: {{VALUE}}',
 				],
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -297,7 +297,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'awea_desc_typography',
-				'selector' => '{{WRAPPER}} .awea-section-title p',
+				'selector' => '{{WRAPPER}} .awea-section-content',
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				]
@@ -366,7 +366,7 @@ class Widget_Awesome_Heading extends Widget_Base {
 			<div class="awea-section-title">
 				<span><?php echo esc_html($awea_sub_heading);?></span>
 				<h4><?php echo esc_html($awea_heading);?></h4>
-				<?php echo wp_kses_post($awea_heading_desc);?>
+				<div class="awea-section-content"><?php echo wp_kses_post($awea_heading_desc);?></div>
 			</div>
        <?php
 	}

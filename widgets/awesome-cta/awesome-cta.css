@@ -19,4 +19,5 @@
   padding: 10px 25px;
   background-color: var(--e-global-color-text);
   color: var(--e-global-color-secondary);
+  transition: .3s;
 }

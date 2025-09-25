@@ -112,7 +112,7 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
 		$this->add_control(
             'awea_select_products',
             [
-                'label'       => __( 'Select Products', 'your-textdomain' ),
+                'label'       => __( 'Select Products', 'awesome-widgets-elementor' ),
                 'type'        => Controls_Manager::SELECT2,
                 'options'     => $this->get_products_options(),
                 'multiple'    => true,
@@ -124,7 +124,7 @@ class Widget_Awesome_Product_Grid extends Widget_Base {
         $this->add_control(
             'awea_select_categories',
             [
-                'label'       => __( 'Select Categories', 'your-textdomain' ),
+                'label'       => __( 'Select Categories', 'awesome-widgets-elementor' ),
                 'type'        => Controls_Manager::SELECT2,
                 'options'     => $this->get_categories_options(),
                 'multiple'    => true,

@@ -34,7 +34,7 @@ class AWEA_Admin_Pages {
             'Widgets Settings',
             'Widgets',
             'manage_options',
-            'awesome-widgets-widgets',
+            'awesome-widgets',
             [$this, 'widgets_page']
         );
     }

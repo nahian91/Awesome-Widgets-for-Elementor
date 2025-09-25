@@ -457,121 +457,123 @@ class Widget_Awesome_Product_List extends Widget_Base {
 
 	}
 protected function render() {
-		$settings = $this->get_settings_for_display();
-		$awea_product_list_title_heading = ! empty( $settings['awea_product_list_title_heading'] ) ? $settings['awea_product_list_title_heading'] : '';
+        $settings = $this->get_settings_for_display();
+        $awea_product_list_title_heading = ! empty( $settings['awea_product_list_title_heading'] ) ? $settings['awea_product_list_title_heading'] : '';
 
-		$product_count   = ! empty( $settings['awea_product_list_count'] ) ? intval( $settings['awea_product_list_count'] ) : 6;
-		$product_orderby = ! empty( $settings['awea_product_list_orderby'] ) ? $settings['awea_product_list_orderby'] : 'latest';
+        $product_count   = ! empty( $settings['awea_product_list_count'] ) ? intval( $settings['awea_product_list_count'] ) : 6;
+        $product_orderby = ! empty( $settings['awea_product_list_orderby'] ) ? $settings['awea_product_list_orderby'] : 'latest';
 
-		$args = [
-			'post_type'      => 'product',
-			'posts_per_page' => $product_count,
-			'post_status'    => 'publish',
-		];
+        $args = [
+            'post_type'      => 'product',
+            'posts_per_page' => $product_count,
+            'post_status'    => 'publish',
+        ];
 
-		switch ( $product_orderby ) {
-			case 'top_rated':
-				$args['meta_key'] = 'total_sales';
-				$args['orderby']  = 'meta_value_num';
-				$args['order']    = 'DESC';
-				break;
+        switch ( $product_orderby ) {
+            case 'top_rated':
+                $args['meta_key'] = 'total_sales';
+                $args['orderby']  = 'meta_value_num';
+                $args['order']    = 'DESC';
+                break;
+            case 'random':
+                $args['orderby'] = 'rand';
+                break;
+            case 'featured':
+                $args['tax_query'] = [
+                    [
+                        'taxonomy' => 'product_visibility',
+                        'field'    => 'slug',
+                        'terms'    => [ 'featured' ],
+                        'operator' => 'IN',
+                    ],
+                ];
+                break;
+            case 'price_low':
+                $args['meta_key'] = '_price';
+                $args['orderby']  = 'meta_value_num';
+                $args['order']    = 'ASC';
+                break;
+            case 'price_high':
+                $args['meta_key'] = '_price';
+                $args['orderby']  = 'meta_value_num';
+                $args['order']    = 'DESC';
+                break;
+            case 'most_reviewed':
+                $args['orderby'] = 'comment_count';
+                $args['order']   = 'DESC';
+                break;
+            case 'on_sale':
+                $sale_products    = wc_get_product_ids_on_sale();
+                $args['post__in'] = ! empty( $sale_products ) ? $sale_products : [ 0 ];
+                break;
+            case 'latest':
+            default:
+                $args['orderby'] = 'date';
+                $args['order']   = 'DESC';
+                break;
+        }
 
-			case 'random':
-				$args['orderby'] = 'rand';
-				break;
+        $products = new \WP_Query( $args );
 
-			case 'featured':
-				$args['tax_query'] = [
-					[
-						'taxonomy' => 'product_visibility',
-						'field'    => 'slug',
-						'terms'    => [ 'featured' ],
-						'operator' => 'IN',
-					],
-				];
-				break;
+        if ( $products->have_posts() ) {
+            echo '<div class="awea-product-grid">';
+            if ( ! empty( $awea_product_list_title_heading ) ) {
+                echo '<h4>' . esc_html( $awea_product_list_title_heading ) . '</h4>';
+            }
 
-			case 'price_low':
-				$args['meta_key'] = '_price';
-				$args['orderby']  = 'meta_value_num';
-				$args['order']    = 'ASC';
-				break;
+            while ( $products->have_posts() ) {
+                $products->the_post();
 
-			case 'price_high':
-				$args['meta_key'] = '_price';
-				$args['orderby']  = 'meta_value_num';
-				$args['order']    = 'DESC';
-				break;
+                /**
+                 * ✅ FIX:
+                 * Use wc_get_product() and check for a valid WC_Product object.
+                 * Prevents fatal error: Call to a member function get_price_html() on null
+                 */
+                $product = wc_get_product( get_the_ID() );
+                if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+                    continue; // Skip if not a valid product
+                }
 
-			case 'most_reviewed':
-				$args['orderby'] = 'comment_count';
-				$args['order']   = 'DESC';
-				break;
+                $product_id    = $product->get_id();
+                $product_link  = get_permalink( $product_id );
+                $product_title = $product->get_title();
+                $product_price = $product->get_price_html();
+                $product_image = get_the_post_thumbnail_url( $product_id, 'medium' );
 
-			case 'on_sale':
-				$sale_products = wc_get_product_ids_on_sale();
-				$args['post__in'] = ! empty( $sale_products ) ? $sale_products : [ 0 ];
-				break;
-
-			case 'latest':
-			default:
-				$args['orderby'] = 'date';
-				$args['order']   = 'DESC';
-				break;
-		}
-
-		$products = new \WP_Query( $args );
-
-		if ( $products->have_posts() ) {
-			echo '<div class="awea-product-grid">';
-			if ( ! empty( $awea_product_list_title_heading ) ) {
-				echo '<h4>' . esc_html( $awea_product_list_title_heading ) . '</h4>';
-			}
-
-			while ( $products->have_posts() ) {
-				$products->the_post();
-				global $product;
-
-				$product_id    = get_the_ID();
-				$product_link  = get_permalink( $product_id );
-				$product_title = get_the_title();
-				$product_price = $product->get_price_html();
-				$product_image = get_the_post_thumbnail_url( $product_id, 'medium' );
-
-				if ( ! $product_image ) {
-					$product_image = wc_placeholder_img_src();
-				}
-				?>
-				<div class="single-awea-product-list">
-					<div class="single-awea-product-list-box">
-						<div class="single-awea-product-list-img" style="background-image: url('<?php echo esc_url( $product_image ); ?>');"></div>
-						<div class="single-awea-product-list-content">
-							<h4><a href="<?php echo esc_url( $product_link ); ?>"><?php echo esc_html( $product_title ); ?></a></h4>
-							<div class="single-awea-product-list-meta">
-								<span><?php echo wp_kses_post( $product_price ); ?></span>
-								<?php if ( WC()->cart && WC()->cart->find_product_in_cart( WC()->cart->generate_cart_id( $product->get_id() ) ) ) : ?>
-									<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="awea-product-grid-btn">
-										<?php esc_html_e( 'View Cart', 'awesome-widgets-elementor' ); ?>
-									</a>
-								<?php else : ?>
-									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>"
-									   class="awea-product-grid-btn"
-									   data-quantity="1"
-									   data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"
-									   rel="nofollow">
-										<?php echo esc_html( $product->add_to_cart_text() ); ?>
-									</a>
-								<?php endif; ?>
-							</div>
-						</div>
-					</div>
-				</div>
-				<?php
-			}
-			echo '</div>';
-			wp_reset_postdata();
-		} else {
-			echo '<p>' . esc_html__( 'No products found.', 'awesome-widgets-elementor' ) . '</p>';
-		}
-	}
+                if ( ! $product_image ) {
+                    $product_image = wc_placeholder_img_src();
+                }
+                ?>
+                <div class="single-awea-product-list">
+                    <div class="single-awea-product-list-box">
+                        <div class="single-awea-product-list-img" style="background-image: url('<?php echo esc_url( $product_image ); ?>');"></div>
+                        <div class="single-awea-product-list-content">
+                            <h4><a href="<?php echo esc_url( $product_link ); ?>"><?php echo esc_html( $product_title ); ?></a></h4>
+                            <div class="single-awea-product-list-meta">
+                                <span><?php echo wp_kses_post( $product_price ); ?></span>
+                                <?php if ( WC()->cart && WC()->cart->find_product_in_cart( WC()->cart->generate_cart_id( $product_id ) ) ) : ?>
+                                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="awea-product-grid-btn">
+                                        <?php esc_html_e( 'View Cart', 'awesome-widgets-elementor' ); ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>"
+                                       class="awea-product-grid-btn"
+                                       data-quantity="1"
+                                       data-product_id="<?php echo esc_attr( $product_id ); ?>"
+                                       rel="nofollow">
+                                        <?php echo esc_html( $product->add_to_cart_text() ); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+            echo '</div>';
+            wp_reset_postdata();
+        } else {
+            echo '<p>' . esc_html__( 'No products found.', 'awesome-widgets-elementor' ) . '</p>';
+        }
+    }
 }

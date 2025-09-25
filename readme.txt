@@ -3,7 +3,7 @@ Contributors: nahian91
 Tags: elementor, elementor addons, elementor widget, elements
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.5
+Stable tag: 1.5.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,16 @@ Awesome Widgets for Elementor is a powerful and lightweight Elementor add-on tha
 
 [LIVE DEMO](https://devnahian.com/awesome-widgets-for-elementor/)
 
-25+ Awesome Widgets for Elementor FREE:
+30+ Awesome Widgets for Elementor FREE:
+
+* **Cart**  
+  Easily view, update, and manage all the products you’ve added before checkout. Review quantities, apply coupons, and see your total cost in real time for a smooth shopping experience.
+
+* **Checkout**  
+  Complete your purchase quickly with a secure and user-friendly checkout process. Enter billing and shipping details, choose your payment method, and confirm your order with confidence.
+
+* **My Account**  
+  Access your personalized account dashboard to track orders, manage addresses, update profile details, and view your purchase history — all in one convenient place.
 
 * **CTA Widget**  
   Create high-converting call-to-action sections to boost clicks and engagement.

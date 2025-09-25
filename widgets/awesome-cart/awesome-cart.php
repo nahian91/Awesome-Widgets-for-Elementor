@@ -86,7 +86,7 @@ class Widget_Awesome_Cart extends Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		
 		// start of the Content tab section
 		$this->start_controls_section(
@@ -1046,9 +1046,14 @@ class Widget_Awesome_Cart extends Widget_Base {
 
 	protected function render() {
 	if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
-		echo '<p>' . esc_html__( 'WooCommerce is not active or cart is unavailable.', 'awesome-widgets-elementor' ) . '</p>';
-		return;
-	}
+
+    // ✅ Show notice only inside Elementor editor
+    if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+        echo '<p>' . esc_html__( 'WooCommerce is not active or cart is unavailable.', 'awesome-widgets-elementor' ) . '</p>';
+    }
+
+    return; // Always stop rendering if WooCommerce/cart is missing
+}
 
 	$cart = WC()->cart;
 	$cart_totals = $cart->get_totals(); // Get all totals dynamically

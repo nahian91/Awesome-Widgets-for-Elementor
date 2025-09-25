@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Awesome Widgets for Elementor
  * Description: Easily create stunning websites with advanced design options and increased functionality.
- * Version: 1.5
+ * Version: 1.5.1
  * Author: Abdullah Nahian
  * Text Domain: awesome-widgets-elementor
  * Domain Path: /languages
